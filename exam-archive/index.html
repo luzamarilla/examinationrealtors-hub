@@ -1,0 +1,702 @@
+<title>不動產經紀人考試｜近10年考古題統整表</title>
+<style>
+  @font-face {
+    font-family: "SourceHanFallback";
+    src: local("Noto Serif TC"), local("Songti TC"), local("PMingLiU");
+  }
+
+  :root {
+    --paper: #fbf8f4;
+    --paper-raised: #ffffff;
+    --ink: #2a241f;
+    --sub: #6e6259;
+    --line: #e2d9cc;
+    --line-strong: #cabfae;
+
+    --terracotta: #8b4438;
+    --terracotta-bg: #f1e2dd;
+    --ochre: #9c7a34;
+    --ochre-bg: #efe6d0;
+    --sage: #4f6b4a;
+    --sage-bg: #e3ead d;
+    --sage-bg: #e3eadd;
+
+    --dot-on: #8b4438;
+    --dot-off: #e2d9cc;
+
+    --shadow: 0 1px 2px rgba(42, 36, 31, 0.06), 0 6px 20px -8px rgba(42, 36, 31, 0.15);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1c1815;
+      --paper-raised: #24201c;
+      --ink: #ede6dc;
+      --sub: #b3a99d;
+      --line: #3c332b;
+      --line-strong: #4d4238;
+
+      --terracotta: #e2937f;
+      --terracotta-bg: #3a2420;
+      --ochre: #d9b467;
+      --ochre-bg: #372c18;
+      --sage: #93b48a;
+      --sage-bg: #22301f;
+
+      --dot-on: #e2937f;
+      --dot-off: #3c332b;
+
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c1815;
+    --paper-raised: #24201c;
+    --ink: #ede6dc;
+    --sub: #b3a99d;
+    --line: #3c332b;
+    --line-strong: #4d4238;
+    --terracotta: #e2937f;
+    --terracotta-bg: #3a2420;
+    --ochre: #d9b467;
+    --ochre-bg: #372c18;
+    --sage: #93b48a;
+    --sage-bg: #22301f;
+    --dot-on: #e2937f;
+    --dot-off: #3c332b;
+  }
+  :root[data-theme="light"] {
+    --paper: #fbf8f4;
+    --paper-raised: #ffffff;
+    --ink: #2a241f;
+    --sub: #6e6259;
+    --line: #e2d9cc;
+    --line-strong: #cabfae;
+    --terracotta: #8b4438;
+    --terracotta-bg: #f1e2dd;
+    --ochre: #9c7a34;
+    --ochre-bg: #efe6d0;
+    --sage: #4f6b4a;
+    --sage-bg: #e3eadd;
+    --dot-on: #8b4438;
+    --dot-off: #e2d9cc;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Heiti TC", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Noto Serif TC", "Songti TC", "PMingLiU", "STSong", serif;
+    font-weight: 700;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    color: var(--sub);
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  h1 {
+    font-size: 30px;
+    letter-spacing: 0.01em;
+  }
+  header p.lede {
+    color: var(--sub);
+    max-width: 62ch;
+    font-size: 15px;
+  }
+
+  .purpose {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .purpose-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .purpose-card .num {
+    font-family: "Noto Serif TC", serif;
+    font-size: 13px;
+    color: var(--terracotta);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .purpose-card p {
+    margin: 4px 0 0;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+
+  /* ---------- legend / nav ---------- */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--paper);
+    padding: 12px 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .jumpnav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .jumpnav a {
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13.5px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--paper-raised);
+  }
+  .jumpnav a:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--sub);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  /* ---------- subject section ---------- */
+  section.subject {
+    margin-top: 56px;
+    scroll-margin-top: 70px;
+  }
+  .subject-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .subject-head .tag {
+    font-size: 12px;
+    color: var(--sub);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+  }
+  section.subject h2 { font-size: 22px; }
+  .subject-sub {
+    color: var(--sub);
+    font-size: 13.5px;
+    margin: 6px 0 22px;
+    max-width: 68ch;
+  }
+
+  /* core pillar row */
+  .pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .pillar {
+    background: var(--terracotta-bg);
+    color: var(--terracotta);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pillars-caption {
+    font-size: 12px;
+    color: var(--sub);
+    margin: -14px 0 22px;
+  }
+
+  /* table */
+  .tbl-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 720px;
+    background: var(--paper-raised);
+  }
+  thead th {
+    text-align: left;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--sub);
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: color-mix(in srgb, var(--ochre-bg) 35%, transparent); }
+  td.topic { font-weight: 600; max-width: 220px; }
+  td.topic .sub { display: block; font-weight: 400; color: var(--sub); font-size: 12px; margin-top: 2px; }
+
+  .dots { display: flex; gap: 3px; }
+  .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--dot-off);
+    flex: none;
+  }
+  .dot.on { background: var(--dot-on); }
+  .dotrow-label { font-size: 10.5px; color: var(--sub); margin-top: 4px; font-variant-numeric: tabular-nums; }
+
+  .yeartag {
+    display: inline-block;
+    font-size: 11.5px;
+    color: var(--sub);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge.good { background: var(--sage-bg); color: var(--sage); }
+  .badge.warn { background: var(--ochre-bg); color: var(--ochre); }
+  .badge.gap  { background: var(--terracotta-bg); color: var(--terracotta); }
+  .badge.pending { background: transparent; color: var(--sub); border: 1px dashed var(--line-strong); }
+
+  /* callout */
+  .callout {
+    margin-top: 20px;
+    border-left: 3px solid var(--ochre);
+    background: var(--ochre-bg);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+  }
+  .callout.critical { border-left-color: var(--terracotta); background: var(--terracotta-bg); }
+  .callout .label {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--terracotta);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .callout.critical .label { color: var(--terracotta); }
+  .callout p { margin: 0; font-size: 13.5px; color: var(--ink); }
+  .callout p + p { margin-top: 8px; }
+
+  .sources {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+  .sources a { color: var(--sub); }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--sub);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    .purpose { grid-template-columns: 1fr; }
+    .toolbar { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">不動產經紀人考試 · 考古題重點研究</span>
+    <h1>近 10 年考古題統整表</h1>
+    <p class="lede">民國 105～114 年，四科（民法／經紀法／估價／土法）考古題交叉比對。範圍原本是近 5 年（110～114），2026-07-11 往前補了 105～109 年，湊成近 10 年。</p>
+    <div class="purpose">
+      <div class="purpose-card">
+        <span class="num">① 排優先順序</span>
+        <p>找出哪些主題／法條十年來反覆出現，讀書時間優先花在這裡。</p>
+      </div>
+      <div class="purpose-card">
+        <span class="num">② 找筆記缺口</span>
+        <p>用考古題反過來檢查現有視覺化筆記，覆蓋範圍夠不夠、哪裡完全沒碰過。</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <nav class="jumpnav">
+      <a href="#civil">民法</a>
+      <a href="#broker">經紀法</a>
+      <a href="#appraisal">估價</a>
+      <a href="#land">土法</a>
+    </nav>
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--sage)"></span>已涵蓋</span>
+      <span><span class="swatch" style="background:var(--ochre)"></span>可延伸</span>
+      <span><span class="swatch" style="background:var(--terracotta)"></span>筆記缺口</span>
+      <span><span class="dot on" style="width:8px;height:8px"></span>該年確認出現</span>
+    </div>
+  </div>
+
+  <!-- ============ 民法 ============ -->
+  <section class="subject" id="civil">
+    <div class="subject-head">
+      <h2>民法</h2>
+      <span class="tag">105–114　共 10 年</span>
+    </div>
+    <p class="subject-sub">四大主題連續十年無一年缺席，是全科最穩固的支柱；105–109 新查出「消滅時效／除斥期間」與「無權處分」兩個過去清單較少強調的常客。</p>
+
+    <div class="pillars">
+      <span class="pillar">抵押權 §866/867/873/880/881</span>
+      <span class="pillar">共有制度（分管契約 §820）</span>
+      <span class="pillar">夫妻財產制</span>
+      <span class="pillar">繼承篇（應繼分／拋棄／特留分）</span>
+    </div>
+    <p class="pillars-caption">以上四項：105、106、107、108、109、110、111、112、113、114 — 十年全數命中，列為必背核心。</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>考點</th>
+            <th>105–109 出現年份</th>
+            <th>110–114 出現情況</th>
+            <th>筆記狀態</th>
+            <th>是否加入筆記</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="topic">限制行為能力人<span class="sub">§77–85</span></td>
+            <td><div class="dots">
+              <span class="dot on" title="105"></span><span class="dot on" title="106"></span><span class="dot on" title="107"></span><span class="dot on" title="108"></span><span class="dot on" title="109"></span>
+            </div><div class="dotrow-label">5/5</div></td>
+            <td><span class="yeartag">106 年整題申論（契約效力＋物之瑕疵擔保）</span></td>
+            <td><span class="badge pending">未特別追蹤</span></td>
+            <td><span class="badge pending">待確認</span></td>
+          </tr>
+          <tr>
+            <td class="topic">消滅時效與除斥期間<span class="sub">含釋字107號、已登記不動產回復請求權</span></td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge gap">新發現缺口</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">無權處分<span class="sub">§118，含借名登記爭議</span></td>
+            <td><div class="dots">
+              <span class="dot off"></span><span class="dot off"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">3/5</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge gap">新發現缺口</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">居間契約報酬請求權<span class="sub">§565/568/571/574</span></td>
+            <td><div class="dots">
+              <span class="dot off"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span><span class="dot off"></span>
+            </div><div class="dotrow-label">2/5（測驗）</div></td>
+            <td><span class="yeartag">112、113 連兩年整題申論</span></td>
+            <td><span class="badge warn">可延伸補強</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">買賣物瑕疵擔保<span class="sub">漏水糾紛</span></td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot off"></span><span class="dot off"></span>
+            </div><div class="dotrow-label">2/5</div></td>
+            <td><span class="yeartag">113 年結合精神慰撫金求償</span></td>
+            <td><span class="badge warn">可延伸補強</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout critical">
+      <span class="label">105–109 新發現</span>
+      <p><strong>消滅時效 vs 除斥期間</strong>與<strong>無權處分 §118（借名登記）</strong>在 105–109 出現頻率明顯高於 110–114，過去的「必背核心」清單沒特別標出這兩塊，建議檢查現有筆記深度是否足夠。</p>
+    </div>
+
+    <p class="sources">資料來源：全國補習班（陳國）105–109 全數收錄，105–114 十年皆可查證。</p>
+  </section>
+
+  <!-- ============ 經紀法 ============ -->
+  <section class="subject" id="broker">
+    <div class="subject-head">
+      <h2>經紀法</h2>
+      <span class="tag">105–114　共 10 年</span>
+    </div>
+    <p class="subject-sub">五項核心十年全部印證；這次補查最大的發現是消費者保護法出題量被低估——105–109 幾乎年年 5 題以上，108、109 兩年還直接考進申論。</p>
+
+    <div class="pillars">
+      <span class="pillar">不動產說明書</span>
+      <span class="pillar">公寓大廈區權會決議門檻</span>
+      <span class="pillar">公平法－不實廣告</span>
+      <span class="pillar">經紀業違規處罰</span>
+      <span class="pillar">公平法－聯合行為</span>
+    </div>
+    <p class="pillars-caption">以上五項：105–114 十年全數命中，列為必背核心。</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>考點</th>
+            <th>105–109 出現年份</th>
+            <th>110–114 出現情況</th>
+            <th>筆記狀態</th>
+            <th>是否加入筆記</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="topic">消保法－企業經營者責任<span class="sub">商品／服務責任、團體訴訟、申訴調解</span></td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">5/5</div></td>
+            <td><span class="yeartag">未特別記錄，原清單未列入核心</span></td>
+            <td><span class="badge gap">新發現缺口最大</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">消保法－定型化契約<span class="sub">審閱期、應記載事項</span></td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge gap">新發現缺口</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout critical">
+      <span class="label">105–109 新發現</span>
+      <p>消保法整體出題量比想像中吃重，若現有筆記把消保法當小科目簡略帶過，建議拆成「定型化契約」「企業經營者責任」「特種交易」「團體訴訟與申訴調解」四個子題重新整理，補齊覆蓋範圍。</p>
+    </div>
+
+    <p class="sources">資料來源：全國補習班（陳國）105–109 全數收錄，105–114 十年皆可查證。</p>
+  </section>
+
+  <!-- ============ 估價 ============ -->
+  <section class="subject" id="appraisal">
+    <div class="subject-head">
+      <h2>估價</h2>
+      <span class="tag">105–114　共 10 年</span>
+    </div>
+    <p class="subject-sub">六大核心十年全數印證，題型固定「申論2題各25分＋選擇25題各2分」——但這是107年才定型，105、106年選擇題還是40題舊制。這次補查發現「樓層別效用比」頻率高到該升級為第七核心。</p>
+
+    <div class="pillars">
+      <span class="pillar">一般／區域／個別因素辨識</span>
+      <span class="pillar">價格種類辨識</span>
+      <span class="pillar">比較法調整計算</span>
+      <span class="pillar">成本法折舊計算</span>
+      <span class="pillar">收益資本化率決定法</span>
+      <span class="pillar">土地開發分析法</span>
+    </div>
+    <p class="pillars-caption">以上六項：105–114 十年全數命中，列為必背核心。估價 L1 筆記已示範加入「⑧ 考古題對應」章節。</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>考點</th>
+            <th>105–109 出現年份</th>
+            <th>110–114 出現情況</th>
+            <th>筆記狀態</th>
+            <th>是否加入筆記</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="topic">樓層別效用比計算</td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">5/5，每年至少1題，全期最穩定</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge gap">建議升級為第七核心</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">計量模型分析法<span class="sub">CAMA，判定係數／自變數個數</span></td>
+            <td><div class="dots">
+              <span class="dot off"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">4/5，106年後穩定入題</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge warn">較新細節考點</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">合併土地估價／分算</td>
+            <td><div class="dots">
+              <span class="dot on"></span><span class="dot off"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+            </div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">未特別記錄</span></td>
+            <td><span class="badge warn">可延伸補強</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <span class="label">題型沿革提醒</span>
+      <p>107 年起選擇題從 40 題縮減為 25 題，與 110–114 現行題型一致——107 年才是現行制度起點，105、106 年選擇題量是雙倍，統計高頻詞時要留意題量差異造成的比例失真。</p>
+    </div>
+
+    <p class="sources">資料來源：阿摩線上測驗（yamol.tw），105–109 完整選擇＋申論題全文；105 年另有公職王官方PDF可交叉核對。</p>
+  </section>
+
+  <!-- ============ 土法 ============ -->
+  <section class="subject" id="land">
+    <div class="subject-head">
+      <h2>土法</h2>
+      <span class="tag">105–114　共 10 年</span>
+    </div>
+    <p class="subject-sub">徵收／重劃三項筆記已涵蓋的方向持續印證；但<strong>稅法五項是橫跨十年的結構性缺口</strong>——不是110年後才變熱門，105年就已經很吃重，106、107兩年稅法密度甚至比110–114更高，優先度應排在既有補強項目之上。</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>考點</th>
+            <th>105–109 出現年份</th>
+            <th>110–114 出現情況</th>
+            <th>筆記狀態</th>
+            <th>是否加入筆記</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="topic">一般徵收<span class="sub">L7</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div><div class="dotrow-label">5/5</div></td>
+            <td><span class="yeartag">每年都有，方向持續印證</span></td>
+            <td><span class="badge good">已涵蓋</span></td>
+            <td><span class="badge good">已加入</span></td>
+          </tr>
+          <tr>
+            <td class="topic">區段徵收／先行區段徵收<span class="sub">L8</span></td>
+            <td><div class="dots"><span class="dot off"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">每年都有，109年申論考抵價地</span></td>
+            <td><span class="badge good">已涵蓋</span></td>
+            <td><span class="badge good">已加入</span></td>
+          </tr>
+          <tr>
+            <td class="topic">市地重劃<span class="sub">L6</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div><div class="dotrow-label">4/5，105、107年申論</div></td>
+            <td><span class="yeartag">113年申論整題（公辦市地重劃公告異議程序）</span></td>
+            <td><span class="badge good">已涵蓋</span></td>
+            <td><span class="badge good">已加入</span></td>
+          </tr>
+          <tr>
+            <td class="topic">基地／房屋／耕地租用（優先購買權）<span class="sub">L5，§34-1/104/107</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div><div class="dotrow-label">5/5，105年判例特別密集</div></td>
+            <td><span class="yeartag">111年申論三類型比較</span></td>
+            <td><span class="badge warn">可延伸補強</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">地價稅<span class="sub">納稅義務人、累進稅率、自用住宅優惠</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div><div class="dotrow-label">5/5，最穩定稅法考點</div></td>
+            <td><span class="yeartag">幾乎年年考</span></td>
+            <td><span class="badge gap">筆記完全空白</span></td>
+            <td><span class="badge pending">待補（最優先）</span></td>
+          </tr>
+          <tr>
+            <td class="topic">房地合一稅<span class="sub">持有期間稅率、重購退稅追繳</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot off"></span></div><div class="dotrow-label">4/5，103年新制上路後即年年考</div></td>
+            <td><span class="yeartag">110–113 皆考，新興熱點</span></td>
+            <td><span class="badge gap">筆記完全空白</span></td>
+            <td><span class="badge pending">待補（最優先）</span></td>
+          </tr>
+          <tr>
+            <td class="topic">土地增值稅<span class="sub">原地價認定、自用住宅優惠、重購退稅</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span></div><div class="dotrow-label">4/5，106年申論重購退稅</div></td>
+            <td><span class="yeartag">110年申論整題</span></td>
+            <td><span class="badge gap">筆記完全空白</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">契稅<span class="sub">稅率6%、免徵情形、契價認定</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span></div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">每年1–2題</span></td>
+            <td><span class="badge gap">筆記完全空白</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+          <tr>
+            <td class="topic">房屋稅<span class="sub">納稅義務人、房屋標準價格、自住稅率</span></td>
+            <td><div class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot off"></span><span class="dot on"></span></div><div class="dotrow-label">4/5</div></td>
+            <td><span class="yeartag">幾乎年年考</span></td>
+            <td><span class="badge gap">筆記完全空白</span></td>
+            <td><span class="badge pending">待補</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout critical">
+      <span class="label">105–109 查證結論</span>
+      <p>稅法五項<strong>不是110年後才變熱門</strong>，105年就已經很吃重；106、107兩年稅法題目密度甚至比110–114更高（106年40題測驗中稅法相關題估計超過15題）。這證實「稅法完全空白」是橫跨近10年的結構性缺口，補筆記時優先度應排在L5延伸項目之上。</p>
+    </div>
+
+    <p class="sources">資料來源：全國補習班（陳國）105–114 皆有解答PDF，可回頭逐條查證。</p>
+  </section>
+
+  <footer>
+    <span>2026-07-10 建立近5年版本，2026-07-11 擴充為近10年版本。</span>
+    <span>統整依據：4科×2階段共 8 個背景 Agent 研究結果</span>
+  </footer>
+
+</div>

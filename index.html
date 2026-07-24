@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動產經紀人考試筆記總覽</title>
+<style>
+  :root {
+    --ink:#1a1a1a; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+    --neutral:#374151; --neutral-bg:#f1f2f4;
+    --accent:#8B4438; --accent-bg:#F1E2DD;
+    --accent2:#9C7A34; --accent2-bg:#EFE6D0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f4f5f7; color: var(--ink); line-height: 1.6;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+  header.page-header {
+    background: #1e293b; color: #fff; border-radius: 14px;
+    padding: 22px 26px; margin-bottom: 20px;
+  }
+  header.page-header h1 { margin: 0 0 6px; font-size: 22px; letter-spacing: .5px; }
+  header.page-header p { margin: 0; color: #cbd5e1; font-size: 13.5px; }
+  .legend { display:flex; gap:14px; flex-wrap:wrap; margin: 14px 0 22px; font-size: 12.5px; color: var(--sub); }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .dot.done { background: var(--ink); }
+  .dot.pending { background: #cbd5e1; }
+
+  .subject { background:#fff; border-radius:14px; padding:18px 22px 20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .subject h2 { margin:0 0 3px; font-size:17px; display:flex; align-items:center; gap:9px; }
+  .subject h2 .badge { font-size:11px; font-weight:700; color:var(--accent); background:var(--accent-bg); border-radius:5px; padding:2px 8px; }
+  .subject .desc { margin:0 0 14px; font-size:12.5px; color:var(--sub); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(210px,1fr)); gap:9px; }
+  a.card {
+    display:block; text-decoration:none; color:var(--ink);
+    border:1px solid var(--line); border-radius:9px; padding:10px 13px;
+    background:#fff; transition:.15s;
+  }
+  a.card:hover { border-color: var(--line-strong); background:#f8fafc; }
+  a.card .lnum { font-size:11.5px; font-weight:700; color:var(--sub); }
+  a.card .ltitle { font-size:13.5px; font-weight:600; margin-top:2px; }
+
+  .card.pending { border:1px dashed var(--line); background:var(--neutral-bg); cursor:default; }
+  .card.pending .lnum { color:#94a3b8; }
+  .card.pending .ltitle { color:#94a3b8; font-weight:500; }
+  .card.pending .tag { font-size:10.5px; color:#94a3b8; margin-top:3px; display:inline-block; }
+
+  .card.merged .lnum { color: var(--accent2); }
+
+  .xsection { background:#fff; border-radius:14px; padding:18px 22px 20px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .xsection h2 { margin:0 0 12px; font-size:17px; }
+
+  footer { text-align:center; color:#9ca3af; font-size:11.5px; margin-top:28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-header">
+    <h1>不動產經紀人考試筆記總覽</h1>
+    <p>四科筆記連結整理，點連結直接開對應網頁</p>
+  </header>
+
+  <div class="legend">
+    <span><i class="dot done"></i>已上線可點開</span>
+    <span><i class="dot pending"></i>製作中，尚未上線</span>
+  </div>
+
+  <section class="subject">
+    <h2>土地法</h2>
+    <p class="desc">土地法規總論、地權、地籍、地價、地用、稅法系列（共 15 堂）</p>
+    <div class="grid">
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l1/" target="_blank"><div class="lnum">L1</div><div class="ltitle">土地法規總論</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l2/" target="_blank"><div class="lnum">L2</div><div class="ltitle">地權</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l3/" target="_blank"><div class="lnum">L3</div><div class="ltitle">地籍</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l4/" target="_blank"><div class="lnum">L4</div><div class="ltitle">地價</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l5/" target="_blank"><div class="lnum">L5</div><div class="ltitle">地用</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l6/" target="_blank"><div class="lnum">L6</div><div class="ltitle">土地重劃</div></a>
+      <a class="card merged" href="https://luzamarilla.github.io/examinationrealtors-tudifa/" target="_blank"><div class="lnum">L7-8</div><div class="ltitle">徵收．徵用</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l9/" target="_blank"><div class="lnum">L9</div><div class="ltitle">國土計畫法規</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l10/" target="_blank"><div class="lnum">L10</div><div class="ltitle">土地稅法導論</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l11/" target="_blank"><div class="lnum">L11</div><div class="ltitle">地價稅</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l12/" target="_blank"><div class="lnum">L12</div><div class="ltitle">土地增值稅</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l13/" target="_blank"><div class="lnum">L13</div><div class="ltitle">房地合一所得稅</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l14/" target="_blank"><div class="lnum">L14</div><div class="ltitle">房屋稅</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-tudifa/l15/" target="_blank"><div class="lnum">L15</div><div class="ltitle">契稅</div></a>
+    </div>
+  </section>
+
+  <section class="subject">
+    <h2>民法</h2>
+    <p class="desc">法律行為、時效、債編總則與各論（共 6 堂）</p>
+    <div class="grid">
+      <a class="card merged" href="https://luzamarilla.github.io/examinationrealtors-minfa/l1l2/" target="_blank"><div class="lnum">L1+2</div><div class="ltitle">法律行為與意思表示／消滅時效</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-minfa/l3/" target="_blank"><div class="lnum">L3</div><div class="ltitle">債編總則・債之發生</div></a>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-minfa/l4/" target="_blank"><div class="lnum">L4</div><div class="ltitle">債之效力・保全・移轉消滅</div></a>
+      <div class="card pending"><div class="lnum">L5</div><div class="ltitle">債編各論-買賣契約</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L6</div><div class="ltitle">債編各論-租賃契約</div><span class="tag">製作中</span></div>
+    </div>
+  </section>
+
+  <section class="subject">
+    <h2>不動產估價</h2>
+    <p class="desc">估價方法總論、比較法、收益法、成本法、土地開發分析法（共 7 堂）</p>
+    <div class="grid">
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-gujia/" target="_blank"><div class="lnum">L1</div><div class="ltitle">總則＋估價作業程序</div></a>
+      <div class="card pending"><div class="lnum">L2</div><div class="ltitle">比較法</div><span class="tag">製作中</span></div>
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-gujia/l3/" target="_blank"><div class="lnum">L3</div><div class="ltitle">收益法</div></a>
+      <div class="card pending"><div class="lnum">L4</div><div class="ltitle">成本法</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L5</div><div class="ltitle">土地開發分析法</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L6</div><div class="ltitle">宗地、房地、土地改良物與權利</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L7</div><div class="ltitle">租金估計</div><span class="tag">製作中</span></div>
+    </div>
+  </section>
+
+  <section class="subject">
+    <h2>不動產經紀相關法規（經紀法）</h2>
+    <p class="desc">經紀業管理條例、公平交易法、消保法、公寓大廈管理條例（共 9 堂）</p>
+    <div class="grid">
+      <a class="card merged" href="https://luzamarilla.github.io/examinationrealtors-jingjifa/" target="_blank"><div class="lnum">L1+2</div><div class="ltitle">經紀業管理條例總則／業務責任</div></a>
+      <div class="card pending"><div class="lnum">L3</div><div class="ltitle">公平交易法｜總則、限制競爭</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L4</div><div class="ltitle">公平交易法｜不公平競爭、裁處</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L5</div><div class="ltitle">消保法｜總則、消費者權益</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L6</div><div class="ltitle">消保法｜監督、爭議處理、罰則</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L7</div><div class="ltitle">公寓大廈管理條例｜總則、住戶權義</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L8</div><div class="ltitle">公寓大廈管理條例｜管理組織、罰則</div><span class="tag">製作中</span></div>
+      <div class="card pending"><div class="lnum">L9</div><div class="ltitle">相關法規概要｜精選題解析</div><span class="tag">製作中</span></div>
+    </div>
+  </section>
+
+  <section class="xsection">
+    <h2>跨科資源</h2>
+    <div class="grid">
+      <a class="card" href="https://luzamarilla.github.io/examinationrealtors-hub/exam-archive/" target="_blank"><div class="lnum">近10年考古題</div><div class="ltitle">四科考古題重點清單彙整</div></a>
+    </div>
+  </section>
+
+  <footer>不動產經紀人考試筆記總覽・個人讀書用</footer>
+</div>
+</body>
+</html>
