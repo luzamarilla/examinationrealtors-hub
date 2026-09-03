@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1｜讀書方法與應考策略總整理</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1f2937;
+    --sub: #6b7280;
+    --line: #e2e4e8;
+    --line-strong: #b0b5bd;
+    --red: #8B4438;
+    --red-bg: #f7ece9;
+    --red-line: #c9998c;
+    --red-text: #6b3128;
+    --gold: #a9791f;
+    --gold-bg: #fbf3df;
+    --gold-line: #ddbd7c;
+    --gold-text: #7a5714;
+    --bg-page: #f4f5f7;
+    --card-bg: #ffffff;
+  }
+  body {
+    font-family: "Microsoft JhengHei", "微軟正黑體", sans-serif;
+    width: 1400px;
+    margin: 0 auto;
+    background: var(--bg-page);
+    color: var(--ink);
+    padding: 24px 32px 48px;
+  }
+  h1.page-title {
+    font-size: 27px;
+    color: #fff;
+    background: linear-gradient(135deg, #2b2f36, #1f2937);
+    padding: 18px 26px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  h1.page-title .sub {
+    font-size: 13.5px;
+    font-weight: normal;
+    opacity: 0.85;
+  }
+  .tip-banner {
+    background: var(--gold-bg);
+    border: 2px solid var(--gold);
+    color: var(--gold-text);
+    border-radius: 9px;
+    padding: 10px 18px;
+    font-size: 13.5px;
+    margin-bottom: 18px;
+    font-weight: bold;
+  }
+  .nav-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+  }
+  .nav-strip a {
+    font-size: 12.5px;
+    color: var(--ink);
+    background: #f2f3f5;
+    border: 1px solid var(--line-strong);
+    padding: 5px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .nav-strip a:hover { background: var(--gold-bg); border-color: var(--gold); }
+  section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  h2.sec-title {
+    font-size: 18.5px;
+    color: var(--ink);
+    border-left: 5px solid var(--ink);
+    padding-left: 11px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h2.sec-title.hi { border-left-color: var(--red); }
+  h2.sec-title .star-hi { color: var(--red); font-size: 13px; }
+  h2.sec-title .star-mid { color: var(--gold); font-size: 13px; }
+  .src-tag {
+    display: inline-block;
+    background: #eef0f2;
+    color: var(--sub);
+    border: 1px solid var(--line-strong);
+    font-size: 11.5px;
+    padding: 1px 9px;
+    border-radius: 999px;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  h3.sub-title {
+    font-size: 15px;
+    color: var(--ink);
+    margin: 16px 0 8px;
+    padding-left: 2px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 5px;
+  }
+  h3.sub-title:first-child { margin-top: 0; }
+  p.desc { font-size: 13.5px; line-height: 1.7; color: var(--ink); margin-bottom: 8px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .card {
+    border-radius: 10px;
+    padding: 13px 15px;
+    border: 1.5px solid var(--line-strong);
+    background: #f9fafb;
+  }
+  .card.hi { background: var(--red-bg); border-color: var(--red-line); }
+  .card.note { background: var(--gold-bg); border-color: var(--gold-line); }
+  .card-title {
+    font-size: 14.5px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .card.hi .card-title { color: var(--red-text); }
+  .card.note .card-title { color: var(--gold-text); }
+  .card p { font-size: 13px; line-height: 1.65; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  table th {
+    background: var(--ink);
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 13px;
+  }
+  table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table tr:nth-child(even) td { background: #f7f7f8; }
+  table td b, table th b { color: var(--red-text); }
+  .box {
+    border-radius: 9px;
+    padding: 11px 16px;
+    font-size: 13px;
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+  .box-warn { background: var(--red-bg); border: 1.5px solid var(--red-line); color: var(--red-text); font-weight: bold; }
+  .box-tip { background: var(--gold-bg); border: 1.5px solid var(--gold-line); color: var(--gold-text); font-weight: bold; }
+  .box-note { background: #f2f3f5; border: 1.5px solid var(--line-strong); color: var(--ink); }
+  .mnemonic {
+    display: inline-block;
+    background: var(--gold-bg);
+    border: 2px dashed var(--gold);
+    color: var(--gold-text);
+    font-size: 17px;
+    font-weight: bold;
+    padding: 7px 18px;
+    border-radius: 9px;
+    letter-spacing: 5px;
+    margin: 8px 0;
+  }
+  .flow { display: flex; flex-direction: column; gap: 3px; }
+  .flow-step { display: flex; align-items: center; gap: 12px; }
+  .flow-num {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 12.5px;
+  }
+  .flow-step.key .flow-num { background: var(--red); }
+  .flow-box {
+    flex: 1;
+    background: #f7f7f8;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .flow-step.key .flow-box {
+    background: var(--red-bg);
+    border-color: var(--red-line);
+    font-weight: bold;
+    color: var(--red-text);
+  }
+  .flow-arrow { text-align: center; color: var(--sub); font-size: 14px; margin-left: 13px; }
+  .flow-note {
+    margin-left: 38px;
+    background: var(--gold-bg);
+    border: 1px dashed var(--gold-line);
+    color: var(--gold-text);
+    border-radius: 7px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+  .example-box {
+    background: #f9fafb;
+    border: 1.5px solid var(--line-strong);
+    border-left: 4px solid var(--ink);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-top: 10px;
+  }
+  .example-box b.err { color: var(--red-text); }
+  .quote-box {
+    background: var(--ink);
+    color: #f4f5f7;
+    border-radius: 9px;
+    padding: 14px 20px;
+    font-size: 14.5px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 12px 0 0;
+  }
+  ul.plain, ol.plain { padding-left: 20px; font-size: 13px; line-height: 1.75; }
+  ul.plain li, ol.plain li { margin-bottom: 3px; }
+  .tag {
+    display: inline-block;
+    background: #eef0f2;
+    color: var(--ink);
+    border: 1px solid var(--line-strong);
+    font-size: 11.5px;
+    padding: 1px 9px;
+    border-radius: 999px;
+    font-weight: bold;
+    margin: 1px 3px 1px 0;
+  }
+  .tag.hi { background: var(--red-bg); border-color: var(--red-line); color: var(--red-text); }
+  .tag.note { background: var(--gold-bg); border-color: var(--gold-line); color: var(--gold-text); }
+  .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; font-size: 13px; }
+  .check-item { display: flex; align-items: flex-start; gap: 6px; line-height: 1.6; }
+  .check-item .num {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">
+  Lesson 1｜讀書方法與應考策略總整理
+  <span class="sub">L4 讀書計畫規劃・L7 記憶方法・L8 申論題練習・L9 考前筆記・L10 應考當天</span>
+</h1>
+
+<div class="tip-banner">📌 本筆記依主題整合 5 堂逐字稿（非按堂次排列），方便日後快速複習具體做法；讀書方法類內容不會出現在考古題中，故不標示考古題標籤。</div>
+
+<div class="nav-strip">
+  <a href="#s1">① 為什麼要排讀書計畫</a>
+  <a href="#s2">② 三階段架構</a>
+  <a href="#s3">③ 認識自己：初學 vs 有基礎</a>
+  <a href="#s4">④ 月／週／日排程實作</a>
+  <a href="#s5">⑤ 時間不夠用／心累怎麼辦</a>
+  <a href="#s6">⑥ 記憶方法：口訣＋回想複習法</a>
+  <a href="#s7">⑦ 申論題練習與檢討策略</a>
+  <a href="#s8">⑧ 考前筆記製作方法</a>
+  <a href="#s9">⑨ 應考當天八大注意事項</a>
+</div>
+
+<!-- 一、為什麼要排讀書計畫 -->
+<section id="s1">
+  <h2 class="sec-title">① 為什麼要排讀書計畫 <span class="src-tag">L4</span></h2>
+  <p class="desc">讀書計畫＝以「這次要考上」為前提，把剩餘時間往回推，決定每個階段、每個月、每一週、每一天該做什麼。核心價值不是形式，是讓你在準備期間<b>知道自己在進度線上</b>，不焦慮、不亂衝。</p>
+
+  <h3 class="sub-title">沒有讀書計畫會發生什麼事（反面教材）</h3>
+  <div class="grid-2">
+    <div class="card hi">
+      <div class="card-title">看心情讀書的後果</div>
+      <p>今天狀態好就熬夜讀到兩點，隔天沒精神；昨天多讀就想今天偷懶——進度忽快忽慢，完全捉不定。</p>
+    </div>
+    <div class="card hi">
+      <div class="card-title">情緒被拖垮</div>
+      <p>沒有架構就像無頭蒼蠅到處亂竄，到最後一個月才發現「連第一遍都還沒讀完」，時間管理差 → 焦慮 → 容易放棄。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">誰特別需要排讀書計畫</h3>
+  <p class="desc">原則上每個人都建議排，但<b>讀書時間越少的人（工作忙、顧小孩、顧長輩）越必須排</b>——全職考生時間量大，效率差一點還撐得住；時間少的人求的不是量而是<b>精準與效率</b>，每一分鐘都要用在對的地方。</p>
+
+  <div class="box box-tip">✅ 讀書計畫的兩大好處：① 進度不再凌亂，不會浪費時間亂竄　② 準備過程很踏實——知道自己做到哪裡就夠了，不會一直自我懷疑、心情矛盾。</div>
+</section>
+
+<!-- 二、三階段架構 -->
+<section id="s2">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ② 讀書計畫三階段架構 <span class="src-tag">L4</span></h2>
+  <p class="desc">全程分三階段：<b>觀念學習期 → 重點複習期 → 考前衝刺期</b>。前兩階段性質接近（都是吸收與整理知識），常合併規劃時間；考前衝刺期則是完全不同性質（輸出得分），時間安排上要獨立看待。</p>
+
+  <table>
+    <tr><th style="width:14%">階段</th><th style="width:16%">目標</th><th>核心做法</th><th style="width:14%">腦中知識狀態</th></tr>
+    <tr>
+      <td><b>觀念學習期</b></td>
+      <td>理解觀念為主</td>
+      <td>以線上課程為主軸，一堂課讀<b>三遍</b>：課前預習／課中學習／課後複習；期間可用選擇題驗證理解，申論題只求「看得懂題目、猜得出方向」，<b>不下筆練習</b></td>
+      <td>吸收知識</td>
+    </tr>
+    <tr>
+      <td><b>重點複習期</b></td>
+      <td>提升熟悉度</td>
+      <td>以講義為主，從第一頁到最後一頁重新順過一次，把知識整理成架構（分大資料夾、小資料夾）；開始依重要度分級背誦；申論題要能<b>閉眼說出六七成解題方向</b></td>
+      <td>消化整理知識</td>
+    </tr>
+    <tr>
+      <td><b>考前衝刺期</b></td>
+      <td>得分最大化</td>
+      <td>以近十年考古題練習為主，一年一年練＋每年都要練完並<b>檢討完</b>才進下一年；不只寫對，還要練「寫得漂亮」（分段、下標題清楚）；製作考前筆記</td>
+      <td>輸出知識</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-title">觀念學習期：一堂課讀三遍</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box"><b>課前預習</b>——老師該堂會教的範圍（如講義 p.11–20）認真讀一遍；老師「不會教」的部分（前面沒教到的基礎、太冷門的內容）也翻過一遍求印象即可，不用花時間深讀。冷門內容<b>只有這一遍會看到</b>，之後不會再碰</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box"><b>課中學習</b>——專心聽課、跟板書，不用管講義或參考書</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-box"><b>課後複習</b>——最晚不超過 3 天內，用課程講義重新複習一次，並開始建立初步架構（像替雲端硬碟裡雜亂的檔案建資料夾分類）</div></div>
+  </div>
+  <div class="box box-note">💡 冷門考點不會考到一模一樣的題目，死背無意義；但完全不會的題目只能拿 0～3 分，課前預習時至少看過一遍求印象，遇到冷題也能擠出基本分（約 10 分）。</div>
+
+  <h3 class="sub-title">重點複習期：背誦四級分類法</h3>
+  <p class="desc">把該背的內容依重要度分四級，時間才能花在對的地方：</p>
+  <div class="grid-4">
+    <div class="card hi"><div class="card-title">第一級</div><p>死都不能忘：最常考、經典條文（如民法 758、767、抵押權 860 等）</p></div>
+    <div class="card hi"><div class="card-title">第二級</div><p>講義上有記載的內容：考前務必都要會、要背到</p></div>
+    <div class="card note"><div class="card-title">第三級</div><p>參考書或其他資料有提到：有時間最好也抓進來背</p></div>
+    <div class="card"><div class="card-title">第四級</div><p>太冷門的內容：除非時間非常充裕，否則儘量不要花時間</p></div>
+  </div>
+  <div class="box box-warn">⚠️ 考八年沒上榜的極端案例，多半不是不認真，是方向錯了——花很多時間在不常考的三、四級內容上，第一、二級卻沒背熟。</div>
+
+  <h3 class="sub-title">各階段的選擇題／申論題練習標準</h3>
+  <table>
+    <tr><th style="width:16%">階段</th><th>選擇題</th><th>申論題</th></tr>
+    <tr><td>觀念學習期</td><td>可以練，<b>只要猶豫或忘記就算錯</b>（不是寫錯才叫錯）</td><td>不下筆，只求「看得懂題目＋看得懂想解脈絡」</td></tr>
+    <tr><td>重點複習期</td><td>同上，持續練</td><td>不下筆，但要能<b>閉眼推出六七成解題方向與推理過程</b>，再對想解核對</td></tr>
+    <tr><td>考前衝刺期</td><td>正式限時練，圈記猶豫題</td><td>正式下筆，不只寫對還要寫得漂亮（分段、下標題、老師一眼看懂）</td></tr>
+  </table>
+</section>
+
+<!-- 三、認識自己 -->
+<section id="s3">
+  <h2 class="sec-title">③ 認識自己：初學者 vs 有基礎者 <span class="src-tag">L4</span></h2>
+
+  <div class="grid-2">
+    <div class="card hi">
+      <div class="card-title">初學／基礎不足者（三種情況）</div>
+      <ul class="plain">
+        <li>完全沒有基礎、第一次參加考試（非本科系、無相關法律知識）</li>
+        <li>曾經考過，但<b>已超過 1 年沒讀書</b>（法條忘得快，且每年可能修法）</li>
+        <li>一年內考過，但<b>平均成績未達 50 分</b>（50 分是分水嶺）</li>
+      </ul>
+    </div>
+    <div class="card note">
+      <div class="card-title">有基礎者（一種情況）</div>
+      <p>一年內考過，且<b>平均成績已達 50 分以上</b>——通常只是某一兩個環節沒做好（如不會寫申論、知識沒整理成架構），已經接近上榜，只差臨門一腳。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">階段時間比例配置（觀念學習＋重點複習 : 考前衝刺）</h3>
+  <table>
+    <tr><th style="width:16%">剩餘準備時間</th><th>初學／基礎不足者</th><th>有基礎者</th></tr>
+    <tr><td>12 個月</td><td>8 個月 : 4 個月（<b>2 : 1</b>）</td><td>6 個月 : 6 個月（<b>1 : 1</b>）</td></tr>
+    <tr><td>6 個月</td><td>4 個月 : 2 個月（<b>2 : 1</b>）</td><td>3 個月 : 3 個月（<b>1 : 1</b>）</td></tr>
+    <tr><td>3 個月（時間緊迫）</td><td>2 個月 : <b>最少留 1 個月</b>做考前衝刺</td><td>1 個月 : 2 個月（<b>1 : 2</b>，題目練習抓弱點為主）</td></tr>
+  </table>
+  <div class="box box-warn">⚠️ 初學者切勿模仿有基礎者的 1:2 配比！沒打好基礎就衝題目會流於死背，錯誤觀念越卡越深，後面要救得花 3～5 倍時間。時間再緊迫，考前練題目的時間都必須保留足夠，否則完全不知道題目怎麼出，分數不會好看。</div>
+  <p class="desc" style="margin-top:8px;">已有基礎者可以把時間重心放在題目練習，因為觀念、架構大致都會了，效率本身就比初學者快上好幾倍，重點是透過<b>練題目＋讀書會群組討論</b>找出自己不自覺的「讀書盲點」。</p>
+  <div class="box box-note">💡 以上比例都只是建議，可依自己狀況微調（例如前段多留一兩週、後段少一兩週），但不要偏離太誇張；真的沒把握可私訊老師一對一討論。</div>
+</section>
+
+<!-- 四、月週日排程 -->
+<section id="s4">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ④ 月／週／日排程實作（漏斗式規劃） <span class="src-tag">L4</span></h2>
+  <p class="desc">排程邏輯是「漏斗式」：先定<b>階段目標</b>，再拆成<b>月目標</b>，再拆成<b>週目標</b>，最後拆成<b>日目標</b>。以下以「初學者、準備 6 個月、2:1 配比」為範例。</p>
+
+  <h3 class="sub-title">月目標：A+B 科目交錯排法（以 6 個月為例）</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box">第 0～1.5 個月：<b>A+B 兩科</b>觀念學習（先選自己喜歡的兩科組合，如民法配土稅）</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box">第 1.5～3 個月：主力轉向 <b>C+D 兩科</b>觀念學習；A+B 同步排「複習進度」，不可留空窗</div></div>
+    <div class="flow-note">此階段 A+B 已進入重點複習期，C+D 仍在觀念學習期，兩組並存推進</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-box">第 3～4 個月：主力轉向 <b>C+D 重點複習</b>；<b>A+B 進入考前衝刺</b>（開始練考古題），同步進行</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step key"><div class="flow-num">4</div><div class="flow-box">第 4～6 個月：<b>全科（ABCD）一起</b>進入考前衝刺期，四科一起練考古題</div></div>
+  </div>
+  <div class="box box-warn">⚠️ 各科不得有空窗期，以免長時間沒讀導致記憶快速流失——即使主力已轉向其他科目，前面讀過的科目仍要排「複習進度」，只是不是主要目標。</div>
+
+  <h3 class="sub-title">週目標：用除法反推</h3>
+  <p class="desc">月目標拆成週目標很單純：<b>總堂數 ÷ 可用週數</b>。例如民法＋土稅共 20 堂課，要在兩個月（約 8 週）內上完，平均每週就是 2～3 堂。若某週因出差、家庭旅遊無法讀書，就往前後週彈性挪動堂數補回來，但要以<b>不拖累月目標</b>為前提。</p>
+
+  <h3 class="sub-title">日目標：零碎時間 vs 長時間怎麼分配</h3>
+  <table>
+    <tr><th style="width:20%">時間類型</th><th style="width:20%">典型場景</th><th>適合用途</th></tr>
+    <tr><td><b>零碎時間</b>（約 30 分鐘內，最多不超過 1 小時）</td><td>吃飯、通勤、排隊、搭車</td><td>拿來<b>複習</b>（用回想複習法複習前一天／前幾天讀過的內容），隨時可以中斷不影響效果</td></tr>
+    <tr><td><b>長時間</b>（1 小時以上）</td><td>晚上、假日整段時間</td><td>拿來<b>學習新內容</b>（預習、上課、讀新章節）——切成好幾段零碎時間學新東西會不連貫，概念學到腦袋裡也是斷斷續續的，難以建立架構</td></tr>
+  </table>
+  <div class="box box-tip">💡 零碎時間善用得當，能省下非常多時間；用錯（例如零碎時間拿來學新東西）反而卡頓沒效果。</div>
+
+  <h3 class="sub-title">每週固定安排一次「檢討＋補進度」時段</h3>
+  <p class="desc">建議每週留一段時段（例如週日晚上 1～3 小時）什麼書都不看，把讀書計畫攤開，問自己：哪些章節還沒有信心？為什麼沒信心（分心？複習不夠認真？章節太難）？先檢討自己有沒有更好的做法，再直接用這段時間補上這週落後的進度。</p>
+
+  <h3 class="sub-title">三種工作型態的排法差異</h3>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">正常上下班</div>
+      <p>用「時段表」規劃：白色底＝每天必做但與讀書無關（洗漱、通勤、上班、睡覺）；藍色底＝零碎時間（吃飯前後）拿來複習；綠色底＝長時段拿來預習/學習；黃色底＝彈性休息時段（建議留 3～5 個）</p>
+    </div>
+    <div class="card">
+      <div class="card-title">工時不固定（業務型）</div>
+      <p>規則相同，但不排精準時刻。改列「事項清單」——把每天固定要做的事項與所需時間列出來，每完成一項就打勾，目標是<b>在有限時間內把清單做完</b>，而不是幾點到幾點做什麼</p>
+    </div>
+    <div class="card">
+      <div class="card-title">全職考生</div>
+      <p>不是每天硬讀滿 12 小時，建議每天讀<b>6～8 小時</b>即可，其餘時間自由安排；由於每天都有餘裕，建議<b>每天</b>（而非每週一次）安排檢討補進度時段，且可安排較多休息時段（如 7 個）</p>
+    </div>
+  </div>
+</section>
+
+<!-- 五、時間不夠用/心累 -->
+<section id="s5">
+  <h2 class="sec-title">⑤ 時間不夠用／心累了怎麼辦 <span class="src-tag">L4</span></h2>
+
+  <h3 class="sub-title">進度落後的三步驟因應</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box"><b>預防</b>——每週／每天固定留檢討補進度時段，本來就是為了因應突發狀況而設計的緩衝</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box"><b>檢討策略</b>——先確認是效率不夠好、方法用錯，還是一開始的規劃就不合理，找出問題再修正</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step key"><div class="flow-num">3</div><div class="flow-box"><b>增加時間（下策）</b>——真的不夠只能擠：跟朋友喊卡聚會、跟家人協商分擔照顧責任，把讀書順位往前排</div></div>
+  </div>
+
+  <h3 class="sub-title">覺得很累、快撐不下去時</h3>
+  <p class="desc">先用一般紓壓方式放鬆（運動、追劇、放空）；如果做完這些依然難以堅持，可以偶爾「任性一天」完全不碰書，長期休息是為了走更長遠的路。前提是：對的時間該做的事，即便千百個不願意，還是要做——只要肯堅持，上榜只是早晚的事。</p>
+
+  <div class="quote-box">「你有多痛苦，前進的速度就有多快。」<br>國家考試不是比誰聰明，是比誰忘得少、比誰有毅力。</div>
+</section>
+
+<!-- 六、記憶方法 -->
+<section id="s6">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ⑥ 記憶方法：口訣＋回想複習法 <span class="src-tag">L7</span></h2>
+  <p class="desc">記憶力是可以被訓練的，忘記是正常現象、過目不忘才是特例。不管年紀多大、脫離讀書多久，只要照正確方法練，都能訓練起來。</p>
+
+  <h3 class="sub-title">記憶的科學基礎：三層記憶區</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box"><b>感覺記憶區</b>——第一層接收，只能維持 2～3 秒（例如公車窗外一閃而過的招牌）</div></div>
+    <div class="flow-arrow">↓ 特別放注意力</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box"><b>短期記憶區</b>——認真專注記憶後就會進入，但持續時間仍不久（死背、反覆刺激屬於這一層的操作）</div></div>
+    <div class="flow-arrow">↓ 需要方法＋充足睡眠</div>
+    <div class="flow-step key"><div class="flow-num">3</div><div class="flow-box"><b>長期記憶區</b>——考試當天要記得住，目標是把所有知識轉換到這一層</div></div>
+  </div>
+
+  <h3 class="sub-title">加深記憶的 7 個方法</h3>
+  <ol class="plain">
+    <li><b>照正確步驟</b>——先吸收、再整理、再輸出，不要跳步驟死背或硬練題目（省時間的關鍵）</li>
+    <li><b>理解短中長期記憶區的差異</b>——知道自己在練什麼、為什麼練</li>
+    <li><b>把文字轉換成有意義的訊息</b>——發想生活案例套用法條，讓死的規定變得有意義</li>
+    <li><b>善用誇張有趣的口訣</b>——情緒波動越大的事情記得越久越深（例如八卦比平淡日常更難忘）</li>
+    <li><b>回想複習法</b>——讓四散在腦中的知識快速產生連結（詳見下方）</li>
+    <li><b>反覆練習到熟練</b>——最笨、最花時間的最後手段，背不起來的東西就是要一直練</li>
+    <li><b>充足睡眠</b>——短期記憶轉長期記憶必須依賴睡眠，考前熬夜衝進度反而是反效果</li>
+  </ol>
+
+  <h3 class="sub-title">常見的 5 個記憶錯誤</h3>
+  <div class="check-list">
+    <div class="check-item"><span class="num">1</span>沒照正確步驟：還沒理解觀念就先背條文、練題目</div>
+    <div class="check-item"><span class="num">2</span>只是在「看書」而非「讀書」：差別在有沒有思考、發想案例</div>
+    <div class="check-item"><span class="num">3</span>複習只是「重新看一遍」：沒有用回想的方式，效果差很多</div>
+    <div class="check-item"><span class="num">4</span>背了好幾次背不起來就氣餒：別人也一樣會背不起來，繼續訓練就好</div>
+    <div class="check-item"><span class="num">5</span>考前熬夜拼進度：睡眠不足大腦沒辦法把知識轉成長期記憶</div>
+  </div>
+
+  <h3 class="sub-title">口訣製作法</h3>
+  <p class="desc">適用時機：內容過長、或有特定次序時用口訣做「濃縮」，需要時再展開；如果內容不適合濃縮，改用<b>架構圖</b>。老師上課給的口訣直接背起來即可；自己想口訣如果要花超過 1 小時就不划算，直接用現成的比較省時間。</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">方法一：挑關鍵字念順</div>
+      <p>把特定字詞挑出來，唸順即可。範例：土地法第 17 條外國人取得土地的七項限制 → 口訣「<b>林魚受言礦水藥</b>」（靈、漁、獵、鹽、礦、水、要）</p>
+    </div>
+    <div class="card">
+      <div class="card-title">方法二：編故事（越搞怪越好）</div>
+      <p>範例：林先生（林）是名漁夫（魚），有天被魚網割傷（受）發炎（言）了，大罵一聲「礦！」太痛了，快給我水（水），我原位要（要）塞軍備——無厘頭的故事反而記得久</p>
+    </div>
+  </div>
+  <div class="box box-note">💡 口訣不是必須：如果沒有口訣也能記得很牢，就不用特地編。</div>
+
+  <h3 class="sub-title">回想複習法（比單純重看一遍有效得多）</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box">把書合起來，問自己：「這條法條／這個觀念在講什麼？」</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box">也可以自己設計生活案例來回想（例如「我跟你借 100 萬結果被偷走了，我該怎麼辦？」），不用單純背法條文字</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-box">閉上眼睛回想，能不能自己說出八成內容——<b>意思對即可，不用一字不漏</b></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-box">卡住了才翻書找答案，先自己嘗試回想再對答案</div></div>
+  </div>
+  <p class="desc" style="margin-top:8px;">回想複習法練順了，寫題目時「破題」跟「審題」的速度會明顯變快，因為平常就有從腦中資料庫抓資料的習慣。研究指出回想複習法的效果，遠高於單純「看第二遍」。</p>
+</section>
+
+<!-- 七、申論題練習 -->
+<section id="s7">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ⑦ 申論題練習與檢討策略 <span class="src-tag">L8</span></h2>
+
+  <h3 class="sub-title">開始練習前的準備</h3>
+  <ul class="plain">
+    <li>準備<b>至少近十年</b>考古題（題庫書／參考書附題／考選部官網公布的歷屆考題與答案，皆可）</li>
+    <li>務必準備國家考試專用的<b>正式作答紙</b>，模擬考場臨場感，避免只寫在白紙上</li>
+    <li>開始練習前先確認：<b>觀念學習期＋重點複習期是否真的都紮實完成了</b>？如果還很心虛就先回去複習，否則練題目容易流於死背結果、推理過程學不到</li>
+    <li>例外：時間真的緊迫（例如只剩 2 週），才建議即使心虛也要開始練</li>
+  </ul>
+  <div class="box box-warn">⚠️ 沒準備好就硬練，容易「一知半解」——題目考三個地方你就死背這三個結果，但考試需要的推理過程你不會，題目一變就完全不會了。</div>
+
+  <h3 class="sub-title">練習方式的 3 個原則</h3>
+  <table>
+    <tr><th style="width:18%">原則</th><th>說明</th></tr>
+    <tr><td><b>以「年度」而非「主題」為單位</b></td><td>考場題目是亂序出現的（第一題債務不履行、第二題越界建築、第三題夫妻財產制⋯），思考不會連貫。平常若只練主題式（把同類題型整理在一起練），考場腦袋轉不過來、猶豫時間變長，容易寫不完。主題式練習建議留到<b>近十年都練熟之後</b>再做，用來加深全面性</td></tr>
+    <tr><td><b>交錯練</b></td><td>不要一次只讀一科（例如週一民法、週二土地法分開太遠）。改成兩天一輪：週一民法＋土稅，週二土地法＋另一科，讓每科間隔縮短到 1～2 天，印象更深、也能降低疲勞感</td></tr>
+    <tr><td><b>近十年練完後怎麼辦</b></td><td>可往前練<b>近 20 年</b>考古題（注意第 11～20 年可能法規已修改，詳解與現制有落差，勿鑽牛角尖）；或練<b>相關考試的重複科目</b>（如地政士與經紀人的民法、土地法、土地稅都重複，可互相練習）</td></tr>
+  </table>
+
+  <h3 class="sub-title">正式訓練的兩階段節奏</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box">前面幾次：<b>不限時間</b>，以「寫對」為目標，先熟悉考題邏輯、下標分段的方式</div></div>
+    <div class="flow-arrow">↓ 進入狀態後</div>
+    <div class="flow-step key"><div class="flow-num">2</div><div class="flow-box">開始<b>計時</b>練習：建議到圖書館、咖啡廳等陌生環境，模擬考場的時間壓力與不熟悉感</div></div>
+  </div>
+
+  <h3 class="sub-title">時間分配建議（以經紀人考試為例：25 題選擇＋2 題申論）</h3>
+  <table>
+    <tr><th style="width:22%">題型</th><th>建議作答時間</th></tr>
+    <tr><td>選擇題（25 題）</td><td>練習時盡量壓在 <b>30～35 分鐘</b>寫完；正式考試含畫卡建議抓 <b>40～45 分鐘</b>（畫卡＋緊張會拉長時間）</td></tr>
+    <tr><td>申論題（2 題，剩餘約 45 分鐘）</td><td>每題約 <b>20～25 分鐘</b></td></tr>
+  </table>
+
+  <h3 class="sub-title">拿到考卷的作答順序</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-box">先看<b>申論題</b>題目，判斷難易度、分配該多留時間給哪一題（選擇題中有時能找到申論題的答案線索）</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-box">寫<b>選擇題</b>：猶豫超過約 2 分鐘想不出來就先猜一個答案，並在題號上做記號</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-box">寫<b>申論題</b>：套用課程教的解題 SOP，架構清楚讓閱卷老師一眼看懂重點</div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-box">時間允許再回頭檢查選擇題中做記號猶豫過的題目</div></div>
+  </div>
+  <div class="box box-tip">💡 四選項亂猜正確率 25%；先刪掉確定錯的 2 個選項，正確率可提升到 50%——先猜再做記號，比空著沒時間畫卡好太多。</div>
+
+  <h3 class="sub-title">檢討方法（核心規則）</h3>
+  <ul class="plain">
+    <li>只要<b>寫錯</b>、或<b>寫對但猶豫超過 5 秒</b>才想出來的地方，全部做記號——猶豫代表不夠熟，考場壓力一來很可能就想不到</li>
+    <li>檢討時不是只複習該條文，要把<b>整個章節重新複習一遍</b>，避免同一章節還有其他沒發現的漏洞（另類的自我懲罰，能萬無一失補洞）</li>
+    <li>一份題目要<b>練完＋檢討完＋複習完章節＋做完考前筆記</b>，才能練下一份，不要囤積十份不檢討再一起做</li>
+    <li>目標是每練一次都變強一點（例如從 50 分進步到 55 分），不是「為練而練」的自我滿足</li>
+  </ul>
+
+  <h3 class="sub-title">常見問答</h3>
+  <table>
+    <tr><th style="width:26%">問題</th><th>對策</th></tr>
+    <tr><td>想的方向跟答案不一樣</td><td>審題出問題，代表對條文構成要件不熟，把容易混淆的觀念做比較整理</td></tr>
+    <tr><td>看得懂在考哪裡但下不了筆</td><td>卡在「破題」——構成要件熟，但後續法律效果不熟，用課程講義的架構圖複習</td></tr>
+    <tr><td>連抄詳解都抄不完</td><td>詳解為求完整常常很長，只需挑重點、針對題目問的地方回答；真的手速太慢需要靠練習訓練</td></tr>
+    <tr><td>如何確定答案正確</td><td>不只比對結論，要比對<b>推理過程</b>是否完整</td></tr>
+    <tr><td>練多少才算夠</td><td>永遠沒有「夠」的一天，只能全力以赴；不要死背答案，推理過程才是重點</td></tr>
+    <tr><td>考前壓力好大</td><td>休息 2～3 小時去散步、不接觸 3C 產品，也可以找老師聊聊，把緊張轉化成動力</td></tr>
+  </table>
+</section>
+
+<!-- 八、考前筆記 -->
+<section id="s8">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ⑧ 考前筆記製作方法 <span class="src-tag">L9</span></h2>
+  <p class="desc">考前不要傻傻翻厚重參考書——考前筆記是把所有<b>做錯／猶豫過</b>的地方集中在一起，考前靠短期記憶力集中衝一輪補上，是完全「量身打造、專屬自己」的筆記，別人的無法取代。</p>
+
+  <h3 class="sub-title">製作方式（延續申論題檢討的兩步驟）</h3>
+  <ol class="plain">
+    <li>練習題目時，<b>寫錯的</b>或<b>猶豫超過 5 秒</b>的地方先做記號，檢討時把整個章節複習一遍（見上一節）</li>
+    <li>整理進考前筆記本：只記錄「<b>錯誤的法條</b>」＋「<b>為什麼會想錯</b>」的簡短註解，<b>題目本身不用抄</b>——題目不會再出一模一樣的，重點是思考邏輯有沒有補起來</li>
+  </ol>
+
+  <div class="example-box">
+    <b>範例題目：</b>Jasper 以 20 萬元向 Josh 買一台汽車，過戶後 Jasper 因個人原因付不出錢，Josh 要如何主張？<br>
+    <b>涉及法條：</b>民法 226 條（損害賠償）、256 條（解除契約）、260 條<br>
+    <b>考前筆記記錄：</b>民法 <b class="err">260 條</b>「解除權之行使<b class="err">不妨礙</b>損害賠償請求」<br>
+    <b>想錯原因註解：</b>一開始以為解除契約就不能再請求損害賠償了，想錯了，下次要記得兩者可以並用
+  </div>
+
+  <h3 class="sub-title">使用情境</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">① 每天從頭複習到最新一條</div>
+      <p>不是只看新增的部分，而是<b>每次都從第 1 條看到最新一條</b>。例：第 1 天記錄 5 個看 1～5；第 2 天累積到 11 個就看 1～11；第 3 天累積到 16 個就看 1～16⋯以此類推。已經很熟的題目一題約 30 秒，就算累積到 50 題也只要約 25 分鐘，換來的是前面的內容幾乎不會再錯</p>
+    </div>
+    <div class="card">
+      <div class="card-title">② 考試當天休息時間重點加強</div>
+      <p>各科中間休息時間約 20 分鐘到 1 小時，用考前筆記複習，不要再帶厚重參考書；特別挑出<b>複習了七八遍依然背不熟</b>的條文，在考前最後幾分鐘集中死記一次；拿到考卷先掃過題目，若剛好對到考前筆記內容立刻寫下關鍵字，避免緊張忘記</p>
+    </div>
+  </div>
+  <div class="box box-tip">💡 這是根據個人弱點量身打造的專屬筆記，每天持續使用（從開始製作到考完該科前都要用），是相對投入時間但效益最高的方法。</div>
+</section>
+
+<!-- 九、應考當天注意事項 -->
+<section id="s9">
+  <h2 class="sec-title hi"><span class="star-hi">★★★</span> ⑨ 應考當天八大注意事項 <span class="src-tag">L10</span></h2>
+
+  <h3 class="sub-title">① 考前一天睡前準備好應備文件與文具</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">應備文件</div>
+      <p>考試通知書、健康關懷表（須預先填寫）、身分證、准考證（依考試類別而定）——實際內容以考選部寄送的 Email 通知為準</p>
+    </div>
+    <div class="card">
+      <div class="card-title">應備文具</div>
+      <p>2B 鉛筆＋橡皮擦（帶 2～3 組）；<b>黑色</b>原子筆，粗細 <b>0.5～0.7mm</b>（申論卷會掃描電子化閱卷，太細掃描不清楚會影響閱卷觀感）；立可帶（2～3 組）；計算機（僅特定科目可用，如土地稅法、估價概要，依當年簡章為準）</p>
+    </div>
+  </div>
+  <div class="box box-tip">💡 睡前備好文具是為了讓起床到出門的流程越簡短越好，避免手忙腳亂造成意外狀況。</div>
+
+  <h3 class="sub-title">② 提前調整作息，絕對不要熬夜</h3>
+  <p class="desc">大腦醒過來需要時間（例如平常 6 點起床、8 點半才真的清醒）。建議<b>考前一個月，至少提前兩週</b>把作息調整成與考試時間同步。真的沒辦法完全配合工作作息，至少要<b>睡飽 6～8 小時</b>，絕對不要考前熬夜——短期記憶轉長期記憶需要充足睡眠，熬夜衝進度反而是反效果。建議考試當天提早 1～2 小時起床（例如 8 點半考試，6～7 點起床），讓身體有時間完全清醒。</p>
+
+  <h3 class="sub-title">③ 飲食習慣維持正常</h3>
+  <p class="desc">尤其是<b>考前一週到考試當天</b>最關鍵（考前一個月身體出狀況還有時間恢復，考前一週出狀況會直接影響考試表現）。原則上照平常吃就好，唯一要避開的是<b>重油重鹹</b>的食物——平常吃不會拉肚子，不代表壓力大的考試當天也不會。午餐不要吃太飽，容易想睡覺。</p>
+
+  <h3 class="sub-title">④ 午休安排：善用代訂便當、適度休息</h3>
+  <p class="desc">部分考場提供代訂便當服務，可挑清淡（如蒸食）的品項，省去現場排隊搶購的時間。吃飽若感到疲累，不用逼自己一直複習，可以睡 20～25 分鐘，或閉目養神做<b>回想複習法</b>，重點是讓下午的考科腦袋保持清楚。</p>
+
+  <h3 class="sub-title">⑤ 考試中絕對不要「算分數」</h3>
+  <p class="desc">不要邊寫邊心算「這題扣 3 分、那題扣 3 分，這科沒救了」，這是浪費時間、徒增焦慮的小劇場，因為沒有人知道正確答案、也不知道自己寫得對不對。健康心態是想「對了哪裡」而非「錯了哪裡」，考 60 分就及格，你有犯錯的空間。</p>
+
+  <h3 class="sub-title">⑥ 保持冷靜、當一個理性的人</h3>
+  <p class="desc">把自己想成一台機器人：看到題目給的條件，能解就解，不會的先跳過或寫「意識相近」的內容，不要被害怕、緊張、焦慮的情緒干擾判斷。即便整題空白，其他題目還有機會救回來。</p>
+
+  <h3 class="sub-title">⑦ 各科中間休息時間務必翻考前筆記</h3>
+  <p class="desc">考前筆記上的內容很可能剛好就出現在下一科考卷上——別人在苦惱，你剛好看過就會心一笑。特別加強「怎麼複習都背不熟」的條文，考前最後幾分鐘集中看一次。</p>
+
+  <h3 class="sub-title">⑧ 不要跟同學討論已經考完的科目</h3>
+  <p class="desc">考完一科後同學互相對答案、討論剛剛的題目，除了浪費時間、增加焦慮，對下一科完全沒有幫助——這科下一次考是一年後的事。請專心準備下一科，要討論等<b>全部考完之後</b>再討論。</p>
+
+  <div class="quote-box">「不論結果如何，這些日子的努力都很值得你對自己說：辛苦了。」</div>
+</section>
+
+</body>
+</html>
