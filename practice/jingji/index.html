@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>練筆團申論｜經紀法</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#3f6b4f; --ok-bg:#e3eee6;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1200px; margin:0 auto; padding:24px 40px 30px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 30px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+
+.toc{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.toc a{font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--neutral-bg); border:1px solid var(--line-strong); border-radius:8px; padding:6px 14px;}
+
+.subject{margin-bottom:30px;}
+.subject-head{font-size:20px; font-weight:900; color:#fff; padding:9px 20px; border-radius:10px; margin-bottom:10px; background:var(--accent);}
+.session{margin:0 0 22px; padding-left:12px; border-left:3px solid var(--line-strong);}
+.session-head{font-size:17px; font-weight:900; color:var(--accent); margin:6px 0 4px;}
+.session-head .date{display:inline-block; font-size:13px; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:2px;}
+.session-head .meta{font-size:12.5px; font-weight:400; color:var(--sub); margin-left:8px;}
+.subject-head .meta{font-size:13px; font-weight:400; opacity:.85; margin-left:10px;}
+
+.block-title{font-size:16px; font-weight:800; margin:16px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line-strong);}
+
+.question{font-size:14px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px; padding:9px 14px;}
+.question p{margin:0 0 4px;}
+
+.photo-note{font-size:12.5px; color:var(--sub); margin-top:4px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+th{background:var(--ink); color:#fff; padding:7px 12px; text-align:left; font-size:13.5px;}
+td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+td.term{font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+td ul{margin:0; padding-left:18px;}
+td li{margin-bottom:2px;}
+
+.law{color:var(--sub); font-size:12px; margin-left:4px;}
+.trap{color:var(--accent2); font-weight:700;}
+.pill{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; white-space:nowrap;}
+.pill.ok{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.pill.part{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.pill.plus{color:var(--neutral); background:var(--neutral-bg); border:1px solid var(--neutral);}
+
+.tips{background:var(--accent-bg); border-left:4px solid var(--accent); border-radius:8px; padding:10px 16px; font-size:14px;}
+.tips ul{margin:0; padding-left:20px;}
+.tips li{margin-bottom:4px;}
+
+.frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
+.frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
+.frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+
+.full p{margin:0 0 6px; line-height:1.7;}
+.full p:last-child{margin-bottom:0;}
+.miss{color:var(--accent); font-weight:700; background:var(--accent-bg); border-radius:3px; padding:0 2px;}
+.diff{color:var(--accent2); font-weight:700; background:var(--accent2-bg); border-radius:3px; padding:0 2px;}
+.mine{font-size:12px; font-weight:400; color:var(--sub); margin-left:2px;}
+.skel{background:#f8fafc;}
+.skel p{margin:0 0 6px; line-height:1.6;}
+.skel p:last-child{margin-bottom:0;}
+.skel b{color:var(--ink);}
+.legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+
+.footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
+
+@media (max-width:700px){
+  .page{padding:16px;}
+  th:nth-child(1), td:nth-child(1){width:22% !important;}
+}
+@media print{
+  @page{size:A4; margin:12mm 10mm;}
+  *{-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+  .page{max-width:100%; padding:0;}
+  .toc{display:none;}
+  .subject{break-before:page;}
+  .subject:first-of-type{break-before:auto;}
+  tr{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">不動產經紀人考試｜申論題練筆團｜不動產經紀相關法規</div>
+    <h1>練筆團申論整理｜經紀法</h1>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div class="badge"><strong>1 場</strong>0925</div>
+    <div class="badge"><strong>手寫 vs 詳解</strong>逐小題比較</div>
+  </div>
+</div>
+
+<div class="toc">
+  <a href="#jingji-0925">0925 公寓大廈管理條例：區權會、規約、重建</a>
+</div>
+
+<section class="subject" id="jingji">
+  <div class="subject-head">經紀法</div>
+
+  <!-- ---- 0925 ---- -->
+  <div class="session" id="jingji-0925">
+    <div class="session-head"><span class="date">0925</span>公寓大廈管理條例：區權會、規約、重建<span class="meta">不動產經紀相關法規</span></div>
+  
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>位於城市邊緣的幸福社區，已有 50 年的歷史，這裡曾是許多家庭的起點，承載著居民們無數的回憶。然而，隨著時間的推移，社區建物逐漸老化，管線破裂、漏水、電線走火等問題層出不窮，近日來社區建物更是嚴重毀損，極有可能危害公共安全，社區主任委員小明於是決定在區分所有權人會議上提議要重建整個社區，請依照公寓大廈管理條例規定，回答下列問題：</p>
+      <p>（一）何謂區分所有權人會議？何謂規約？</p>
+      <p>（二）若區分所有權人會議通過重建決議，唯獨區分所有權人小美和房屋承租戶小張，兩人不同意重建，請問管理委員會可以如何處理？</p>
+    </div>
+  
+  
+    <div class="block-title">詳解重點</div>
+    <div class="legend"><span><span class="miss">陶紅</span> 你完全沒寫到（含條號）</span><span><span class="diff">赭黃</span> 有寫但寫法、用字不同</span><span>一般字色＝你有寫到</span></div>
+    <table>
+      <colgroup><col style="width:15%"><col style="width:27%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架</th><th>老師詳解全文（標色＝差異）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）何謂區分所有權人會議？何謂規約？<div class="law" style="margin:6px 0 0;">定義題，骨架用條列</div></td><td class="skel">
+      <p><b>區權會</b> §3 ⑦：為共同事務＋權利義務事項 → 召集全體區權人舉行的會議</p>
+      <p><b>規約</b> §3 ⑫：為增進共同利益、確保良好生活環境 → 區權會決議的共同遵守事項</p>
+      <p><b>視為規約</b> §56：起造人申請建照附規約草約 → 承受人簽署同意 → 區權會訂規約前視為規約</p>
+    </td><td class="full">
+      <p>關於區分所有權人會議和規約之定義，及幸福社區管理委員會得採取之處理方式，學生試以公寓大廈管理條例（下稱本條例）分述之：</p>
+      <p>（一）區分所有權人會議和規約之定義</p>
+      <p>1. 區分所有權人會議：<span class="miss">根據本條例第 3 條第 7 款規定，</span>區分所有權人會議指區分所有權人為共同事務及涉及權利義務之有關事項，召集全體區分所有權人所舉行之會議。</p>
+      <p>2. 規約與視為規約：</p>
+      <p>（1）<span class="miss">根據本條例第 3 條第 12 款規定，</span>規約是指公寓大廈區分所有權人為增進共同利益，<span class="diff">確保</span><span class="mine">（你寫「維護」）</span>良好生活環境，經區分所有權人會議決議之共同遵守事項。</p>
+      <p>（2）<span class="miss">根據本條例第 56 條規定，公寓大廈之起造人於申請建造執照時，應檢附專有部分、共用部分、約定專用部分、約定共用部分標示之詳細圖說及規約草約。於設計變更時亦同。</span>前項規約草約經承受人簽署同意後，於區分所有權人會議訂定規約前，視為規約。</p>
+      <p class="mine" style="margin-left:0;">你另外寫了「每年至少召開一次」和兩種決議門檻，詳解沒寫，屬加碼</p>
+    </td></tr>
+      <tr><td class="term">（二）若區分所有權人會議通過重建決議，唯獨區分所有權人小美和房屋承租戶小張，兩人不同意重建，請問管理委員會可以如何處理？<div class="law" style="margin:6px 0 0;">結論：小美不出讓 → 管委會訴請法院命出讓；小張意見與重建無關</div></td><td class="skel">
+      <p><b>依</b> §13：重建原則要全體區權人＋基地所有權人、地上權人或典權人同意；例外 3 款（都更／嚴重毀損有危害公安之虞／重大事變）</p>
+      <p><b>依</b> §14 Ⅰ Ⅱ Ⅲ：第 2、3 款情形經區權會決議重建，不同意又不出讓 → 管委會得訴請法院命出讓；受讓人視為同意；建照以區權會決議名義申請</p>
+      <p><b>本題中</b> 社區嚴重毀損、有危害公安之虞 → 屬 §13 第 2 款 → 不需全體同意</p>
+      <p><b>但是</b> 小美不同意又不出讓；小張只是承租戶，不是區權人</p>
+      <p><b>因此</b> 管委會得訴請法院命小美出讓區分所有權及基地應有部分；小張的意見與是否重建<b>無關</b></p>
+    </td><td class="full">
+      <p>（二）<span class="diff">若小美不出讓其區分所有權，管理委員會得訴請法院命小美出讓其區分所有權；承租人小張之意見與幸福社區是否重建無關</span><span class="mine">（你的小標寫「區權會通過重建，但小美及小張不同意時，管委會之處理」，只重述題目；詳解小標直接寫結論）</span></p>
+      <p>1. <span class="miss">根據本條例第 13 條之規定，</span>公寓大廈之重建，應經全體區分所有權人<span class="miss">及基地所有權人、地上權人或典權人</span>之同意。但有下列情形之一者，不在此限：</p>
+      <p>（1）<span class="miss">配合都市更新計畫而實施重建者。</span></p>
+      <p>（2）嚴重毀損、傾頹或朽壞，有危害公共安全之虞者。</p>
+      <p>（3）<span class="miss">因地震、水災、風災、火災或其他重大事變，肇致危害公共安全者。</span></p>
+      <p>2. <span class="miss">根據本條例第 14 條之規定</span></p>
+      <p>（1）<span class="miss">第 1 項：公寓大廈有前條第二款或第三款所定情形之一，經區分所有權人會議決議重建時，</span>區分所有權人不同意決議又不出讓區分所有權<span class="miss">或同意後不依決議履行其義務者，管理負責人或</span>管理委員會得訴請法院命區分所有權人出讓其區分所有權及其<span class="diff">基地所有權應有部分</span><span class="mine">（你寫「基地持分」）</span>。</p>
+      <p>（2）<span class="miss">第 2 項：</span>前項之受讓人視為同意重建。</p>
+      <p>（3）<span class="miss">第 3 項：重建之建造執照之申請，其名義以區分所有權人會議之決議為之。</span></p>
+      <p><span class="miss">綜上所訴，</span>幸福社區建物已嚴重毀損，並有危害公共安全之虞，依規定重建不需經由全體區分所有權人<span class="miss">及基地所有權人、地上權人或典權人</span>的同意。<span class="mine">（這段你寫在（二）開頭，沒有獨立的結論段）</span></p>
+      <p>若區分所有權人會議有關重建之決議已通過，此時不同意決議的區分所有權人小美又不出讓其區分所有權的話，幸福社區之管理委員會得訴請法院命區分所有權人小美出讓其區分所有權及其基地所有權應有部分。而房屋承租戶小張<span class="diff">依本條例之規定不屬本題案例之關係人</span><span class="mine">（你寫「承租戶在區權會中並無表決權」）</span>，故其意見與幸福社區是否決議重建無關。</p>
+      <p class="mine" style="margin-left:0;">你另外寫了「應由出租人依土地法重新建築之規定收回房屋」，詳解沒寫，屬加碼</p>
+    </td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">差異比較</div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:33%"><col style="width:42%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫到的</th><th>詳解有、我沒寫（或寫法不同）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td>「關於區分所有權人會議及規約規定，與管委會遇到住戶不同意重建的處理方式，學生試分述如下」</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（一）<br>區權會</td><td>定義和詳解幾乎一字不差；另外寫了每年至少召開一次、決議門檻（一般決議與重新召開）</td><td><ul>
+        <li>沒寫條號 <b>§3 第 7 款</b></li>
+        <li>召開次數、決議門檻詳解沒寫，題目也只問「何謂」，屬<b>加碼內容</b>，不扣分但佔篇幅，時間不夠時可以省</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">（一）<br>規約</td><td>規約定義＋規約草約經承受人簽署後視為規約</td><td><ul>
+        <li>沒寫條號 <b>§3 第 12 款、§56</b></li>
+        <li>用字小差異：「維護」良好生活環境→條文是「<b>確保</b>」</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（二）<br>重建門檻</td><td>重建原則須全體同意，但嚴重毀損、有危害公安之虞不在此限 → 本題只需區權會多數決通過</td><td><ul>
+        <li>沒寫條號 <b>§13</b></li>
+        <li>「全體同意」的對象少了<b>基地所有權人、地上權人或典權人</b></li>
+        <li>三款例外只寫了本題適用的第 2 款，詳解三款全列（都更、嚴重毀損、重大事變）</li>
+      </ul></td><td><span class="pill part">△ 核心對，缺條號</span></td></tr>
+      <tr><td class="term">（二）<br>小美</td><td>不同意又不出讓 → 管委會得訴請法院命出讓區分所有權及基地持分；受讓人視為同意重建</td><td><ul>
+        <li>沒寫條號 <b>§14 Ⅰ、Ⅱ</b></li>
+        <li>沒寫 §14 Ⅲ（建照以區權會決議名義申請），可補</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（二）<br>小張</td><td>承租戶在區權會沒有表決權，反對不影響重建決議；應由出租人依土地法「重新建築」規定收回房屋</td><td><ul>
+        <li>結論和詳解一致（意見與重建無關）</li>
+        <li>「出租人依土地法收回房屋」詳解沒寫，屬<b>加碼</b>，把「承租人之後怎麼辦」也交代到了，可以加條號<b>土地法 §100 第 1 款</b>（出租人收回自住或重新建築）</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">結論</td><td>沒有獨立結論段</td><td>詳解最後用「綜上所述」把三個人（社區、小美、小張）的結果再收一次</td><td><span class="pill part">△ 可補</span></td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li>內容幾乎都到位，<b>主要也是差在條號</b>：§3⑦、§3⑫、§56、§13、§14 Ⅰ Ⅱ</li>
+      <li>§13「全體同意」要寫完整：<b>全體區分所有權人＋基地所有權人、地上權人或典權人</b></li>
+      <li>題目只問「何謂」時，決議門檻這類延伸內容可以視時間省略</li>
+      <li>情境題最後加一段「綜上所述」，把每個角色的結果收尾</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="footer">練筆團申論整理｜經紀法｜同科依日期排序｜詳解為練筆團提供，比較與提醒為整理時補充</div>
+
+</div>
+</body>
+</html>

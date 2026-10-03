@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>練筆團申論｜土地法</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#3f6b4f; --ok-bg:#e3eee6;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1200px; margin:0 auto; padding:24px 40px 30px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 30px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+
+.toc{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.toc a{font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--neutral-bg); border:1px solid var(--line-strong); border-radius:8px; padding:6px 14px;}
+
+.subject{margin-bottom:30px;}
+.subject-head{font-size:20px; font-weight:900; color:#fff; padding:9px 20px; border-radius:10px; margin-bottom:10px; background:var(--accent);}
+.session{margin:0 0 22px; padding-left:12px; border-left:3px solid var(--line-strong);}
+.session-head{font-size:17px; font-weight:900; color:var(--accent); margin:6px 0 4px;}
+.session-head .date{display:inline-block; font-size:13px; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:2px;}
+.session-head .meta{font-size:12.5px; font-weight:400; color:var(--sub); margin-left:8px;}
+.subject-head .meta{font-size:13px; font-weight:400; opacity:.85; margin-left:10px;}
+
+.block-title{font-size:16px; font-weight:800; margin:16px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line-strong);}
+
+.question{font-size:14px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px; padding:9px 14px;}
+.question p{margin:0 0 4px;}
+
+.photo-note{font-size:12.5px; color:var(--sub); margin-top:4px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+th{background:var(--ink); color:#fff; padding:7px 12px; text-align:left; font-size:13.5px;}
+td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+td.term{font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+td ul{margin:0; padding-left:18px;}
+td li{margin-bottom:2px;}
+
+.law{color:var(--sub); font-size:12px; margin-left:4px;}
+.trap{color:var(--accent2); font-weight:700;}
+.pill{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; white-space:nowrap;}
+.pill.ok{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.pill.part{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.pill.plus{color:var(--neutral); background:var(--neutral-bg); border:1px solid var(--neutral);}
+
+.tips{background:var(--accent-bg); border-left:4px solid var(--accent); border-radius:8px; padding:10px 16px; font-size:14px;}
+.tips ul{margin:0; padding-left:20px;}
+.tips li{margin-bottom:4px;}
+
+.frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
+.frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
+.frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+
+.full p{margin:0 0 6px; line-height:1.7;}
+.full p:last-child{margin-bottom:0;}
+.miss{color:var(--accent); font-weight:700; background:var(--accent-bg); border-radius:3px; padding:0 2px;}
+.diff{color:var(--accent2); font-weight:700; background:var(--accent2-bg); border-radius:3px; padding:0 2px;}
+.mine{font-size:12px; font-weight:400; color:var(--sub); margin-left:2px;}
+.skel{background:#f8fafc;}
+.skel p{margin:0 0 6px; line-height:1.6;}
+.skel p:last-child{margin-bottom:0;}
+.skel b{color:var(--ink);}
+.legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+
+.footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
+
+@media (max-width:700px){
+  .page{padding:16px;}
+  th:nth-child(1), td:nth-child(1){width:22% !important;}
+}
+@media print{
+  @page{size:A4; margin:12mm 10mm;}
+  *{-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+  .page{max-width:100%; padding:0;}
+  .toc{display:none;}
+  .subject{break-before:page;}
+  .subject:first-of-type{break-before:auto;}
+  tr{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">不動產經紀人考試｜申論題練筆團｜土地法與土地相關稅法概要</div>
+    <h1>練筆團申論整理｜土地法</h1>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div class="badge"><strong>1 場</strong>0925</div>
+    <div class="badge"><strong>手寫 vs 詳解</strong>逐小題比較</div>
+  </div>
+</div>
+
+<div class="toc">
+  <a href="#tudifa-0925">0925 平均地權條例：預售屋換約轉售限制</a>
+</div>
+
+<section class="subject" id="tudifa">
+  <div class="subject-head">土地法</div>
+
+  <!-- ---- 0925 ---- -->
+  <div class="session" id="tudifa-0925">
+    <div class="session-head"><span class="date">0925</span>平均地權條例：預售屋換約轉售限制<span class="meta">土地法與土地相關稅法概要</span></div>
+  
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>日前《平均地權條例》的修正施行，被稱為史上最重打炒房措施，其中一項政策大大影響了預售屋市場，請問目前有關於個人簽訂預售屋買賣契約後的限制交易事項為何？是否有例外之規定？罰則為何？</p>
+    </div>
+  
+    <div class="block-title">詳解重點</div>
+    <div class="legend"><span><span class="miss">陶紅</span> 你完全沒寫到（含條號）</span><span><span class="diff">赭黃</span> 有寫但寫法、用字不同</span><span>一般字色＝你有寫到</span></div>
+    <table>
+      <colgroup><col style="width:15%"><col style="width:27%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架</th><th>老師詳解全文（標色＝差異）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）個人簽訂預售屋買賣契約後的限制交易事項為何？<div class="law" style="margin:6px 0 0;">結論：限制預售屋換約轉售</div></td><td class="skel">
+      <p><b>名稱</b> 限制預售屋換約轉售</p>
+      <p><b>依</b> 平均地權條例 §47-4 Ⅰ</p>
+      <p><b>不得</b> 讓與或轉售買賣契約與第三人</p>
+      <p><b>不得</b> 自行或委託刊登讓與或轉售廣告</p>
+    </td><td class="full">
+      <p><span class="miss">個人簽訂預售屋買賣契約後的限制交易事項為「限制預售屋換約轉售」。</span></p>
+      <p><span class="miss">依平均地權條例第 47 條之 4 第 1 項規定：</span>「預售屋或<span class="diff">新建成屋</span><span class="mine">（你寫「新成屋」）</span>買賣契約之買受人，於簽訂買賣契約後，不得讓與或轉售買賣契約與第三人，並不得自行或委託刊登讓與或轉售廣告。」</p>
+      <p class="mine" style="margin-left:0;">你另外寫了立法目的（遏止短期換約炒作、哄抬房價），詳解沒寫，屬加碼</p>
+    </td></tr>
+      <tr><td class="term">（二）是否有例外之規定？<div class="law" style="margin:6px 0 0;">結論：有，2 款</div></td><td class="skel">
+      <p><b>第 1 款</b> 配偶、直系血親、二親等內旁系血親間</p>
+      <p><b>第 2 款</b> <b>中央</b>主管機關公告＋<b>直轄市、縣（市）</b>主管機關核准</p>
+    </td><td class="full">
+      <p>上述的例外規定如下：</p>
+      <p>1. 配偶、直系血親或二親等內旁系血親間之讓與或轉售。</p>
+      <p>2. 其他<span class="diff">中央主管機關公告</span><span class="mine">（你寫「經公告」，沒寫誰公告）</span>得讓與或轉售，並經<span class="miss">直轄市、縣（市）主管機關</span>核准者。<span class="mine">（老師扣分點：少了核准機關這個要件）</span></p>
+      <p class="mine" style="margin-left:0;">你另外寫了全國每 2 年以 1 戶（棟）為限、6 種公告情形，詳解沒寫，屬加碼</p>
+    </td></tr>
+      <tr><td class="term">（三）罰則為何？<div class="law" style="margin:6px 0 0;">結論：50 萬～300 萬罰鍰，分兩種情況</div></td><td class="skel">
+      <p><b>罰鍰</b> 直轄市、縣（市）主管機關處 50 萬以上 300 萬以下</p>
+      <p><b>刊登廣告</b> → 限期改正或必要處置 → 屆期未改 → 按次處罰</p>
+      <p><b>有交易</b> → 按交易戶（棟）處罰</p>
+    </td><td class="full">
+      <p>若買受人<span class="miss">違反第 47 條之 4 第 1 項規定，</span>讓與、轉售買賣契約<span class="miss">或刊登讓與、轉售廣告</span>，直轄市、縣（市）主管機關可處新臺幣 50 萬元以上 300 萬元以下罰鍰；<span class="miss">其刊登廣告者，並應令其限期改正或為必要處置；屆期未改正或處置者，</span><span class="diff">按次處罰</span><span class="mine">（你寫「並得按次處罰」，沒限定是刊登廣告的情況）</span>；<span class="diff">其有不動產交易者，按交易戶（棟）處罰</span><span class="mine">（你寫在前面「按戶（棟）處」，沒限定是有交易的情況）</span>。</p>
+    </td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">老師閱卷建議</div>
+    <div class="tips"><ul>
+      <li><b>第一小題</b>：回答正確</li>
+      <li><b>第二小題</b>：「其他中央主管機關公告得讓與或轉售」，還需<b>經直轄市、縣（市）主管機關核准</b>才可以，少了一個要件。補充經公告並核准的情形很棒，不過為了避免作答時間不夠，先做到<b>問 A 答 A</b>，行有餘力再補充</li>
+      <li><b>第三小題</b>：罰則有分不同情況，未完整列出，請參詳解</li>
+      <li>整體：大方向都正確，只是作答內容都有點不夠完整，建議再多琢磨法規內容，精益求精</li>
+    </ul></div>
+  
+    <div class="block-title">差異比較</div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:33%"><col style="width:42%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫到的</th><th>詳解有、我沒寫（或寫法不同）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td>「關於平均地權條例個人簽訂預售屋買賣契約的限制、例外與罰則，學生試分述如下」</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（一）<br>限制事項</td><td>不得讓與或轉售買賣契約給第三人，並不得自行或委託刊登讓與或轉售廣告；另寫立法目的（遏止短期換約炒作、哄抬房價）</td><td><ul>
+        <li>沒寫條號 <b>平均地權條例 §47-4 Ⅰ</b></li>
+        <li>詳解開頭先點出名稱「<b>限制預售屋換約轉售</b>」，再引條文，可學起來當小標</li>
+        <li>立法目的詳解沒寫，屬<b>加碼</b></li>
+      </ul></td><td><span class="pill ok">✓ 到位</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">（二）<br>親屬</td><td>配偶、直系血親、二親等內旁系血親間讓與或轉售不受限制</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（二）<br>公告核准</td><td>「經公告並核准之情形」得讓與或轉售，全國每 2 年以 1 戶（棟）為限；另列 6 種公告情形（非自願離職、買受人死亡、災害毀損、意外致第三人死亡或重傷、重大傷病、共同買受人間轉約）</td><td><ul>
+        <li>要件寫不完整：要寫出兩個機關——<b>中央主管機關公告</b>＋<b>直轄市、縣（市）主管機關核准</b>（老師扣的點）</li>
+        <li>6 種公告情形詳解沒寫，老師說很棒但佔時間，<b>先問 A 答 A</b></li>
+      </ul></td><td><span class="pill part">△ 少一個要件</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">（三）<br>罰則</td><td>由直轄市、縣（市）主管機關按戶（棟）處 50 萬以上 300 萬以下罰鍰，並得按次處罰</td><td><ul>
+        <li>罰則要<b>分情況寫</b>：「按次處罰」是針對<b>刊登廣告</b>，且要先令限期改正、屆期未改正才按次罰；「按戶（棟）」是針對<b>有不動產交易</b>（老師扣的點）</li>
+        <li>你把兩者混成一句，少了「<b>限期改正或為必要處置</b>」這段</li>
+      </ul></td><td><span class="pill part">△ 情況沒分開</span></td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li>條號要寫：<b>平均地權條例 §47-4 Ⅰ</b></li>
+      <li>例外第 2 款兩個機關都要寫：<b>中央公告＋地方核准</b></li>
+      <li>罰則分兩種：<b>刊登廣告</b> → 限期改正，屆期未改正按次罰；<b>有交易</b> → 按戶（棟）罰</li>
+      <li>題目沒問的細節（立法目的、6 種公告情形）時間夠再寫，先把題目三問答完整</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="footer">練筆團申論整理｜土地法｜同科依日期排序｜詳解為練筆團提供，比較與提醒為整理時補充</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>練筆團申論｜估價</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#3f6b4f; --ok-bg:#e3eee6;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1200px; margin:0 auto; padding:24px 40px 30px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 30px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+
+.toc{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.toc a{font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--neutral-bg); border:1px solid var(--line-strong); border-radius:8px; padding:6px 14px;}
+
+.subject{margin-bottom:30px;}
+.subject-head{font-size:20px; font-weight:900; color:#fff; padding:9px 20px; border-radius:10px; margin-bottom:10px; background:var(--accent);}
+.session{margin:0 0 22px; padding-left:12px; border-left:3px solid var(--line-strong);}
+.session-head{font-size:17px; font-weight:900; color:var(--accent); margin:6px 0 4px;}
+.session-head .date{display:inline-block; font-size:13px; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:2px;}
+.session-head .meta{font-size:12.5px; font-weight:400; color:var(--sub); margin-left:8px;}
+.subject-head .meta{font-size:13px; font-weight:400; opacity:.85; margin-left:10px;}
+
+.block-title{font-size:16px; font-weight:800; margin:16px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line-strong);}
+
+.question{font-size:14px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px; padding:9px 14px;}
+.question p{margin:0 0 4px;}
+
+.photo-note{font-size:12.5px; color:var(--sub); margin-top:4px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+th{background:var(--ink); color:#fff; padding:7px 12px; text-align:left; font-size:13.5px;}
+td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+td.term{font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+td ul{margin:0; padding-left:18px;}
+td li{margin-bottom:2px;}
+
+.law{color:var(--sub); font-size:12px; margin-left:4px;}
+.trap{color:var(--accent2); font-weight:700;}
+.pill{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; white-space:nowrap;}
+.pill.ok{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.pill.part{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.pill.plus{color:var(--neutral); background:var(--neutral-bg); border:1px solid var(--neutral);}
+
+.tips{background:var(--accent-bg); border-left:4px solid var(--accent); border-radius:8px; padding:10px 16px; font-size:14px;}
+.tips ul{margin:0; padding-left:20px;}
+.tips li{margin-bottom:4px;}
+
+.frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
+.frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
+.frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+
+.full p{margin:0 0 6px; line-height:1.7;}
+.full p:last-child{margin-bottom:0;}
+.miss{color:var(--accent); font-weight:700; background:var(--accent-bg); border-radius:3px; padding:0 2px;}
+.diff{color:var(--accent2); font-weight:700; background:var(--accent2-bg); border-radius:3px; padding:0 2px;}
+.mine{font-size:12px; font-weight:400; color:var(--sub); margin-left:2px;}
+.skel{background:#f8fafc;}
+.skel p{margin:0 0 6px; line-height:1.6;}
+.skel p:last-child{margin-bottom:0;}
+.skel b{color:var(--ink);}
+.legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+
+.footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
+
+@media (max-width:700px){
+  .page{padding:16px;}
+  th:nth-child(1), td:nth-child(1){width:22% !important;}
+}
+@media print{
+  @page{size:A4; margin:12mm 10mm;}
+  *{-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+  .page{max-width:100%; padding:0;}
+  .toc{display:none;}
+  .subject{break-before:page;}
+  .subject:first-of-type{break-before:auto;}
+  tr{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">不動產經紀人考試｜申論題練筆團｜不動產估價</div>
+    <h1>練筆團申論整理｜估價</h1>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div class="badge"><strong>1 場</strong>0922</div>
+    <div class="badge"><strong>手寫 vs 詳解</strong>逐小題比較</div>
+  </div>
+</div>
+
+<div class="toc">
+  <a href="#gujia-0922">0922 成本法：重建成本、折舊、定額法計算</a>
+</div>
+
+<section class="subject" id="gujia">
+  <div class="subject-head">估價</div>
+
+  <!-- ---- 0922 ---- -->
+  <div class="session" id="gujia-0922">
+    <div class="session-head"><span class="date">0922</span>成本法：重建成本、折舊、定額法計算<span class="meta">不動產估價</span></div>
+  
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>真富有集團的總部──福旺大樓，其屋齡已高達 30 年，考量到大樓內部的多項設備已不堪使用，因此總裁小明想在原地重建一棟新大樓，遂找來估價師一同討論建造細節，請依據不動產估價技術規則，回答下述問題：</p>
+      <p>（一）估價師若想以成本法對福旺大廈進行估價，該以哪種成本作為原則？</p>
+      <p>（二）在成本法中，除了物理性折舊外，還有哪些因素會影響建物的折舊？請舉例說明。</p>
+      <p>（三）假設估價師估算出該大樓的重建成本為 3000 萬元，土地價值為 2000 萬元，且該建物的耐用年數為 50 年，殘餘率為 10%。若採用定額法計算折舊，請計算該大樓的累積折舊額，並進一步求出其房地成本價格。</p>
+      <p>（四）延伸思考題：收益法和成本法都有折舊的概念，兩者的差異為何？（提示：可從概念、適用範圍進行分析）</p>
+    </div>
+  
+  
+    <div class="block-title">詳解重點</div>
+    <table>
+      <colgroup><col style="width:14%"><col></colgroup>
+      <tbody>
+      <tr><td class="term">引言</td><td>關於成本法之定義與求取成本之原則、折舊因素及該大樓之累積折舊額與房地價格之計算方式，學生試以不動產估價技術規則（下稱本規則）分述之</td></tr>
+      <tr><td class="term">（一）<br>重建成本為原則</td><td><ul>
+        <li>成本法定義<span class="law">§48 Ⅰ</span>：求取勘估標的於價格日期之重建成本或重置成本，扣減其累積折舊額或其他應扣除部分，以推算勘估標的價格之方法</li>
+        <li>建物估價以求取<b>重建成本</b>為原則；建物使用之材料目前已無生產或施工方法已改變者，得採<b>重置成本</b>替代<span class="law">§48 Ⅲ</span></li>
+        <li>重建成本：使用與勘估標的相同或極類似之建材標準、設計、配置及施工品質，於價格日期重新複製建築所需之成本<span class="law">§48 Ⅳ</span></li>
+        <li>重置成本：與勘估標的相同效用之建物，以現代建材標準、設計及配置，於價格日期建築所需之成本<span class="law">§48 Ⅴ</span></li>
+        <li>成本法估價程序 8 步<span class="law">§49</span>：蒐集資料 → 現況勘察 → 調查整理比較分析成本資料 → 推算營造或施工費 → 推算其他費用及利潤 → 計算總成本 → 計算建物累積折舊額 → 計算成本價格</li>
+        <li class="trap">老師：定義和程序屬補充，時間允許就在答題後補上</li>
+      </ul></td></tr>
+      <tr><td class="term">（二）<br>三種折舊</td><td><ul>
+        <li>物理性折舊：因建物老化、損壞所造成的價值減損</li>
+        <li>功能性折舊：因建物的設計、格局、設備不符合現代需求所造成的價值減損</li>
+        <li>經濟性折舊：因周邊環境變遷、土地利用型態改變等因素所造成的價值減損</li>
+      </ul></td></tr>
+      <tr><td class="term">（三）<br>1620 萬／3380 萬</td><td><ul>
+        <li>定額法<span class="law">§68</span>：Dn ＝ C × <span class="frac"><span class="num">1－s</span><span class="den">N</span></span> × n（Dn 累積折舊額、C 建物總成本、s 殘餘價格率、N 耐用年數、n 已經歷年數）</li>
+        <li>3000 萬 × <span class="frac"><span class="num">1－10%</span><span class="den">50</span></span> × 30 ＝ <b>1620 萬元</b></li>
+        <li>成本價格<span class="law">§69</span>：土地價格＝土地總成本；建物成本價格＝建物總成本－建物累積折舊額；房地成本價格＝土地價格＋建物成本價格</li>
+        <li>建物 3000－1620＝1380 萬元；房地 2000＋1380＝<b>3380 萬元</b></li>
+      </ul></td></tr>
+      <tr><td class="term">（四）<br>延伸思考</td><td>
+        <table>
+          <thead><tr><th style="width:18%">項目</th><th>收益法折舊</th><th>成本法折舊</th></tr></thead>
+          <tbody>
+          <tr><td class="term">核心概念</td><td>不動產視為<b>投資</b>，價值取決於未來收益；折舊反映收益能力下降，受市場影響較深</td><td>不動產視為<b>資產</b>，價值＝重置成本－折舊，較不受市場影響</td></tr>
+          <tr><td class="term">計算方式</td><td>等速折舊型、償債基金型</td><td>觀察法、耐用年數法</td></tr>
+          <tr><td class="term">適用範圍</td><td>市場性及出租收益性不動產（商辦、出租公寓）</td><td>各類不動產皆可，不具市場性的特殊建築須格外小心</td></tr>
+          </tbody>
+        </table>
+        <div class="trap" style="margin-top:4px;">老師：沒有標準答案，有條理寫出看法就有分數；考試以文字論述為準，表格只是方便閱讀</div>
+      </td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">差異比較</div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:33%"><col style="width:42%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫到的</th><th>詳解有、我沒寫（或寫法不同）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td>「關於重建一棟大樓…依據不動產估價技術規則，學生試分述如下」</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（一）</td><td>重建成本為原則、重置成本為例外，兩者定義都有寫</td><td><ul>
+        <li>沒寫條號 <b>§48</b></li>
+        <li>重建成本定義少了「<b>配置</b>」「<b>於價格日期</b>」；「類似」應為「<b>極類似</b>」</li>
+        <li>沒補成本法定義（§48 Ⅰ）和估價程序（§49），屬加分補充</li>
+      </ul></td><td><span class="pill part">△ 核心對，缺條號</span></td></tr>
+      <tr><td class="term">（二）</td><td>功能性折舊（技術革新、設計觀念改變、格局設備落伍）＋經濟性折舊（又稱外部性折舊，周邊環境惡化、市場需求下滑）</td><td><ul>
+        <li>詳解有先交代<b>物理性折舊</b>的定義當開頭</li>
+        <li>題目要求「請<b>舉例</b>說明」：功能性可補具體例子（如無電梯的老公寓）；經濟性你寫了環境惡化，可再具體一點（如旁邊蓋了垃圾場）</li>
+        <li>「外部性折舊」這個別名詳解沒寫，屬加碼</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（三）</td><td>定額法公式＋代號說明、1620 萬、1380、3380 萬，全部算對</td><td><ul>
+        <li>沒寫條號 <b>§68（定額法）、§69（成本價格三公式）</b></li>
+        <li>建物成本價格「1380」<span class="trap">漏寫單位「萬元」</span></li>
+        <li>沒先列出 §69 三條公式就直接代入，建議先列公式再代數字</li>
+      </ul></td><td><span class="pill part">△ 答案對，缺條號</span></td></tr>
+      <tr><td class="term">（四）</td><td>分三點：概念（收益法＝未來提存的折舊費用／成本法＝過去已產生的折舊減損）、公式（收益法算一年提存額／成本法乘上已經歷年數）、適用範圍（收益法：店面、收租房／成本法：新建物、特殊建物如廟宇、學校）</td><td><ul>
+        <li>詳解從「投資 vs 資產」「受不受市場影響」切入，你從「未來 vs 過去」「一年 vs 累積」切入，<b>角度不同但一樣有條理</b></li>
+        <li>計算方式可補名稱：收益法有<b>等速折舊型、償債基金型</b>；成本法有<b>觀察法、耐用年數法</b></li>
+        <li>成本法適用範圍詳解寫「各類不動產皆可」，你只寫新建物、特殊建物，範圍較窄</li>
+      </ul></td><td><span class="pill ok">✓ 開放題，有條理即可</span></td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li>觀念和計算都對，<b>主要差在條號</b>：§48（重建／重置）、§68（定額法）、§69（成本價格）這三個要寫出來</li>
+      <li>計算題先列公式再代數字，<b>每個數字都要帶單位</b></li>
+      <li>題目寫「請舉例說明」，每一項都配一個具體例子</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="footer">練筆團申論整理｜估價｜同科依日期排序｜詳解為練筆團提供，比較與提醒為整理時補充</div>
+
+</div>
+</body>
+</html>
