@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>練筆團申論整理</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#3f6b4f; --ok-bg:#e3eee6;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1200px; margin:0 auto; padding:24px 40px 30px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 30px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+
+.toc{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.toc a{font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--neutral-bg); border:1px solid var(--line-strong); border-radius:8px; padding:6px 14px;}
+
+.subject{margin-bottom:30px;}
+.subject-head{font-size:20px; font-weight:900; color:#fff; padding:9px 20px; border-radius:10px; margin-bottom:10px; background:var(--accent);}
+.session{margin:0 0 22px; padding-left:12px; border-left:3px solid var(--line-strong);}
+.session-head{font-size:17px; font-weight:900; color:var(--accent); margin:6px 0 4px;}
+.session-head .date{display:inline-block; font-size:13px; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:2px;}
+.session-head .meta{font-size:12.5px; font-weight:400; color:var(--sub); margin-left:8px;}
+.subject-head .meta{font-size:13px; font-weight:400; opacity:.85; margin-left:10px;}
+
+.block-title{font-size:16px; font-weight:800; margin:16px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line-strong);}
+
+.question{font-size:14px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px; padding:9px 14px;}
+.question p{margin:0 0 4px;}
+
+.photo-note{font-size:12.5px; color:var(--sub); margin-top:4px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+th{background:var(--ink); color:#fff; padding:7px 12px; text-align:left; font-size:13.5px;}
+td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+td.term{font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+td ul{margin:0; padding-left:18px;}
+td li{margin-bottom:2px;}
+
+.law{color:var(--sub); font-size:12px; margin-left:4px;}
+.trap{color:var(--accent2); font-weight:700;}
+.pill{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; white-space:nowrap;}
+.pill.ok{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.pill.part{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.pill.plus{color:var(--neutral); background:var(--neutral-bg); border:1px solid var(--neutral);}
+
+.tips{background:var(--accent-bg); border-left:4px solid var(--accent); border-radius:8px; padding:10px 16px; font-size:14px;}
+.tips ul{margin:0; padding-left:20px;}
+.tips li{margin-bottom:4px;}
+
+.frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
+.frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
+.frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+
+.full p{margin:0 0 6px; line-height:1.7;}
+.full p:last-child{margin-bottom:0;}
+.miss{color:var(--accent); font-weight:700; background:var(--accent-bg); border-radius:3px; padding:0 2px;}
+.diff{color:var(--accent2); font-weight:700; background:var(--accent2-bg); border-radius:3px; padding:0 2px;}
+.mine{font-size:12px; font-weight:400; color:var(--sub); margin-left:2px;}
+.skel{background:#f8fafc;}
+.skel p{margin:0 0 6px; line-height:1.6;}
+.skel p:last-child{margin-bottom:0;}
+.skel b{color:var(--ink);}
+.legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+
+.footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
+
+@media (max-width:700px){
+  .page{padding:16px;}
+  th:nth-child(1), td:nth-child(1){width:22% !important;}
+}
+@media print{
+  @page{size:A4; margin:12mm 10mm;}
+  *{-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+  .page{max-width:100%; padding:0;}
+  .toc{display:none;}
+  .subject{break-before:page;}
+  .subject:first-of-type{break-before:auto;}
+  tr{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">不動產經紀人考試｜申論題練筆團</div>
+    <h1>練筆團申論整理</h1>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div class="badge"><strong>民法</strong>0922 場</div>
+    <div class="badge"><strong>手寫 vs 詳解</strong>逐小題比較</div>
+  </div>
+</div>
+
+
+
+
+<!-- ================= 民法 ================= -->
+<section class="subject" id="minfa">
+  <div class="subject-head">民法</div>
+
+  <!-- ---- 0922 ---- -->
+  <div class="session" id="minfa-0922">
+    <div class="session-head"><span class="date">0922</span>通謀虛偽、無權處分、善意取得、居間報酬<span class="meta">民法概要</span></div>
+  
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>甲於民國 90 年出資購買 A 地，並為了避稅，名義上將 A 地贈與給丙，但實際上與丙簽訂租賃契約，約定 A 地仍由甲所有，丙並須按月繳付租金，且丙未經甲之同意，不得擅自處分 A 地。嗣後，於民國 115 年 5 月 20 日委任乙代為尋找 A 地之買主，委任期間為 3 個月，乙並於民國 115 年 8 月 19 日介紹買方丁予丙認識，於同日洽談 A 地買賣條件，為求謹慎，丁並於當日先行匯付定金新台幣 200 萬元至丙之帳戶。試問：</p>
+      <p>（一）甲及丙間贈與行為之法律效力為何？</p>
+      <p>（二）甲及丙間租賃契約之法律效力為何？</p>
+      <p>（三）丙將 A 地出售予丁之法律效力為何？</p>
+      <p>（四）甲得如何對丙主張權利？</p>
+      <p>（五）甲得否請求丁返還 A 地所有權？</p>
+      <p>（六）乙對丙有何種請求權？</p>
+      <p class="photo-note" style="margin:6px 0 0;">題目卷寫「95 年」「乙未經甲之同意」，詳解卷更正為「90 年」「丙未經甲之同意」，這裡以詳解卷為準</p>
+    </div>
+  
+  
+    <div class="block-title">詳解重點</div>
+    <div class="legend"><span><span class="miss">陶紅</span> 你完全沒寫到（含條號）</span><span><span class="diff">赭黃</span> 有寫但寫法、用字不同</span><span>一般字色＝你有寫到</span></div>
+    <table>
+      <colgroup><col style="width:15%"><col style="width:27%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架</th><th>老師詳解全文（標色＝差異）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）甲及丙間贈與行為之法律效力為何？<div class="law" style="margin:6px 0 0;">結論：贈與無效</div></td><td class="skel">
+      <p><b>依</b> §153 Ⅰ 契約成立、§406 贈與（無償給與、他方允受）</p>
+      <p><b>依</b> §87 Ⅰ 通謀虛偽 → 無效</p>
+      <p><b>本題中</b> A 地無償移轉＋丙允受 → 形式上<b>看似</b>有效</p>
+      <p><b>但是</b> 另訂租約（A 地仍歸甲＋丙付租金）→ 無贈與真意＋雙方明知 → 通謀虛偽</p>
+      <p><b>因此</b> 贈與契約<b>無效</b></p>
+    </td><td class="full">
+        <p>1. <span class="miss">按當事人互相表示意思一致者，無論其為明示或默示，契約即為成立；又稱贈與者，謂當事人約定，一方以自己之財產無償給與他方，他方允受之契約，民法第 153 條第 1 項及第 406 條定有明文。</span></p>
+        <p>2. 次按，表意人與相對人通謀而為虛偽意思表示者，其意思表示無效，<span class="miss">民法第 87 條第 1 項</span>定有明文。</p>
+        <p>3. <span class="miss">經查，本件甲與丙既約定將甲出資購買之 A 地無償移轉登記為丙所有，並經丙允受之，則雙方對於該無償讓與之贈與契約法律行為顯已達成合意，且與民法第 406 條規定之贈與契約要件相符，依上開民法第 153 條第 1 項之規定，本件甲與丙間之贈與契約似應屬合法、有效成立。</span></p>
+        <p>4. 惟查，<span class="miss">本件甲及丙另行成立之租賃契約中，特別約定 A 地仍為甲所有，且丙尚須對甲支付租金，應足認定甲、丙間乃成立租賃契約，而非贈與契約，</span>本於當事人真意，雙方實無令 A 地之所有權因系爭贈與契約之成立於移轉登記後由丙所有之意思，是以，本件甲及丙間顯無成立贈與契約之意思真意，且雙方對此虛偽之意思表示均有所認識，自屬<span class="diff">通謀所為之虛偽意思表示</span><span class="mine">（你寫「虛偽通謀」，順序顛倒）</span>，<span class="diff">依民法第 87 條第 1 項之規定</span><span class="mine">（你寫「依據民法規定」，沒寫條號）</span>，應屬無效。</p>
+      </td></tr>
+      <tr><td class="term">（二）甲及丙間租賃契約之法律效力為何？<div class="law" style="margin:6px 0 0;">結論：租賃有效</div></td><td class="skel">
+      <p><b>依</b> §153 Ⅰ 契約成立、§421 租賃（物租與他方使用收益＋他方付租金）</p>
+      <p><b>本題中</b> 標的物 A 地、使用收益等必要之點已合意，非必要之點也沒有反對</p>
+      <p><b>因此</b> 租賃契約<b>有效</b></p>
+    </td><td class="full">
+      <p>1. <span class="miss">按當事人互相表示意思一致者，無論其為明示或默示，契約即為成立；稱租賃者，謂當事人約定，一方以物租與他方使用收益，他方支付租金之契約，民法第 153 條第 1 項及第 421 條定有明文。</span></p>
+      <p>2. 經查，本件甲及丙對於<span class="miss">租賃契約之租賃標的物即 A 地、使用收益等租賃事項及租賃契約必要之點</span>已達成合意，<span class="miss">對於非必要之點亦未見反對之意思表示或意見，則依民法第 153 條第 1 項及第 421 條之規定，</span>本件甲及丙間之租賃契約業已合法、有效成立。</p>
+    </td></tr>
+      <tr><td class="term">（三）丙將 A 地出售予丁之法律效力為何？<div class="law" style="margin:6px 0 0;">結論：買賣有效；移轉效力未定</div></td><td class="skel">
+      <p><b>依</b> §118 Ⅰ 無權處分 → 權利人承認前效力未定</p>
+      <p><b>本題中</b>（買賣）債權行為不以有處分權為必要 → 合意即有效（§153 Ⅰ）</p>
+      <p><b>本題中</b>（移轉）丙是登記名義人 → 看似有權處分</p>
+      <p><b>但是</b> 贈與＋移轉登記都是通謀虛偽而無效 → 真正所有人是甲 → 丙無處分權</p>
+      <p><b>因此</b> 買賣<b>有效</b>；移轉屬無權處分，甲承認前<b>效力未定</b></p>
+    </td><td class="full">
+      <p>1. 按所謂無權處分指無處分權之人所為之處分，該處分行為於權利人承認前，<span class="diff">效力未定</span><span class="mine">（你寫「要看甲是否承認」，沒寫出「效力未定」）</span>，<span class="miss">民法第 118 條第 1 項</span>定有明文。</p>
+      <p>2. 經查，本件丙、丁二人對於 A 地買賣契約之必要之點如已達成合意，參以<span class="diff">債權行為之成立不以當事人有處分權為必要</span><span class="mine">（你寫「即便丙沒有處分權依然可以出賣」，沒點出「債權行為」）</span>，則<span class="miss">依民法第 153 條第 1 項之規定</span>，該買賣契約即屬合法有效成立。</p>
+      <p>3. 次查，本件丙為 A 地之登記名義人，<span class="miss">則依不動產登記主義，丙似為 A 地法律上之所有人，而屬有權處分之人，其對 A 地所為之處分應屬有權處分，而無上開民法第 118 條第 1 項無權處分之情形。</span></p>
+      <p>4. 然而，<span class="miss">本件甲及丙間之贈與契約及 A 地移轉登記之處分行為均屬通謀虛偽意思表示，故皆為無效，</span>縱使丙為登記名義人，A 地真正所有人仍應為甲，丙為無處分權之人，則丙將 A 地移轉登記予丁所有之處分行為，自屬無權處分，<span class="miss">依民法第 118 條第 1 項之規定</span>，<span class="diff">於真正權利人甲承認之前，仍屬效力未定</span><span class="mine">（你接著直接寫丁善意取得、甲無法主張無效；這題結論停在效力未定即可，善意取得留到第五題）</span>。</p>
+    </td></tr>
+      <tr><td class="term">（四）甲得如何對丙主張權利？<div class="law" style="margin:6px 0 0;">結論：不能用 §767；可主張債務不履行、不當得利、侵權行為</div></td><td class="skel">
+      <p><b>不能</b> §767：A 地已移轉給丁，丙已不占有 → 不能請求丙返還</p>
+      <p><b>依</b> §226 Ⅰ、§256：可歸責致給付不能 → 損害賠償＋解約</p>
+      <p><b>本題中</b> 租約消滅後丙應返還 A 地，卻賣給丁 → 給付不能 → 賠償＋解除租約</p>
+      <p><b>依</b> §179：丙收價金無法律上原因（權益歸屬說）→ 返還價金</p>
+      <p><b>依</b> §184 Ⅰ前段：丙故意＋甲所有權受損＋因果關係 → 損害賠償</p>
+      <p><b>因此</b> 甲可主張債務不履行、不當得利、侵權行為三種權利</p>
+    </td><td class="full">
+      <p><span class="miss">1. 甲不得依照民法第 767 條請求丙返還Ａ地</span></p>
+      <p style="padding-left:1.2em"><span class="miss">(1) 按「所有人對於無權占有或侵奪其所有物者，得請求返還之」民法第 767 條第 1 項前段定有明文。</span></p>
+      <p style="padding-left:1.2em"><span class="miss">(2) 經查，本件 A 地已移轉登記為丁所有，雖該行為仍屬效力未定之無權處分行為，然丙已非 A 地之占有人；又本件甲於不動產公示登記外觀上並非所有人，則本件情形已與上開民法第 767 條第 1 項前段要件不符，甲即不得依照民法第 767 條第 1 項前段向丙請求返還Ａ地。</span></p>
+      <p>2. 甲得對丙主張債務不履行之責任</p>
+      <p style="padding-left:1.2em"><span class="miss">(1) 按因可歸責於債務人之事由，致給付不能者，債權人得請求賠償損害，債權人並得主張解除契約，民法第 226 條、第 256 條定有明文。</span></p>
+      <p style="padding-left:1.2em"><span class="miss">(2) 經查，本件丙為租賃登記契約之承租人，依照契約內容，於租賃契約終止或消滅後，丙有「返還 A 地」予甲之給付義務。</span></p>
+      <p style="padding-left:1.2em">(3) 然查，本件丙已將 A 地出售、移轉登記予第三人丁，<span class="diff">致使丙「返還 A 地」之給付義務陷於給付不能，且係可歸責於丙之情形</span><span class="mine">（你寫「丙違反不得擅自處分」，切入點不同）</span>，<span class="miss">自已符合上開民法第 226 條第 1 項之要件</span>，甲得依此請求丙負損害賠償責任，<span class="miss">並依民法第 256 條解除租賃契約。</span></p>
+      <p>3. 甲得依<span class="miss">民法第 179 條</span>對丙請求不當得利返還</p>
+      <p style="padding-left:1.2em"><span class="miss">(1) 按無法律上之原因而受利益，致他人受損害者，應返還其利益，民法第 179 條定有明文。</span></p>
+      <p style="padding-left:1.2em">(2) 經查，本件丙並非Ａ地之真正權利人，惟丙卻擅自出售Ａ地而受有價金之利益，<span class="miss">除致使甲之所有權受有損害，該筆價金原應歸屬於甲，卻被丙受領而無法律上原因，依照「權益歸屬說」，丙應構成不當得利，</span>因此甲得依上開條文向丙請求不當得利之返還。</p>
+      <p style="padding-left:1.2em" class="mine">註：權益歸屬說白話的意思是「原本應該歸屬於某人的權益卻被別人拿走」，或是「不當得利人受領了原不屬於自己的利益」。</p>
+      <p>4. 甲得依民法第 184 條<span class="diff">第 1 項前段</span><span class="mine">（你只寫 §184）</span>對丙請求侵權行為損害賠償</p>
+      <p style="padding-left:1.2em"><span class="miss">(1) 按因故意或過失因故意或過失，不法侵害他人之權利者，負損害賠償責任，民法第 184 條第 1 項前段定有明文。</span><span class="mine">（「因故意或過失」詳解原文重複，照錄）</span></p>
+      <p style="padding-left:1.2em">(2) <span class="miss">查本件丙依契約負有於租賃登記契約終止或消滅時返還 A 地予甲之義務，已如前述。</span>然丙係擅自將 A 地出售、移轉登記予丁，致使甲對 A 地之所有權無法回復而受有所有權之損害，<span class="miss">且丙對此一事實亦有認識而有意使其發生，故丙具有主觀故意；再者，丙之行為與甲受損害之結果間具備因果關係，故本件丙之行為已符合上開條文之侵權行為要件。</span></p>
+      <p style="padding-left:1.2em">(3) 綜上所述，丙對甲成立侵權行為，甲得依照上開民法第 184 條第 1 項前段，請求丙負損害賠償責任。</p>
+      <p class="mine">5. 甲得依民法第 179 條對丙請求不當得利返還（內容與第 3 點一字不差，詳解重複，不另列）</p>
+    </td></tr>
+      <tr><td class="term">（五）甲得否請求丁返還 A 地所有權？<div class="law" style="margin:6px 0 0;">結論：不得請求，丁善意取得</div></td><td class="skel">
+      <p><b>依</b> §759-1 Ⅱ 信賴登記的善意第三人已完成登記 → 物權變動有效</p>
+      <p><b>本題中</b> 丙移轉給丁屬無權處分，原本效力未定</p>
+      <p><b>但是</b> 丁不知通謀虛偽、信賴丙的登記外觀交易 → 善意第三人</p>
+      <p><b>因此</b> 丁善意取得 → 不符 §767 Ⅰ → 甲<b>不得</b>請求丁返還</p>
+    </td><td class="full">
+      <p>1. <span class="miss">按因信賴不動產登記之善意第三人，已依法律行為為物權變動之登記者，其變動之效力，不因原登記物權之不實而受影響，民法第 759 條之 1 第 2 項定有明文。</span></p>
+      <p>2. 經查，本件丙將 A 地移轉登記於丁名下之處分行為尚待甲承認始生效力，故仍屬效力未定，已如前述。</p>
+      <p>3. 然查，本件丁<span class="miss">既對於甲、丙間乃通謀虛偽意思表示等事實無所知悉，並係基於對丙為 A 地登記名義人之公示外觀而與丙交易、接受讓與，並占有 A 地，</span>應可認丁為善意之第三人，則<span class="diff">依民法第 759 條之 1 第 2 項之規定</span><span class="mine">（你寫「依據民法規定」，沒寫條號，也沒說明丁為什麼算善意）</span>，丁應受善意得制度之保護，而得對甲主張善意取得 A 地之所有權。</p>
+      <p>4. 是以，本件丁既已善意取得 A 地之所有權，<span class="miss">則本件已不符民法第 767 條第 1 項所定之要件，</span>甲即不得請求丁返還 A 地之所有權或占有。</p>
+    </td></tr>
+      <tr><td class="term">（六）乙對丙有何種請求權？<div class="law" style="margin:6px 0 0;">結論：居間報酬請求權</div></td><td class="skel">
+      <p><b>依</b> §568 Ⅰ 契約因居間人報告或媒介而成立 → 得請求報酬</p>
+      <p><b>本題中</b> 丙丁契約因乙介紹而成立</p>
+      <p><b>但是</b> 縱使成立在居間期限之後，也不影響</p>
+      <p><b>因此</b> 乙得向丙請求<b>居間報酬</b></p>
+    </td><td class="full">
+      <p>1. <span class="miss">按居間人，以契約因其報告或媒介而成立者為限，得請求報酬，民法第 568 條第 1 項定有明文。</span></p>
+      <p>2. <span class="miss">查本件丙與丁契約之成立，係因仲介乙之介紹與媒介所致，核與上開條文要件相符，縱使丙與丁之契約係成立於居間契約期限以後，仍不改上述事實，是以，乙仍得依上開條文請求丙給付居間報酬。</span></p>
+    </td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">差異比較</div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:33%"><col style="width:42%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫到的</th><th>詳解有、我沒寫（或寫法不同）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）</td><td>雙方沒有贈與真意且彼此知道 → 通謀虛偽，贈與和移轉都無效，真正所有權人仍是甲；另提到善意第三人</td><td><ul>
+        <li>沒寫條號 <b>§87 Ⅰ</b>，也沒先用 §153、§406 交代「形式上成立」</li>
+        <li>「如果對抗善意第三人則無效」<span class="trap">語意寫反了</span>，條文是「其無效<b>不得對抗</b>善意第三人」（§87 Ⅰ 但書）。這點詳解沒寫，寫對是加分</li>
+      </ul></td><td><span class="pill part">△ 結論對，缺條號</span></td></tr>
+      <tr><td class="term">（二）</td><td>贈與無效、甲仍是所有人，雙方有租賃真意 → 租賃有效</td><td><ul>
+        <li>沒寫條號 <b>§421、§153 Ⅰ</b></li>
+        <li>可加一句 <b>§87 Ⅱ</b>：虛偽意思表示隱藏他項法律行為（租賃）者，適用該項法律行為之規定，正好說明為什麼租賃有效。詳解沒寫，屬加碼</li>
+      </ul></td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（三）</td><td>分買賣、所有權移轉兩層：買賣有效；丙只是登記名義人，移轉屬無權處分，要看甲是否承認；丁推定善意，信賴登記可取得所有權</td><td><ul>
+        <li>沒寫條號 <b>§118 Ⅰ</b>（無權處分效力未定）</li>
+        <li>「買賣不以有處分權為必要」你有寫到意思，可再明講「債權行為」</li>
+        <li>你用「丁已付定金 → 推定契約成立」，是 <b>§248</b> 的概念，詳解沒用，屬加碼，可補條號</li>
+        <li>善意取得放在第五題講即可，第三題停在「效力未定」就好</li>
+      </ul></td><td><span class="pill ok">✓ 架構到位</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">（四）</td><td>債務不履行（丙違反不得處分約定）、侵權行為 §184、不當得利（丙拿到價金）三個請求權</td><td><ul>
+        <li>三個請求權方向都對，但<b>只有 §184 有條號</b>，缺 <b>§226 Ⅰ、§256、§179</b></li>
+        <li>債務不履行的切入點不同：詳解是「租約到期要返還 A 地 → 已賣掉 → <b>給付不能</b>」，你是「違反不得處分約定」；建議用給付不能，才接得上 §226</li>
+        <li>漏了「甲還可以<b>解除租約</b>」（§256）</li>
+        <li>漏了先排除 <b>§767</b>（丙已不占有 A 地，不能請求返還），這種「先說不行」的論述是加分點</li>
+        <li>不當得利可補「<b>權益歸屬說</b>」；侵權行為可補要件（故意、因果關係）</li>
+      </ul></td><td><span class="pill part">△ 方向對，論述太簡</span></td></tr>
+      <tr><td class="term">（五）</td><td>題目只寫丁付了定金、還沒過戶，所以目前不能請求；若將來過戶：丁善意 → 甲不得請求；丁惡意 → 無權處分甲不承認，可請求塗銷登記、返還</td><td><ul>
+        <li>沒寫條號 <b>§759-1 Ⅱ</b>（善意取得）、<b>§767 Ⅰ</b>（惡意時塗銷登記、返還的依據）</li>
+        <li>「還沒過戶」這點你讀題比詳解細：題目事實確實只到付定金，詳解直接假設已移轉登記。分情況討論是好寫法，屬<b>加碼</b></li>
+      </ul></td><td><span class="pill ok">✓ 到位</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      <tr><td class="term">（六）</td><td><span class="trap">整題沒寫</span></td><td><ul>
+        <li>居間報酬請求權 <b>§568 Ⅰ</b>：契約因乙的報告或媒介而成立 → 乙可向丙請求報酬</li>
+        <li>委任 5/20 起算 3 個月，乙 8/19 介紹，詳解補一句「縱使契約成立在期限後，仍得請求」</li>
+      </ul></td><td><span class="pill part">✗ 漏題</span></td></tr>
+      </tbody>
+    </table>
+  
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li><b>六個小題要寫滿</b>：第六題整題漏掉最傷，寫之前先在題號旁打勾數一遍</li>
+      <li>民法也是<b>差在條號</b>：§87 Ⅰ、§421、§118 Ⅰ、§226 Ⅰ、§256、§179、§759-1 Ⅱ、§767 Ⅰ、§568 Ⅰ</li>
+      <li>問「如何主張權利」時，可以先排除不能用的（如 §767），再列能用的，每個請求權配一個條號＋一句要件</li>
+      <li>§87 Ⅰ 但書的正確說法：無效「<b>不得對抗</b>善意第三人」</li>
+    </ul></div>
+  </div>
+</section>
+
+
+
+
+
+<div class="footer">練筆團申論整理｜詳解為練筆團提供，比較與提醒為整理時補充</div>
+
+</div>
+</body>
+</html>
