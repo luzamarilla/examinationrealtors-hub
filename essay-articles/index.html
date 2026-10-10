@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四科申論必背條號</title>
+<style>
+  :root{
+    --page-bg:#f4f5f7; --surface:#ffffff; --ink:#1e293b; --sub:#64748b; --muted:#94a3b8;
+    --line:#e2e8f0; --neutral-bg:#f1f5f9;
+    --accent:#8B4438; --accent-bg:#F1E2DD; --accent2:#9C7A34; --accent2-bg:#EFE6D0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --page-bg:#15181d; --surface:#1c2027; --ink:#e8eaed; --sub:#a3adba; --muted:#7c8794;
+      --line:#2e333c; --neutral-bg:#242830;
+      --accent:#d98a76; --accent-bg:#3a2620; --accent2:#d4b463; --accent2-bg:#3a3122;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page-bg:#15181d; --surface:#1c2027; --ink:#e8eaed; --sub:#a3adba; --muted:#7c8794;
+    --line:#2e333c; --neutral-bg:#242830;
+    --accent:#d98a76; --accent-bg:#3a2620; --accent2:#d4b463; --accent2-bg:#3a3122;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--page-bg);color:var(--ink);
+    font-family:"Microsoft JhengHei","微軟正黑體","PingFang TC","Noto Sans TC",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 16px 64px;display:flex;flex-direction:column;gap:24px;}
+  header{display:flex;flex-direction:column;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-size:12.5px;letter-spacing:.08em;color:var(--accent);font-weight:700;}
+  h1{margin:0;font-size:25px;text-wrap:balance;}
+  .lede{margin:0;color:var(--sub);font-size:14.5px;line-height:1.7;max-width:66ch;}
+  nav.jump{display:flex;flex-wrap:wrap;gap:8px;}
+  nav.jump a{font-size:13px;color:var(--ink);text-decoration:none;background:var(--neutral-bg);
+    border:1px solid var(--line);padding:5px 13px;border-radius:999px;font-weight:600;}
+  nav.jump a:hover,nav.jump a:focus-visible{background:var(--accent-bg);border-color:var(--accent);outline:none;}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--sub);align-items:center;}
+  section.subject{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 20px 16px;scroll-margin-top:12px;}
+  section.subject h2{margin:0 0 4px;font-size:20px;}
+  .subnote{margin:0 0 12px;color:var(--sub);font-size:13.5px;line-height:1.6;}
+  .tbl-wrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.55;}
+  th,td{text-align:left;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line);}
+  th{font-size:12.5px;color:var(--sub);font-weight:700;letter-spacing:.04em;}
+  td.art{font-weight:700;white-space:normal;}
+  td.yr{color:var(--sub);font-size:13.5px;white-space:nowrap;}
+  tr.grp td{background:var(--neutral-bg);font-weight:700;font-size:13.5px;padding:6px 8px;}
+  .pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;margin-left:6px;white-space:nowrap;vertical-align:1px;}
+  .p-top{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent);}
+  .p-mid{background:var(--accent2-bg);color:var(--accent2);border:1px solid var(--accent2);}
+  .p-low{background:var(--neutral-bg);color:var(--sub);border:1px solid var(--line);}
+  .tip{font-size:12.5px;color:var(--muted);font-weight:400;}
+  footer{font-size:12.5px;color:var(--muted);line-height:1.7;}
+  @media (max-width:560px){
+    th,td{padding:6px 5px;} table{font-size:14px;}
+    td.yr{white-space:normal;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">跨科資源</div>
+    <h1>四科申論必背條號</h1>
+    <p class="lede">依近 10 年（105–114）申論題擬答整理。測驗題考的是內容，不考條號，所以這頁只收申論大標要寫的條號；測驗請回到各科複習版和數字篇。</p>
+    <div class="legend">
+      <span><span class="pill p-top">4年以上</span> 最優先</span>
+      <span><span class="pill p-mid">2–3年</span> 高頻</span>
+      <span><span class="pill p-low">1年</span> 考過一次</span>
+    </div>
+    <nav class="jump">
+      <a href="#minfa">民法</a><a href="#tudifa">土地法</a><a href="#jingji">經紀法</a><a href="#gujia">估價</a>
+    </nav>
+  </header>
+
+  <section class="subject" id="minfa">
+    <h2>民法概要</h2>
+    <p class="subnote">10 年 20 題，物權編（所有權、共有、抵押權）佔一半以上。</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
+      <tbody>
+        <tr><td>所有權人物上請求權</td><td class="art">§767</td><td class="yr">105、106、107、110、111、114<span class="pill p-top">6年</span></td></tr>
+        <tr><td>抵押權（含最高限額、流抵、抵押後設地上權）</td><td class="art">§866、§867、§868、§873、§880、§881-1～17、§841-5</td><td class="yr">105、106、108、110、114<span class="pill p-top">5年</span></td></tr>
+        <tr><td>不動產登記生效／登記推定</td><td class="art">§758、§759、§759-1</td><td class="yr">105、108、109、110<span class="pill p-top">4年</span></td></tr>
+        <tr><td>給付不能／不完全給付／解除契約</td><td class="art">§226、§227、§227-1、§256</td><td class="yr">106、107、109、113<span class="pill p-top">4年</span></td></tr>
+        <tr><td>共有物管理、處分、分管契約</td><td class="art">§818、§820、§821、§824-1、§826-1</td><td class="yr">106、110、114<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>物之瑕疵擔保</td><td class="art">§359、§360</td><td class="yr">106、113<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>出賣人移轉義務／權利瑕疵擔保</td><td class="art">§348、§349</td><td class="yr">107、114<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>居間契約（報酬請求）</td><td class="art">§565、§568、§571、§574</td><td class="yr">112、113<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>無權處分／善意取得</td><td class="art">§118、§801、§948</td><td class="yr">108、109<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>買賣不破租賃</td><td class="art">§425</td><td class="yr">111、112<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>不當得利</td><td class="art">§179</td><td class="yr">106、111<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>消滅時效</td><td class="art">§125、§128、§144</td><td class="yr">105、107<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>取得時效</td><td class="art">§769、§770、§772</td><td class="yr">109<span class="pill p-low">1年</span></td></tr>
+        <tr><td>越界建築／相鄰關係</td><td class="art">§792、§796、§796-1</td><td class="yr">111<span class="pill p-low">1年</span></td></tr>
+        <tr><td>區分所有建物共用部分</td><td class="art">§799</td><td class="yr">105<span class="pill p-low">1年</span></td></tr>
+        <tr><td>限制行為能力人法律行為 <span class="tip">（112 年起 18 歲成年）</span></td><td class="art">§77、§78、§79</td><td class="yr">106<span class="pill p-low">1年</span></td></tr>
+        <tr><td>通謀虛偽意思表示</td><td class="art">§87</td><td class="yr">110<span class="pill p-low">1年</span></td></tr>
+        <tr><td>債權人代位權</td><td class="art">§242</td><td class="yr">107<span class="pill p-low">1年</span></td></tr>
+        <tr><td>占有人返還請求</td><td class="art">§940</td><td class="yr">111<span class="pill p-low">1年</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="subject" id="tudifa">
+    <h2>土地法與土地相關稅法</h2>
+    <p class="subnote">灰底列是主題，後面的年數是這個主題的出題年數；徵收和地價稅最常考。</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">地價稅<span class="pill p-top">6年</span></td></tr>
+        <tr><td>累進起點地價、稅率</td><td class="art">平均地權條例 §18、§19（土稅法 §16、§17）</td><td class="yr">105、108</td></tr>
+        <tr><td>公設保留地地價稅</td><td class="art">土稅法 §19、§22</td><td class="yr">106、114</td></tr>
+        <tr><td>納稅義務人、代繳求償</td><td class="art">土稅法 §3、§4</td><td class="yr">109</td></tr>
+        <tr><td>空地定義、空地稅、限期建築後租約</td><td class="art">土稅法 §11、§21；平均地權條例 §74</td><td class="yr">113</td></tr>
+
+        <tr class="grp"><td colspan="3">徵收・徵用（含優先購買權）<span class="pill p-top">4年</span></td></tr>
+        <tr><td>抵價地（比例 50%／40%／45%）</td><td class="art">土地徵收條例 §39、§40</td><td class="yr">109、112</td></tr>
+        <tr><td>徵收必備要件</td><td class="art">土地法 §208；徵收條例 §1、§3、§13-2、§30</td><td class="yr">108</td></tr>
+        <tr><td>先行區段徵收、公告後禁止處分</td><td class="art">徵收條例 §4、§23</td><td class="yr">112</td></tr>
+        <tr><td>三種優先購買權</td><td class="art">土地法 §34-1、§104、§107</td><td class="yr">111</td></tr>
+
+        <tr class="grp"><td colspan="3">土地增值稅<span class="pill p-top">4年</span></td></tr>
+        <tr><td>課稅標的、典權預繳</td><td class="art">土稅法 §28、§29</td><td class="yr">111</td></tr>
+        <tr><td>原地價、配偶贈與再移轉</td><td class="art">平均地權條例 §38；土稅法 §28-2</td><td class="yr">110</td></tr>
+        <tr><td>申報移轉現值審核、重購退稅</td><td class="art">土稅法 §30、§35、§36、§37</td><td class="yr">106</td></tr>
+        <tr><td>公設保留地免徵（含非都市土地）</td><td class="art">土稅法 §39（第 3 項）、§39-1；平均地權條例 §42、§42-1</td><td class="yr">114</td></tr>
+
+        <tr class="grp"><td colspan="3">都市計畫／國土計畫<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>公設保留地取得方式</td><td class="art">都計法 §48、§50-2、§83-1</td><td class="yr">106</td></tr>
+        <tr><td>公設用地 vs 公設保留地</td><td class="art">土地法 §90；都計法 §30、§50、§50-1、§51</td><td class="yr">114</td></tr>
+        <tr><td>非都市土地使用管制</td><td class="art">區域計畫法 §15</td><td class="yr">106</td></tr>
+
+        <tr class="grp"><td colspan="3">市地重劃<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>禁止限制事項、施工中建物</td><td class="art">平均地權條例 §59；市地重劃實施辦法 §11、§13</td><td class="yr">107</td></tr>
+        <tr><td>公告通知、異議處理</td><td class="art">平均地權條例 §56、§60-2；實施辦法 §17</td><td class="yr">113</td></tr>
+
+        <tr class="grp"><td colspan="3">地權<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>不得私有之土地</td><td class="art">土地法 §14</td><td class="yr">105</td></tr>
+        <tr><td>外國人取得地權</td><td class="art">土地法 §17、§18、§19、§20</td><td class="yr">110</td></tr>
+
+        <tr class="grp"><td colspan="3">房地合一稅・房屋稅・契稅<span class="pill p-top">4年</span></td></tr>
+        <tr><td>房地合一課稅範圍、所得計算</td><td class="art">所得稅法 §4-4、§14-4</td><td class="yr">107、111</td></tr>
+        <tr><td>房屋稅稅率、徵收率、標準價格</td><td class="art">房屋稅條例 §5、§6、§11</td><td class="yr">112、113</td></tr>
+        <tr><td>契稅課稅標的</td><td class="art">契稅條例 §2</td><td class="yr">111</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="subject" id="jingji">
+    <h2>不動產經紀相關法規</h2>
+    <p class="subnote">每年兩題申論分散在四部法規；經紀業管理條例是主場。</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">不動產經紀業管理條例<span class="pill p-top">8年</span></td></tr>
+        <tr><td>罰則</td><td class="art">§29（另 §31）</td><td class="yr">107、110、111、114<span class="pill p-top">4年</span></td></tr>
+        <tr><td>用詞定義（不動產、經紀人員、差價、加盟）</td><td class="art">§4</td><td class="yr">105、107、111<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>不動產說明書：簽章、解說、視為契約一部分</td><td class="art">§22、§23、§24、§26</td><td class="yr">105、108<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>差價或其他報酬、超收返還</td><td class="art">§19、§29、§31</td><td class="yr">107、114<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>揭示文件、加盟標明</td><td class="art">§18、§20；施行細則 §21、§22</td><td class="yr">111、113<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>實價登錄申報</td><td class="art">§24-1</td><td class="yr">110<span class="pill p-low">1年</span></td></tr>
+        <tr><td>同時接受雙方委託</td><td class="art">§24-2</td><td class="yr">109<span class="pill p-low">1年</span></td></tr>
+
+        <tr class="grp"><td colspan="3">公寓大廈管理條例<span class="pill p-top">5年</span></td></tr>
+        <tr><td>惡鄰居強制遷離、強制出讓</td><td class="art">§22（＋§16）</td><td class="yr">107、112<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>臨時會議召開、召集人</td><td class="art">§25</td><td class="yr">111<span class="pill p-low">1年</span></td></tr>
+        <tr><td>特別決議、重新召集</td><td class="art">§31、§32</td><td class="yr">113<span class="pill p-low">1年</span></td></tr>
+        <tr><td>約定專用部分、依用途使用</td><td class="art">§3、§15</td><td class="yr">106<span class="pill p-low">1年</span></td></tr>
+
+        <tr class="grp"><td colspan="3">消費者保護法<span class="pill p-top">4年</span></td></tr>
+        <tr><td>用詞定義</td><td class="art">§2</td><td class="yr">106、108、114<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>商品服務責任、懲罰性賠償金、回收</td><td class="art">§7、§10、§51</td><td class="yr">108<span class="pill p-low">1年</span></td></tr>
+        <tr><td>廣告真實義務、媒體連帶責任</td><td class="art">§22、§22-1、§23</td><td class="yr">109<span class="pill p-low">1年</span></td></tr>
+        <tr><td>定型化契約應記載／不得記載</td><td class="art">§17</td><td class="yr">106<span class="pill p-low">1年</span></td></tr>
+        <tr><td>申訴、調解、調解書效力</td><td class="art">§43、§44、§46</td><td class="yr">114<span class="pill p-low">1年</span></td></tr>
+
+        <tr class="grp"><td colspan="3">公平交易法<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>不實廣告受害人求償、時效、登報</td><td class="art">§30、§31、§32、§33</td><td class="yr">112<span class="pill p-low">1年</span></td></tr>
+        <tr><td>事業定義、顯失公平</td><td class="art">§2、§25</td><td class="yr">110<span class="pill p-low">1年</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="subject" id="gujia">
+    <h2>不動產估價（不動產估價技術規則）</h2>
+    <p class="subnote">估價申論比較常考公式、程序和計算，條號寫在大標加分用。年數是那一堂被考到的年數（含跨堂題）。</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="3">土地開發分析法<span class="pill p-top">6年</span></td></tr>
+        <tr><td>公式、直接成本與間接成本</td><td class="art">§71</td><td class="yr">113</td></tr>
+        <tr><td>另得蒐集的七款資料</td><td class="art">§72</td><td class="yr">109</td></tr>
+        <tr><td>資本利息綜合利率</td><td class="art">§79</td><td class="yr">105</td></tr>
+        <tr><td>數筆土地合併開發</td><td class="art">§84</td><td class="yr">108</td></tr>
+        <tr><td>估價程序八步驟 <span class="tip">（確調線估估選計）</span></td><td class="art">—</td><td class="yr">106、111</td></tr>
+
+        <tr class="grp"><td colspan="3">總則<span class="pill p-top">6年</span></td></tr>
+        <tr><td>同一供需圈／近鄰地區／類似地區</td><td class="art">§2（第 11～13 款）</td><td class="yr">107</td></tr>
+        <tr><td>估價工作法則、現場勘察</td><td class="art">§5</td><td class="yr">109</td></tr>
+        <tr><td>應蒐集資料、比較實例四原則</td><td class="art">§11、§12</td><td class="yr">106、108</td></tr>
+        <tr><td>兼採二種以上估價方法</td><td class="art">§14</td><td class="yr">108、114</td></tr>
+        <tr><td>個別因素判斷</td><td class="art">—</td><td class="yr">112</td></tr>
+
+        <tr class="grp"><td colspan="3">成本法<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>重建成本／重置成本定義</td><td class="art">§48</td><td class="yr">111</td></tr>
+        <tr><td>成本法蒐集資料</td><td class="art">§50、§51</td><td class="yr">111</td></tr>
+        <tr><td>經濟／物理耐用年數</td><td class="art">§65</td><td class="yr">111</td></tr>
+        <tr><td>折舊路徑（定額、定率、償債基金）</td><td class="art">§68</td><td class="yr">107、111、112</td></tr>
+
+        <tr class="grp"><td colspan="3">租金估計<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>租金估計考慮因素、實質租金</td><td class="art">§129、§130</td><td class="yr">114</td></tr>
+        <tr><td>新訂租約三方法／續訂租約四方法</td><td class="art">§131、§132、§133</td><td class="yr">110</td></tr>
+
+        <tr class="grp"><td colspan="3">收益法<span class="pill p-low">1年</span></td></tr>
+        <tr><td>折現現金流量分析法 vs 直接資本化法</td><td class="art">—</td><td class="yr">113</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <footer>
+    資料來源：本機四科申論題彙整（民法、土地法、估價）與經紀法考古題深查報告，原始為全國補習班（陳國）105–114 年題解。條號欄的「—」代表擬答主要考公式或內容，沒有固定條號。
+  </footer>
+</div>
+</body>
+</html>
