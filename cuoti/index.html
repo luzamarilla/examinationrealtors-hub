@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四科常錯清單</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1100px; margin:0 auto; padding:20px 16px 40px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 26px; margin-bottom:14px;
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+.toolbar{position:sticky; top:0; z-index:5; background:#fff; padding:8px 0; margin-bottom:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; border-bottom:1px solid var(--line);}
+.toolbar a, .toolbar button{font:inherit; font-size:14px; font-weight:800; padding:6px 14px; border-radius:8px; border:1px solid var(--line-strong); background:var(--neutral-bg); color:var(--ink); text-decoration:none; cursor:pointer;}
+.toolbar button{background:var(--accent); color:#fff; border-color:var(--accent); margin-left:auto;}
+.how{font-size:13px; color:var(--sub); margin:0 0 14px; padding:6px 12px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px;}
+.subject{font-size:22px; font-weight:900; margin:26px 0 10px; padding:8px 16px; border-radius:10px; background:var(--ink); color:#fff; scroll-margin-top:56px;}
+.tier-head{font-size:15px; font-weight:900; color:#fff; padding:6px 16px; border-radius:8px; margin:14px 0 6px;}
+.tier-head.tier1{background:var(--accent);}
+.tier-head.tier2{background:var(--accent2);}
+.tier-head.tier3{background:var(--neutral);}
+.tier-head.tier4{background:var(--sub);}
+.memo-table{width:100%; border-collapse:collapse; font-size:14.5px; table-layout:fixed;}
+.memo-table td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+.memo-table tr:nth-child(even) td.ans{background:#fafafa;}
+.memo-table td.term{width:36%; font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+.memo-table td.ans{width:64%;}
+.trap{color:var(--accent2); font-weight:700;}
+.cnt{display:inline-block; margin-top:3px; font-size:11.5px; font-weight:800; color:var(--accent); background:var(--accent-bg); border:1px solid var(--accent); border-radius:10px; padding:0 8px;}
+.cnt.amo{color:var(--neutral); background:var(--neutral-bg); border-color:var(--line-strong);}
+/* 遮答案模式 */
+body.hide td.ans{cursor:pointer;}
+body.hide td.ans > *, body.hide td.ans{color:transparent !important; text-shadow:0 0 9px rgba(30,41,59,.55);}
+body.hide td.ans.show, body.hide td.ans.show *{color:var(--ink) !important; text-shadow:none;}
+body.hide td.ans.show .trap{color:var(--accent2) !important;}
+.footer{text-align:center; color:var(--sub); font-size:12.5px; margin-top:24px; padding-top:8px; border-top:1px solid var(--line);}
+@media (max-width:700px){
+  .page-header h1{font-size:21px;}
+  .memo-table{font-size:13.5px;}
+  .memo-table td{padding:6px 8px;}
+  .memo-table td.term{width:40%;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">115年 不動產經紀人考試｜錯題整理</div>
+    <h1>四科常錯清單</h1>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <div class="badge"><strong>271題</strong>紙本153＋阿摩118</div>
+    <div class="badge"><strong>依錯的次數</strong>由多到少排</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <a href="#min">民法</a><a href="#tu">土地法</a><a href="#jing">經紀法</a><a href="#gu">估價</a>
+  <button id="toggle" type="button">遮答案</button>
+</div>
+<p class="how">來源：紙本年份卷 112～114 年＋阿摩常錯匯出（10/06、10/11 兩份合併）。每科分 4 層：錯 3 次以上／錯 2 次／近年錯 1 次／阿摩舊題觀念（9x 年題只收現在法條還適用的）。標籤「阿摩」＝阿摩匯出的題目。按右上「遮答案」後，點答案欄才會顯示。</p>
+
+<!-- ═════════ 民法 ═════════ -->
+<div class="subject" id="min">民法</div>
+
+<div class="tier-head tier1">錯 3 次以上</div>
+<table class="memo-table">
+<tr><td class="term">行為能力：誰是無行為能力、誰是限制？限制行為能力人沒經同意，單獨行為和契約各是什麼效力？<br><span class="cnt">錯 6 次：113・114・阿摩×4</span></td><td class="ans">未滿 7 歲、<b>受監護宣告</b>→無行為能力；7～18 歲→限制；<b>18 歲成年</b>（結婚不再使人成年）。限制行為能力人未得允許：<b>單獨行為無效</b>（如拋棄所有權）、<b>契約效力未定</b>（要法定代理人承認）；純獲法律上利益、日常生活所需→有效。<span class="trap">精神疾病但沒受監護宣告≠無行為能力</span>；「不能辨識」＝監護、「辨識能力<b>顯有不足</b>」＝輔助；受輔助宣告人贈與等重要行為要輔助人同意</td></tr>
+<tr><td class="term">推定 vs 視為：下面這些各是哪一個？<br><span class="cnt">錯 5 次：112×2・113・114・阿摩</span></td><td class="ans"><b>推定</b>（可以舉反證推翻）：不能證明歸誰的財產推定夫妻共有、房地同一人只賣房<b>推定租賃</b>、無法證明死亡先後<b>推定同時死亡</b>。<b>視為</b>（不能推翻）：果實自落<b>視為</b>屬鄰地、本權敗訴自訴狀送達<b>視為</b>惡意、胎兒<b>視為</b>既已出生、法拍房地<b>視為</b>已有地上權、超過 1 年租約沒書面<b>視為</b>不定期租賃</td></tr>
+<tr><td class="term">夫妻財產：哪些列入剩餘財產分配？分別財產制財產和債務怎麼處理？<br><span class="cnt">錯 5 次：112・114・阿摩×3</span></td><td class="ans">列入：<b>婚後薪資</b>、婚後購入的房屋；<span class="trap">不列入</span>：婚後<b>受贈、繼承</b>（不用書面聲明）、<b>慰撫金</b>、婚前財產。婚前財產在婚後生的<b>孳息</b>→<b>視為婚後財產</b>；但婚前股票在婚後<b>出售的獲利</b>，<span class="trap">不算婚後財產</span>（107 年阿摩題）。不能證明歸誰→<b>推定</b>共有。分別財產制：各自保有<b>所有權</b>、各自<b>清償債務</b></td></tr>
+<tr><td class="term">撤銷：哪些要向法院聲請？錯誤撤銷期限？認錯人？通謀虛偽？<br><span class="cnt">錯 4 次：112・113・114・阿摩</span></td><td class="ans"><b>暴利行為</b>要<b>聲請法院</b>撤銷；錯誤、詐欺、脅迫→以意思表示撤銷即可（被脅迫是<span class="trap">得撤銷，不是當然無效</span>）。錯誤撤銷：意思表示後 <b>1 年</b>內（不是 2 年），撤銷後要賠相對人信賴利益。<b>認錯人</b>（人的同一性錯誤）→有效但可撤銷。通謀虛偽→<b>無效</b>（假離婚仍是夫妻）；乙再賣給丙，<span class="trap">乙丙的買賣契約仍有效</span>（債權契約不需要處分權）</td></tr>
+<tr><td class="term">共有：應有部分設定抵押要誰同意？約定不分割期間能不能請求分割？分割判決何時取得？<br><span class="cnt">錯 4 次：113・114・阿摩・土地法同觀念</span></td><td class="ans">自己的<b>應有部分</b>設定抵押、贈與、出賣→<b>單獨為之</b>，不用別人同意；共有物<b>全部</b>處分→全體同意（土地法 §34-1 可多數決）。不分割約定最長 <b>5 年</b>，期間內有<b>重大事由</b>仍可隨時請求分割。分割判決是形成判決→<b>判決確定時</b>取得，不用等登記（處分前才要登記）</td></tr>
+<tr><td class="term">果實自落鄰地，屬於誰？鄰地是公用地呢？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans"><b>視為</b>屬於鄰地所有人（<span class="trap">不是推定</span>、不是遺失物、不是無主物）；鄰地是<b>公用地</b>→仍屬<b>果樹所有人</b></td></tr>
+<tr><td class="term">代理與代表：超過授權怎麼辦？董事代表權限制能不能對抗第三人？無權代理人賣東西，買方能主張善意取得嗎？<br><span class="cnt">錯 3 次：113・114×2</span></td><td class="ans">超過授權部分＝<b>無權代理</b>，<span class="trap">不能切成授權內有效</span>；不動產買賣的委任和代理權授與都要<b>書面</b>。董事代表權限制<b>不得對抗善意</b>第三人（不是任何第三人）。以「代理人」名義賣，買方信的是代理權不是所有權→<span class="trap">不適用善意取得</span>，本人不承認→可向無權代理人請求損害賠償</td></tr>
+<tr><td class="term">應繼分：配偶跟第 1、2、3、4 順序一起繼承各分多少？<br><span class="cnt">錯 2 次＋代位 1 次：112・阿摩×2</span></td><td class="ans">配偶＋<b>子女</b>→<b>平均</b>（例：遺產 150 萬，配偶＋2 子女各 50 萬）；配偶＋<b>父母</b>或<b>兄弟姊妹</b>→配偶 <b>1/2</b>；配偶＋<b>祖父母</b>→配偶 <b>2/3</b>；沒有其他繼承人→配偶全拿。子女在被繼承人之前死亡→其直系血親卑親屬<b>代位繼承</b>（兄弟的養女不能代位叔伯的份）；認領的非婚生子女是第 1 順序</td></tr>
+</table>
+
+<div class="tier-head tier2">錯 2 次</div>
+<table class="memo-table">
+<tr><td class="term">拋棄繼承：沒通知其他人有效嗎？應繼分歸誰？拋棄後管理遺產的注意義務？</td><td class="ans">應通知因拋棄而應繼承的人，但<span class="trap">沒通知不影響效力</span>；應繼分歸<b>同順序其他繼承人</b>，<span class="trap">不是代位繼承</span>；管理遺產＝與處理<b>自己事務</b>同一注意。繼承債務以遺產為限負連帶責任<br><span class="cnt">112・114</span></td></tr>
+<tr><td class="term">善意占有人本權敗訴，什麼時候起變惡意？惡意占有人支出必要費用能請求嗎？</td><td class="ans">確知無本權時起為惡意；本權訴訟敗訴→自<b>訴狀送達之日</b>起<b>視為</b>惡意（<span class="trap">不是判決確定日</span>）。惡意占有人保存占有物的必要費用→<b>可</b>依<b>無因管理</b>請求償還；善意占有人已取得孳息→不能請求<b>通常</b>必要費用<br><span class="cnt">112・114</span></td></tr>
+<tr><td class="term">越界建築、袋地通行：非故意越界鄰居沒馬上反對？自己築牆造成的袋地？分割造成的袋地？</td><td class="ans">非故意越界＋鄰地知情不即異議→<span class="trap">不能請求拆</span>，只能要償金或請求買越界土地；<b>故意</b>越界不受保護。自己<b>任意行為</b>造成的袋地→沒有法定通行權，要對方<b>同意</b>；<b>分割</b>造成的袋地→只能走他分割人的地，<span class="trap">不用付償金</span>。鄰居施工要用你的地→受損害只能要償金、<b>不能拒絕</b><br><span class="cnt">114×2</span></td></tr>
+<tr><td class="term">租賃：房屋能不能一部轉租？出租別人的東西有效嗎？超過 1 年沒書面？</td><td class="ans">房屋<b>一部</b>轉租，無反對約定→<b>可以</b>（全部轉租才不行）。出租他人之物→<b>租約有效</b>；第三人主張權利致不能使用→承租人得<b>終止</b>。超過 1 年沒書面→<span class="trap">視為不定期租賃，不是無效</span>；期滿繼續使用不反對→視為不定期<br><span class="cnt">113・114</span></td></tr>
+<tr><td class="term">消滅時效：租動產營業的租價？侵權行為？催告後多久要起訴？</td><td class="ans">租動產營業的租價→<b>2 年</b>（不是 5 年）；侵權行為→知有損害及賠償義務人起 <b>2 年</b>、行為時起 10 年。催告後 <b>6 個月</b>內不起訴→視為不中斷；起訴是「中斷」不是「不完成」；判決確定→重新起算 <b>5 年</b>（原本更短的也一樣）<br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">胎兒：權利能力？他繼承人能不能分割遺產？誰代理胎兒分割？</td><td class="ans">以將來<b>非死產</b>為限，關於個人利益的保護<b>視為既已出生</b>；他繼承人<b>沒保留胎兒應繼分</b>不得分割；遺產分割由<b>母</b>為代理人<br><span class="cnt">阿摩×2</span></td></tr>
+<tr><td class="term">數量文字號碼不符：①文字跟號碼不符？②以文字或號碼表示好幾次而不符？</td><td class="ans">兩種都先<b>探求當事人原意</b>；法院不能決定時：①文字與號碼不符→以<b>文字</b>為準；②數次表示不符→以<b>最低額</b>為準<br><span class="cnt">阿摩×2</span></td></tr>
+<tr><td class="term">地上權：預付地租能對抗受讓人嗎？未定期限多久可請法院定期間？欠租多久可終止？</td><td class="ans">預付地租<b>已登記</b>→可對抗受讓人；未定期限逾 <b>20 年</b>（不是 30 年）可請法院定期間或終止；<span class="trap">不可抗力不能請求減免地租</span>；欠租 <b>2 年</b>總額要先<b>定期催告</b>才能終止。時效取得地上權→只是取得<b>請求登記</b>為地上權人的權利<br><span class="cnt">113・114</span></td></tr>
+</table>
+
+<div class="tier-head tier3">近年錯 1 次</div>
+<table class="memo-table">
+<tr><td class="term">約定利率上限？</td><td class="ans">超過週年 <b>16%</b> 部分無效（110 年從 20% 下修）<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">受讓人已先占有動產，讓與合意時生效＝哪種交付？</td><td class="ans"><b>簡易交付</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">買賣的債權其實已經不存在，契約效力？</td><td class="ans">出賣人擔保債權確實存在→契約<b>有效</b>，買方主張權利瑕疵擔保（不是標的不能而無效）<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">婚姻居間約定報酬？</td><td class="ans"><b>無報酬請求權</b>，但<span class="trap">契約不是無效</span>（已付的不能要回）<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">喪失繼承權哪一款不能因被繼承人原諒而回復？</td><td class="ans"><b>故意致被繼承人死亡</b>（第 1 款）不能宥恕回復；第 2～4 款可以<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">受贈人不扶養贈與人？</td><td class="ans">贈與人得<b>撤銷</b>贈與<br><span class="cnt">113</span></td></tr>
+<tr><td class="term">慰撫金請求權能繼承嗎？</td><td class="ans">一身專屬，<b>不能</b>繼承；除非已契約承諾或<b>已起訴</b><br><span class="cnt">113</span></td></tr>
+<tr><td class="term">死亡宣告：生存歸來向誰聲請撤銷？80 歲以上失蹤多久？</td><td class="ans">向<b>法院</b>聲請撤銷（不是地檢署）；80 歲以上失蹤滿 <b>3 年</b>；共有人是利害關係人可聲請<br><span class="cnt">114</span></td></tr>
+<tr><td class="term">法人能享有人格權嗎？遺囑捐助設立財團法人要訂捐助章程嗎？</td><td class="ans">可享名稱權、名譽權等（性質上專屬自然人的除外）；遺囑捐助<b>不用</b>訂捐助章程<br><span class="cnt">114</span></td></tr>
+<tr><td class="term">贈與物有瑕疵，贈與人要賠嗎？</td><td class="ans">只有<b>故意不告知</b>或<b>保證無瑕疵</b>才賠；公證贈與遲延，受贈人<span class="trap">不能請求遲延損害</span><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">合夥人的出資屬於誰？</td><td class="ans">合夥人<b>全體公同共有</b>（不是各自所有）<br><span class="cnt">114</span></td></tr>
+<tr><td class="term">受遺贈人比遺囑人先死？</td><td class="ans">遺贈<b>不生效力</b>，受遺贈人的繼承人不能主張<br><span class="cnt">114</span></td></tr>
+<tr><td class="term">要約發出後表意人死亡，相對人承諾，契約成不成立？</td><td class="ans"><b>成立</b>，意思表示不因表意人發出後死亡而失效<br><span class="cnt amo">阿摩 107</span></td></tr>
+<tr><td class="term">有償委任受任人的注意義務？</td><td class="ans"><b>善良管理人</b>注意（無償才是與處理自己事務同一注意）<br><span class="cnt amo">阿摩 106</span></td></tr>
+<tr><td class="term">特定物買賣有瑕疵，買受人不能主張哪一個？</td><td class="ans"><b>另行交付</b>無瑕疵之物（只有種類物可以）<br><span class="cnt amo">阿摩 105</span></td></tr>
+<tr><td class="term">兩人互負同種類且都到期的債務，互相消滅叫什麼？</td><td class="ans"><b>抵銷</b><br><span class="cnt amo">阿摩 111</span></td></tr>
+</table>
+
+<div class="tier-head tier4">阿摩舊題觀念（9x～104 年）</div>
+<table class="memo-table">
+<tr><td class="term">寄送商品目錄、價目表的性質？</td><td class="ans"><b>要約引誘</b>（不是要約）</td></tr>
+<tr><td class="term">買方過戶後不付尾款，賣方要解除契約要先做什麼？</td><td class="ans"><b>定期催告</b>，逾期仍不付才能解除</td></tr>
+<tr><td class="term">連帶債務人內部約定各負一半，債權人向其中一人請求 80 萬？</td><td class="ans"><b>不能拒絕</b>，內部約定不能對抗債權人，付完再向另一人求償</td></tr>
+<tr><td class="term">出賣人叫店員送貨，店員過失弄壞？</td><td class="ans">出賣人對履行輔助人的過失<b>負同一責任</b>→出賣人負給付不能損害賠償</td></tr>
+<tr><td class="term">抵押權已消滅但不塗銷登記，所有人用哪個權利？</td><td class="ans">所有權<b>除去妨害</b>請求權</td></tr>
+<tr><td class="term">誤拿別人鋼筋蓋成房子？</td><td class="ans">動產附合於不動產→屋主<b>取得</b>鋼筋所有權，原主依<b>不當得利</b>請求償還</td></tr>
+<tr><td class="term">分割遺產前，繼承人對遺產是什麼所有型態？</td><td class="ans"><b>公同共有</b></td></tr>
+<tr><td class="term">違章建築賣出並交付，原屋主能用所有權請求返還嗎？</td><td class="ans">不能，買方取得<b>事實上處分權</b>，原屋主請求無理由</td></tr>
+<tr><td class="term">離婚後未成年子女由誰行使權利義務？</td><td class="ans">夫妻<b>協議</b>；協議不成由法院酌定（<span class="trap">沒有「原則由夫」</span>）</td></tr>
+</table>
+
+<!-- ═════════ 土地法 ═════════ -->
+<div class="subject" id="tu">土地法與土地相關稅法</div>
+
+<div class="tier-head tier1">錯 3 次以上</div>
+<table class="memo-table">
+<tr><td class="term">契稅：買賣、典權、贈與誰申報？贈與稅率？糾紛、法拍從哪天起算？多久繳？怠報金？<br><span class="cnt">錯 6 次：112・113・114×2・阿摩×2</span></td><td class="ans">買賣→<b>買受人</b>、典權→<b>典權人</b>、贈與→<b>受贈人</b>；贈與、占有 <b>6%</b>。起算：糾紛以<b>判決確定日</b>、標購公產以核發產權移轉證明書日、法拍以發給權利移轉證明書日、預售換起造人以使照核發日起<b>滿 30 日</b>。送達後 <b>30 日</b>內繳；怠報金每逾 <b>3 日</b>加 1%。開徵<b>土地增值稅</b>區域的土地<b>免</b>契稅；欠稅移送<b>行政執行分署</b></td></tr>
+<tr><td class="term">地價稅稅率：基本稅率？累進級距？累進起點地價怎麼算？農業用地按千分之十嗎？<br><span class="cnt">錯 5 次：112・113・114・阿摩×2</span></td><td class="ans">基本 <b>10‰</b>；超過累進起點<b>未達 5 倍</b> 15‰、5～10 倍 25‰……20 倍以上 55‰。累進起點＝土地所在地 <b>7 公畝</b>平均地價，<span class="trap">排除工業、礦業、農業及免稅土地</span>，以<b>千元</b>為單位。工業、寺廟、公眾停車場用地 10‰；<span class="trap">農業用地不是</span>（課田賦）。8 月 31 日登記簿上的人是納稅義務人</td></tr>
+<tr><td class="term">自用住宅用地：一生一次的面積、稅率、條件？地價稅 2‰ 呢？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans">都市 <b>3 公畝</b>、非都市 <b>7 公畝</b>；增值稅 <b>10%</b>（<span class="trap">2‰ 是地價稅</span>）；出售前 <b>1 年</b>內（不是 5 年）無營業或出租；本人、配偶或直系親屬設戶籍。地價稅 2‰ 以<b>一處</b>為限；國宅、勞工宿舍自動工或取得日起適用</td></tr>
+<tr><td class="term">房屋稅：納稅義務人不明時誰繳？起造人待售屋稅率？營業用？免徵 vs 減半？標準價格幾年評一次、誰公告？<br><span class="cnt">錯 6 次：113・114×2・阿摩×3</span></td><td class="ans">未登記且所有人不明→<b>現住人或使用人</b>（不是起造人）。起造人待售屋起課 2 年內 <b>2%～3.6%</b>；營業用 <b>3%～5%</b>。無償供公用、軍用→<b>免徵</b>；平民住宅、工廠、毀損 3～5 成→<b>減半</b>。標準價格每 <b>3 年</b>重行評定，由<b>直轄市、縣（市）政府</b>公告</td></tr>
+<tr><td class="term">逾期未辦繼承（§73-1）：幾年後公告？公告多久？列冊幾年？標售前公告？優先購買順序？價款保管？<br><span class="cnt">錯 3 次：112・113×2</span></td><td class="ans">繼承登記期限 <b>6 個月</b>；逾 <b>1 年</b>→公告 <b>3 個月</b>（不是 6 個月）＋書面通知→列冊管理 <b>15 年</b>→書面通知＋移國產署標售；標售前公告 <b>3 個月</b>，優先購買權人決標後 30 日內表示；順序：<b>繼承人→合法使用人→其他共有人</b>；價款保管 <b>10 年</b>後歸國庫</td></tr>
+<tr><td class="term">都市計畫：預計幾年發展？實施進度一期幾年、最長？主要計畫圖、細部計畫圖比例尺？核定後幾日發布？<br><span class="cnt">錯 4 次：112・114・阿摩×2</span></td><td class="ans">依預計 <b>25 年</b>內的發展訂定；實施進度 <b>5 年一期</b>、最長 <b>25 年</b>；主要計畫圖 ≥ <b>1/10000</b>、細部計畫圖 ≥ <b>1/1200</b>；核定後 <b>30 日</b>內發布</td></tr>
+<tr><td class="term">優先購買權：共有、基地房屋、耕地各幾日？專有部分連基地一起賣呢？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans">共有（§34-1）<b>15 日</b>；基地房屋（§104）、耕地 <b>10 日</b>；公寓大廈<b>專有＋基地一起賣給同一人</b>→其他區權人<span class="trap">沒有優先購買權</span></td></tr>
+<tr><td class="term">共有土地處分、設定地上權的多數決門檻？<br><span class="cnt">錯 3 次：112・114・阿摩（同一題錯兩次）</span></td><td class="ans">共有人<b>過半數</b>及應有部分<b>過半數</b>；或不計人數，應有部分<b>逾 2/3</b>；不能書面通知才公告；自己的應有部分可單獨處分</td></tr>
+<tr><td class="term">抵價地比例：原則？最低？曾經農地重劃的地區？<br><span class="cnt">錯 3 次：阿摩×2・區段徵收用語 113</span></td><td class="ans">原則 <b>50%</b>；不得少於 <b>40%</b>；曾經農地重劃的部分不得少於 <b>45%</b>。「抵費地」是<b>重劃</b>用語，區段徵收是<b>抵價地</b></td></tr>
+<tr><td class="term">地籍測量的先後次序？由縣市辦理時實施計畫誰核定？<br><span class="cnt">錯 3 次：112・阿摩×2</span></td><td class="ans"><b>三角（三邊、精密導線）→圖根→戶地→計算面積→製圖</b>；實施計畫要經<b>中央</b>地政機關核定</td></tr>
+<tr><td class="term">外國人：哪些土地不得移轉給外國人？可取得的用途？沒依核定用途使用？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans">不得移轉：林地、漁地、狩獵地、鹽地、礦地、水源地、要塞軍備區、邊境（<span class="trap">農地不在內</span>）。用途：住宅、營業處所、教堂、醫院、外僑學校、使領館、墳場等（<span class="trap">長照機構不在內</span>）。未依核定期限及用途使用→通知送達後 <b>3 年</b>內出售，逾期逕為標售</td></tr>
+<tr><td class="term">徵收補償與協議價購：建物、公設保留地、農作物怎麼補？協議價購用什麼價格？法定補償有哪些？<br><span class="cnt">錯 3 次：113・阿摩×2</span></td><td class="ans">建物按<b>重建價格</b>；公設保留地按<b>毗鄰非保留地</b>平均市價；1 年內成熟的農作物按孳息算；地價由地價評議委員會評定。協議價購依<b>市價</b>（市場正常交易價格）。法定補償包括<b>土地改良物遷移費</b>（營業損失、救濟金、獎勵金不是）</td></tr>
+</table>
+
+<div class="tier-head tier2">錯 2 次</div>
+<table class="memo-table">
+<tr><td class="term">徵收補償費保管專戶：有沒有利息？適用提存法嗎？幾年歸國庫、從哪天算？</td><td class="ans"><b>給付利息</b>；<span class="trap">不適用提存法</span>；期限屆滿次日起 3 個月內存入；自<b>通知送達</b>生效日起逾 <b>15 年</b>歸國庫（不是公告期滿、不是 10 年）<br><span class="cnt">112・113</span></td></tr>
+<tr><td class="term">撤銷 vs 廢止徵收：作業錯誤？工程變更設計、興辦事業改變？每年檢討誰列管？</td><td class="ans"><b>作業錯誤</b>致不在工程範圍→<b>撤銷</b>；工程變更設計、開始使用前興辦事業改變、開發方式改變→<b>廢止</b>；每年檢討由<b>上級事業主管機關</b>列管<br><span class="cnt">112・113</span></td></tr>
+<tr><td class="term">特定農業區徵收什麼情況要聽證？公聽會什麼時候開？</td><td class="ans">行政院核定的重大建設＋<b>有爭議</b>→<b>聽證</b>；公聽會在事業計畫報許可<b>前</b><br><span class="cnt">113・114</span></td></tr>
+<tr><td class="term">登記錯誤損害賠償：誰先賠？登記人員什麼情況要負責？</td><td class="ans"><b>地政機關</b>先賠；登記人員有<b>重大過失</b>才由機關<b>求償</b>，<span class="trap">不是連帶</span><br><span class="cnt">112・114</span></td></tr>
+<tr><td class="term">房地合一稅率：境內個人 2 年內？2～5 年？非自願因素？合建？</td><td class="ans">2 年內 <b>45%</b>、2～5 年 <b>35%</b>、5～10 年 20%、10 年以上 15%；非自願因素 5 年內、合建 5 年內 <b>20%</b><br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">照價收買私有空地用什麼價格？</td><td class="ans">收買當期<b>公告土地現值</b>（不是申報地價、不是市價）<br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">限制登記包括哪些？更正登記是嗎？</td><td class="ans">預告登記、<b>查封</b>、假扣押、假處分、破產登記；<span class="trap">更正登記不是</span>。附條件贈與要保全→<b>預告登記</b><br><span class="cnt">114×2・阿摩</span></td></tr>
+<tr><td class="term">代繳地價稅：哪些情況可指定使用人代繳？</td><td class="ans">納稅義務人行蹤不明、權屬不明、無人管理、所有權人申請由占有人代繳；<span class="trap">「訴訟中」不在內</span><br><span class="cnt">112・阿摩（同一題）</span></td></tr>
+<tr><td class="term">預售屋：例外轉售幾年幾戶？轉售違規罰多少？</td><td class="ans">全國每 <b>2 年 1 戶</b>；違規轉售按戶（棟）處 <b>15 萬～100 萬</b><br><span class="cnt">113・阿摩</span></td></tr>
+<tr><td class="term">自辦市地重劃：同意門檻？組織辦法誰定？獎勵措施？</td><td class="ans">私有土地所有權人<b>半數以上</b>＋面積<b>過半數</b>同意；組織辦法由<b>中央</b>定。獎勵：<b>免收</b>登記及書狀費（<span class="trap">不是減半</span>）、低利貸款、抵費地出售不課增值稅、減免地價稅田賦<br><span class="cnt">114・阿摩</span></td></tr>
+<tr><td class="term">土地增值稅不課徵、免徵、退稅：配偶贈與再移轉？重購退稅？捐贈社福？非都市公設地？</td><td class="ans">配偶贈與不課徵，再移轉時以<b>第一次贈與前</b>原地價計算漲價總數額。重購退稅：自耕農地出售後 <b>2 年</b>內另購自耕農地可退。捐贈社福土地免徵，違規處 2 倍罰鍰的三種情形：未按捐贈目的使用、違反設立宗旨、收益未全用於該事業（<span class="trap">「未辦用地變更」不是</span>）。非都市公設地免增值稅<span class="trap">不用完成徵收公告</span>。合併後價值相等免徵，以合併時<b>公告土地現值</b>計<br><span class="cnt">113・阿摩×4</span></td></tr>
+</table>
+
+<div class="tier-head tier3">近年錯 1 次</div>
+<table class="memo-table">
+<tr><td class="term">無主土地公告期間？</td><td class="ans">不少於 <b>30 日</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">權利人、義務人之間有爭執，登記機關補正還是駁回？</td><td class="ans"><b>駁回</b>。補正：資格或代理權欠缺、申請書不合程式、記載與登記簿不符、未繳規費<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">租賃權是物權嗎？</td><td class="ans"><b>債權</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">買賣已辦竣移轉登記卻未申報登錄，罰多少？</td><td class="ans"><b>3 萬～15 萬</b><br><span class="cnt">113</span></td></tr>
+<tr><td class="term">鎮、鄉街、直轄市的主要計畫誰核定？內政部訂定的特定區？</td><td class="ans">都由<b>內政部</b>核定；內政部訂定的特定區→報<b>行政院備案</b><br><span class="cnt">113</span></td></tr>
+<tr><td class="term">共有物分割不服調處，幾日內起訴？</td><td class="ans">接到通知後 <b>15 日</b><br><span class="cnt">113</span></td></tr>
+<tr><td class="term">公設保留地令其清除或遷移，要不要補償？保留地的稅？</td><td class="ans"><b>應給補償</b>。未使用並隔離→免地價稅；仍為建築使用→<b>6‰</b>；移轉→免增值稅；繼承或配偶直系血親贈與→免遺贈稅<br><span class="cnt">113・114</span></td></tr>
+<tr><td class="term">區段徵收後零售市場撥供、原住戶安置？</td><td class="ans">零售市場<b>有償</b>撥供；安置原住戶是<b>讓售</b>；標租期限 ≤ 99 年<br><span class="cnt">113</span></td></tr>
+<tr><td class="term">訂約後幾日內申報移轉現值？</td><td class="ans"><b>30 日</b><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">不得私有之土地已成私有？</td><td class="ans">得依法<b>徵收</b><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">土稅罰則：逃稅？規避實物？未登記再出售？</td><td class="ans">逃稅→短匿稅額 <b>3 倍</b>以下；規避實物→1 倍；未辦登記再出售→<b>2%</b><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">國土計畫使用許可：國土保育、海洋資源地區誰核定？</td><td class="ans"><b>中央</b>；農業發展、城鄉發展地區→地方<br><span class="cnt">114</span></td></tr>
+<tr><td class="term">盆栽算農作改良物嗎？國營事業用地是區段徵收嗎？</td><td class="ans">盆栽<b>沒附著於土地</b>→不算；國營事業是<b>一般徵收</b><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">非都市土地臨時使用資料登錄在哪？荒歉減租免租要經誰同意？</td><td class="ans"><b>土地參考資訊檔</b>；荒歉減免租經<b>民意機關</b>同意<br><span class="cnt amo">阿摩 110</span></td></tr>
+<tr><td class="term">都計：哪種公設按閭鄰單位配置？</td><td class="ans"><b>社會福利設施</b><br><span class="cnt amo">阿摩 109</span></td></tr>
+</table>
+
+<div class="tier-head tier4">阿摩舊題觀念（9x～104 年）</div>
+<table class="memo-table">
+<tr><td class="term">私有土地超過最高額的部分怎麼處理？</td><td class="ans"><b>限期分劃出賣</b>，逾期<b>徵收</b>（不是照價收買）</td></tr>
+<tr><td class="term">地政機關處理不動產糾紛設什麼委員會？</td><td class="ans">不動產糾紛<b>調處</b>委員會</td></tr>
+<tr><td class="term">台糖公司名下的土地屬於？</td><td class="ans"><b>私有</b>土地（公司是私法人）</td></tr>
+<tr><td class="term">規定地價後每幾年重新規定？</td><td class="ans">每 <b>2 年</b></td></tr>
+<tr><td class="term">同一土地兩個需用土地人申請徵收，依什麼核定？</td><td class="ans">興辦事業性質的<b>輕重</b></td></tr>
+<tr><td class="term">農業用地移轉給誰可以申請不課徵增值稅？</td><td class="ans"><b>自然人</b></td></tr>
+</table>
+
+<!-- ═════════ 經紀法 ═════════ -->
+<div class="subject" id="jing">不動產經紀相關法規</div>
+
+<div class="tier-head tier1">錯 3 次以上</div>
+<table class="memo-table">
+<tr><td class="term">營業員、經紀人資格：營業員怎麼取得？訓練、換證時數？經紀人證書向誰請領、要幾年經驗？換證什麼時候辦？<br><span class="cnt">錯 6 次：112・113・114・阿摩×3</span></td><td class="ans">營業員：訓練合格<b>或</b>經紀人考試及格，<b>還要登錄領證</b>（<span class="trap">訓練合格「即得充任」錯</span>）；訓練 ≥ <b>30</b> 小時、有效 <b>4 年</b>、換證 <b>20</b> 小時。經紀人：考試及格＋<b>1 年</b>營業員經驗（不是半年），向<b>直轄市、縣市政府</b>請領（不是考選部、不是中央）；有效 4 年、換證 <b>30</b> 小時，屆滿前 <b>6 個月</b>內申辦。受監護宣告→廢止證書；破產被撤銷，原因消滅後可重新請領。外國人可直接應考或參訓，業務文件<b>應</b>用中文</td></tr>
+<tr><td class="term">懲戒與罰則：違反專任、§22 簽章、洩密罰什麼？收差價呢？誰「業和人員都罰」？獎懲委員會誰設？<br><span class="cnt">錯 5 次：112・113・114・阿摩×2</span></td><td class="ans">§16 專任、§22、§23、§25 洩密→<b>申誡</b>（不是停業）；只有 §19 <b>收差價</b>→人員<b>停業</b>＋經紀業 6～30 萬，是唯一<b>業＋人員都罰</b>。申誡 3 次→停業 6 月～3 年。獎懲委員會由<b>直轄市、縣市</b>設（<span class="trap">不是中央</span>）。沒繳保證金→停業，滿 1 年<b>廢止</b>（不是撤銷）；自行停業連續 6 個月以上得廢止許可。未簽委託契約書就刊廣告銷售→<b>6～30 萬</b></td></tr>
+<tr><td class="term">管委會：哪些是管委會的職務？主委任期？公共基金何時撥付？重建反對者？<br><span class="cnt">錯 6 次：112×3・113・114・阿摩</span></td><td class="ans">管委會「<b>執行</b>」區權會決議、「<b>建議</b>」興革事項、<b>一般</b>改良（重大修繕歸區權會）、住戶違規的制止及資料提供。主委、財務、監察委員連選得<b>連任一次</b>，任期由規約定（≤ 2 年）。公共基金：起造人申請使照時提公庫代收證明，<b>成立管委會並完成點交</b>後撥付。重建反對者→管委會可訴請法院命其<b>出讓</b>區分所有權</td></tr>
+<tr><td class="term">消保法通訊、訪問交易：幾日內解約？方式？企業經營者幾日內取回、返還？定義陷阱？<br><span class="cnt">錯 3 次：114×2・阿摩</span></td><td class="ans">收受商品後 <b>7 日</b>內（不是 10 日），退回商品或<b>書面</b>通知，不用理由、不負擔費用，<span class="trap">不能特約排除</span>；企業經營者收到書面通知次日起 <b>15 日</b>內取回。訪問交易＝<b>未經邀約</b>；通訊交易＝消費者<b>未能檢視</b>商品</td></tr>
+<tr><td class="term">定型化契約應記載事項：誰擬、誰核定？沒寫進契約呢？說明書應記載事項？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans">中央主管機關（內政部）擬訂，報<b>行政院核定</b>後公告；應記載事項沒寫→<b>自動構成契約內容</b>；違反不得記載事項→<b>無效</b>。<span class="trap">「企業經營者義務或責任之免除」不是應記載事項</span>（那是不得記載）</td></tr>
+<tr><td class="term">公平法：結合申報門檻？聯合行為許可要件、期限？中止調查？違法結合處分？<br><span class="cnt">錯 5 次：112×2・113・阿摩・114</span></td><td class="ans">結合<b>後</b>市占率達 <b>1/3</b>、或<b>參與結合的一方</b>市占率達 <b>1/4</b>→要申報（<span class="trap">寫「結合後達 1/4」錯</span>）；整體經濟利益大於限制競爭不利益→不得禁止。聯合行為要件看<b>整體經濟與公共利益</b>，許可期限 ≤ <b>5 年</b>，主管機關主動公開。「<b>中止</b>」調查，時效恢復後與先前期間<b>合併計算</b>。違法結合：分設事業、處分股份、轉讓營業，<span class="trap">沒有停止營業</span>。廣告薦證者是廣告主<b>以外</b>的人</td></tr>
+</table>
+
+<div class="tier-head tier2">錯 2 次</div>
+<table class="memo-table">
+<tr><td class="term">§22 經紀人簽章：哪 6 種文件？代銷哪 2 種不適用？</td><td class="ans">委託契約書、要約書、定金收據、廣告稿、說明書、租賃買賣契約書；代銷不適用<b>委託契約書、要約書</b>；<span class="trap">「申請許可文件」不在清單</span><br><span class="cnt">114×2</span></td></tr>
+<tr><td class="term">斡旋金 vs 要約書：要約書要付錢嗎？斡旋金規範是哪種業？</td><td class="ans">要約書<b>不用付錢</b>；斡旋金是<b>仲介業</b>的規範，<span class="trap">不是預售屋銷售態樣</span><br><span class="cnt">113×2</span></td></tr>
+<tr><td class="term">小額消費爭議一方沒到場，調解委員怎麼處理？方案要多少委員同意？</td><td class="ans">依<b>到場一造請求</b>或依職權提出解決方案；經<b>全體</b>調解委員過半數同意（<span class="trap">不是參與委員</span>）；不適用公示送達；異議期間 10 日<br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">商品責任：舉證責任在誰？設計、製造、銷售業者責任？</td><td class="ans">商品安全舉證在<b>企業經營者</b>；設計、製造者負<b>連帶</b>無過失責任，能證明無過失→法院得<b>減輕</b>（不是免責）；銷售者已盡相當注意→不負責<br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">許可程序：加入哪裡的公會？幾個月內開業？公會入退會報誰？</td><td class="ans">加入<b>登記所在地</b>公會；<b>6 個月</b>內開業；入退會報所在地主管機關<b>層轉中央備查</b><br><span class="cnt">112×2・114</span></td></tr>
+<tr><td class="term">§4 用辭：成屋？營業員角色？營業處所？仲介業務包括管理嗎？</td><td class="ans">成屋＝領有<b>使用執照</b>；營業員是「<b>協助</b>」經紀人；營業處所是「<b>非常態之固定場所</b>」；仲介＝買賣、互易、租賃的居間或代理，<span class="trap">不含管理</span><br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">消保團體：團體訴訟要件？要委任律師嗎？檢驗結果有錯？</td><td class="ans">許可設立 <b>2 年</b>以上＋專門人員＋行政院評定優良；<b>應</b>委任律師；檢驗有錯要給業者澄清機會；限社團或財團法人<br><span class="cnt">112×2</span></td></tr>
+<tr><td class="term">公寓大廈住戶：樓梯間放雜物？修繕破壞主要構造？外牆廣告物？規約非載明不生效力的事項？</td><td class="ans">樓梯間不得堆放（協議同意也不行）；未經主管建築機關核准<b>不得破壞主要構造</b>；外牆廣告物要區權會決議<b>且</b>1、2 樓區權人同意。他住戶修繕要進入專有部分不得拒絕→<span class="trap">是法定義務，不需寫進規約</span><br><span class="cnt">114・阿摩×2</span></td></tr>
+</table>
+
+<div class="tier-head tier3">近年錯 1 次</div>
+<table class="memo-table">
+<tr><td class="term">§24-1 實價登錄：代銷、租賃從哪天起 30 日？修法前區段化資料？</td><td class="ans">代銷從<b>簽訂委託代銷契約</b>起、租賃從簽訂租約起 30 日；修法前區段化資料修法後應<b>重新提供查詢</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">防墜設施保護對象？</td><td class="ans">12 歲以下兒童或 <b>65</b> 歲以上老人（陷阱寫 60）<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">起造人申請建照要附什麼？管理維護公司許可、登記證向誰申請？</td><td class="ans">規約<b>草約</b>；管理維護公司兩關都是<b>中央</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">服務品質、企業形象的廣告不實，用哪部法？</td><td class="ans"><b>公平法</b>；加盟標示、廣告與事實不符→經紀條例；定型化契約→消保法<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">差別待遇屬限制競爭還是不公平競爭？</td><td class="ans"><b>限制競爭</b>；仿冒、營業誹謗、不當贈品→不公平競爭<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">媒體刊登不實廣告什麼時候要連帶負責？</td><td class="ans"><b>明知或可得而知</b>不實<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">經紀業廣告要註明什麼？</td><td class="ans"><b>經紀業名稱</b>，只寫加盟品牌不行<br><span class="cnt">113</span></td></tr>
+<tr><td class="term">預售屋車位不符應記載事項，優先用哪部法處罰？</td><td class="ans"><b>平均地權條例</b><br><span class="cnt">114</span></td></tr>
+<tr><td class="term">企業經營者處理消費者申訴的期限？</td><td class="ans">申訴之日起 <b>15 日</b><br><span class="cnt amo">阿摩 111</span></td></tr>
+</table>
+
+<div class="tier-head tier4">阿摩舊題觀念（9x～104 年）</div>
+<table class="memo-table">
+<tr><td class="term">撤銷或廢止許可後，幾年內不得申請經營經紀業？</td><td class="ans">未滿 <b>5 年</b></td></tr>
+<tr><td class="term">非常態營業處所銷售總金額多少以上要置專業經紀人？</td><td class="ans"><b>6 億</b>元</td></tr>
+<tr><td class="term">區權會開會前幾日書面通知？</td><td class="ans"><b>10 日</b></td></tr>
+<tr><td class="term">消費爭議調解委員會主席是誰？</td><td class="ans"><b>消費者保護官</b></td></tr>
+<tr><td class="term">繼受人可請求閱覽的文件不包括？</td><td class="ans"><b>區分所有權人名冊</b></td></tr>
+<tr><td class="term">預售屋範本：法定空地能讓售特定人嗎？</td><td class="ans"><b>不能</b>；法定空地登記為全體區分所有權人共有</td></tr>
+</table>
+
+<!-- ═════════ 估價 ═════════ -->
+<div class="subject" id="gu">不動產估價</div>
+
+<div class="tier-head tier1">錯 3 次以上</div>
+<table class="memo-table">
+<tr><td class="term">收益法：總收入、有效總收入、淨收益的關係？貸款支出要扣嗎？淨收益沒扣折舊提存時公式？<br><span class="cnt">錯 4 次：113×2・114・阿摩</span></td><td class="ans">總收入 ≥ 有效總收入（扣閒置等損失）；淨收益＝<b>有效</b>總收入－總費用；<span class="trap">貸款支出不是總費用</span>（例：1000 元 × 100 坪 × 12 × 0.92－12 萬＝98.4 萬）。淨收益<b>未扣</b>折舊提存→建物收益價格＝建物淨收益 ÷（收益資本化率＋<b>折舊提存率</b>）。直接資本化法用<b>未來平均一年</b>淨收益；期末價值是 DCF 才有</td></tr>
+<tr><td class="term">收益資本化率：DCR 法怎麼算？加權平均資金成本法？哪個跟貸款成數有關？<br><span class="cnt">錯 3 次：112・113×2</span></td><td class="ans"><b>債務保障比率法</b>＝DCR × 貸款常數 × 貸款比率（例：1.5 × 0.1 × 75%＝11.25%），跟貸款成數有關。加權平均＝自有比率 × 自有報酬率＋借款比率 × 借款利率（例：30% × 2%＋70% × 3%＝2.7%）</td></tr>
+<tr><td class="term">重建成本 vs 重置成本？指什麼時候的成本？營造施工費跟屋齡有關嗎？<br><span class="cnt">錯 3 次：113・阿摩×2</span></td><td class="ans"><b>重建成本</b>＝相同或極類似的建材、設計、配置、施工品質重新複製；<b>重置成本</b>＝相同<b>效用</b>、用現代建材；都是<b>價格日期</b>的成本，建物以重建成本為原則。營造施工費是價格日期的重建費用，<span class="trap">屋齡舊不會讓它變低</span>（反映在折舊）</td></tr>
+<tr><td class="term">營造施工費四方法：直接法兩種、間接法兩種各是什麼？<br><span class="cnt">錯 2 次＋總成本 1 次：阿摩×2・114</span></td><td class="ans">直接法：<b>淨計法</b>（材料人工數量 × 單價＋管理費等）、<b>單位工程法</b>（細部工程單價 × 施工數量）。間接法：<b>工程造價比較法</b>（按工程概算項目逐項比較）、<b>單位面積（體積）比較法</b>。間接成本：<b>規劃設計費</b>、廣告銷售費、管理費、稅捐；總成本<span class="trap">不含出售時的所得稅</span></td></tr>
+<tr><td class="term">土開法：公式？資本利息綜合利率怎麼算？<br><span class="cnt">錯 3 次：112・114・阿摩</span></td><td class="ans">V＝S ÷（1＋R）÷（1＋i）－（C＋M）（例：10 ÷ 1.1 ÷ 1.05－8＝0.658 億）。綜合利率＝年利率 ×（<b>土地</b>價值比率＋<b>建物</b>價值比率 × <b>1/2</b>）× 開發年數——土地一開始全投入、建物邊蓋邊投入算一半</td></tr>
+<tr><td class="term">證券化估價：DCF 各期淨收益用什麼租金？什麼時候 DCF 給較大權重？清算時呢？<br><span class="cnt">錯 3 次：113・阿摩×2</span></td><td class="ans">以<b>契約租金</b>為原則；以契約租金作為信託利益分配基礎→DCF 收益價格賦予<b>較大權重</b>（<span class="trap">寫「經濟租金」錯</span>）；但<b>清算</b>時不在此限</td></tr>
+</table>
+
+<div class="tier-head tier2">錯 2 次</div>
+<table class="memo-table">
+<tr><td class="term">特殊宗地：農牧場、鹽田、墓地、公設地用什麼方法？溫泉地、高爾夫球場？林地？</td><td class="ans">農牧場、鹽田、池沼墓地、公設地→<b>比較法</b>為原則；公設地無實例時比較毗鄰土地使用分區及強度差異（<span class="trap">不考慮徵收可能價格</span>）；溫泉地、高球場<b>沒指定</b>方法；林地三法都可；工事、水利土壤改良→<b>成本法</b><br><span class="cnt">112・113・114</span></td></tr>
+<tr><td class="term">比較法：要調整哪些項目？單項、總調整率超過多少要排除？試算價格差距？</td><td class="ans">情況、價格日期、<b>區域</b>因素、<b>個別</b>因素（<span class="trap">沒有一般因素</span>）。單項或區域／個別因素 > <b>15%</b> 排除；四項總調整率 > <b>30%</b> 排除。試算價格差距＝（高－低）÷ 平均，> <b>20%</b> 排除。樓層差 100 萬直接加減＝<b>差額法</b><br><span class="cnt">113・114・阿摩×2</span></td></tr>
+<tr><td class="term">租金：實質租金包括什麼？用原契約租金調整是新訂還是續訂？</td><td class="ans">實質租金＝每期支付租金＋<b>押金、保證金、權利金</b>的運用收益；用原契約租金調整是<b>續訂</b>的方法；價格 × 租金收益率是新訂方法<br><span class="cnt">112・阿摩</span></td></tr>
+<tr><td class="term">估價原則：學校旁賣文具？鄰近殯儀館價格下跌？</td><td class="ans">用途跟周遭環境配合→<b>適合原則</b>；鄰近嫌惡設施→<b>外部性原則</b><br><span class="cnt">114・阿摩</span></td></tr>
+</table>
+
+<div class="tier-head tier3">近年錯 1 次</div>
+<table class="memo-table">
+<tr><td class="term">土地增值稅是每年的總費用嗎？</td><td class="ans"><b>不是</b>，出售時才課；地價稅、房屋稅、維修費才是<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">資本利息：自有資金利率範圍？借款用什麼利率？預售收入計息嗎？</td><td class="ans">自有資金：活存 ≤ 利率 ≤ 定存；借款用短期放款利率；預售收入<b>不計息</b><br><span class="cnt">112</span></td></tr>
+<tr><td class="term">計量模型：只能推算調整率嗎？門檻？</td><td class="ans">可推算調整率<b>及調整額</b>；係數同時為零的顯著機率 ≤ 5%、調整後判定係數 ≥ 0.7<br><span class="cnt">112</span></td></tr>
+<tr><td class="term">樓層別效用比：各層面積相同，A 層 50、基準層 40？</td><td class="ans">50 ÷ 40＝<b>125%</b><br><span class="cnt">113</span></td></tr>
+<tr><td class="term">估價基本事項有哪些？勘查日期是嗎？</td><td class="ans">勘估標的內容、價格日期、價格種類及條件、估價目的；<span class="trap">勘查日期不是</span><br><span class="cnt">114</span></td></tr>
+</table>
+
+<div class="tier-head tier4">阿摩舊題觀念（9x～104 年）</div>
+<table class="memo-table">
+<tr><td class="term">鄰地施工造成牆壁龜裂，屬哪種折舊？</td><td class="ans"><b>物理性</b>折舊</td></tr>
+<tr><td class="term">勘估標的包括哪些？（地上權、專利權、樹上的蘋果、已採收稻穀、未登記建物）</td><td class="ans"><b>地上權、樹上的蘋果（定著物一部分）、未登記建物</b>；專利權、已採收的稻穀不是</td></tr>
+</table>
+
+<div class="footer">2026-10-12 整理｜之後每週日把新錯題併進來，錯的次數會累加</div>
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('toggle');
+  function set(h){document.body.classList.toggle('hide',h);btn.textContent=h?'顯示全部答案':'遮答案';
+    if(!h){document.querySelectorAll('td.ans.show').forEach(function(t){t.classList.remove('show');});}
+    try{localStorage.setItem('cuoti-hide',h?'1':'0');}catch(e){}}
+  btn.addEventListener('click',function(){set(!document.body.classList.contains('hide'));});
+  document.addEventListener('click',function(e){
+    var td=e.target.closest&&e.target.closest('td.ans');
+    if(td&&document.body.classList.contains('hide'))td.classList.toggle('show');});
+  try{if(localStorage.getItem('cuoti-hide')==='1')set(true);}catch(e){}
+})();
+</script>
+</body>
+</html>
