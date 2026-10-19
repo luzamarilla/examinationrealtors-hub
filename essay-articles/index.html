@@ -10,18 +10,7 @@
     --line:#e2e8f0; --neutral-bg:#f1f5f9;
     --accent:#8B4438; --accent-bg:#F1E2DD; --accent2:#9C7A34; --accent2-bg:#EFE6D0;
   }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --page-bg:#15181d; --surface:#1c2027; --ink:#e8eaed; --sub:#a3adba; --muted:#7c8794;
-      --line:#2e333c; --neutral-bg:#242830;
-      --accent:#d98a76; --accent-bg:#3a2620; --accent2:#d4b463; --accent2-bg:#3a3122;
-    }
-  }
-  :root[data-theme="dark"]{
-    --page-bg:#15181d; --surface:#1c2027; --ink:#e8eaed; --sub:#a3adba; --muted:#7c8794;
-    --line:#2e333c; --neutral-bg:#242830;
-    --accent:#d98a76; --accent-bg:#3a2620; --accent2:#d4b463; --accent2-bg:#3a3122;
-  }
+  :root{color-scheme:light;}
   *{box-sizing:border-box;}
   body{margin:0;background:var(--page-bg);color:var(--ink);
     font-family:"Microsoft JhengHei","微軟正黑體","PingFang TC","Noto Sans TC",system-ui,-apple-system,sans-serif;
@@ -43,7 +32,8 @@
   table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.55;}
   th,td{text-align:left;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line);}
   th{font-size:12.5px;color:var(--sub);font-weight:700;letter-spacing:.04em;}
-  td.art{font-weight:700;white-space:normal;}
+  td.art{font-weight:400;color:var(--sub);font-size:13.5px;white-space:normal;}
+  .m{color:var(--accent);font-weight:700;font-size:14.5px;}
   td.yr{color:var(--sub);font-size:13.5px;white-space:nowrap;}
   tr.grp td{background:var(--neutral-bg);font-weight:700;font-size:13.5px;padding:6px 8px;}
   .pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;margin-left:6px;white-space:nowrap;vertical-align:1px;}
@@ -52,6 +42,24 @@
   .p-low{background:var(--neutral-bg);color:var(--sub);border:1px solid var(--line);}
   .tip{font-size:12.5px;color:var(--muted);font-weight:400;}
   footer{font-size:12.5px;color:var(--muted);line-height:1.7;}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;cursor:pointer;
+    background:var(--neutral-bg);border:1px solid var(--line);padding:6px 12px;border-radius:999px;margin-bottom:10px;}
+  .toggle input{accent-color:var(--accent);}
+  .sgrp{font-size:13.5px;font-weight:700;color:var(--sub);margin:14px 0 6px;}
+  .sc{border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:7px;}
+  .sc .h{font-size:14.5px;font-weight:700;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;}
+  .sc .h .a{color:var(--muted);font-weight:400;font-size:13px;}
+  .sc.must{border-left:3px solid var(--accent);}
+  .sc.must .h .a{color:var(--accent);font-weight:700;font-size:14.5px;}
+  .sc .s{font-size:14.5px;line-height:1.7;margin-top:3px;}
+  .sc .s b{color:var(--accent);}
+  .sc .o{font-size:12.5px;line-height:1.6;color:var(--muted);margin-top:4px;}
+  body.hide .sc .s,body.hide .sc .o{filter:blur(6px);cursor:pointer;user-select:none;}
+  body.hide .sc.show .s,body.hide .sc.show .o{filter:none;}
+  body:not(.showall) tr.lite{display:none;}
+  details.more{margin-top:14px;border:1px dashed var(--line);border-radius:10px;padding:8px 12px;}
+  details.more summary{font-size:13.5px;font-weight:700;color:var(--sub);cursor:pointer;}
+  details.more .sgrp:first-of-type{margin-top:10px;}
   @media (max-width:560px){
     th,td{padding:6px 5px;} table{font-size:14px;}
     td.yr{white-space:normal;}
@@ -69,8 +77,13 @@
       <span><span class="pill p-mid">2–3年</span> 高頻</span>
       <span><span class="pill p-low">1年</span> 考過一次</span>
     </div>
+    <div class="legend">
+      <span><span class="m">紅字條號</span> 必背（四科共約 22 組）</span>
+      <span>灰字條號：有印象就好，考場忘了就只寫名稱，不要猜</span>
+    </div>
+    <label class="toggle"><input type="checkbox" id="allToggle"> 表格顯示全部條號（含灰字）</label>
     <nav class="jump">
-      <a href="#minfa">民法</a><a href="#tudifa">土地法</a><a href="#jingji">經紀法</a><a href="#gujia">估價</a>
+      <a href="#minfa">民法</a><a href="#minfa-sent">民法第 1 點句子</a><a href="#tudifa">土地法</a><a href="#jingji">經紀法</a><a href="#gujia">估價</a>
     </nav>
   </header>
 
@@ -80,10 +93,10 @@
     <div class="tbl-wrap"><table>
       <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
       <tbody>
-        <tr><td>所有權人物上請求權</td><td class="art">§767</td><td class="yr">105、106、107、110、111、114<span class="pill p-top">6年</span></td></tr>
-        <tr><td>抵押權（含聲請拍賣、最高限額、區分地上權併存）</td><td class="art">§866、§867、§868、§873、§880、§881-1～17、§841-5</td><td class="yr">105、106、108、110、114<span class="pill p-top">5年</span></td></tr>
-        <tr><td>不動產登記生效／登記推定</td><td class="art">§758、§759、§759-1</td><td class="yr">105、108、109、110<span class="pill p-top">4年</span></td></tr>
-        <tr><td>給付不能／不完全給付／解除契約</td><td class="art">§226、§227、§227-1、§256</td><td class="yr">106、107、109、113<span class="pill p-top">4年</span></td></tr>
+        <tr><td>所有權人物上請求權</td><td class="art"><span class="m">§767</span></td><td class="yr">105、106、107、110、111、114<span class="pill p-top">6年</span></td></tr>
+        <tr><td>抵押權（含聲請拍賣、最高限額、區分地上權併存）</td><td class="art"><span class="m">§866、§867</span>、§868、<span class="m">§873、§880、§881-1</span>～17、§841-5</td><td class="yr">105、106、108、110、114<span class="pill p-top">5年</span></td></tr>
+        <tr><td>不動產登記生效／登記推定</td><td class="art"><span class="m">§758、§759、§759-1</span></td><td class="yr">105、108、109、110<span class="pill p-top">4年</span></td></tr>
+        <tr><td>給付不能／不完全給付／解除契約</td><td class="art"><span class="m">§226、§227</span>、§227-1、<span class="m">§256</span></td><td class="yr">106、107、109、113<span class="pill p-top">4年</span></td></tr>
         <tr><td>共有物管理、處分、分管契約</td><td class="art">§818、§820、§821、§824-1、§826-1</td><td class="yr">106、110、114<span class="pill p-mid">3年</span></td></tr>
         <tr><td>物之瑕疵擔保</td><td class="art">§359、§360</td><td class="yr">106、113<span class="pill p-mid">2年</span></td></tr>
         <tr><td>出賣人移轉義務／權利瑕疵擔保</td><td class="art">§348、§349</td><td class="yr">107、114<span class="pill p-mid">2年</span></td></tr>
@@ -103,20 +116,161 @@
     </table></div>
   </section>
 
+  <section class="subject" id="minfa-sent">
+    <h2>民法申論第 1 點句子</h2>
+    <p class="subnote">兩點式答題的第 1 點直接照抄：「依民法 §○○ ＿＿之規定，要件……者，效果……。」上面是要背的短版（紅字是閱卷老師看的關鍵字），下面灰色小字是全國法規資料庫的條文原文，看懂即可不用硬背。第 2 點再套入題目事實並下結論。<b>左邊有紅線的 11 張</b>條號要背；其他卡片背名稱＋關鍵字就好，考場忘了條號就寫「依民法＿＿之規定」。</p>
+    <label class="toggle"><input type="checkbox" id="hideToggle"> 背誦模式：遮住句子（點一下卡片看答案）</label>
+
+    <div class="sgrp">4 年以上</div>
+    <div class="sc must"><div class="h">所有人物上請求權 <span class="a">§767Ⅰ</span><span class="pill p-top">6年</span></div>
+      <div class="s">依民法 §767Ⅰ所有人物上請求權之規定，所有人對<b>無權占有或侵奪</b>者得請求<b>返還</b>，對<b>妨害</b>者得請求<b>除去</b>，有<b>妨害之虞</b>者得請求<b>防止</b>。</div>
+      <div class="o">原文：所有人對於無權占有或侵奪其所有物者，得請求返還之。對於妨害其所有權者，得請求除去之。有妨害其所有權之虞者，得請求防止之。</div></div>
+    <div class="sc must"><div class="h">抵押權之實行 <span class="a">§873</span><span class="pill p-top">5年</span></div>
+      <div class="s">依民法 §873 抵押權實行之規定，債權<b>已屆清償期而未受清償</b>者，抵押權人得<b>聲請法院拍賣</b>抵押物，就賣得價金<b>受清償</b>。</div>
+      <div class="o">原文：抵押權人，於債權已屆清償期，而未受清償者，得聲請法院，拍賣抵押物，就其賣得價金而受清償。</div></div>
+    <div class="sc must"><div class="h">抵押後設定用益物權或租賃 <span class="a">§866</span><span class="pill p-top">5年</span></div>
+      <div class="s">依民法 §866 抵押後設定權利之規定，抵押後仍得設定<b>用益物權或出租</b>，但<b>抵押權不受影響</b>；影響抵押權實行時，法院得<b>除去該權利或終止租賃後拍賣</b>。</div>
+      <div class="o">原文：不動產所有人設定抵押權後，於同一不動產上，得設定地上權或其他以使用收益為目的之物權，或成立租賃關係。但其抵押權不因此而受影響。前項情形，抵押權人實行抵押權受有影響者，法院得除去該權利或終止該租賃關係後拍賣之。</div></div>
+    <div class="sc must"><div class="h">抵押物之讓與 <span class="a">§867</span><span class="pill p-top">5年</span></div>
+      <div class="s">依民法 §867 抵押物讓與之規定，抵押後<b>得將不動產讓與他人</b>，但<b>抵押權不受影響</b>。</div>
+      <div class="o">原文：不動產所有人設定抵押權後，得將不動產讓與他人。但其抵押權不因此而受影響。</div></div>
+    <div class="sc must"><div class="h">抵押權之除斥期間 <span class="a">§880</span><span class="pill p-top">5年</span></div>
+      <div class="s">依民法 §880 抵押權除斥期間之規定，擔保債權之請求權<b>時效消滅後 5 年間不實行</b>抵押權者，<b>抵押權消滅</b>。</div>
+      <div class="o">原文：以抵押權擔保之債權，其請求權已因時效而消滅，如抵押權人，於消滅時效完成後，五年間不實行其抵押權者，其抵押權消滅。</div></div>
+    <div class="sc must"><div class="h">最高限額抵押權 <span class="a">§881-1</span><span class="pill p-top">5年</span></div>
+      <div class="s">依民法 §881-1 最高限額抵押權之規定，最高限額抵押權是就債權人對債務人<b>一定範圍內之不特定債權</b>，在<b>最高限額內</b>設定之抵押權。</div>
+      <div class="o">原文：稱最高限額抵押權者，謂債務人或第三人提供其不動產為擔保，就債權人對債務人一定範圍內之不特定債權，在最高限額內設定之抵押權。</div></div>
+    <div class="sc must"><div class="h">不動產物權登記生效 <span class="a">§758</span><span class="pill p-top">4年</span></div>
+      <div class="s">依民法 §758 不動產物權登記生效之規定，不動產物權依<b>法律行為</b>取得、設定、喪失及變更者，<b>非經登記不生效力</b>，並應以<b>書面</b>為之。</div>
+      <div class="o">原文：不動產物權，依法律行為而取得、設定、喪失及變更者，非經登記，不生效力。前項行為，應以書面為之。</div></div>
+    <div class="sc must"><div class="h">非因法律行為取得 <span class="a">§759</span><span class="pill p-top">4年</span></div>
+      <div class="s">依民法 §759 非因法律行為取得之規定，因<b>繼承、強制執行、徵收、法院判決</b>等<b>非因法律行為</b>取得不動產物權者，<b>應經登記始得處分</b>。</div>
+      <div class="o">原文：因繼承、強制執行、徵收、法院之判決或其他非因法律行為，於登記前已取得不動產物權者，應經登記，始得處分其物權。</div></div>
+    <div class="sc must"><div class="h">登記推定力與公信力 <span class="a">§759-1</span><span class="pill p-top">4年</span></div>
+      <div class="s">依民法 §759-1 登記推定力與公信力之規定，登記者<b>推定</b>登記權利人適法有此權利；<b>信賴登記之善意第三人</b>已完成登記者，其物權變動<b>不因原登記不實而受影響</b>。</div>
+      <div class="o">原文：不動產物權經登記者，推定登記權利人適法有此權利。因信賴不動產登記之善意第三人，已依法律行為為物權變動之登記者，其變動之效力，不因原登記物權之不實而受影響。</div></div>
+    <div class="sc must"><div class="h">給付不能＋解除契約 <span class="a">§226、§256</span><span class="pill p-top">4年</span></div>
+      <div class="s">依民法 §226、§256 給付不能之規定，因<b>可歸責於債務人</b>致給付不能者，債權人得<b>請求損害賠償</b>，並得<b>解除契約</b>。</div>
+      <div class="o">原文：（§226Ⅰ）因可歸責於債務人之事由，致給付不能者，債權人得請求賠償損害。（§256）債權人於有第二百二十六條之情形時，得解除其契約。</div></div>
+    <div class="sc must"><div class="h">不完全給付 <span class="a">§227</span><span class="pill p-top">4年</span></div>
+      <div class="s">依民法 §227 不完全給付之規定，因可歸責於債務人致不完全給付者，債權人得<b>依給付遲延或給付不能之規定</b>行使權利；另生其他損害者，<b>並得請求賠償</b>。</div>
+      <div class="o">原文：因可歸責於債務人之事由，致為不完全給付者，債權人得依關於給付遲延或給付不能之規定行使其權利。因不完全給付而生前項以外之損害者，債權人並得請求賠償。</div></div>
+
+    <div class="sgrp">2–3 年</div>
+    <div class="sc"><div class="h">共有物之管理 <span class="a">§820Ⅰ</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依民法 §820Ⅰ共有物管理之規定，管理應經共有人<b>過半數及應有部分過半數</b>同意；應有部分<b>逾三分之二</b>者，<b>人數不予計算</b>。</div>
+      <div class="o">原文：共有物之管理，除契約另有約定外，應以共有人過半數及其應有部分合計過半數之同意行之。但其應有部分合計逾三分之二者，其人數不予計算。</div></div>
+    <div class="sc"><div class="h">共有人對第三人之請求 <span class="a">§821</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依民法 §821 共有人對第三人請求之規定，各共有人得就<b>共有物全部</b>為本於所有權之請求；但回復共有物之請求，僅得<b>為共有人全體之利益</b>為之。</div>
+      <div class="o">原文：各共有人對於第三人，得就共有物之全部為本於所有權之請求。但回復共有物之請求，僅得為共有人全體之利益為之。</div></div>
+    <div class="sc"><div class="h">分管契約之效力 <span class="a">§826-1Ⅰ</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依民法 §826-1Ⅰ分管契約之規定，不動產共有人間關於使用、管理、分割之約定或決定，<b>經登記後</b>，對<b>應有部分之受讓人</b>具有效力。</div>
+      <div class="o">原文：不動產共有人間關於共有物使用、管理、分割或禁止分割之約定或依第八百二十條第一項規定所為之決定，於登記後，對於應有部分之受讓人或取得物權之人，具有效力。其由法院裁定所定之管理，經登記後，亦同。</div></div>
+    <div class="sc"><div class="h">物之瑕疵擔保 <span class="a">§359</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §359 物之瑕疵擔保之規定，買賣之物有瑕疵者，買受人得<b>解除契約或請求減少價金</b>；解除<b>顯失公平</b>者，<b>僅得請求減少價金</b>。</div>
+      <div class="o">原文：買賣因物有瑕疵，而出賣人依前五條之規定，應負擔保之責者，買受人得解除其契約或請求減少其價金。但依情形，解除契約顯失公平者，買受人僅得請求減少價金。</div></div>
+    <div class="sc"><div class="h">欠缺保證品質／故意不告知瑕疵 <span class="a">§360</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §360 缺少保證品質之規定，買賣之物<b>缺少保證品質</b>，或出賣人<b>故意不告知瑕疵</b>者，買受人得請求<b>不履行之損害賠償</b>。</div>
+      <div class="o">原文：買賣之物，缺少出賣人所保證之品質者，買受人得不解除契約或請求減少價金，而請求不履行之損害賠償；出賣人故意不告知物之瑕疵者亦同。</div></div>
+    <div class="sc"><div class="h">出賣人移轉義務 <span class="a">§348Ⅰ</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §348Ⅰ出賣人移轉義務之規定，物之出賣人負<b>交付其物</b>並<b>使買受人取得所有權</b>之義務。</div>
+      <div class="o">原文：物之出賣人，負交付其物於買受人，並使其取得該物所有權之義務。</div></div>
+    <div class="sc"><div class="h">權利瑕疵擔保 <span class="a">§349</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §349 權利瑕疵擔保之規定，出賣人應擔保<b>第三人</b>就買賣之標的物，對於買受人<b>不得主張任何權利</b>。</div>
+      <div class="o">原文：出賣人應擔保第三人就買賣之標的物，對於買受人不得主張任何權利。</div></div>
+    <div class="sc"><div class="h">居間契約與報酬 <span class="a">§565、§568Ⅰ</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §565、§568Ⅰ居間契約之規定，居間是為他方<b>報告訂約機會或為訂約媒介</b>、他方給付報酬之契約；居間人以<b>契約因其報告或媒介而成立</b>者為限，得請求報酬。</div>
+      <div class="o">原文：（§565）稱居間者，謂當事人約定，一方為他方報告訂約之機會或為訂約之媒介，他方給付報酬之契約。（§568Ⅰ）居間人，以契約因其報告或媒介而成立者為限，得請求報酬。</div></div>
+    <div class="sc"><div class="h">無權處分 <span class="a">§118Ⅰ</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §118Ⅰ無權處分之規定，<b>無權利人</b>就權利標的物所為之<b>處分</b>，<b>經有權利人之承認始生效力</b>。</div>
+      <div class="o">原文：無權利人就權利標的物所為之處分，經有權利人之承認始生效力。</div></div>
+    <div class="sc"><div class="h">動產善意取得 <span class="a">§948Ⅰ、§801</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §948Ⅰ、§801 動產善意取得之規定，<b>善意受讓動產占有</b>者，縱讓與人無讓與之權利，受讓人<b>仍取得所有權</b>；但<b>明知或因重大過失而不知</b>者，不受保護。（不動產改用 §759-1Ⅱ）</div>
+      <div class="o">原文：（§948Ⅰ）以動產所有權，或其他物權之移轉或設定為目的，而善意受讓該動產之占有者，縱其讓與人無讓與之權利，其占有仍受法律之保護。但受讓人明知或因重大過失而不知讓與人無讓與之權利者，不在此限。（§801）動產之受讓人占有動產，而受關於占有規定之保護者，縱讓與人無移轉所有權之權利，受讓人仍取得其所有權。</div></div>
+    <div class="sc"><div class="h">買賣不破租賃 <span class="a">§425</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §425 買賣不破租賃之規定，租賃物<b>交付後、承租人占有中</b>讓與所有權者，租約<b>對受讓人繼續存在</b>；但<b>未經公證</b>且<b>逾 5 年或未定期限</b>之不動產租約，不適用。</div>
+      <div class="o">原文：出租人於租賃物交付後，承租人占有中，縱將其所有權讓與第三人，其租賃契約，對於受讓人仍繼續存在。前項規定，於未經公證之不動產租賃契約，其期限逾五年或未定期限者，不適用之。</div></div>
+    <div class="sc"><div class="h">不當得利 <span class="a">§179</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §179 不當得利之規定，<b>無法律上之原因</b>而受利益，致他人受損害者，<b>應返還其利益</b>。</div>
+      <div class="o">原文：無法律上之原因而受利益，致他人受損害者，應返還其利益。雖有法律上之原因，而其後已不存在者，亦同。</div></div>
+    <div class="sc"><div class="h">消滅時效 <span class="a">§125、§144Ⅰ</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依民法 §125、§144Ⅰ消滅時效之規定，請求權因 <b>15 年</b>間不行使而消滅；時效完成後，債務人<b>得拒絕給付</b>。（起算點 §128：自請求權可行使時起算）</div>
+      <div class="o">原文：（§125）請求權，因十五年間不行使而消滅。但法律所定期間較短者，依其規定。（§144Ⅰ）時效完成後，債務人得拒絕給付。</div></div>
+
+    <details class="more"><summary>其他 13 張：只考過 1 年＋1013 練筆團補充（點開看）</summary>
+    <div class="sgrp">1 年</div>
+    <div class="sc"><div class="h">通謀虛偽意思表示 <span class="a">§87</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §87 通謀虛偽意思表示之規定，雙方<b>通謀</b>之虛偽意思表示<b>無效</b>，但<b>不得對抗善意第三人</b>；隱藏他項法律行為者，<b>適用該行為之規定</b>。</div>
+      <div class="o">原文：表意人與相對人通謀而為虛偽意思表示者，其意思表示無效。但不得以其無效對抗善意第三人。虛偽意思表示，隱藏他項法律行為者，適用關於該項法律行為之規定。</div></div>
+    <div class="sc"><div class="h">債權人代位權 <span class="a">§242、§243</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §242、§243 債權人代位權之規定，債務人<b>怠於行使</b>權利，債權人為<b>保全債權</b>，得<b>以自己名義</b>代位行使，但須債務人<b>已負遲延</b>。</div>
+      <div class="o">原文：（§242）債務人怠於行使其權利時，債權人因保全債權，得以自己之名義，行使其權利。但專屬於債務人本身者，不在此限。（§243）前條債權人之權利，非於債務人負遲延責任時，不得行使。但專為保存債務人權利之行為，不在此限。</div></div>
+    <div class="sc"><div class="h">取得時效 <span class="a">§769、§770</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §769、§770 取得時效之規定，以<b>所有之意思</b>，和平、公然、繼續占有他人<b>未登記</b>不動產 <b>20 年</b>者，得請求登記為所有人；占有之始<b>善意並無過失</b>者，<b>10 年</b>即可。</div>
+      <div class="o">原文：（§769）以所有之意思，二十年間和平、公然、繼續占有他人未登記之不動產者，得請求登記為所有人。（§770）以所有之意思，十年間和平、公然、繼續占有他人未登記之不動產，而其占有之始為善意並無過失者，得請求登記為所有人。</div></div>
+    <div class="sc"><div class="h">越界建築 <span class="a">§796Ⅰ</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §796Ⅰ越界建築之規定，建屋<b>非因故意或重大過失</b>越界，鄰地所有人<b>知其越界而不即提出異議</b>者，不得請求移去或變更，但得請求<b>償金</b>。</div>
+      <div class="o">原文：土地所有人建築房屋非因故意或重大過失逾越地界者，鄰地所有人如知其越界而不即提出異議，不得請求移去或變更其房屋。但土地所有人對於鄰地因此所受之損害，應支付償金。</div></div>
+    <div class="sc"><div class="h">區分所有建築物 <span class="a">§799Ⅰ</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §799Ⅰ區分所有建築物之規定，數人區分一建築物而各<b>專有其一部</b>，就專有部分有<b>單獨所有權</b>，並就<b>共同部分共有</b>。</div>
+      <div class="o">原文：稱區分所有建築物者，謂數人區分一建築物而各專有其一部，就專有部分有單獨所有權，並就該建築物及其附屬物之共同部分共有之建築物。</div></div>
+    <div class="sc"><div class="h">限制行為能力人訂約 <span class="a">§77、§79</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §77、§79 限制行為能力人之規定，限制行為能力人為意思表示應得<b>法定代理人之允許</b>；未得允許所訂之契約，須經<b>法定代理人承認始生效力</b>。</div>
+      <div class="o">原文：（§77）限制行為能力人為意思表示及受意思表示，應得法定代理人之允許。但純獲法律上利益，或依其年齡及身分、日常生活所必需者，不在此限。（§79）限制行為能力人未得法定代理人之允許，所訂立之契約，須經法定代理人之承認，始生效力。</div></div>
+    <div class="sc"><div class="h">占有人 <span class="a">§940</span><span class="pill p-low">1年</span></div>
+      <div class="s">依民法 §940 占有人之規定，對於物有<b>事實上管領之力</b>者，為占有人。</div>
+      <div class="o">原文：對於物有事實上管領之力者，為占有人。</div></div>
+
+    <div class="sgrp">1013 練筆團補充（近 10 年申論未考，但常一起出現）</div>
+    <div class="sc"><div class="h">一般侵權行為 <span class="a">§184Ⅰ前段</span></div>
+      <div class="s">依民法 §184Ⅰ前段一般侵權行為之規定，因<b>故意或過失</b>，<b>不法</b>侵害他人之<b>權利</b>者，負損害賠償責任。</div>
+      <div class="o">原文：因故意或過失，不法侵害他人之權利者，負損害賠償責任。</div></div>
+    <div class="sc"><div class="h">債權人撤銷權 <span class="a">§244Ⅰ、Ⅱ</span></div>
+      <div class="s">依民法 §244 債權人撤銷權之規定，債務人之<b>無償行為</b>有害債權者，債權人得聲請法院撤銷；<b>有償行為</b>須債務人明知且<b>受益人亦知其情事</b>者，始得撤銷。</div>
+      <div class="o">原文：債務人所為之無償行為，有害及債權者，債權人得聲請法院撤銷之。債務人所為之有償行為，於行為時明知有損害於債權人之權利者，以受益人於受益時亦知其情事者為限，債權人得聲請法院撤銷之。</div></div>
+    <div class="sc"><div class="h">買賣契約 <span class="a">§345Ⅰ</span></div>
+      <div class="s">依民法 §345Ⅰ買賣契約之規定，買賣是一方<b>移轉財產權</b>、他方<b>支付價金</b>之契約。（債權契約，出賣他人之物仍有效）</div>
+      <div class="o">原文：稱買賣者，謂當事人約定一方移轉財產權於他方，他方支付價金之契約。</div></div>
+    <div class="sc"><div class="h">租賃契約 <span class="a">§421Ⅰ</span></div>
+      <div class="s">依民法 §421Ⅰ租賃契約之規定，租賃是一方以物租與他方<b>使用收益</b>、他方<b>支付租金</b>之契約。（不以出租人有所有權為必要）</div>
+      <div class="o">原文：稱租賃者，謂當事人約定，一方以物租與他方使用收益，他方支付租金之契約。</div></div>
+    <div class="sc"><div class="h">出租人修繕義務 <span class="a">§429Ⅰ、§430</span></div>
+      <div class="s">依民法 §429Ⅰ、§430 出租人修繕義務之規定，修繕<b>由出租人負擔</b>；出租人不修繕，承租人得<b>定相當期限催告</b>，逾期得<b>終止契約</b>，或<b>自行修繕</b>後請求償還或<b>扣抵租金</b>。</div>
+      <div class="o">原文：（§429Ⅰ）租賃物之修繕，除契約另有訂定或另有習慣外，由出租人負擔。（§430）租賃關係存續中，租賃物如有修繕之必要，應由出租人負擔者，承租人得定相當期限，催告出租人修繕，如出租人於其期限內不為修繕者，承租人得終止契約或自行修繕而請求出租人償還其費用或於租金中扣除之。</div></div>
+    <div class="sc"><div class="h">危及安全健康之瑕疵 <span class="a">§424</span></div>
+      <div class="s">依民法 §424 租賃物危及安全健康之終止權之規定，房屋瑕疵<b>危及安全或健康</b>時，承租人<b>縱已知悉或已拋棄</b>終止權，<b>仍得終止</b>契約。</div>
+      <div class="o">原文：租賃物為房屋或其他供居住之處所者，如有瑕疵，危及承租人或其同居人之安全或健康時，承租人雖於訂約時已知其瑕疵，或已拋棄其終止契約之權利，仍得終止契約。</div></div>
+    </details>
+
+    <div class="sgrp">易混組（1013 批改時混淆過的觀念）</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>易混的兩個觀念</th><th>分辨重點</th></tr></thead>
+      <tbody>
+        <tr><td>無效 vs 撤銷</td><td>無效（§87、§72）自始不生效力，不用任何人主張；撤銷（§88、§92、§244）是有效但有瑕疵，要有人行使才變無效</td></tr>
+        <tr><td>代位 §242 vs 撤銷 §244</td><td>債務人不作為，或行為無效 → 代位替他討回來；行為有效但害到債權人 → 聲請法院撤銷</td></tr>
+        <tr><td>買賣 vs 處分</td><td>賣別人的東西，買賣（債權契約，§345）有效；移轉所有權（處分，§118）才是效力未定</td></tr>
+        <tr><td>善意取得 vs 登記公信力</td><td>善意取得（§948、§801）只限動產；不動產看登記公信力（§759-1Ⅱ）</td></tr>
+        <tr><td>解除 vs 終止</td><td>解除是溯及消滅，用在買賣等一次性契約；終止是向將來消滅，用在租賃等繼續性契約</td></tr>
+        <tr><td>通謀虛偽 vs 心中保留</td><td>通謀虛偽（§87）是雙方串通，無效；心中保留（§86）是只有自己心裡不想，原則有效，相對人明知時才無效</td></tr>
+        <tr><td>不當得利 vs 侵權行為</td><td>不當得利（§179）看「無法律上原因受利益」，返還利益；侵權（§184）看「故意過失不法侵害」，賠償損害</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
   <section class="subject" id="tudifa">
     <h2>土地法與土地相關稅法</h2>
-    <p class="subnote">灰底列是主題，後面的年數是這個主題的出題年數；徵收和地價稅最常考。</p>
+    <p class="subnote">灰底列是主題，後面的年數是這個主題的出題年數；徵收和地價稅最常考。<b>土地法橫跨好幾部法規：灰字條號可以忘，但法規名稱（土稅法、平均地權條例、徵收條例、契稅條例…）一定要寫對。</b></p>
     <div class="tbl-wrap"><table>
       <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
       <tbody>
         <tr class="grp"><td colspan="3">地價稅<span class="pill p-top">6年</span></td></tr>
-        <tr><td>累進起點地價、稅率</td><td class="art">平均地權條例 §18、§19（土稅法 §16、§17）</td><td class="yr">105、108</td></tr>
-        <tr><td>公設保留地地價稅</td><td class="art">土稅法 §19、§22</td><td class="yr">106、114</td></tr>
+        <tr><td>累進起點地價、稅率</td><td class="art"><span class="m">平均地權條例 §18、§19</span>（土稅法 §16、§17）</td><td class="yr">105、108</td></tr>
+        <tr><td>公設保留地地價稅</td><td class="art"><span class="m">土稅法 §19、§22</span></td><td class="yr">106、114</td></tr>
         <tr><td>納稅義務人、代繳求償</td><td class="art">土稅法 §3、§4</td><td class="yr">109</td></tr>
         <tr><td>空地定義、空地稅、限期建築後租約</td><td class="art">土稅法 §11、§21；平均地權條例 §74</td><td class="yr">113</td></tr>
 
         <tr class="grp"><td colspan="3">徵收・徵用（含優先購買權）<span class="pill p-top">4年</span></td></tr>
-        <tr><td>抵價地（比例 50%／40%／45%）</td><td class="art">土地徵收條例 §39、§40</td><td class="yr">109、112</td></tr>
+        <tr><td>抵價地（比例 50%／40%／45%）</td><td class="art"><span class="m">土地徵收條例 §39、§40</span></td><td class="yr">109、112</td></tr>
         <tr><td>徵收必備要件</td><td class="art">土地法 §208；徵收條例 §1、§3、§13-2、§30</td><td class="yr">108</td></tr>
         <tr><td>先行區段徵收、公告後禁止處分</td><td class="art">徵收條例 §4、§23</td><td class="yr">112</td></tr>
         <tr><td>三種優先購買權</td><td class="art">土地法 §34-1、§104、§107</td><td class="yr">111</td></tr>
@@ -141,11 +295,27 @@
         <tr><td>外國人取得地權</td><td class="art">土地法 §17、§18、§19、§20</td><td class="yr">110</td></tr>
 
         <tr class="grp"><td colspan="3">房地合一稅・房屋稅・契稅<span class="pill p-top">4年</span></td></tr>
-        <tr><td>房地合一課稅範圍、所得計算</td><td class="art">所得稅法 §4-4、§14-4</td><td class="yr">107、111</td></tr>
-        <tr><td>房屋稅稅率、徵收率、標準價格</td><td class="art">房屋稅條例 §5、§6、§11</td><td class="yr">112、113</td></tr>
+        <tr><td>房地合一課稅範圍、所得計算</td><td class="art"><span class="m">所得稅法 §4-4、§14-4</span></td><td class="yr">107、111</td></tr>
+        <tr><td>房屋稅稅率、徵收率、標準價格</td><td class="art"><span class="m">房屋稅條例 §5、§6、§11</span></td><td class="yr">112、113</td></tr>
         <tr><td>契稅課稅標的</td><td class="art">契稅條例 §2</td><td class="yr">111</td></tr>
       </tbody>
     </table></div>
+    <div class="sgrp">紅字考場句（申論第 1 點直接寫；上面背、灰字是原文）</div>
+    <div class="sc must"><div class="h">地價稅累進稅率 <span class="a">平均地權條例 §18、§19</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依平均地權條例 §18、§19（地價稅累進稅率）之規定，以<b>土地七公畝之平均地價</b>為<b>累進起點地價</b>；地價總額未超過者按<b>基本稅率千分之十</b>，超過者依超過倍數按<b>千分之十五至五十五</b>累進課徵。</div>
+      <div class="o">原文：（§18）地價稅採累進稅率，以各該直轄市或縣（市）土地七公畝之平均地價，為累進起點地價。但不包括工業用地、礦業用地、農業用地及免稅土地在內。（§19）地價稅基本稅率為千分之十。……超過累進起點地價未達五倍者，就其超過部分課徵千分之十五；五倍至十倍千分之二十五；十倍至十五倍千分之三十五；十五倍至二十倍千分之四十五；二十倍以上千分之五十五。</div></div>
+    <div class="sc must"><div class="h">公設保留地地價稅／田賦 <span class="a">土地稅法 §19、§22</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依土地稅法 §19（公設保留地地價稅）之規定，都市計畫公設保留地在保留期間<b>仍為建築使用</b>者，除自用住宅用地外，統按<b>千分之六</b>計徵地價稅；<b>未作任何使用並與使用中之土地隔離</b>者，<b>免徵地價稅</b>。依 §22 之規定，保留期間仍作<b>農業用地使用</b>者徵收田賦，未作使用並隔離者<b>免徵田賦</b>。</div>
+      <div class="o">原文：（§19）都市計畫公共設施保留地，在保留期間仍為建築使用者，除自用住宅用地依第十七條之規定外，統按千分之六計徵地價稅；其未作任何使用並與使用中之土地隔離者，免徵地價稅。（§22）……五、依都市計畫編為公共設施保留地，仍作農業用地使用者（徵收田賦）。……都市計畫公共設施保留地在保留期間未作任何使用並與使用中之土地隔離者，免徵田賦。</div></div>
+    <div class="sc must"><div class="h">區段徵收抵價地 <span class="a">土地徵收條例 §39、§40</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依土地徵收條例 §39（抵價地）之規定，區段徵收之地價補償，得經所有權人申請以<b>抵價地</b>抵付；抵價地總面積以徵收總面積<b>百分之五十為原則</b>，特殊情形經上級主管機關核准者<b>不得少於百分之四十</b>，曾經農地重劃者<b>不得少於百分之四十五</b>。依 §40 之規定，應於<b>徵收公告期間內</b>以<b>書面</b>申請，得就<b>全部或部分</b>補償地價申請。</div>
+      <div class="o">原文：（§39）區段徵收土地時，應依第三十條規定補償其地價。除地價補償得經土地所有權人申請，以徵收後可供建築之抵價地折算抵付外，……抵價地總面積，以徵收總面積百分之五十為原則。因情況特殊，經上級主管機關核准者，不在此限。但不得少於百分之四十。曾經農地重劃者，該重劃地區部分不得少於百分之四十五。（§40Ⅰ）實施區段徵收時，原土地所有權人不願領取現金補償者，應於徵收公告期間內，檢具有關證明文件，以書面向該管直轄市或縣（市）主管機關申請發給抵價地。</div></div>
+    <div class="sc must"><div class="h">房地合一課稅範圍與所得計算 <span class="a">所得稅法 §4-4、§14-4</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依所得稅法 §4-4（房地合一課稅範圍）之規定，交易 <b>105 年 1 月 1 日以後取得</b>之房屋、土地，其交易所得應課所得稅；<b>預售屋、設定地上權之房屋使用權</b>視同房地交易，<b>農舍不在範圍內</b>。依 §14-4（所得計算）之規定，所得額＝<b>成交價額－原始取得成本－取得、改良及移轉費用</b>，再減除<b>土地漲價總數額</b>，依<b>持有期間</b>分別課稅（境內個人：2 年內 45%、超過 2 年未逾 5 年 35%、超過 5 年未逾 10 年 20%、超過 10 年 15%）。</div>
+      <div class="o">原文重點：（§4-4）個人及營利事業交易中華民國一百零五年一月一日以後取得之房屋、房屋及其坐落基地或依法得核發建造執照之土地，其交易所得應依第十四條之四至第十四條之八……課徵所得稅。……預售屋及其坐落基地，其交易視同前項之房屋、土地交易。……房屋之範圍，不包括依農業發展條例申請興建之農舍。（§14-4）以交易時之成交價額減除原始取得成本，與因取得、改良及移轉而支付之費用後之餘額為所得額；繼承或受贈取得者，減除繼承或受贈時之房屋評定現值及公告土地現值按物價指數調整後之價值。……減除土地漲價總數額後之餘額，不併計綜合所得總額。其他稅率：非自願因素、合建、都更 5 年以下 20%；自住房地超過 400 萬元部分 10%；非境內居住者 2 年內 45%、超過 2 年 35%。</div></div>
+    <div class="sc must"><div class="h">房屋稅稅率、徵收率、標準價格 <span class="a">房屋稅條例 §5、§6、§11</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依房屋稅條例 §5（稅率）之規定，房屋稅依<b>房屋現值</b>課徵：住家用<b>自住 1.2%</b>（全國單一自住且現值在一定金額以下 <b>1%</b>）、其他住家用 <b>2%～4.8%</b>；非住家用營業 <b>3%～5%</b>、非營業 <b>1.5%～2.5%</b>；住家、非住家併用依<b>實際使用面積</b>分別課徵，非住家用<b>不得少於全部面積六分之一</b>。依 §6（徵收率）之規定，地方政府於稅率範圍內訂定徵收率，應經<b>民意機關通過</b>，報<b>財政部備查</b>。依 §11（標準價格）之規定，由<b>不動產評價委員會</b>依<b>建材種類等級、耐用年數及折舊標準、地段</b>評定，<b>每三年重行評定</b>一次。</div>
+      <div class="o">其他稅率：出租申報租金達一般租金標準或繼承共有房屋 1.5%～2.4%；起造人待銷售房屋起課 2 年內 2%～3.6%。§6 原文：直轄市及縣（市）政府在前條規定稅率範圍內訂定之房屋稅徵收率，應提經當地民意機關通過，報財政部備查。§11 原文：房屋標準價格，由不動產評價委員會依據下列事項分別評定，並由直轄市、縣（市）政府公告之：一、按各種建造材料所建房屋，區分種類及等級。二、各類房屋之耐用年數及折舊標準。三、按房屋所處街道村里之商業交通情形及房屋之供求概況，並比較各該不同地段實價登錄之不動產交易價格減除土地價格部分，訂定標準。前項房屋標準價格，每三年重行評定一次，並應依其耐用年數予以折舊，按年遞減其價格。</div></div>
   </section>
 
   <section class="subject" id="jingji">
@@ -155,8 +325,8 @@
       <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
       <tbody>
         <tr class="grp"><td colspan="3">不動產經紀業管理條例<span class="pill p-top">8年</span></td></tr>
-        <tr><td>罰則</td><td class="art">§29（另 §31）</td><td class="yr">107、110、111、114<span class="pill p-top">4年</span></td></tr>
-        <tr><td>用詞定義（不動產、經紀人員、差價、加盟）</td><td class="art">§4</td><td class="yr">105、107、111<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>罰則</td><td class="art"><span class="m">§29</span>（另 §31）</td><td class="yr">107、110、111、114<span class="pill p-top">4年</span></td></tr>
+        <tr><td>用詞定義（不動產、經紀人員、差價、加盟）</td><td class="art"><span class="m">§4</span></td><td class="yr">105、107、111<span class="pill p-mid">3年</span></td></tr>
         <tr><td>不動產說明書：簽章、解說、視為契約一部分</td><td class="art">§22、§23、§24、§26</td><td class="yr">105、108<span class="pill p-mid">2年</span></td></tr>
         <tr><td>差價或其他報酬、超收返還</td><td class="art">§19、§29、§31</td><td class="yr">107、114<span class="pill p-mid">2年</span></td></tr>
         <tr><td>揭示文件、加盟標明</td><td class="art">§18、§20；施行細則 §21、§22</td><td class="yr">111、113<span class="pill p-mid">2年</span></td></tr>
@@ -164,13 +334,13 @@
         <tr><td>同時接受雙方委託</td><td class="art">§24-2</td><td class="yr">109<span class="pill p-low">1年</span></td></tr>
 
         <tr class="grp"><td colspan="3">公寓大廈管理條例<span class="pill p-top">5年</span></td></tr>
-        <tr><td>惡鄰居強制遷離、強制出讓</td><td class="art">§22（＋§16）</td><td class="yr">107、112<span class="pill p-mid">2年</span></td></tr>
+        <tr><td>惡鄰居強制遷離、強制出讓</td><td class="art"><span class="m">§22</span>（＋§16）</td><td class="yr">107、112<span class="pill p-mid">2年</span></td></tr>
         <tr><td>臨時會議召開、召集人</td><td class="art">§25</td><td class="yr">111<span class="pill p-low">1年</span></td></tr>
         <tr><td>特別決議、重新召集</td><td class="art">§31、§32</td><td class="yr">113<span class="pill p-low">1年</span></td></tr>
         <tr><td>約定專用部分、依用途使用</td><td class="art">§3、§15</td><td class="yr">106<span class="pill p-low">1年</span></td></tr>
 
         <tr class="grp"><td colspan="3">消費者保護法<span class="pill p-top">4年</span></td></tr>
-        <tr><td>用詞定義</td><td class="art">§2</td><td class="yr">106、108、114<span class="pill p-mid">3年</span></td></tr>
+        <tr><td>用詞定義</td><td class="art"><span class="m">§2</span></td><td class="yr">106、108、114<span class="pill p-mid">3年</span></td></tr>
         <tr><td>商品服務責任、懲罰性賠償金、回收</td><td class="art">§7、§10、§51</td><td class="yr">108<span class="pill p-low">1年</span></td></tr>
         <tr><td>廣告真實義務、媒體連帶責任</td><td class="art">§22、§22-1、§23</td><td class="yr">109<span class="pill p-low">1年</span></td></tr>
         <tr><td>定型化契約應記載／不得記載</td><td class="art">§17</td><td class="yr">106<span class="pill p-low">1年</span></td></tr>
@@ -181,11 +351,24 @@
         <tr><td>事業定義、顯失公平</td><td class="art">§2、§25</td><td class="yr">110<span class="pill p-low">1年</span></td></tr>
       </tbody>
     </table></div>
+    <div class="sgrp">紅字考場句（申論第 1 點直接寫；上面背、灰字是原文）</div>
+    <div class="sc must"><div class="h">經紀業罰則 <span class="a">不動產經紀業管理條例 §29</span><span class="pill p-top">4年</span></div>
+      <div class="s">依不動產經紀業管理條例 §29（經紀業罰則）之規定，違反<b>經紀人設置、僱用無資格人員、收取差價、廣告銷售、指派經紀人簽章</b>等規定者，處 <b>6 萬～30 萬元</b>；買賣或代銷<b>實價登錄</b>未依限申報或價格、面積不實者，<b>按戶（棟）處 3 萬～15 萬元</b>，限期未改正按次處罰；租賃實價登錄不實處 <b>1 萬～5 萬元</b>；違反<b>揭示、加盟標明</b>等規定者，<b>限期改正</b>，屆期未改正處 <b>3 萬～15 萬元</b>；<b>營業保證金不足</b>者<b>停止營業</b>至補足為止。</div>
+      <div class="o">條文對照：6 萬～30 萬＝違反 §7Ⅵ、§11（經紀人設置）、§17（僱用無資格者）、§19Ⅰ（差價、報酬）、§21Ⅰ Ⅱ（簽委託書後才能刊廣告、內容相符）、§22Ⅰ（經紀人簽章）。限期改正後 3 萬～15 萬＝違反 §12（經紀人到職 15 日內報備）、§18（證照揭示、加盟標明）、§20（揭示報酬標準）、§27（不得拒絕檢查）。買賣實價登錄經處罰二次仍未改正者，按次處 30 萬～100 萬元。其他實價登錄資訊不實：限期改正，屆期未改正處 6 千～3 萬元。</div></div>
+    <div class="sc must"><div class="h">用詞定義（定義題照原文背） <span class="a">不動產經紀業管理條例 §4</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依不動產經紀業管理條例 §4（用詞定義）之規定：<b>不動產</b>指土地、土地定著物或房屋及其可移轉之權利；<b>成屋</b>指<b>領有使用執照</b>，或於<b>實施建築管理前</b>建造完成之建築物；<b>預售屋</b>指<b>領有建造執照</b>尚未建造完成而以將來完成之建築物為交易標的之物；<b>經紀人員</b>指經紀人或經紀營業員；<b>加盟經營者</b>指經紀業之一方以契約約定使用他方所發展之<b>服務、營運方式、商標或服務標章</b>等，並<b>受其規範或監督</b>；<b>差價</b>指<b>實際買賣交易價格與委託銷售價格之差額</b>。</div>
+      <div class="o">其他款：經紀業＝依本條例經營仲介或代銷業務之公司或商號；仲介業務＝從事不動產買賣、互易、租賃之居間或代理業務；代銷業務＝受起造人或建築業之委託，負責企劃並代理銷售不動產之業務；經紀人職務為執行仲介或代銷業務，經紀營業員為協助經紀人執行；營業處所＝經營仲介或代銷業務之店面、辦公室或非常態之固定場所。</div></div>
+    <div class="sc must"><div class="h">惡鄰居強制遷離、強制出讓 <span class="a">公寓大廈管理條例 §22</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依公寓大廈管理條例 §22（強制遷離、強制出讓）之規定，住戶有<b>積欠費用經強制執行後再欠達區分所有權總價 1%</b>、<b>經處罰鍰後仍不改善或續犯</b>、<b>其他違反法令或規約情節重大</b>者，經<b>促請改善，3 個月內仍未改善</b>，得依<b>區分所有權人會議之決議</b>訴請法院<b>強制遷離</b>；住戶為區分所有權人者，得訴請法院<b>命其出讓</b>，判決確定後 <b>3 個月內不自行出讓</b>者得<b>聲請法院拍賣</b>。</div>
+      <div class="o">原文重點：由管理負責人或管理委員會促請其改善，於三個月內仍未改善者，……得依區分所有權人會議之決議，訴請法院強制其遷離。……訴請法院命區分所有權人出讓其區分所有權及其基地所有權應有部分；於判決確定後三個月內不自行出讓並完成移轉登記手續者，……得聲請法院拍賣之。拍賣所得，於積欠應分擔之費用，其受償順序與第一順位抵押權同。</div></div>
+    <div class="sc must"><div class="h">消費者保護法用詞定義（定義題照原文背） <span class="a">消費者保護法 §2</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依消費者保護法 §2（用詞定義）之規定：<b>消費者</b>指<b>以消費為目的</b>而為交易、使用商品或接受服務者；<b>企業經營者</b>指以設計、生產、製造、輸入、經銷商品或提供服務<b>為營業</b>者；<b>定型化契約條款</b>指企業經營者為與<b>多數消費者</b>訂立同類契約之用，所提出<b>預先擬定</b>之契約條款（<b>不限於書面</b>）；<b>定型化契約</b>指以企業經營者提出之定型化契約條款作為契約內容之<b>全部或一部</b>而訂立之契約。</div>
+      <div class="o">其他款：消費關係、消費爭議、消費訴訟、消費者保護團體（以保護消費者為目的而依法設立登記之法人）、個別磋商條款、通訊交易（消費者於未能檢視商品或服務下訂立）、訪問交易（企業經營者未經邀約而在消費者住居所、工作場所、公共場所等訂立）、分期付款。</div></div>
   </section>
 
   <section class="subject" id="gujia">
     <h2>不動產估價（不動產估價技術規則）</h2>
-    <p class="subnote">估價申論比較常考公式、程序和計算，條號寫在大標加分用。年數是那一堂被考到的年數（含跨堂題）。</p>
+    <p class="subnote">估價申論比較常考公式、程序和計算，條號寫在大標加分用；只有紅字 2 組要背，其他力氣放在公式和「確調線估估選計」。年數是那一堂被考到的年數（含跨堂題）。</p>
     <div class="tbl-wrap"><table>
       <thead><tr><th>主題</th><th>條號</th><th>考過年度</th></tr></thead>
       <tbody>
@@ -200,14 +383,14 @@
         <tr><td>同一供需圈／近鄰地區／類似地區</td><td class="art">§2（第 11～13 款）</td><td class="yr">107</td></tr>
         <tr><td>估價工作法則、現場勘察</td><td class="art">§5</td><td class="yr">109</td></tr>
         <tr><td>應蒐集資料、比較實例四原則</td><td class="art">§11、§12</td><td class="yr">106、108</td></tr>
-        <tr><td>兼採二種以上估價方法</td><td class="art">§14</td><td class="yr">108、114</td></tr>
+        <tr><td>兼採二種以上估價方法</td><td class="art"><span class="m">§14</span></td><td class="yr">108、114</td></tr>
         <tr><td>個別因素判斷</td><td class="art">—</td><td class="yr">112</td></tr>
 
         <tr class="grp"><td colspan="3">成本法<span class="pill p-mid">3年</span></td></tr>
         <tr><td>重建成本／重置成本定義</td><td class="art">§48</td><td class="yr">111</td></tr>
         <tr><td>成本法蒐集資料</td><td class="art">§50、§51</td><td class="yr">111</td></tr>
         <tr><td>經濟／物理耐用年數</td><td class="art">§65</td><td class="yr">111</td></tr>
-        <tr><td>折舊路徑（定額、定率、償債基金）</td><td class="art">§68</td><td class="yr">107、111、112</td></tr>
+        <tr><td>折舊路徑（定額、定率、償債基金）</td><td class="art"><span class="m">§68</span></td><td class="yr">107、111、112</td></tr>
 
         <tr class="grp"><td colspan="3">租金估計<span class="pill p-mid">2年</span></td></tr>
         <tr><td>租金估計考慮因素、實質租金</td><td class="art">§129、§130</td><td class="yr">114</td></tr>
@@ -217,11 +400,43 @@
         <tr><td>折現現金流量分析法 vs 直接資本化法</td><td class="art">—</td><td class="yr">113</td></tr>
       </tbody>
     </table></div>
+    <div class="sgrp">紅字考場句（申論第 1 點直接寫；上面背、灰字是原文）</div>
+    <div class="sc must"><div class="h">兼採二種以上估價方法（短，照原文背） <span class="a">不動產估價技術規則 §14</span><span class="pill p-mid">2年</span></div>
+      <div class="s">依不動產估價技術規則 §14（兼採二種以上估價方法）之規定，不動產估價師應<b>兼採二種以上估價方法</b>推算勘估標的價格；但因<b>情況特殊不能採取</b>二種以上方法估價，並於<b>估價報告書中敘明</b>者，不在此限。</div>
+      <div class="o">原文：不動產估價師應兼採二種以上估價方法推算勘估標的價格。但因情況特殊不能採取二種以上方法估價並於估價報告書中敘明者，不在此限。</div></div>
+    <div class="sc must"><div class="h">建物累積折舊之折舊路徑 <span class="a">不動產估價技術規則 §68</span><span class="pill p-mid">3年</span></div>
+      <div class="s">依不動產估價技術規則 §68（折舊路徑）之規定，建物累積折舊額之計算，應視<b>建物特性及市場動態</b>，選擇<b>等速折舊、初期加速折舊或初期減速折舊</b>路徑之折舊方法；並得考量經濟因素推估<b>賸餘經濟耐用年數</b>，加計已經歷年數求算耐用年數，於<b>估價報告書中敘明</b>。</div>
+      <div class="o">原文第二項：建物累積折舊額之計算，除考量物理與功能因素外，並得按個別建物之實際構成部分與使用狀態，考量經濟因素，觀察維修及整建情形，推估建物之賸餘經濟耐用年數，加計已經歷年數，求算耐用年數，並於估價報告書中敘明。（課本對應：等速＝定額法、初期加速＝定率法、初期減速＝償債基金法；條文本身沒寫這三個方法名稱）</div></div>
   </section>
 
   <footer>
-    資料來源：本機四科申論題彙整（民法、土地法、估價）與經紀法考古題深查報告，原始為全國補習班（陳國）105–114 年題解。條號欄的「—」代表擬答主要考公式或內容，沒有固定條號。
+    資料來源：本機四科申論題彙整（民法、土地法、估價）與經紀法考古題深查報告，原始為全國補習班（陳國）105–114 年題解。條號欄的「—」代表擬答主要考公式或內容，沒有固定條號。民法第 1 點句子取自全國法規資料庫民法條文原文（2026-10-16 抓取）。
   </footer>
 </div>
+<script>
+  (function(){
+    // 表格預設只顯示含紅字條號的列；整組都沒有紅字時，灰底組標題也一起收
+    document.querySelectorAll('section.subject:not(#minfa-sent) table tbody').forEach(function(tb){
+      var grp=null, hasMust=false;
+      function close(){ if(grp && !hasMust) grp.classList.add('lite'); }
+      tb.querySelectorAll('tr').forEach(function(r){
+        if(r.classList.contains('grp')){ close(); grp=r; hasMust=false; return; }
+        if(r.querySelector('.m')) hasMust=true; else r.classList.add('lite');
+      });
+      close();
+    });
+    var a=document.getElementById('allToggle');
+    a.addEventListener('change',function(){ document.body.classList.toggle('showall',a.checked); });
+
+    var t=document.getElementById('hideToggle');
+    t.addEventListener('change',function(){
+      document.body.classList.toggle('hide',t.checked);
+      document.querySelectorAll('.sc.show').forEach(function(c){c.classList.remove('show');});
+    });
+    document.querySelectorAll('.sc').forEach(function(c){
+      c.addEventListener('click',function(){ if(document.body.classList.contains('hide')) c.classList.toggle('show'); });
+    });
+  })();
+</script>
 </body>
 </html>
