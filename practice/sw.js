@@ -1,4 +1,4 @@
-const CACHE = "practice-offline-202610211430";
+const CACHE = "practice-offline-202610211510";
 const FILES = ["./", "index.html", "manifest.json", "icon.png",
   "tudifa/", "tudifa/index.html", "minfa/", "minfa/index.html",
   "gujia/", "gujia/index.html", "jingji/", "jingji/index.html",

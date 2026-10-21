@@ -574,6 +574,16 @@ td li{margin-bottom:2px;}
 <div class="footer">練筆團申論整理｜土地法｜同科依日期排序｜詳解為練筆團提供，比較與提醒為整理時補充</div>
 
 </div>
+<style>
+.float-nav{position:fixed; right:14px; bottom:calc(14px + env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:8px; z-index:50;}
+.float-nav a{display:block; font-size:14px; font-weight:800; color:#fff; background:var(--ink); text-decoration:none; border-radius:22px; padding:9px 16px; box-shadow:0 2px 8px rgba(0,0,0,.25); text-align:center;}
+.float-nav a.top{background:var(--accent);}
+@media print{.float-nav{display:none;}}
+</style>
+<div class="float-nav">
+  <a class="top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">▲ 回本頁目錄</a>
+  <a href="../">☰ 回科目選單</a>
+</div>
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("../sw.js");
