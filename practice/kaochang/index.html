@@ -955,5 +955,14 @@ td li{margin-bottom:2px;}
 <div class="footer">練筆團考場版｜由四科對照版自動產生（產生考場版.js），要改內容請改對照版後重跑｜批改與差異比較請看對照版</div>
 
 </div>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js");
+  if (navigator.serviceWorker.controller) {
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (!reloaded) { reloaded = true; location.reload(); } });
+  }
+}
+</script>
 </body>
 </html>

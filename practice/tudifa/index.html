@@ -574,5 +574,14 @@ td li{margin-bottom:2px;}
 <div class="footer">練筆團申論整理｜土地法｜同科依日期排序｜詳解為練筆團提供，比較與提醒為整理時補充</div>
 
 </div>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js");
+  if (navigator.serviceWorker.controller) {
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (!reloaded) { reloaded = true; location.reload(); } });
+  }
+}
+</script>
 </body>
 </html>

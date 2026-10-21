@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="練筆團">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
 <title>練筆團申論整理</title>
 <style>
 :root{
@@ -112,10 +116,20 @@ td li{margin-bottom:2px;}
   <a href="minfa/">民法</a>
   <a href="gujia/">估價</a>
   <a href="jingji/">經紀法</a>
+  <a href="kaochang/">考場版（四科合併）</a>
 </div>
 
 <div class="footer">已依科別拆成四頁，請點上方科目</div>
 
 </div>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+  if (navigator.serviceWorker.controller) {
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (!reloaded) { reloaded = true; location.reload(); } });
+  }
+}
+</script>
 </body>
 </html>
