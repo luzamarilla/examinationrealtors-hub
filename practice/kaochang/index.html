@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>練筆團考場版｜四科</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#3f6b4f; --ok-bg:#e3eee6;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:#fff;}
+.page{
+  max-width:1200px; margin:0 auto; padding:24px 40px 30px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
+  color:var(--ink); line-height:1.4;
+}
+.page-header{
+  background:var(--ink); color:#fff; border-radius:14px;
+  padding:20px 30px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+.page-header h1{font-size:26px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:8px 16px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:17px; display:block;}
+
+.toc{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.toc a{font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--neutral-bg); border:1px solid var(--line-strong); border-radius:8px; padding:6px 14px;}
+
+.subject{margin-bottom:30px;}
+.subject-head{font-size:20px; font-weight:900; color:#fff; padding:9px 20px; border-radius:10px; margin-bottom:10px; background:var(--accent);}
+.session{margin:0 0 22px; padding-left:12px; border-left:3px solid var(--line-strong);}
+.session-head{font-size:17px; font-weight:900; color:var(--accent); margin:6px 0 4px;}
+.session-head .date{display:inline-block; font-size:13px; color:#fff; background:var(--accent); border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:2px;}
+.session-head .meta{font-size:12.5px; font-weight:400; color:var(--sub); margin-left:8px;}
+.subject-head .meta{font-size:13px; font-weight:400; opacity:.85; margin-left:10px;}
+
+.block-title{font-size:16px; font-weight:800; margin:16px 0 6px; padding-bottom:4px; border-bottom:2px solid var(--line-strong);}
+
+.question{font-size:14px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px; padding:9px 14px;}
+.question p{margin:0 0 4px;}
+
+.photo-note{font-size:12.5px; color:var(--sub); margin-top:4px;}
+
+table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+th{background:var(--ink); color:#fff; padding:7px 12px; text-align:left; font-size:13.5px;}
+td{padding:7px 12px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+tbody tr:nth-child(even) td{background:#fafafa;}
+td.term{font-weight:800; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+td ul{margin:0; padding-left:18px;}
+td li{margin-bottom:2px;}
+
+.law{color:var(--sub); font-size:12px; margin-left:4px;}
+.trap{color:var(--accent2); font-weight:700;}
+.pill{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; white-space:nowrap;}
+.pill.ok{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.pill.part{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.pill.plus{color:var(--neutral); background:var(--neutral-bg); border:1px solid var(--neutral);}
+
+.tips{background:var(--accent-bg); border-left:4px solid var(--accent); border-radius:8px; padding:10px 16px; font-size:14px;}
+.tips ul{margin:0; padding-left:20px;}
+.tips li{margin-bottom:4px;}
+
+.frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
+.frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
+.frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+
+.full p{margin:0 0 6px; line-height:1.7;}
+.full p:last-child{margin-bottom:0;}
+.miss{color:var(--accent); font-weight:700; background:var(--accent-bg); border-radius:3px; padding:0 2px;}
+.diff{color:var(--accent2); font-weight:700; background:var(--accent2-bg); border-radius:3px; padding:0 2px;}
+.mine{font-size:12px; font-weight:400; color:var(--sub); margin-left:2px;}
+.skel{background:#f8fafc;}
+.skel p{margin:0 0 6px; line-height:1.6;}
+.skel p:last-child{margin-bottom:0;}
+.skel b{color:var(--ink);}
+.legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+.ai-note{background:var(--accent2-bg); border:1.5px solid var(--accent2); border-radius:8px; padding:9px 14px; font-size:14px; margin:6px 0 4px;}
+.ai-note b{color:var(--accent2);}
+.pending{border:2px dashed var(--line-strong); border-radius:8px; padding:10px 14px; font-size:14px; color:var(--sub); text-align:center;}
+
+.footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
+
+@media (max-width:700px){
+  .page{padding:16px;}
+  th:nth-child(1), td:nth-child(1){width:22% !important;}
+}
+@media print{
+  @page{size:A4; margin:12mm 10mm;}
+  *{-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+  .page{max-width:100%; padding:0;}
+  .toc{display:none;}
+  .subject{break-before:page;}
+  .subject:first-of-type{break-before:auto;}
+  tr{break-inside:avoid;}
+}
+
+.ai-note{background:var(--accent2-bg); border:1.5px solid var(--accent2); border-radius:8px; padding:9px 14px; font-size:14px; margin:6px 0 4px;}
+.ai-note b{color:var(--accent2);}
+.src{display:inline-block; font-size:12px; font-weight:800; border-radius:10px; padding:1px 9px; margin-left:8px; vertical-align:2px;}
+.src.teacher{color:var(--ok); background:var(--ok-bg); border:1px solid var(--ok);}
+.src.ai{color:var(--accent2); background:var(--accent2-bg); border:1px solid var(--accent2);}
+.toc .sub{display:block; width:100%; font-size:13px; font-weight:900; color:var(--sub); margin:4px 0 -2px;}
+@media (max-width:700px){ table, tbody, tr, td{display:block; width:100% !important;} colgroup, thead{display:none;} td.term{border-right:none;} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <div>
+    <div style="font-size:13px;opacity:.7;margin-bottom:5px;">不動產經紀人考試｜申論題練筆團｜四科合併</div>
+    <h1>練筆團考場版｜四科</h1>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div class="badge"><strong>16 場</strong>土地法・民法・估價・經紀法</div>
+    <div class="badge"><strong>骨架＋考場版</strong>先回想再對答案</div>
+  </div>
+</div>
+
+<div class="toc">
+  <span class="sub">土地法</span>
+  <a href="#tudifa-0925">0925平均地權條例：預售屋換約轉售限制</a>
+  <a href="#tudifa-1002">1002土地稅法＋所得稅法：自用住宅重購退稅</a>
+  <a href="#tudifa-1009">1009土地法 §34-1：共有土地多數決處分要件、持分試算、不適用情形</a>
+  <a href="#tudifa-1016">1016契稅條例：五種移轉原因稅率與納稅義務人、交換房屋差額</a>
+  <span class="sub">民法</span>
+  <a href="#minfa-0922">0922通謀虛偽、無權處分、善意取得、居間報酬</a>
+  <a href="#minfa-0929">0929公同共有分割、頂樓無權占有、無權處分設定抵押、繼承</a>
+  <a href="#minfa-1006">1006已登記不動產遭占有、無權處分設定抵押與典權、實行抵押權、分割共有物</a>
+  <a href="#minfa-1013">1013通謀虛偽、債權人代位、無權處分、租賃物瑕疵、買賣不破租賃</a>
+  <span class="sub">估價</span>
+  <a href="#gujia-0922">0922成本法：重建成本、折舊、定額法計算</a>
+  <a href="#gujia-0929">0929估價作業程序、蒐集資料、比較法應調整情況</a>
+  <a href="#gujia-1006">1006收益法定義與方法、估價計畫、建物收益價格計算</a>
+  <a href="#gujia-1013">1013比較法定義與程序、比較標的排除（§25 調整率上限）</a>
+  <span class="sub">經紀法</span>
+  <a href="#jingji-0925">0925公寓大廈管理條例：區權會、規約、重建</a>
+  <a href="#jingji-1002">1002不動產經紀業管理條例：說明書簽章、隱瞞屋況、連帶賠償</a>
+  <a href="#jingji-1009">1009消費者保護法：定型化契約定義、無效情形、應記載與不得記載事項</a>
+  <a href="#jingji-1016">1016不動產經紀業管理條例：成屋與預售屋定義、營業員資格、外國人充任</a>
+</div>
+
+<section class="subject" id="tudifa">
+  <div class="subject-head">土地法<span class="meta">土地法與土地相關稅法概要</span></div>
+
+  <div class="session" id="tudifa-0925">
+    <div class="session-head"><span class="date">0925</span>平均地權條例：預售屋換約轉售限制<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>日前《平均地權條例》的修正施行，被稱為史上最重打炒房措施，其中一項政策大大影響了預售屋市場，請問目前有關於個人簽訂預售屋買賣契約後的限制交易事項為何？是否有例外之規定？罰則為何？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>關於個人簽訂預售屋買賣契約後之限制交易事項、例外及罰則，學生依平均地權條例（下稱本條例）分述如下：</p></td></tr>
+      <tr><td class="term">（一）個人簽訂預售屋買賣契約後的限制交易事項為何？<div class="law" style="margin:6px 0 0;">約 100 字</div></td><td class="skel"><p><b>名稱</b> 限制預售屋換約轉售</p>
+      <p><b>依</b> 平均地權條例 §47-4 Ⅰ</p>
+      <p><b>不得</b> 讓與或轉售買賣契約與第三人</p>
+      <p><b>不得</b> 自行或委託刊登讓與或轉售廣告</p></td><td class="full"><p><b>一、買受人不得轉售契約及刊登轉售廣告（第 47 條之 4 第 1 項）</b></p>
+        <p>依本條例第 47 條之 4 第 1 項，預售屋或新建成屋買賣契約之買受人，於簽訂買賣契約後：</p>
+        <p>（一）不得讓與或轉售買賣契約與第三人。</p>
+        <p>（二）不得自行或委託刊登讓與或轉售廣告。</p></td></tr>
+      <tr><td class="term">（二）是否有例外之規定？<div class="law" style="margin:6px 0 0;">約 90 字</div></td><td class="skel"><p><b>第 1 款</b> 配偶、直系血親、二親等內旁系血親間</p>
+      <p><b>第 2 款</b> <b>中央</b>主管機關公告＋<b>直轄市、縣（市）</b>主管機關核准</p></td><td class="full"><p><b>二、親屬間轉售，及經中央公告、地方核准者例外（第 47 條之 4 第 1 項但書）</b></p>
+        <p>有下列情形之一者，不受前述限制：</p>
+        <p>（一）配偶、直系血親或二親等內旁系血親間之讓與或轉售。</p>
+        <p>（二）其他經中央主管機關公告得讓與或轉售，並經直轄市、縣（市）主管機關核准者。</p></td></tr>
+      <tr><td class="term">（三）罰則為何？<div class="law" style="margin:6px 0 0;">約 160 字</div></td><td class="skel"><p><b>罰鍰</b> 直轄市、縣（市）主管機關處 50 萬以上 300 萬以下</p>
+      <p><b>刊登廣告</b> → 限期改正或必要處置 → 屆期未改 → 按次處罰</p>
+      <p><b>有交易</b> → 按交易戶（棟）處罰</p></td><td class="full"><p><b>三、處 50 萬元以上 300 萬元以下罰鍰，分兩種情形（第 81 條之 3 第 1 項）</b></p>
+        <p>買受人違反第 47 條之 4 第 1 項，讓與、轉售買賣契約或刊登讓與、轉售廣告者，由直轄市、縣（市）主管機關處新臺幣 50 萬元以上 300 萬元以下罰鍰：</p>
+        <p>（一）刊登廣告者：並應令其限期改正或為必要處置；屆期未改正或處置者，按次處罰。</p>
+        <p>（二）有不動產交易者：按交易戶（棟）處罰。</p></td></tr>
+      <tr><td class="term">結論</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>綜上所述，預售屋買受人原則上不得換約轉售或刊登轉售廣告，僅親屬間或經公告並核准者例外；違反者處 50 萬元以上 300 萬元以下罰鍰，刊登廣告按次處罰，有交易按戶（棟）處罰。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="tudifa-1002">
+    <div class="session-head"><span class="date">1002</span>土地稅法＋所得稅法：自用住宅重購退稅<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>為保障自住需求並減輕民眾換購自住房地租稅負擔，於出售房地所需繳納之土地增值稅及所得稅皆有相關之退稅機制。請問，土地增值稅及房地合一所得稅之自用住宅重購退稅分別須符合哪些要件？而重購退稅是否有次數之限制？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>關於土地增值稅及房地合一所得稅之自用住宅重購退稅要件及次數限制，學生依土地稅法及所得稅法分述如下：</p></td></tr>
+      <tr><td class="term">（一）土地增值稅重購退稅要件？<div class="law" style="margin:6px 0 0;">約 230 字</div></td><td class="skel"><p><b>依</b> 土地稅法 §35、§37</p>
+      <p><b>時間</b> 先賣後買、先買後賣都是 2 年內</p>
+      <p><b>價格</b> 新地價 &gt; 原地價扣掉增值稅後的餘額</p>
+      <p><b>所有權人</b> 同一人</p>
+      <p><b>戶籍</b> 房屋屬本人／配偶／直系親屬所有＋在該地設籍</p>
+      <p><b>面積</b> 重購的地：都市 3 公畝、非都市 7 公畝（賣的地不限）</p>
+      <p><b>使用</b> 出售前 1 年無營業、出租</p>
+      <p><b>管制</b> 重購後 5 年內不得改作他用或再移轉</p></td><td class="full"><p><b>一、土地增值稅重購退稅須符合下列要件（土地稅法第 35 條、第 37 條）</b></p>
+        <p>（一）時間：出售後 2 年內重購，或先購買後 2 年內出售。</p>
+        <p>（二）價格：新購土地地價超過原出售土地地價扣除土地增值稅後之餘額。</p>
+        <p>（三）所有權人：出售及重購土地之所有權人為同一人。</p>
+        <p>（四）戶籍：出售及新購土地之地上房屋為土地所有權人或其配偶、直系親屬所有，並於該地辦竣戶籍登記。</p>
+        <p>（五）面積：重購都市土地未超過 3 公畝，非都市土地未超過 7 公畝；出售土地不受限制。</p>
+        <p>（六）使用：出售前 1 年內未曾供營業使用或出租。</p>
+        <p>重購後 5 年內改作其他用途或再行移轉者，追繳原退還稅款。</p></td></tr>
+      <tr><td class="term">（一）房地合一所得稅重購退稅要件？<div class="law" style="margin:6px 0 0;">約 190 字</div></td><td class="skel"><p><b>依</b> 所得稅法 §14-8</p>
+      <p><b>時間</b> 同樣 2 年內，先賣後買、先買後賣都可以</p>
+      <p><b>所有權人</b> 本人或配偶（不用同一人）</p>
+      <p><b>戶籍</b> 本人／配偶／<b>未成年子女</b>設籍<b>並居住</b></p>
+      <p><b>使用</b> 出售前 1 年無出租、營業、<b>執行業務</b></p>
+      <p><b>補充</b> 不管重購價高低都能退，按比例退</p></td><td class="full"><p><b>二、房地合一所得稅重購退稅須符合下列要件（所得稅法第 14 條之 8）</b></p>
+        <p>（一）時間：出售後 2 年內重購，或先購買後 2 年內出售。</p>
+        <p>（二）所有權人：出售及重購房地以本人或其配偶名義登記。</p>
+        <p>（三）戶籍：本人、配偶及未成年子女於該房屋辦竣戶籍登記並居住。</p>
+        <p>（四）使用：出售前 1 年內無出租、供營業或執行業務使用。</p>
+        <p>重購價額不論高低皆可按比例退稅；重購後 5 年內改作其他用途或再行移轉者，追繳原退還稅款。</p></td></tr>
+      <tr><td class="term">（二）重購退稅是否有次數之限制？<div class="law" style="margin:6px 0 0;">約 90 字</div></td><td class="skel"><p><b>結論</b> 土增稅、房地合一稅的重購退稅<b>都沒有次數限制</b>，符合要件就能申請</p>
+      <p><b>易混</b> 有次數限制的是「自住優惠」：土增稅 10% 一生一次；房地合一 400 萬免稅 6 年 1 次</p></td><td class="full"><p><b>三、兩者重購退稅皆無次數限制</b></p>
+        <p>不論土地增值稅或房地合一所得稅，重購退稅皆無次數限制，符合要件即得申請。</p></td></tr>
+      <tr><td class="term">結論</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>綜上所述，兩種重購退稅均以 2 年內換購、設籍自住、出售前 1 年未出租營業為要件，重購後 5 年內不得改作他用或移轉，且皆無申請次數之限制。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="tudifa-1009">
+    <div class="session-head"><span class="date">1009</span>土地法 §34-1：共有土地多數決處分要件、持分試算、不適用情形<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>共有土地原則上應經全體共有人同意始得處分，惟土地法第 34-1 條設有特別之規定，請問該特別規定中，有關共有人得處分不動產之要件為何？假設甲、乙、丙、丁四人共有一筆土地，持分各 1/4、1/8、1/8、1/2，甲、乙、丙三人想依土地法第 34-1 條規定，將共有土地整筆出售給第三人，是否可行？然而，土地法第 34-1 條並非於任何情況皆適用，請試舉出三種不適用土地法第 34-1 條之情形，及其不得適用之原因？</p>
+      <p class="mine" style="margin:6px 0 0;">題目沒有分小題，下面依你手寫的分法拆成（一）要件、（二）甲乙丙可否出售、（三）不適用情形</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>點出主題＋依<b>土地法 §34-1 及其執行要點</b></p></td><td class="full"><p>關於土地法第 34 條之 1 之要件與適用情形，依據土地法第 34 條之 1 及其執行要點，學生試分述如下：</p></td></tr>
+      <tr><td class="term">（一）多數決處分要件<div class="law" style="margin:6px 0 0;">列舉題，骨架用條列</div></td><td class="skel"><p><b>客體</b> 共有土地或建築改良物</p>
+        <p><b>行為</b> 處分、變更、設定地上權／農育權／不動產役權／典權</p>
+        <p><b>門檻</b> Ⅰ：人數過半＋應有部分過半；應有部分<b>逾 2/3</b> → 人數不計</p>
+        <p><b>通知</b> Ⅱ：事先書面通知，不能通知 → 公告</p>
+        <p><b>補償</b> Ⅲ：對價或補償負連帶清償責任；登記時附受領或提存證明</p></td><td class="full"><p><b>（一）共有人多數決處分之要件（第 34 條之 1 第 1 項～第 3 項）</b></p>
+        <p><span class="diff">1. 客體：共有土地或建築改良物。</span></p>
+        <p><span class="diff">2. 行為：處分、變更及設定地上權、農育權、不動產役權或典權。</span></p>
+        <p>3. 同意門檻（第 34 條之 1 第 1 項）：應經「共有人過半數」及「應有部分合計過半數」同意；但應有部分合計逾 2/3 者，人數不予計算。</p>
+        <p>4. 事先通知（第 34 條之 1 第 2 項）：同意之共有人應事先以書面通知他共有人；無法書面通知者，應公告。</p>
+        <p>5. 對價補償（第 34 條之 1 第 3 項）：同意之共有人對他共有人應得之對價或補償，負連帶清償責任；辦理登記時，應提出他共有人已受領或已提存之證明。</p></td></tr>
+      <tr><td class="term">（二）甲乙丙可否出售</td><td class="skel"><p><b>依</b> §34-1 Ⅰ 雙過半，或應有部分逾 2/3</p>
+        <p><b>本題中</b> 人數 3/4 過半 ✓；應有部分 1/4＋1/8＋1/8＝<b>1/2，未「超過」半數</b> ✗；也未逾 2/3</p>
+        <p><b>因此</b> 不可行，需丁同意；甲乙丙可改賣自己的應有部分，丁得依 Ⅳ 優先承購</p></td><td class="full"><p><b>（二）<span class="diff">甲乙丙不得依第 34 條之 1 出售整筆土地</span></b></p>
+        <p>1. 人數：甲、乙、丙三人，占共有人 3/4，已過半數。</p>
+        <p>2. 應有部分：三人合計 1/4＋1/8＋1/8＝4/8＝1/2，<span class="diff">僅達一半而未超過半數，亦未逾 2/3</span>。</p>
+        <p>3. 結論：不符第 34 條之 1 第 1 項要件，出售整筆土地予第三人仍需丁之同意。但甲、乙、丙可以出售各自應有部分，而丁可以用同一價格優先購買（第 34 條之 1 第 4 項）。</p></td></tr>
+      <tr><td class="term">（三）不適用情形及原因<div class="law" style="margin:6px 0 0;">列舉題，骨架用條列</div></td><td class="skel"><p><b>依</b> 執行要點第 3 點：處分以<b>有償讓與</b>為限，不包括信託、交換所有權、共有物分割</p>
+        <p><b>無償讓與</b> 他共有人拿不到對價補償，Ⅲ 保護落空</p>
+        <p><b>信託</b> 以<b>強烈信賴關係</b>為基礎，不宜多數決代為決定</p>
+        <p><b>交換</b> 位置、條件難謂合理；交換<b>沒有優先購買權</b>的衡平機制（詳解）；對價是不動產，無法分配或提存</p>
+        <p><b>分割</b> 變更<b>權利範圍、位置</b>，各自單獨取得，影響不同意共有人（詳解）；民法 §823、§824、§34-1 Ⅵ 另有程序</p></td><td class="full"><p><b>（三）不適用第 34 條之 1 之三種情形與原因（執行要點第 3 點）</b></p>
+        <p>依執行要點第 3 點之規定，第 34 條之 1 第 1 項所規定之處分，以有償讓與為限，不包括信託行為、交換所有權及共有物分割。分述如下：</p>
+        <p>1. 無償讓與：他共有人無從取得對價或補償，第 34 條之 1 第 3 項之補償保護無從實現，有違兼顧他共有人權益之立法意旨。</p>
+        <p>2. 信託行為：<span class="diff">信託係以委託人與受託人間之強烈信賴關係為基礎，不宜由多數共有人代他共有人決定</span>，故排除。</p>
+        <p><span class="diff">3. 交換所有權：</span><span class="diff">由多數共有人代少數共有人約定交換，其交換位置及條件難謂合理，且第 34 條之 1 於交換未設優先購買權之衡平機制，</span>交換之對價又為不動產而非金錢，無法分配對價或辦理提存，故排除。</p>
+        <p><span class="diff">4.</span> 共有物分割：<span class="diff">分割涉及權利範圍、位置等權利內容之變更，分割後各共有人單獨取得分割後之土地，以多數決為之將影響不同意共有人之權利；且</span>民法第 823 條、第 824 條另有協議分割及裁判分割之規定，第 34 條之 1 第 6 項亦另設調處程序，不得以多數決代之。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="tudifa-1016">
+    <div class="session-head"><span class="date">1016</span>契稅條例：五種移轉原因稅率與納稅義務人、交換房屋差額<span class="src ai">Claude 整理｜老師詳解未出</span></div>
+    <div class="ai-note">⚠️ 本場<b>老師詳解還沒出</b>，骨架與考場版未經老師核對；詳解出來後會再修正。</div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>（一）依我國稅法制度，在移轉土地時須繳納土地增值稅，移轉建物時須繳納契稅，試列舉五種不同移轉原因下之契稅應如何計算，納稅義務人又為何？</p>
+      <p>（二）甲、乙共有一筆土地且各自在該土地上建有房屋，甲所有 A 屋之房屋標準價格為 500,000 元，乙所有 B 屋之房屋標準價格為 700,000 元，某日，甲乙兩人說好交換房屋，請問若在甲另給付差額 200,000 元給乙，作為房屋價差之補償之情況下，甲及乙需申報繳納稅金是否不同？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>兩個主題＋依<b>契稅條例</b></p></td><td class="full"><p>關於契稅之計算與納稅義務人<span class="diff">，及甲乙交換房屋應納之稅額</span>，依據契稅條例之規定，學生試分述如下：</p></td></tr>
+      <tr><td class="term">（一）依我國稅法制度，在移轉土地時須繳納土地增值稅，移轉建物時須繳納契稅，試列舉五種不同移轉原因下之契稅應如何計算，納稅義務人又為何？<div class="law" style="margin:6px 0 0;">列舉題，骨架用條列</div></td><td class="skel"><p><b>範圍</b> §2：買賣、承典、交換、贈與、分割、占有；但書：開徵土增稅區域之土地免契稅</p>
+        <p><b>稅基</b> §13 契價＝標準價格</p>
+        <p><b>6%</b> 買賣（買受人 §4）、贈與（受贈人 §7）、占有（取得所有權之人 §9）</p>
+        <p><b>4%</b> 典權（典權人 §5）</p>
+        <p><b>2%</b> 分割（分割人 §8）、交換（各就承受部分 §6）</p></td><td class="full"><p><b>（一）契稅計算方式與納稅義務人<span class="diff">（第 2 條、第 3 條～第 9 條、第 13 條）</span></b></p>
+        <p>1. 課徵範圍及稅基（第 2 條、第 13 條）</p>
+        <p>（1）不動產之買賣、承典、交換、贈與、分割或因占有而取得所有權者，均應申報繳納契稅。但在開徵土地增值稅區域之土地，免徵契稅，所以實務上契稅之課徵對象為建物。</p>
+        <p>（2）契稅以「契價」乘以稅率計算，契價以當地不動產評價委員會評定之標準價格為準。</p>
+        <p>2. 各移轉原因之稅率與納稅義務人（第 3 條～第 9 條）</p>
+        <p>（1）買賣：稅率為契價 6%，由買受人申報納稅（第 4 條）。</p>
+        <p>（2）贈與：稅率為契價 6%，由受贈人估價立契，申報納稅（第 7 條）。</p>
+        <p>（3）典權：稅率為契價 4%，由典權人申報納稅（第 5 條）。</p>
+        <p>（4）占有：稅率為契價 6%，由占有不動產並依法取得所有權之人申報納稅（第 9 條）。</p>
+        <p>（5）分割：稅率為契價 2%，由分割人估價立契，申報納稅（第 8 條）。</p>
+        <p>3. 結論：契稅依移轉原因不同，稅率分為 6%、4%、2% 三級，納稅義務人原則上是取得權利的一方。</p></td></tr>
+      <tr><td class="term">（二）甲、乙共有一筆土地且各自在該土地上建有房屋，甲所有 A 屋之房屋標準價格為 500,000 元，乙所有 B 屋之房屋標準價格為 700,000 元，某日，甲乙兩人說好交換房屋，請問若在甲另給付差額 200,000 元給乙，作為房屋價差之補償之情況下，甲及乙需申報繳納稅金是否不同？</td><td class="skel"><p><b>依</b> §6 交換 2%、各就承受部分；差額依買賣 6%</p>
+        <p><b>本題中</b> 交換部分以較低的 50 萬計；甲多付 20 萬 → 甲是買受人；土地沒移轉 → 不課土增稅</p>
+        <p><b>因此</b> 甲 22,000、乙 10,000 → 不同</p></td><td class="full"><p><b>（二）甲應納 22,000 元，乙應納 10,000 元，二者不同（第 6 條）</b></p>
+        <p>1. 依契稅條例第 6 條規定，交換契稅由交換人各就承受部分申報納稅；有給付差額者，差額依買賣稅率 6% 課徵。</p>
+        <p>2. 本題甲、乙交換房屋，交換部分以較低的 50 萬計算，兩人各課 2%；甲另外付給乙差額 20 萬，就該部分甲是買受人，再課 6%。土地無移轉，不課土地增值稅。</p>
+        <p>甲＝500,000 × 2%＋200,000 × 6%＝22,000 元</p>
+        <p>乙＝500,000 × 2%＝10,000 元</p>
+        <p>因此甲乙納稅金額不同<span class="diff">（第 6 條）</span>。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="subject" id="minfa">
+  <div class="subject-head">民法<span class="meta">民法概要</span></div>
+
+  <div class="session" id="minfa-0922">
+    <div class="session-head"><span class="date">0922</span>通謀虛偽、無權處分、善意取得、居間報酬<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>甲於民國 90 年出資購買 A 地，並為了避稅，名義上將 A 地贈與給丙，但實際上與丙簽訂租賃契約，約定 A 地仍由甲所有，丙並須按月繳付租金，且丙未經甲之同意，不得擅自處分 A 地。嗣後，於民國 115 年 5 月 20 日委任乙代為尋找 A 地之買主，委任期間為 3 個月，乙並於民國 115 年 8 月 19 日介紹買方丁予丙認識，於同日洽談 A 地買賣條件，為求謹慎，丁並於當日先行匯付定金新台幣 200 萬元至丙之帳戶。試問：</p>
+      <p>（一）甲及丙間贈與行為之法律效力為何？</p>
+      <p>（二）甲及丙間租賃契約之法律效力為何？</p>
+      <p>（三）丙將 A 地出售予丁之法律效力為何？</p>
+      <p>（四）甲得如何對丙主張權利？</p>
+      <p>（五）甲得否請求丁返還 A 地所有權？</p>
+      <p>（六）乙對丙有何種請求權？</p>
+      <p class="photo-note" style="margin:6px 0 0;">題目卷寫「95 年」「乙未經甲之同意」，詳解卷更正為「90 年」「丙未經甲之同意」，這裡以詳解卷為準</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）甲及丙間贈與行為之法律效力為何？<div class="law" style="margin:6px 0 0;">約 120 字</div></td><td class="skel"><p><b>依</b> §153 Ⅰ 契約成立、§406 贈與（無償給與、他方允受）</p>
+      <p><b>依</b> §87 Ⅰ 通謀虛偽 → 無效</p>
+      <p><b>本題中</b> A 地無償移轉＋丙允受 → 形式上<b>看似</b>有效</p>
+      <p><b>但是</b> 另訂租約（A 地仍歸甲＋丙付租金）→ 無贈與真意＋雙方明知 → 通謀虛偽</p>
+      <p><b>因此</b> 贈與契約<b>無效</b></p></td><td class="full"><p><b>一、甲丙間贈與行為無效（第 87 條第 1 項）</b></p>
+        <p>（一）依民法第 87 條第 1 項，表意人與相對人通謀而為虛偽意思表示者，其意思表示無效。</p>
+        <p>（二）本題甲為避稅，名義上將 A 地贈與丙，卻另約定 A 地仍歸甲所有、丙須按月給付租金，可見雙方均無贈與真意，且彼此明知，屬通謀虛偽意思表示。</p>
+        <p>（三）因此，甲丙間贈與依第 87 條第 1 項無效。</p></td></tr>
+      <tr><td class="term">（二）甲及丙間租賃契約之法律效力為何？<div class="law" style="margin:6px 0 0;">約 110 字</div></td><td class="skel"><p><b>依</b> §153 Ⅰ 契約成立、§421 租賃（物租與他方使用收益＋他方付租金）</p>
+      <p><b>本題中</b> 標的物 A 地、使用收益等必要之點已合意，非必要之點也沒有反對</p>
+      <p><b>因此</b> 租賃契約<b>有效</b></p></td><td class="full"><p><b>二、甲丙間租賃契約有效（第 153 條第 1 項、第 421 條）</b></p>
+        <p>（一）依第 153 條第 1 項，當事人互相表示意思一致者，契約即為成立；依第 421 條，稱租賃者，謂當事人約定一方以物租與他方使用收益，他方支付租金之契約。</p>
+        <p>（二）本題甲丙就租賃標的 A 地及租金已達成合意，具備租賃契約必要之點。</p>
+        <p>（三）因此，甲丙間租賃契約有效成立。</p></td></tr>
+      <tr><td class="term">（三）丙將 A 地出售予丁之法律效力為何？<div class="law" style="margin:6px 0 0;">約 170 字</div></td><td class="skel"><p><b>依</b> §118 Ⅰ 無權處分 → 權利人承認前效力未定</p>
+      <p><b>本題中</b>（買賣）債權行為不以有處分權為必要 → 合意即有效（§153 Ⅰ）</p>
+      <p><b>本題中</b>（移轉）丙是登記名義人 → 看似有權處分</p>
+      <p><b>但是</b> 贈與＋移轉登記都是通謀虛偽而無效 → 真正所有人是甲 → 丙無處分權</p>
+      <p><b>因此</b> 買賣<b>有效</b>；移轉屬無權處分，甲承認前<b>效力未定</b></p></td><td class="full"><p><b>三、買賣契約有效，移轉登記屬無權處分、效力未定（第 118 條第 1 項）</b></p>
+        <p>（一）債權行為：買賣契約之成立不以出賣人有處分權為必要。若丙丁就 A 地買賣必要之點已達成合意，依第 153 條第 1 項，買賣契約有效成立。</p>
+        <p>（二）物權行為：依第 118 條第 1 項，無權利人就權利標的物所為之處分，經有權利人之承認始生效力。本題甲丙間贈與及移轉登記均屬通謀虛偽而無效，A 地真正所有人仍為甲，丙雖為登記名義人，仍屬無處分權人。</p>
+        <p>（三）因此，丙將 A 地移轉登記予丁屬無權處分，於甲承認前效力未定。</p></td></tr>
+      <tr><td class="term">（四）甲得如何對丙主張權利？<div class="law" style="margin:6px 0 0;">約 330 字，四個請求權各 2～3 行</div></td><td class="skel"><p><b>不能</b> §767：A 地已移轉給丁，丙已不占有 → 不能請求丙返還</p>
+      <p><b>依</b> §226 Ⅰ、§256：可歸責致給付不能 → 損害賠償＋解約</p>
+      <p><b>本題中</b> 租約消滅後丙應返還 A 地，卻賣給丁 → 給付不能 → 賠償＋解除租約</p>
+      <p><b>依</b> §179：丙收價金無法律上原因（權益歸屬說）→ 返還價金</p>
+      <p><b>依</b> §184 Ⅰ前段：丙故意＋甲所有權受損＋因果關係 → 損害賠償</p>
+      <p><b>因此</b> 甲可主張債務不履行、不當得利、侵權行為三種權利</p></td><td class="full"><p><b>四、甲對丙之權利</b></p>
+        <p>（一）<b>不得依第 767 條第 1 項前段請求返還 A 地</b>：A 地已移轉登記予丁，丙已非占有人，不符「無權占有」要件。</p>
+        <p>（二）<b>債務不履行（第 226 條第 1 項、第 256 條）</b>：依第 226 條第 1 項，因可歸責於債務人之事由致給付不能者，債權人得請求賠償損害，並得依第 256 條解除契約。本題丙依租賃契約負返還 A 地義務，卻將 A 地出售並移轉登記予丁，致給付不能，且可歸責於丙。因此，甲得請求損害賠償並解除租賃契約。</p>
+        <p>（三）<b>不當得利（第 179 條）</b>：依第 179 條，無法律上之原因而受利益，致他人受損害者，應返還其利益。本題丙非真正所有人，出售 A 地受領價金，依權益歸屬說，該價金應歸屬甲。因此，甲得請求丙返還所受利益。</p>
+        <p>（四）<b>侵權行為（第 184 條第 1 項前段）</b>：依第 184 條第 1 項前段，因故意或過失不法侵害他人之權利者，負損害賠償責任。本題丙明知 A 地屬甲，仍故意出售並移轉登記予丁，致甲所有權受損害，且有因果關係。因此，甲得請求丙負損害賠償責任。</p></td></tr>
+      <tr><td class="term">（五）甲得否請求丁返還 A 地所有權？<div class="law" style="margin:6px 0 0;">約 150 字</div></td><td class="skel"><p><b>依</b> §759-1 Ⅱ 信賴登記的善意第三人已完成登記 → 物權變動有效</p>
+      <p><b>本題中</b> 丙移轉給丁屬無權處分，原本效力未定</p>
+      <p><b>但是</b> 丁不知通謀虛偽、信賴丙的登記外觀交易 → 善意第三人</p>
+      <p><b>因此</b> 丁善意取得 → 不符 §767 Ⅰ → 甲<b>不得</b>請求丁返還</p></td><td class="full"><p><b>五、甲不得請求丁返還 A 地（第 759 條之 1 第 2 項）</b></p>
+        <p>（一）依第 759 條之 1 第 2 項，因信賴不動產登記之善意第三人，已依法律行為為物權變動之登記者，其變動之效力，不因原登記物權之不實而受影響。</p>
+        <p>（二）本題若丁不知甲丙間通謀虛偽之事實，係信賴丙為登記名義人而受讓 A 地並完成登記，屬善意第三人。</p>
+        <p>（三）因此，丁善意取得 A 地所有權，甲不得依第 767 條第 1 項請求丁返還。</p>
+        <p class="mine">待確認：要不要補一句第 87 條第 1 項但書「其無效不得對抗善意第三人」（約多 30 字）</p></td></tr>
+      <tr><td class="term">（六）乙對丙有何種請求權？<div class="law" style="margin:6px 0 0;">約 90 字</div></td><td class="skel"><p><b>依</b> §568 Ⅰ 契約因居間人報告或媒介而成立 → 得請求報酬</p>
+      <p><b>本題中</b> 丙丁契約因乙介紹而成立</p>
+      <p><b>但是</b> 縱使成立在居間期限之後，也不影響</p>
+      <p><b>因此</b> 乙得向丙請求<b>居間報酬</b></p></td><td class="full"><p><b>六、乙得請求居間報酬（第 568 條第 1 項）</b></p>
+        <p>（一）依第 568 條第 1 項，居間人以契約因其報告或媒介而成立者為限，得請求報酬。</p>
+        <p>（二）本題丙丁間買賣契約，係因乙之介紹媒介而成立。</p>
+        <p>（三）因此，乙得依第 568 條第 1 項請求報酬。</p>
+        <p class="mine">待確認：律師寫「請求丙給付」，但委任乙的是甲；請求對象先不寫，待查證</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="minfa-0929">
+    <div class="session-head"><span class="date">0929</span>公同共有分割、頂樓無權占有、無權處分設定抵押、繼承<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>甲、乙、丙、丁、戊、己、庚七人為壬之共同繼承人，傑斯柏公寓大廈為壬出資興建並完成保存登記之一棟七層樓建築。於壬死亡後，甲為了想要擁有獨立使用空間，遂找來乙、丙共同商議，希望能與其他共同繼承人協議使用空間。嗣後，甲、乙、丙、丁、戊、己、庚七人達成協議，分別取得一樓至七樓的專有使用權。而七樓因此成為庚之專有部分，庚並圖地利之便，於頂樓加蓋 B 水泥屋，花費數百萬裝潢後供其自住，並以傑斯伯公寓及其頂樓用地設定抵押權予銀行辦理貸款。嗣後，庚於民國 114 年 12 月 20 日逝世，並由辛為其唯一之繼承人。試問：</p>
+      <p>（一）甲、乙、丙、丁、戊、己、庚七人得否請求分割傑斯伯公寓之所有權？</p>
+      <p>（二）甲、乙、丙、丁、戊、己得否請求庚返還頂樓用地？</p>
+      <p>（三）倘若甲、乙、丙、丁、戊、己請求庚返還頂樓用地並拆除 B 水泥屋，庚得否請求甲、乙、丙、丁、戊、己賠償其因裝潢所支出之數百萬費用？</p>
+      <p>（四）甲、乙、丙、丁、戊、己得否請求庚塗銷傑斯伯公寓及其頂樓用地之抵押權登記？</p>
+      <p>（五）若甲、乙、丙、丁、戊、己於 115 年 12 月 19 日始發現前述事實，得否請求辛返還頂樓用地？</p>
+      <p class="photo-note" style="margin:6px 0 0;">題目原文「傑斯柏」「傑斯伯」混用，照錄</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）甲、乙、丙、丁、戊、己、庚七人得否請求分割傑斯伯公寓之所有權？<div class="law" style="margin:6px 0 0;">約 230 字</div></td><td class="skel"><p><b>依</b> §1164 繼承人得隨時請求分割<b>遺產</b></p>
+      <p><b>依</b> §1151、§829 遺產分割前公同共有 → 公同共有關係消滅前，不得請求分割（共有物）</p>
+      <p><b>本題中</b> 七人因繼承取得公寓 → 公同共有</p>
+      <p><b>因此</b> 現在<b>不得</b>直接請求分割公寓；應先依 §1164 分割遺產，公同共有關係消滅後，再請求分割</p></td><td class="full"><p><b>一、七人現在不得請求分割公寓所有權，應先分割遺產（第 1151 條、第 829 條、第 1164 條）</b></p>
+        <p>（一）依第 1151 條，繼承人有數人時，在分割遺產前，各繼承人對於遺產全部為公同共有；依第 829 條，公同關係存續中，各公同共有人不得請求分割其公同共有物。</p>
+        <p>（二）本題七人因繼承壬之遺產而取得傑斯伯公寓，屬公同共有；約定各自使用一至七樓僅為分管協議，公同共有關係並未消滅。</p>
+        <p>（三）因此，七人目前不得請求分割公寓所有權；惟依第 1164 條，繼承人得隨時請求分割遺產，待公同共有關係消滅後，再請求分割。</p></td></tr>
+      <tr><td class="term">（二）甲、乙、丙、丁、戊、己得否請求庚返還頂樓用地？<div class="law" style="margin:6px 0 0;">約 230 字</div></td><td class="skel"><p><b>依</b> §820 Ⅰ 共有物管理 → 可成立分管協議</p>
+      <p><b>依</b> §767 Ⅰ前段 無權占有 → 所有物返還請求權</p>
+      <p><b>依</b> §821 各共有人得就共有物全部為本於所有權之請求</p>
+      <p><b>本題中</b> 分管協議只分了一到七樓，<b>沒有</b>分頂樓 → 庚無頂樓專用權</p>
+      <p><b>但是</b> 庚未經同意占用全部頂樓 → 無權占有</p>
+      <p><b>因此</b> 甲至己得依 §767 Ⅰ前段＋§821 請求庚返還頂樓用地<b>予全體共有人</b></p></td><td class="full"><p><b>二、甲至己得請求庚返還頂樓用地予全體共有人（第 767 條第 1 項前段、第 821 條）</b></p>
+        <p>（一）依第 767 條第 1 項前段，所有人對於無權占有其所有物者，得請求返還之；依第 821 條，各共有人得就共有物之全部為本於所有權之請求，但回復共有物之請求，僅得為共有人全體之利益為之，此於公同共有依第 828 條第 2 項準用之。</p>
+        <p>（二）本題分管協議僅約定一至七樓之使用，未及於頂樓；庚未經其他共有人同意，占用全部頂樓並加蓋 B 屋，屬無權占有。</p>
+        <p>（三）因此，甲至己得依第 767 條第 1 項前段、第 821 條請求庚返還頂樓用地予全體共有人。</p></td></tr>
+      <tr><td class="term">（三）倘若甲、乙、丙、丁、戊、己請求庚返還頂樓用地並拆除 B 水泥屋，庚得否請求甲、乙、丙、丁、戊、己賠償其因裝潢所支出之數百萬費用？<div class="law" style="margin:6px 0 0;">約 210 字</div></td><td class="skel"><p><b>依</b> §184 Ⅰ前段 侵權行為：故意過失＋<b>不法</b>侵害權利</p>
+      <p><b>本題中</b> 拆屋使裝潢付諸一炬 → 庚有損害＋因果關係，看似成立</p>
+      <p><b>但是</b> 甲至己是依 §767 Ⅰ前段、§821 正當行使權利 → <b>不具不法性</b></p>
+      <p><b>因此</b> 不構成侵權行為，庚<b>不得</b>請求賠償</p></td><td class="full"><p><b>三、庚不得請求賠償裝潢費用（第 184 條第 1 項前段）</b></p>
+        <p>（一）依第 184 條第 1 項前段，因故意或過失，不法侵害他人之權利者，負損害賠償責任。</p>
+        <p>（二）本題甲至己請求拆屋還地，雖使庚之裝潢費用付諸一炬，但係依第 767 條第 1 項前段、第 821 條正當行使權利，不具不法性。</p>
+        <p>（三）因此，不構成侵權行為，庚不得請求賠償。</p>
+        <p>（四）補充：庚明知頂樓非其專用仍占用，屬惡意占有人，依第 957 條僅得就保存占有物之必要費用，依無因管理規定請求償還；裝潢非必要費用，亦不得請求。</p></td></tr>
+      <tr><td class="term">（四）甲、乙、丙、丁、戊、己得否請求庚塗銷傑斯伯公寓及其頂樓用地之抵押權登記？<div class="law" style="margin:6px 0 0;">約 250 字</div></td><td class="skel"><p><b>依</b> §118 Ⅰ 無權處分 → 權利人承認前效力未定</p>
+      <p><b>依</b> §860 設定抵押權＝物權處分行為</p>
+      <p><b>依</b> §767 Ⅰ中段 妨害所有權 → 除去妨害請求權</p>
+      <p><b>本題中</b> 頂樓為全體共有，庚未經全體同意設定抵押 → 無權處分；甲至己不承認 → 無效</p>
+      <p><b>因此</b> 抵押登記妨害所有權 → 得依 §767 Ⅰ中段（詳解另加 §179）請求塗銷</p></td><td class="full"><p><b>四、甲至己得請求庚塗銷抵押權登記（第 118 條第 1 項、第 767 條第 1 項中段）</b></p>
+        <p>（一）依第 828 條第 3 項，公同共有物之處分，應得公同共有人全體之同意；依第 118 條第 1 項，無權利人就權利標的物所為之處分，經有權利人之承認始生效力；依第 767 條第 1 項中段，所有人對於妨害其所有權者，得請求除去之。</p>
+        <p>（二）本題公寓及頂樓用地為七人公同共有，設定抵押權屬處分行為（第 860 條），庚未經全體同意即設定，屬無權處分；甲至己不承認，該處分行為無效，但抵押權登記仍存在，妨害甲至己之所有權。</p>
+        <p>（三）因此，甲至己得依第 767 條第 1 項中段請求庚塗銷抵押權登記。</p>
+        <p class="mine">律師另列第 179 條不當得利；考場版先不寫，理由見上方詳解疑點</p></td></tr>
+      <tr><td class="term">（五）若甲、乙、丙、丁、戊、己於 115 年 12 月 19 日始發現前述事實，得否請求辛返還頂樓用地？<div class="law" style="margin:6px 0 0;">約 250 字</div></td><td class="skel"><p><b>依</b> §759 因繼承取得不動產物權 → 不待登記即取得（登記後才能處分）</p>
+      <p><b>本題中</b> 庚 114/12/20 死亡 → 辛繼承庚的權利義務 → 成為 B 屋權利人、無權占有頂樓</p>
+      <p><b>因此</b> 甲至己得請求辛返還頂樓用地</p></td><td class="full"><p><b>五、甲至己得請求辛返還頂樓用地（第 1148 條第 1 項、第 767 條第 1 項前段）</b></p>
+        <p>（一）依第 1148 條第 1 項，繼承人自繼承開始時，承受被繼承人財產上之一切權利、義務；依第 759 條，因繼承於登記前已取得不動產物權者，須經登記始得處分。</p>
+        <p>（二）本題庚於 114 年 12 月 20 日死亡，辛為唯一繼承人，於繼承開始時承受 B 屋之權利，並繼續無權占有頂樓。又已登記不動產所有人之返還請求權，無消滅時效之適用（釋字第 107 號），甲至己於 115 年 12 月 19 日始發現，仍得請求。</p>
+        <p>（三）因此，甲至己得依第 767 條第 1 項前段、第 821 條請求辛返還頂樓用地予全體共有人。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="minfa-1006">
+    <div class="session-head"><span class="date">1006</span>已登記不動產遭占有、無權處分設定抵押與典權、實行抵押權、分割共有物<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>甲、乙、丙三人於民國（下同）95 年 10 月 10 日共同出資購買Ａ屋與Ａ屋前之Ｂ空地，Ａ屋上並有非獨立部分之頂樓加蓋物，並登記由三人共同所有。然而，該三人自斯時起，因各自出國深造及工作，遲遲未回國，故Ａ屋、Ｂ空地均遭善意不知情的丁占有。某日，由於丁臨時需要資金周轉，情急之下，以Ａ屋向漢克銀行設定抵押權，並以Ｂ空地向以琳當鋪設定典權，約定期限為 31 年。試問：</p>
+      <p>（一）Ａ屋、Ｂ地之所有權應歸屬何人所有？</p>
+      <p>（二）丁設定抵押權及與以琳當鋪成立典權關係之法律效力為何？</p>
+      <p>（三）若甲、乙與丙於 111 年 10 月 11 日發現丁將Ａ屋與Ｂ地做如上處分，該三人得否請求返還？若得請求返還，其法律依據為何？若不得請求返還，其法律上原因為何？</p>
+      <p>（四）若嗣後丁無力償還貸款，漢克銀行得如何行使權利？其行使權利之效力是否及於Ａ屋上之頂樓加蓋物？法律依據為何？若時間已經過 20 年，結果是否有所不同？</p>
+      <p>（五）承上，若於抵押權存續期間，甲、乙與丙分割共有物，則漢克銀行之權利是否將受到影響？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）Ａ屋、Ｂ地之所有權應歸屬何人所有？<div class="law" style="margin:6px 0 0;">約 280 字</div></td><td class="skel"><p><b>依</b> §758 Ⅰ 不動產物權依法律行為取得，非經登記不生效力</p>
+      <p><b>依</b> §759-1 Ⅰ 經登記 → 推定登記權利人適法有此權利</p>
+      <p><b>依</b> §769、§770 時效取得以占有他人「<b>未登記</b>」不動產為要件</p>
+      <p><b>本題中</b> A 屋、B 地已登記為甲乙丙共有；丁雖善意占有</p>
+      <p><b>但是</b> 已登記不動產 → 無時效取得適用，丁也不能請求登記為所有人</p>
+      <p><b>因此</b> A 屋（含頂樓加蓋物）、B 地仍屬甲乙丙共有</p></td><td class="full"><p><b>一、A 屋（含頂樓加蓋物）及 B 地仍屬甲、乙、丙三人共有（第 758 條第 1 項、第 759 條之 1 第 1 項、第 769 條、第 770 條）</b></p>
+        <p>（一）依第 758 條第 1 項，不動產物權依法律行為而取得者，非經登記，不生效力；依第 759 條之 1 第 1 項，不動產物權經登記者，推定登記權利人適法有此權利；又依第 769 條、第 770 條，取得時效以占有他人「未登記」之不動產為要件。</p>
+        <p>（二）本題 A 屋、B 地已登記為甲、乙、丙共有，丁雖善意占有，因屬已登記之不動產，無從依時效取得，亦不得請求登記為所有人；頂樓加蓋物不具獨立性，屬 A 屋之一部分。</p>
+        <p>（三）因此，A 屋（含頂樓加蓋物）及 B 地仍屬甲、乙、丙三人分別共有，應有部分依第 817 條第 2 項推定均等。</p></td></tr>
+      <tr><td class="term">（二）丁設定抵押權及與以琳當鋪成立典權關係之法律效力為何？<div class="law" style="margin:6px 0 0;">約 200 字</div></td><td class="skel"><p><b>依</b> §118 Ⅰ 無權利人處分 → 經有權利人承認始生效力</p>
+      <p><b>本題中</b> 丁非所有人，未經甲乙丙同意設定抵押權（A 屋）、典權（B 地）→ 無權處分</p>
+      <p><b>因此</b> 甲乙丙承認前，效力未定</p>
+      <p class="mine">加碼：即使承認，典權約定 31 年 → 依 §912 縮短為 30 年</p></td><td class="full"><p><b>二、丁設定抵押權及典權均屬無權處分，於甲、乙、丙承認前效力未定（第 118 條第 1 項）</b></p>
+        <p>（一）依第 118 條第 1 項，無權利人就權利標的物所為之處分，經有權利人之承認始生效力。</p>
+        <p>（二）本題丁非 A 屋、B 地之所有人，未經甲、乙、丙同意，以 A 屋設定抵押權、以 B 地設定典權，均屬無權處分。</p>
+        <p>（三）因此，該二處分行為於甲、乙、丙承認前效力未定，拒絕承認則確定無效；若經承認，典權約定期限 31 年，依第 912 條逾 30 年者縮短為 30 年。</p></td></tr>
+      <tr><td class="term">（三）若甲、乙與丙於 111 年 10 月 11 日發現丁將Ａ屋與Ｂ地做如上處分，該三人得否請求返還？若得請求返還，其法律依據為何？若不得請求返還，其法律上原因為何？<div class="law" style="margin:6px 0 0;">約 390 字</div></td><td class="skel"><p><b>依</b> §767 Ⅰ前段 無權占有 → 返還請求權；§767 Ⅰ中段 妨害所有權 → 除去妨害請求權</p>
+      <p><b>依</b> §821 各共有人得就共有物全部為本於所有權之請求</p>
+      <p><b>依</b> §125 請求權 15 年時效；<b>但是</b>釋字第 107 號：已登記不動產的返還請求權不適用消滅時效（你另寫釋字第 164 號：除去妨害請求權也不適用）</p>
+      <p><b>本題中</b> 甲乙丙不承認 → 丁的處分無效；抵押權登記妨害所有權；以琳當鋪無權占有 B 地</p>
+      <p><b>因此</b> 依 §821＋§767 Ⅰ中段 請求<b>漢克銀行</b>塗銷抵押權登記；依 §821＋§767 Ⅰ前段 請求<b>以琳當鋪</b>塗銷典權登記、返還 B 地；雖逾 15 年，不受影響</p></td><td class="full"><p><b>三、甲、乙、丙得請求塗銷登記及返還占有，不受消滅時效影響（第 767 條第 1 項前段、中段、第 821 條）</b></p>
+        <p>（一）依第 767 條第 1 項前段、中段，所有人對於無權占有其所有物者，得請求返還之；對於妨害其所有權者，得請求除去之。依第 821 條，各共有人對於第三人，得就共有物之全部為本於所有權之請求，但回復共有物之請求，僅得為共有人全體之利益為之。又已登記不動產所有人之返還請求權及除去妨害請求權，無第 125 條消滅時效之適用（釋字第 107 號、第 164 號）。</p>
+        <p>（二）本題甲、乙、丙拒絕承認，丁之處分行為無效，但抵押權登記仍存在，妨害其所有權；B 地已出典交付以琳當鋪，屬無權占有；A 屋仍由丁占有。雖自 95 年起已逾 15 年，仍不罹於時效。</p>
+        <p>（三）因此，甲、乙、丙得依第 821 條、第 767 條第 1 項中段，請求漢克銀行塗銷抵押權登記；依第 821 條、第 767 條第 1 項前段、中段，請求以琳當鋪塗銷典權登記並返還 B 地，及請求丁返還 A 屋，予全體共有人。</p></td></tr>
+      <tr><td class="term">（四）若嗣後丁無力償還貸款，漢克銀行得如何行使權利？其行使權利之效力是否及於Ａ屋上之頂樓加蓋物？法律依據為何？若時間已經過 20 年，結果是否有所不同？<div class="law" style="margin:6px 0 0;">約 370 字</div></td><td class="skel"><p><b>依</b> §873 債權屆清償期未受清償 → 得聲請法院拍賣抵押物</p>
+      <p><b>依</b> §862 Ⅲ 附加於建築物而不具獨立性之部分 → 抵押權效力所及</p>
+      <p><b>依</b> §880 請求權時效（15 年）完成後，5 年間不實行抵押權 → 抵押權消滅</p>
+      <p><b>本題中</b> 丁無力清償 → 銀行得聲請拍賣 A 屋；頂樓加蓋物不具獨立性 → 一併拍賣；經過 20 年（15＋5）→ 抵押權消滅</p>
+      <p><b>但是</b> 抵押權設定是無權處分 → 甲乙丙拒絕承認並請求塗銷，銀行即無從行使</p></td><td class="full"><p><b>四、漢克銀行得聲請拍賣 A 屋，效力及於頂樓加蓋物；經過 20 年則抵押權消滅（第 873 條、第 862 條第 3 項、第 880 條）</b></p>
+        <p>（一）依第 873 條，抵押權人於債權已屆清償期而未受清償者，得聲請法院拍賣抵押物，就其賣得價金而受償；依第 862 條第 3 項，以建築物為抵押者，其附加於該建築物而不具獨立性之部分，亦為抵押權效力所及；依第 880 條，以抵押權擔保之債權，其請求權已因時效而消滅，抵押權人於時效完成後 5 年間不實行其抵押權者，其抵押權消滅。</p>
+        <p>（二）本題丁屆期未清償，漢克銀行得聲請法院拍賣 A 屋；頂樓加蓋物不具獨立性，亦為抵押權效力所及，應一併拍賣。若債權請求權 15 年時效完成後，又經過 5 年未實行抵押權，合計 20 年，抵押權即消滅。</p>
+        <p>（三）因此，經過 20 年後漢克銀行不得再聲請拍賣，結果有所不同。惟該抵押權係丁無權處分所設定，若甲、乙、丙拒絕承認並請求塗銷，漢克銀行即無從行使。</p></td></tr>
+      <tr><td class="term">（五）承上，若於抵押權存續期間，甲、乙與丙分割共有物，則漢克銀行之權利是否將受到影響？<div class="law" style="margin:6px 0 0;">約 280 字</div></td><td class="skel"><p><b>依</b> §868 抵押之不動產經分割 → 抵押權不因此受影響</p>
+      <p><b>本題中</b> 甲乙丙分割 A 屋</p>
+      <p><b>因此</b> 漢克銀行抵押權不受影響</p></td><td class="full"><p><b>五、甲、乙、丙分割共有物，漢克銀行之抵押權不受影響（第 868 條）</b></p>
+        <p>（一）依第 868 條，抵押之不動產如經分割，或讓與其一部，其抵押權不因此而受影響。</p>
+        <p>（二）本題抵押權設定於 A 屋全部，並非設定於某共有人之應有部分，分割後抵押權仍存在於分割後之各部分。</p>
+        <p>（三）因此，漢克銀行之抵押權不受影響。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="minfa-1013">
+    <div class="session-head"><span class="date">1013</span>通謀虛偽、債權人代位、無權處分、租賃物瑕疵、買賣不破租賃<span class="src ai">Claude 整理｜老師詳解未出</span></div>
+    <div class="ai-note">⚠️ 本場<b>老師詳解還沒出</b>，骨架與考場版未經老師核對；詳解出來後會再修正。</div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>甲與乙為多年好友，然而，乙因為過失導致戊受重傷，乙為了避免自己的 Ａ 屋被法院拍賣，遂與甲共謀，將 Ａ 屋移轉登記於甲名下，然約定實際上所有人仍然是乙。嗣後，甲為了賺取更多收入，就將 Ａ 屋出租給丙，孰料，甲的私慾越來越大，竟然將 Ａ 屋出售給丁，以從中賺取高額利益，兩年過後，丁發現 Ａ 屋的鋼樑結構有嚴重瑕疵。試問：</p>
+      <p>（一）甲與乙之間之 Ａ 屋契約性質為何？效力為何？</p>
+      <p>（二）若戊知悉甲、乙之間的買賣交易，得如何維護其損害賠償請求權？</p>
+      <p>（三）甲與丙之間之 Ａ 屋租賃契約效力為何？</p>
+      <p>（四）甲與丁之間之 Ａ 屋買賣契約效力為何？丁是否得主張取得 Ａ 屋之所有權？</p>
+      <p>（五）針對 Ａ 屋之鋼樑結構嚴重瑕疵，如係於丙承租期間所發現，丙得如何對甲主張權利？</p>
+      <p>（六）承上題，若丁取得 Ａ 屋所有權，則甲與丙之租賃契約效力為何？</p>
+      <p>（七）乙得如何對甲、丙、丁主張權利？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>列出 5 個爭點＋依民法規定</p></td><td class="full"><p>本題涉及通謀虛偽意思表示、債權人代位權、無權處分、租賃物瑕疵及買賣不破租賃等爭點，依民法規定，分述如下：</p>
+        <p class="mine" style="margin-left:0;">寫不出來就用：「關於甲乙通謀虛偽移轉 A 屋所衍生之各項法律關係，學生試依民法規定，分述如下：」</p></td></tr>
+      <tr><td class="term">（一）甲與乙之間之 Ａ 屋契約性質為何？效力為何？</td><td class="skel"><p><b>依</b> §87 Ⅰ 通謀虛偽 → 無效</p>
+        <p><b>本題中</b> 以買賣為名移轉，約定實際所有人仍為乙</p>
+        <p><b>因此</b> 買賣＋移轉登記都無效，A 屋仍屬乙</p></td><td class="full"><p><b>（一）甲乙間 A 屋買賣契約及移轉登記，屬通謀虛偽意思表示而無效（第 87 條第 1 項）</b></p>
+        <p>1. 依民法第 87 條第 1 項（通謀虛偽意思表示）之規定，表意人與相對人通謀而為虛偽意思表示者，其意思表示無效。</p>
+        <p>2. 本題乙為避免 A 屋遭拍賣，與甲共謀以買賣為名，將 A 屋移轉登記於甲名下，並約定實際所有人仍為乙，雙方均無買賣及移轉所有權之真意，屬通謀虛偽意思表示。故甲乙間買賣契約及移轉登記均無效，A 屋所有權仍屬乙。</p>
+        <p class="mine" style="margin-left:0;">另一種寫法（Claude 提過、路思沒採用）：「約定實際所有人仍為乙」可能在考借名登記（第 87 條第 2 項隱藏行為），脫產目的是否違反第 72 條公序良俗未查證，等老師詳解再看</p></td></tr>
+      <tr><td class="term">（二）若戊知悉甲、乙之間的買賣交易，得如何維護其損害賠償請求權？</td><td class="skel"><p><b>依</b> §242、§243 代位權：債務人怠於行使權利＋已負遲延 → 債權人以自己名義行使</p>
+        <p><b>本題中</b> 戊依 §184 Ⅰ前段對乙有債權；移轉無效，乙可依 §767 Ⅰ中段請甲塗銷卻不做</p>
+        <p><b>因此</b> 戊代位請甲塗銷 → 回乙名下 → 強制執行</p></td><td class="full"><p><b>（二）戊得代位乙請求甲塗銷 A 屋登記，再聲請強制執行（第 242 條）</b></p>
+        <p>1. 依民法第 242 條、第 243 條（債權人代位權）之規定，債務人怠於行使權利且已負遲延責任時，債權人得以自己名義代位行使。</p>
+        <p>2. 本題戊依第 184 條第 1 項前段（侵權行為）對乙有損害賠償請求權。甲乙間移轉依第 87 條第 1 項無效，乙得依第 767 條第 1 項中段（妨害除去）請求甲塗銷登記卻怠於行使。若乙經催告仍未賠償而負遲延，戊得代位乙請求甲塗銷登記，使 A 屋回復乙名下後，再聲請強制執行受償。</p></td></tr>
+      <tr><td class="term">（三）甲與丙之間之 Ａ 屋租賃契約效力為何？</td><td class="skel"><p><b>依</b> §421 租賃＝債權契約，不以有所有權為必要</p>
+        <p><b>因此</b> 甲非所有人，租約仍有效</p></td><td class="full"><p><b>（三）甲丙間租賃契約有效（第 421 條）</b></p>
+        <p>1. 依民法第 421 條（租賃契約）之規定，租賃為一方以物租與他方使用收益、他方支付租金之債權契約，不以出租人有所有權為必要。</p>
+        <p>2. 本題甲雖非 A 屋真正所有人，仍得與丙成立租賃契約，故甲丙間租約有效。</p></td></tr>
+      <tr><td class="term">（四）甲與丁之間之 Ａ 屋買賣契約效力為何？丁是否得主張取得 Ａ 屋之所有權？</td><td class="skel"><p><b>依</b> §345 買賣＝債權契約 → 賣他人之物仍有效</p>
+        <p><b>但是</b> §118 Ⅰ 移轉所有權＝無權處分，效力未定；§87 Ⅰ但書＋§759-1 Ⅱ 保護善意信賴登記者</p>
+        <p><b>因此</b> 買賣有效；丁善意 → 取得所有權；丁惡意＋乙不承認 → 無效</p></td><td class="full"><p><b>（四）甲丁間買賣契約有效；丁若善意，得取得 A 屋所有權（第 345 條、第 87 條第 1 項但書、第 759 條之 1 第 2 項）</b></p>
+        <p>1. 依民法第 345 條（買賣契約）之規定，買賣為債權契約，出賣他人之物，契約仍屬有效。</p>
+        <p>2. 依第 118 條第 1 項（無權處分），無權利人之處分經有權利人承認始生效力；但依第 87 條第 1 項但書，通謀虛偽之無效不得對抗善意第三人，又依第 759 條之 1 第 2 項（登記公信力），善意信賴登記而完成登記者，其效力不受影響。</p>
+        <p>3. 本題甲出售 A 屋，買賣契約有效；移轉所有權則屬無權處分。若丁不知甲乙通謀，信賴甲之登記並完成移轉登記，即取得 A 屋所有權；若丁為惡意且乙不承認，移轉行為無效。</p></td></tr>
+      <tr><td class="term">（五）針對 Ａ 屋之鋼樑結構嚴重瑕疵，如係於丙承租期間所發現，丙得如何對甲主張權利？</td><td class="skel"><p><b>依</b> §429 Ⅰ 出租人修繕；§430 催告 → 逾期得終止或自修扣租；§424 危及安全 → 已知／拋棄仍得終止</p>
+        <p><b>因此</b> 丙催告修繕 → 自修扣租或終止；且可逕行終止</p></td><td class="full"><p><b>（五）丙得催告甲修繕，甲逾期不修繕得自行修繕扣租或終止契約；因危及安全，亦得逕行終止（第 429 條、第 430 條、第 424 條）</b></p>
+        <p>1. 依民法第 429 條第 1 項、第 430 條（出租人修繕義務）之規定，修繕由出租人負擔，經承租人定期催告逾期不修繕者，承租人得終止契約或自行修繕扣租；依第 424 條（危及安全之終止權），瑕疵危及安全健康，承租人縱已知或已拋棄，仍得終止契約。</p>
+        <p>2. 本題 A 屋鋼樑有嚴重瑕疵，甲為出租人負修繕義務。丙得定期催告甲修繕，甲逾期不修繕，丙得自行修繕扣抵租金或終止契約；且鋼樑瑕疵危及居住安全，丙亦得依第 424 條逕行終止契約。</p></td></tr>
+      <tr><td class="term">（六）承上題，若丁取得 Ａ 屋所有權，則甲與丙之租賃契約效力為何？</td><td class="skel"><p><b>依</b> §425 買賣不破租賃：交付後、承租人占有中 → 對受讓人繼續存在；未公證逾 5 年或不定期不適用</p>
+        <p><b>因此</b> 若符合要件 → 丁承受出租人地位</p></td><td class="full"><p><b>（六）甲丙租約對丁繼續存在（第 425 條）</b></p>
+        <p>1. 依民法第 425 條（買賣不破租賃）之規定，租賃物交付後、承租人占有中讓與所有權，租約對受讓人繼續存在；但未經公證之不動產租約，期限逾 5 年或未定期限者，不適用之。</p>
+        <p>2. 本題若甲已將 A 屋交付丙占有，且租期未逾 5 年或已經公證，則丁取得所有權後，甲丙間租約對丁繼續存在，由丁承受出租人之地位。</p></td></tr>
+      <tr><td class="term">（七）乙得如何對甲、丙、丁主張權利？</td><td class="skel"><p><b>對甲</b> §179 返還租金價金＋§184 Ⅰ前段損害賠償</p>
+        <p><b>對丙</b> §87 Ⅰ但書不得對抗善意；乙已非所有人，無 §767 可用</p>
+        <p><b>對丁</b> 善意 → 不得請求；惡意＋不承認 → §767 Ⅰ請求塗銷返還</p></td><td class="full"><p><b>（七）乙得向甲請求返還利益及損害賠償；對善意之丙、丁不得請求返還 A 屋</b></p>
+        <p>1. 對甲：本題甲擅自出租、出售 A 屋而收取租金及價金，乙得依民法第 179 條（不當得利）請求返還；甲之處分致乙喪失所有權，乙亦得依第 184 條第 1 項前段（侵權行為）請求損害賠償。</p>
+        <p>2. 對丙：依第 87 條第 1 項但書，乙不得以甲乙間之無效對抗善意之丙；丁取得所有權後，乙已非所有人，無從依第 767 條第 1 項（所有物返還）請求，丙並得依第 425 條對丁主張租約。故乙不得請求丙返還 A 屋。</p>
+        <p>3. 對丁：丁若善意，依第 87 條第 1 項但書及第 759 條之 1 第 2 項取得所有權，乙不得請求返還；若丁惡意且乙不承認甲之處分（第 118 條第 1 項），乙得依第 767 條第 1 項請求丁塗銷登記並返還 A 屋。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="subject" id="gujia">
+  <div class="subject-head">估價<span class="meta">不動產估價概要</span></div>
+
+  <div class="session" id="gujia-0922">
+    <div class="session-head"><span class="date">0922</span>成本法：重建成本、折舊、定額法計算<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>真富有集團的總部──福旺大樓，其屋齡已高達 30 年，考量到大樓內部的多項設備已不堪使用，因此總裁小明想在原地重建一棟新大樓，遂找來估價師一同討論建造細節，請依據不動產估價技術規則，回答下述問題：</p>
+      <p>（一）估價師若想以成本法對福旺大廈進行估價，該以哪種成本作為原則？</p>
+      <p>（二）在成本法中，除了物理性折舊外，還有哪些因素會影響建物的折舊？請舉例說明。</p>
+      <p>（三）假設估價師估算出該大樓的重建成本為 3000 萬元，土地價值為 2000 萬元，且該建物的耐用年數為 50 年，殘餘率為 10%。若採用定額法計算折舊，請計算該大樓的累積折舊額，並進一步求出其房地成本價格。</p>
+      <p>（四）延伸思考題：收益法和成本法都有折舊的概念，兩者的差異為何？（提示：可從概念、適用範圍進行分析）</p>
+    </div>
+    <div class="block-title">詳解重點<span class="mine" style="font-size:13px;">（計算題，沒有另外整理考場版，直接看老師詳解的算法）</span></div>
+
+    <table>
+      <colgroup><col style="width:14%"><col></colgroup>
+      <tbody>
+      <tr><td class="term">引言</td><td>關於成本法之定義與求取成本之原則、折舊因素及該大樓之累積折舊額與房地價格之計算方式，學生試以不動產估價技術規則（下稱本規則）分述之</td></tr>
+      <tr><td class="term">（一）<br>重建成本為原則</td><td><ul>
+        <li>成本法定義<span class="law">§48 Ⅰ</span>：求取勘估標的於價格日期之重建成本或重置成本，扣減其累積折舊額或其他應扣除部分，以推算勘估標的價格之方法</li>
+        <li>建物估價以求取<b>重建成本</b>為原則；建物使用之材料目前已無生產或施工方法已改變者，得採<b>重置成本</b>替代<span class="law">§48 Ⅲ</span></li>
+        <li>重建成本：使用與勘估標的相同或極類似之建材標準、設計、配置及施工品質，於價格日期重新複製建築所需之成本<span class="law">§48 Ⅳ</span></li>
+        <li>重置成本：與勘估標的相同效用之建物，以現代建材標準、設計及配置，於價格日期建築所需之成本<span class="law">§48 Ⅴ</span></li>
+        <li>成本法估價程序 8 步<span class="law">§49</span>：蒐集資料 → 現況勘察 → 調查整理比較分析成本資料 → 推算營造或施工費 → 推算其他費用及利潤 → 計算總成本 → 計算建物累積折舊額 → 計算成本價格</li>
+        <li class="trap">老師：定義和程序屬補充，時間允許就在答題後補上</li>
+      </ul></td></tr>
+      <tr><td class="term">（二）<br>三種折舊</td><td><ul>
+        <li>物理性折舊：因建物老化、損壞所造成的價值減損</li>
+        <li>功能性折舊：因建物的設計、格局、設備不符合現代需求所造成的價值減損</li>
+        <li>經濟性折舊：因周邊環境變遷、土地利用型態改變等因素所造成的價值減損</li>
+      </ul></td></tr>
+      <tr><td class="term">（三）<br>1620 萬／3380 萬</td><td><ul>
+        <li>定額法<span class="law">§68</span>：Dn ＝ C × <span class="frac"><span class="num">1－s</span><span class="den">N</span></span> × n（Dn 累積折舊額、C 建物總成本、s 殘餘價格率、N 耐用年數、n 已經歷年數）</li>
+        <li>3000 萬 × <span class="frac"><span class="num">1－10%</span><span class="den">50</span></span> × 30 ＝ <b>1620 萬元</b></li>
+        <li>成本價格<span class="law">§69</span>：土地價格＝土地總成本；建物成本價格＝建物總成本－建物累積折舊額；房地成本價格＝土地價格＋建物成本價格</li>
+        <li>建物 3000－1620＝1380 萬元；房地 2000＋1380＝<b>3380 萬元</b></li>
+      </ul></td></tr>
+      <tr><td class="term">（四）<br>延伸思考</td><td>
+        <table>
+          <thead><tr><th style="width:18%">項目</th><th>收益法折舊</th><th>成本法折舊</th></tr></thead>
+          <tbody>
+          <tr><td class="term">核心概念</td><td>不動產視為<b>投資</b>，價值取決於未來收益；折舊反映收益能力下降，受市場影響較深</td><td>不動產視為<b>資產</b>，價值＝重置成本－折舊，較不受市場影響</td></tr>
+          <tr><td class="term">計算方式</td><td>等速折舊型、償債基金型</td><td>觀察法、耐用年數法</td></tr>
+          <tr><td class="term">適用範圍</td><td>市場性及出租收益性不動產（商辦、出租公寓）</td><td>各類不動產皆可，不具市場性的特殊建築須格外小心</td></tr>
+          </tbody>
+        </table>
+        <div class="trap" style="margin-top:4px;">老師：沒有標準答案，有條理寫出看法就有分數；考試以文字論述為準，表格只是方便閱讀</div>
+      </td></tr>
+      </tbody>
+    </table>
+  
+    
+  </div>
+
+  <div class="session" id="gujia-0929">
+    <div class="session-head"><span class="date">0929</span>估價作業程序、蒐集資料、比較法應調整情況<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>富三代小明誤交損友小華而迷上了賭博，在小華的鼓吹下小明越賭越大，累積的賭債也越來越多。為了應付半年後的一筆鉅額賭債，小明不得已只能聘請估價師小花來對祖傳寶地進行估價，請依據不動產估價技術規則，回答下列問題：</p>
+      <p>（一）小花在估價時的作業程序為何？應蒐集那些資料？</p>
+      <p>（二）若小花決定使用比較法進行估價，在比較標的有哪些情況下時，應先做適當的調整，無法調整時則不予採用？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>關於…，學生試以本規則分述之</p></td><td class="full"><p class="mine" style="margin-left:0;">本場沒有整理考場版，先用骨架回想；完整內容看對照版</p></td></tr>
+      <tr><td class="term">（一）小花在估價時的作業程序為何？應蒐集那些資料？<div class="law" style="margin:6px 0 0;">§8 八步＋§11 三類</div></td><td class="skel"><p><b>§8 程序 8 步</b>：口訣「機計收狀整運決製」</p>
+      <p>基本事項 → 估價計畫 → 蒐集資料 → 確認狀態 → 整理比較分析 → 運用方法推算 → 決定價格 → 製作報告書</p>
+      <p><b>§11 蒐集資料 3 類</b>：</p>
+      <p>基本資料（標示、權利、法定用途、使用管制）／價格影響因素（一般、區域、個別）／交易、收益、成本資料</p></td><td class="full"><p class="mine" style="margin-left:0;">本場沒有整理考場版，先用骨架回想；完整內容看對照版</p></td></tr>
+      <tr><td class="term">（二）若小花決定使用比較法進行估價，在比較標的有哪些情況下時，應先做適當的調整，無法調整時則不予採用？<div class="law" style="margin:6px 0 0;">§23 十三款＋無法調整不採用</div></td><td class="skel"><p><b>§23 十三款</b>：口訣「急期債親、畸地拍標、迷公人法其」</p>
+      <p>急買急賣／期待因素／債權債務／親友關係人／畸零地或合併使用／地上物糾紛／拍賣／公有土地標售讓售／迷信／含公設用地／人為哄抬／與法定用途不符／其他特殊交易</p>
+      <p><b>無法有效掌握及量化調整 → 不予採用</b></p></td><td class="full"><p class="mine" style="margin-left:0;">本場沒有整理考場版，先用骨架回想；完整內容看對照版</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="gujia-1006">
+    <div class="session-head"><span class="date">1006</span>收益法定義與方法、估價計畫、建物收益價格計算<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>小明想在台北市大安區購買一棟透天厝作為自住。這棟透天厝位於巷弄內，屋齡約 30 年，地坪約 30 坪，建物坪數約 60 坪。由於該區域近年來有都更的潛力，因此小明對於這棟透天厝的未來發展抱持樂觀的態度。請依據不動產估價技術規則，回答下述問題：</p>
+      <p>（一）估價師若想用收益法對這棟透天厝進行估價，其定義與得使用之方法為何？</p>
+      <p>（二）估價師在擬定估價計畫時，應包含哪些事項？</p>
+      <p>（三）若該透天厝目前供出租使用，可創造之建物淨收益為 60 萬元，建物收益資本化率為 8%，建物價格日期當時價值未來每年折舊提存率為 4%，且淨收益已扣除折舊提存費。請計算該透天厝之建物收益價格為何？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>關於…，學生試以本規則分述之</p></td><td class="full"><p>關於收益法之定義與方法、估價計畫應包含之事項及建物收益價格之計算，學生試依不動產估價技術規則（下稱本規則）分述如下：</p></td></tr>
+      <tr><td class="term">（一）估價師若想用收益法對這棟透天厝進行估價，其定義與得使用之方法為何？<div class="law" style="margin:6px 0 0;">約 400 字</div></td><td class="skel"><p><b>定義</b>：淨收益<b>資本化或折現</b> → 得出不動產價值</p>
+      <p><b>§28</b>：得採直接資本化法、折現現金流量分析法 → 收益價格</p>
+      <p><b>直接資本化法</b>：§29 定義（未來平均一年客觀淨收益 ÷ 收益資本化率）／§30 P ＝ <span class="frac"><span class="num">A</span><span class="den">R</span></span></p>
+      <p><b>折現現金流量分析法</b>：§31 定義（各期淨收益＋期末價值，以折現率折現後加總）／§32 公式</p></td><td class="full"><p><b>一、收益法之定義與得使用之方法（第 28 條～第 32 條）</b></p>
+        <p>（一）定義：收益法係將歸屬於勘估標的之淨收益資本化或折現，以得出不動產價值之方法；依第 28 條，收益法得採直接資本化法、折現現金流量分析法等方法，所求得之價格為收益價格。</p>
+        <p>（二）直接資本化法（第 29 條、第 30 條）：指勘估標的未來平均一年期間之客觀淨收益，應用價格日期當時適當之收益資本化率，推算勘估標的價格之方法。公式：P ＝ <span class="frac"><span class="num">A</span><span class="den">R</span></span>（P：收益價格；A：未來平均一年期間之客觀淨收益；R：收益資本化率）。</p>
+        <p>（三）折現現金流量分析法（第 31 條、第 32 條）：指勘估標的未來折現現金流量分析期間之各期淨收益及期末價值，以適當折現率折現後加總，推算勘估標的價格之方法；得適用於以投資為目的之不動產投資評估。公式：P ＝ <span class="sigma"><span class="bound-top">n′</span><span class="symbol">Σ</span><span class="bound-bottom">k＝1</span></span><span class="frac"><span class="num">CF<sub>k</sub></span><span class="den">(1＋Y)<sup>k</sup></span></span>＋<span class="frac"><span class="num">P<sub>n′</sub></span><span class="den">(1＋Y)<sup>n′</sup></span></span>（CF<sub>k</sub>：各期淨收益；Y：折現率；n′：折現現金流量分析期間；k：各年期；P<sub>n′</sub>：期末價值）。</p></td></tr>
+      <tr><td class="term">（二）估價師在擬定估價計畫時，應包含哪些事項？<div class="law" style="margin:6px 0 0;">約 90 字</div></td><td class="skel"><p><b>§10 五款</b>：</p>
+      <p>確定作業步驟／預估所需時間／預估所需人力／預估作業經費／擬定作業進度表</p></td><td class="full"><p><b>二、擬定估價計畫應包含之事項（第 10 條）</b></p>
+        <p>依第 10 條，擬定估價計畫應包括下列事項：1. 確定作業步驟。2. 預估所需時間。3. 預估所需人力。4. 預估作業經費。5. 擬定作業進度表。</p></td></tr>
+      <tr><td class="term">（三）若該透天厝目前供出租使用，可創造之建物淨收益為 60 萬元，建物收益資本化率為 8%，建物價格日期當時價值未來每年折舊提存率為 4%，且淨收益已扣除折舊提存費。請計算該透天厝之建物收益價格為何？<div class="law" style="margin:6px 0 0;">約 290 字</div></td><td class="skel"><p><b>§45 Ⅰ①</b> 淨收益<b>已扣除</b>折舊提存費 → 建物收益價格 ＝ <span class="frac"><span class="num">建物淨收益</span><span class="den">建物收益資本化率</span></span></p>
+      <p>60 萬 ÷ 8% ＝ <b>750 萬元</b></p>
+      <p class="mine">對照 §45 Ⅰ②：<b>未扣除</b>折舊提存費 → 分母改為（資本化率＋折舊提存率）</p></td><td class="full"><p><b>三、該透天厝之建物收益價格為 750 萬元（第 45 條第 1 項第 1 款）</b></p>
+        <p>（一）依第 45 條第 1 項第 1 款，建物淨收益已扣除折舊提存費者：建物收益價格 ＝ 建物淨收益 ÷ 建物收益資本化率。</p>
+        <p>（二）本題淨收益已扣除折舊提存費：建物收益價格 ＝ 600,000 元 ÷ 8% ＝ 7,500,000 元。</p>
+        <p>（三）因此，該透天厝之建物收益價格為 750 萬元。題目所給 4% 折舊提存率，僅於淨收益未扣除折舊提存費時（第 45 條第 1 項第 2 款）始加入分母計算，本題不適用。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="gujia-1013">
+    <div class="session-head"><span class="date">1013</span>比較法定義與程序、比較標的排除（§25 調整率上限）<span class="src ai">Claude 整理｜老師詳解未出</span></div>
+    <div class="ai-note">⚠️ 本場<b>老師詳解還沒出</b>，骨架與考場版未經老師核對；詳解出來後會再修正。</div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>估價師小明今年和女友奉子成婚，為了給家人更好的生活品質，小明決定利用自己的專業能力，找出附近更適合居住的房子，圖 A 為小明製作出來的各比較標的調整表，請依據不動產估價技術規則，回答下列問題：</p>
+      <p>（一）小明使用的估價方法為何？其定義和程序？</p>
+      <p>（二）小明應排除哪些比較標的不予採用？其原因為何？</p>
+      <p style="margin-top:8px;"><b>圖 A 總調整表（單位：%）</b>　個別因素 A7／B6／C16／D4；區域因素 A10／B9／C3／D8；情況調整 A6／B4／C5／D3；價格日期 A12／B2／C1／D2<span class="mine">（加總：A 35、B 21、C 25、D 17，Claude 加算）</span></p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>兩個主題＋依不動產估價技術規則（下稱本規則）</p></td><td class="full"><p>關於比較法之定義與程序，及應排除之標的與原因，依據不動產<span class="diff">估價</span>技術規則（以下簡稱本規則），學生試分述如下：</p></td></tr>
+      <tr><td class="term">（一）小明使用的估價方法為何？其定義和程序？</td><td class="skel"><p><b>定義</b> §18：比較標的價格為基礎 → 比較、分析、調整 → 推算 → 比較價格</p>
+        <p><b>程序</b> §21：蒐集查證 → 選擇 → 情況＋日期調整 → 區域＋個別調整 → 試算價格 → 比較價格</p></td><td class="full"><p><b>（一）小明採用比較法，其定義與程序如下<span class="diff">（第 18 條、第 21 條）</span></b></p>
+        <p>1. 定義：<span class="diff">依</span>本規則第 18 條規定，比較法指以比較標的價格為基礎，經比較、分析及調整等，以推算勘估標的價格之方法；依此方法求得之價格為比較價格。</p>
+        <p>2. 程序：<span class="diff">依</span>本規則第 21 條規定，比較法估價程序如下：</p>
+        <p>（1）蒐集並查證比較標的之相關資料。</p>
+        <p>（2）選擇與勘估標的條件相同或相似之比較標的。</p>
+        <p>（3）對比較標的價格進行情況與價格日期調整。</p>
+        <p>（4）比較、分析勘估標的及比較標的間之區域因素及個別因素之差異，並求取其調整率或調整額。</p>
+        <p>（5）計算勘估標的之試算價格。</p>
+        <p>（6）決定勘估標的之比較價格。</p></td></tr>
+      <tr><td class="term">（二）小明應排除哪些比較標的不予採用？其原因為何？</td><td class="skel"><p><b>依</b> §25：區域／個別因素（或子項目）&gt;15%；四項總調整率 &gt;30% → 排除；但書：性質或區位特殊＋報告書敘明</p>
+        <p><b>本題中</b> A 總 35%；C 個別 16%；B 21%、D 17%</p>
+        <p><b>因此</b> 排除 A、C；B、D 採用</p></td><td class="full"><p><b>（二）A、C 比較標的應不予採用（第 25 條）</b></p>
+        <p>1. <span class="diff">依</span>本規則第 25 條規定，試算價格之調整運算過程中，區域因素、個別因素之調整或上述兩因素內之任一單獨項目之調整率大於 15%，或情況、價格日期、區域因素及個別因素調整總調整率大於 30% 時，判定該比較標的與勘估標的差異過大，應排除該比較標的之適用。但勘估標的性質特殊或區位特殊缺乏市場交易資料，並於估價報告書中敘明者，不在此限。</p>
+        <p>2. 本題中：</p>
+        <p>（1）比較標的 A：各單項調整率 &lt; 15%，但總調整率為 35% &gt; 30%，應排除。</p>
+        <p>（2）比較標的 C：總調整率 25% &lt; 30%，但個別因素調整率<span class="diff"> 16% </span>&gt; 15%，應排除。</p>
+        <p>（3）比較標的 B、D：總調整率分別為 21%、17% &lt; 30%，未達排除門檻，得採用。</p>
+        <p>3. 結論：小明應排除比較標的 A、C 不予採用。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="subject" id="jingji">
+  <div class="subject-head">經紀法<span class="meta">不動產經紀相關法規</span></div>
+
+  <div class="session" id="jingji-0925">
+    <div class="session-head"><span class="date">0925</span>公寓大廈管理條例：區權會、規約、重建<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>位於城市邊緣的幸福社區，已有 50 年的歷史，這裡曾是許多家庭的起點，承載著居民們無數的回憶。然而，隨著時間的推移，社區建物逐漸老化，管線破裂、漏水、電線走火等問題層出不窮，近日來社區建物更是嚴重毀損，極有可能危害公共安全，社區主任委員小明於是決定在區分所有權人會議上提議要重建整個社區，請依照公寓大廈管理條例規定，回答下列問題：</p>
+      <p>（一）何謂區分所有權人會議？何謂規約？</p>
+      <p>（二）若區分所有權人會議通過重建決議，唯獨區分所有權人小美和房屋承租戶小張，兩人不同意重建，請問管理委員會可以如何處理？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>關於區分所有權人會議與規約之定義，及管理委員會對不同意重建者之處理，學生依公寓大廈管理條例（下稱本條例）分述如下：</p></td></tr>
+      <tr><td class="term">（一）何謂區分所有權人會議？何謂規約？<div class="law" style="margin:6px 0 0;">約 230 字</div></td><td class="skel"><p><b>區權會</b> §3 ⑦：為共同事務＋權利義務事項 → 召集全體區權人舉行的會議</p>
+      <p><b>規約</b> §3 ⑫：為增進共同利益、確保良好生活環境 → 區權會決議的共同遵守事項</p>
+      <p><b>視為規約</b> §56：起造人申請建照附規約草約 → 承受人簽署同意 → 區權會訂規約前視為規約</p></td><td class="full"><p><b>一、區分所有權人會議與規約之定義（第 3 條第 7 款、第 12 款，第 56 條）</b></p>
+        <p>（一）區分所有權人會議：依本條例第 3 條第 7 款，指區分所有權人為共同事務及涉及權利義務之有關事項，召集全體區分所有權人所舉行之會議。</p>
+        <p>（二）規約：依本條例第 3 條第 12 款，指公寓大廈區分所有權人為增進共同利益，確保良好生活環境，經區分所有權人會議決議之共同遵守事項。</p>
+        <p>（三）視為規約：依本條例第 56 條，起造人申請建造執照時，應檢附規約草約；規約草約經承受人簽署同意後，於區分所有權人會議訂定規約前，視為規約。</p></td></tr>
+      <tr><td class="term">（二）若區分所有權人會議通過重建決議，唯獨區分所有權人小美和房屋承租戶小張，兩人不同意重建，請問管理委員會可以如何處理？<div class="law" style="margin:6px 0 0;">約 590 字</div></td><td class="skel"><p><b>依</b> §13：重建原則要全體區權人＋基地所有權人、地上權人或典權人同意；例外 3 款（都更／嚴重毀損有危害公安之虞／重大事變）</p>
+      <p><b>依</b> §14 Ⅰ Ⅱ Ⅲ：第 2、3 款情形經區權會決議重建，不同意又不出讓 → 管委會得訴請法院命出讓；受讓人視為同意；建照以區權會決議名義申請</p>
+      <p><b>本題中</b> 社區嚴重毀損、有危害公安之虞 → 屬 §13 第 2 款 → 不需全體同意</p>
+      <p><b>但是</b> 小美不同意又不出讓；小張只是承租戶，不是區權人</p>
+      <p><b>因此</b> 管委會得訴請法院命小美出讓區分所有權及基地應有部分；小張的意見與是否重建<b>無關</b></p></td><td class="full"><p><b>二、管理委員會得訴請法院命小美出讓區分所有權；小張之意見與重建無關（第 13 條、第 14 條）</b></p>
+        <p>（一）依本條例第 13 條，公寓大廈之重建，應經全體區分所有權人及基地所有權人、地上權人或典權人之同意。但有下列情形之一者，不在此限：</p>
+        <p style="margin-left:1.5em;">1. 配合都市更新計畫而實施重建者。</p>
+        <p style="margin-left:1.5em;">2. 嚴重毀損、傾頹或朽壞，有危害公共安全之虞者。</p>
+        <p style="margin-left:1.5em;">3. 因地震、水災、風災、火災或其他重大事變，肇致危害公共安全者。</p>
+        <p>（二）依本條例第 14 條第 1 項，公寓大廈有前條第 2 款或第 3 款所定情形之一，經區分所有權人會議決議重建時，區分所有權人不同意決議又不出讓區分所有權或同意後不依決議履行其義務者，管理負責人或管理委員會得訴請法院命區分所有權人出讓其區分所有權及其基地所有權應有部分。同條第 2 項規定，前項之受讓人視為同意重建；第 3 項規定，重建之建造執照之申請，其名義以區分所有權人會議之決議為之。</p>
+        <p>（三）本題中，幸福社區建物嚴重毀損，有危害公共安全之虞，屬本條例第 13 條第 2 款之情形，其重建無須經全體區分所有權人同意，經區分所有權人會議決議即得為之。小美為區分所有權人，不同意決議又不出讓其區分所有權，符合同條例第 14 條第 1 項之要件。小張僅為承租人，非區分所有權人。</p>
+        <p>（四）綜上所述，管理委員會得依本條例第 14 條第 1 項，訴請法院命小美出讓其區分所有權及基地所有權應有部分，受讓人視為同意重建。小張非區分所有權人，其意見不影響重建決議之效力。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="jingji-1002">
+    <div class="session-head"><span class="date">1002</span>不動產經紀業管理條例：說明書簽章、隱瞞屋況、連帶賠償<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>任職於幸福房產的不動產經紀人小明，在為客戶張先生尋找適合的房屋時，發現了一間符合張先生需求的房屋。但該房屋的屋齡較高，且有嚴重漏水問題，小明為了盡快促成交易，於是在未提供不動產說明書且隱瞞屋況的情況下，和張先生達成了買賣協議。事後張先生發現了房屋的問題，認為小明欺騙了他。請依據不動產經紀業管理條例之規定，回答下列問題：</p>
+      <p>（一）不動產說明書需要哪些人簽章？簽章的時間點為何？</p>
+      <p>（二）小明的行為是否違法？若有，違反了哪些規定？</p>
+      <p>（三）幸福房產對於小明的行為是否負有責任？若有，應承擔哪些責任？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>點出三個主題＋依本條例（下稱本條例）</p></td><td class="full"><p>關於不動產說明書之簽章，及小明與幸福房產之責任，學生依不動產經紀業管理條例（下稱本條例）分述如下：</p></td></tr>
+      <tr><td class="term">（一）不動產說明書需要哪些人簽章？簽章的時間點為何？<div class="law" style="margin:6px 0 0;">約 190 字</div></td><td class="skel"><p><b>經紀人</b> §22：說明書<b>製作完成後</b>，經紀業指派經紀人簽章</p>
+      <p><b>委託人</b> §23：向相對人<b>提供解說前</b>，經委託人簽章</p>
+      <p><b>相對人</b> §24：<b>簽訂租賃或買賣契約書時</b>，交付說明書並由相對人簽章</p></td><td class="full"><p><b>一、經紀人、委託人、相對人三方應依序簽章（第 22 條～第 24 條）</b></p>
+        <p>（一）經紀人：依本條例第 22 條，不動產說明書製作完成後，應由經紀業指派經紀人簽章。</p>
+        <p>（二）委託人：依本條例第 23 條，說明書於經紀人員向委託人之交易相對人提供解說前，應經委託人簽章。</p>
+        <p>（三）相對人：依本條例第 24 條，雙方簽訂租賃或買賣契約書時，經紀人應將說明書交付相對人，並由相對人簽章；該說明書視為契約書之一部分。</p></td></tr>
+      <tr><td class="term">（二）小明的行為是否違法？若有，違反了哪些規定？<div class="law" style="margin:6px 0 0;">約 260 字</div></td><td class="skel"><p><b>依</b> §23：經紀人員應以說明書向相對人解說；§31 Ⅰ①：違反 §23 → 申誡</p>
+      <p><b>本題中</b> 小明沒提供說明書就成交，沒有解說</p>
+      <p><b>因此</b> 小明應受<b>申誡</b>（累積 3 次另予停止執行業務 6 個月～3 年）</p>
+      <p><b>另外</b> 隱瞞漏水造成張先生損害 → 小明負<b>損害賠償</b>責任</p></td><td class="full"><p><b>二、小明違反說明書解說義務應予申誡，並負損害賠償責任（第 23 條、第 31 條第 1 項第 1 款、第 21 條）</b></p>
+        <p>（一）依本條例第 23 條，經紀人員應以不動產說明書向委託人之交易相對人解說；違反者，依第 31 條第 1 項第 1 款應予申誡，申誡累積 3 次者，另予 6 個月以上 3 年以下停止執行業務處分。</p>
+        <p>（二）依本條例第 21 條，銷售內容應與事實相符。</p>
+        <p>（三）本題中，小明未提供說明書即與張先生達成買賣協議，未盡解說義務；又明知房屋漏水仍予隱瞞，銷售內容與事實不符，致張先生受有損害。</p>
+        <p>（四）因此，小明應受申誡處分，並對張先生負損害賠償責任。</p></td></tr>
+      <tr><td class="term">（三）幸福房產對於小明的行為是否負有責任？若有，應承擔哪些責任？<div class="law" style="margin:6px 0 0;">約 200 字</div></td><td class="skel"><p><b>依</b> §26 Ⅱ：經紀人員執行業務故意或過失致交易當事人受損害 → 經紀業與經紀人員負連帶賠償責任</p>
+      <p><b>本題中</b> 小明沒按規定提供說明書、故意隱瞞漏水，張先生受損害</p>
+      <p><b>因此</b> 幸福房產應與小明負<b>連帶損害賠償責任</b></p></td><td class="full"><p><b>三、幸福房產應與小明負連帶損害賠償責任（第 26 條第 2 項）</b></p>
+        <p>（一）依本條例第 26 條第 2 項，經紀業因經紀人員執行仲介業務之故意或過失致交易當事人受損害者，該經紀業應與經紀人員負連帶賠償責任。</p>
+        <p>（二）本題中，小明執行仲介業務時故意隱瞞漏水，致張先生受損害。</p>
+        <p>（三）因此，幸福房產應與小明負連帶損害賠償責任；另經紀業銷售內容與事實不符，主管機關得依第 29 條處 6 萬元以上 30 萬元以下罰鍰。</p></td></tr>
+      <tr><td class="term">結論</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>綜上所述，不動產說明書應由經紀人、委託人、相對人依序簽章；小明未解說說明書並隱瞞屋況，應受申誡並負損害賠償責任；幸福房產應與小明負連帶賠償責任。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="jingji-1009">
+    <div class="session-head"><span class="date">1009</span>消費者保護法：定型化契約定義、無效情形、應記載與不得記載事項<span class="src teacher">依老師詳解整理</span></div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>涉世未深的富二代小明為了讓父母對其刮目相看，因此找到號稱投資之神的小華來學習如何理財，在實際操作之前，小華便要求小明簽下合作投資契約，裡面除了政府規定的定型化契約條款之外，也有許多個別磋商條款，小明在信任小華的情況下，並未詳讀就簽名同意了。請依據消費者保護法之規定，試回答下列問題：</p>
+      <p>（一）何謂定型化契約條款、定型化契約？</p>
+      <p>（二）定型化契約無效的情形有哪些？若是定型化契約條款和個別磋商條款互相牴觸，其效力為何？</p>
+      <p>（三）政府為促進定型化契約之公平，其訂立之應記載和不得記載事項為何？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>點出主題＋依<b>消費者保護法（下稱本法）</b></p></td><td class="full"><p>關於定型化契約之定義、效力及應記載與不得記載事項，依消費者保護法（下稱本法）之規定，學生試分述如下：</p></td></tr>
+      <tr><td class="term">（一）何謂定型化契約條款、定型化契約？<div class="law" style="margin:6px 0 0;">約 120 字</div></td><td class="skel"><p><b>條款</b> 第 2 條第 7 款：企業經營者為與<b>多數消費者</b>訂立<b>同類契約</b>，<b>預先擬定</b>之條款；<b>不限書面</b>（字幕、張貼、牌示、網路）</p>
+      <p><b>契約</b> 第 2 條第 9 款：以定型化契約條款作為契約內容<b>全部或一部</b>而訂立之契約</p></td><td class="full"><p><b>一、定型化契約條款與定型化契約之定義（本法第 2 條第 7 款、第 9 款）</b></p>
+        <p>（一）定型化契約條款：企業經營者為與多數消費者訂立同類契約之用，所提出預先擬定之契約條款，不限於書面。</p>
+        <p>（二）定型化契約：以企業經營者提出之定型化契約條款作為契約內容之全部或一部而訂立之契約。</p></td></tr>
+      <tr><td class="term">（二）定型化契約無效的情形有哪些？若是定型化契約條款和個別磋商條款互相牴觸，其效力為何？<div class="law" style="margin:6px 0 0;">約 230 字</div></td><td class="skel"><p><b>無效</b> 第 12 條第 1 項：違反<b>誠信原則</b>、對消費者<b>顯失公平</b> → 無效</p>
+      <p><b>推定顯失公平</b> 第 12 條第 2 項 3 款：① 違反平等互惠 ② 與排除的任意規定立法意旨顯相矛盾 ③ 主要權利義務受限，契約目的難達成</p>
+      <p><b>牴觸</b> 第 15 條：定型化條款牴觸個別磋商條款 → <b>牴觸部分無效</b>（以個別磋商為準）</p>
+      <p class="mine" style="margin-left:0;">加碼（行有餘力）：第 11-1 條第 2 項拋棄審閱期無效、第 17 條第 4 項違反公告事項無效、第 16 條部分無效其他仍有效</p></td><td class="full"><p><b>二、條款顯失公平者無效，牴觸個別磋商條款者牴觸部分無效（本法第 12 條、第 15 條）</b></p>
+        <p>（一）顯失公平無效：依本法第 12 條第 1 項，條款違反誠信原則，對消費者顯失公平者，無效；同條第 2 項推定顯失公平情形：1. 違反平等互惠原則。2. 與其所排除之任意規定立法意旨顯相矛盾。3. 主要權利義務受限制，致契約目的難以達成。</p>
+        <p>（二）其他無效情形：以條款使消費者拋棄審閱期者無效（本法第 11 條之 1 第 2 項）；違反主管機關公告應記載或不得記載事項者，條款無效（本法第 17 條第 4 項）。</p>
+        <p>（三）牴觸效力：依本法第 15 條，定型化契約條款牴觸個別磋商條款之約定者，其牴觸部分無效。本題中，小華契約之定型化條款與個別磋商條款牴觸時，以個別磋商條款為準。</p></td></tr>
+      <tr><td class="term">（三）政府為促進定型化契約之公平，其訂立之應記載和不得記載事項為何？<div class="law" style="margin:6px 0 0;">約 170 字</div></td><td class="skel"><p><b>主體</b> 第 17 條第 1 項：<b>中央主管機關</b>選擇特定行業擬訂 → 報<b>行政院核定</b>後公告</p>
+      <p><b>應記載</b> 第 2 項 5 款：① 重要權利義務 ② 違約法律效果 ③ 預付型履約擔保 ④ 解除權、終止權及效果 ⑤ 其他與履行有關</p>
+      <p><b>不得記載</b> 第 3 項 4 款：① 業者保留變更權或解釋權 ② 限制或免除業者責任 ③ 限制消費者權利、加重消費者義務 ④ 其他顯失公平</p></td><td class="full"><p><b>三、中央主管機關擬訂、行政院核定公告應記載及不得記載事項（本法第 17 條）</b></p>
+        <p>（一）應記載事項（第 2 項）：1. 重要權利義務事項。2. 違反契約之法律效果。3. 預付型交易之履約擔保。4. 解除權、終止權及其法律效果。5. 其他與契約履行有關之事項。</p>
+        <p>（二）不得記載事項（第 3 項）：1. 企業經營者保留契約內容或期限之變更權或解釋權。2. 限制或免除企業經營者之義務或責任。3. 限制或剝奪消費者行使權利，加重消費者之義務或責任。4. 其他對消費者顯失公平事項。</p></td></tr>
+      <tr><td class="term">結論</td><td class="skel"><p class="mine" style="margin-left:0;">—</p></td><td class="full"><p>綜上所述，定型化契約條款顯失公平或違反公告事項者無效，牴觸個別磋商條款者牴觸部分無效，主管機關並以應記載及不得記載事項促進契約公平。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="session" id="jingji-1016">
+    <div class="session-head"><span class="date">1016</span>不動產經紀業管理條例：成屋與預售屋定義、營業員資格、外國人充任<span class="src ai">Claude 整理｜老師詳解未出</span></div>
+    <div class="ai-note">⚠️ 本場<b>老師詳解還沒出</b>，骨架與考場版未經老師核對；詳解出來後會再修正。</div>
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>今年幸福房屋為了擴大經營，於是趁大學畢業季時投放了大量的招聘廣告，除了標榜有完善的教育訓練外，豐厚的獎金制度也吸引了許多畢業生的目光，其中外國人 Jack 也對此很感興趣，於是也向幸福房屋遞交了應徵申請。請依據不動產經紀業管理條例之規定，回答下列問題：</p>
+      <p>（一）何謂成屋？何謂預售屋？</p>
+      <p>（二）不動產經紀營業員之執業資格為何？</p>
+      <p>（三）外國人 Jack 能否充任不動產經紀人員？</p>
+    </div>
+    <div class="block-title">背誦骨架＋考場版</div>
+    <table>
+      <colgroup><col style="width:18%"><col style="width:26%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架（先看這欄回想）</th><th>考場版</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>三個主題＋依不動產經紀業管理條例（下稱本條例）</p></td><td class="full"><p>關於成屋與預售屋之定義、經紀營業員執業資格，以及外國人得否充任經紀人員，依不動產經紀業管理條例（以下簡稱本條例），試分述如下：</p></td></tr>
+      <tr><td class="term">（一）何謂成屋？何謂預售屋？</td><td class="skel"><p><b>成屋</b> §4②：使用執照／實施建築管理前完成</p>
+        <p><b>預售屋</b> §4③：建造執照＋尚未完成＋以將來完成之建築物交易</p></td><td class="full"><p><b>（一）成屋與預售屋之定義</b></p>
+        <p>1. 成屋：依本條例第 4 條第 2 款之規定，指領有使用執照，或是於實施建築管理前建造完成之建築物。</p>
+        <p>2. 預售屋：依本條例第 4 條第 3 款之規定，指領有建造執照尚未建造完成，而以將來完成之建築物為交易標的之物。</p></td></tr>
+      <tr><td class="term">（二）不動產經紀營業員之執業資格為何？</td><td class="skel"><p><b>依</b> §13 Ⅱ：訓練合格（至少 30 小時）<b>或</b>經紀人考試及格</p>
+        <p><b>＋</b> 向指定機構登錄＋領有營業員證明</p></td><td class="full"><p><b>（二）不動產經紀營業員之執業資格</b></p>
+        <p>1. 取得資格：依本條例第 13 條第 2 項、第 3 項，須經中央主管機關或其認可之機構、團體舉辦之營業員訓練合格（不得少於 30 小時），或經不動產經紀人考試及格。</p>
+        <p>2. 登錄領證：並應向中央主管機關指定之機構、團體登錄，領有不動產經紀營業員證明，始得充任。</p></td></tr>
+      <tr><td class="term">（三）外國人 Jack 能否充任不動產經紀人員？</td><td class="skel"><p><b>原則</b> §13 Ⅰ：經紀人限中華民國國民</p>
+        <p><b>例外</b> §38（口訣：考、登、許、中）</p>
+        <p><b>考</b> 考試或訓練合格 → <b>登</b> 登錄領證 → <b>許</b> 中央主管機關許可 → <b>中</b> 文件用中文</p>
+        <p><b>因此</b> 符合要件 → Jack 得受僱充任</p></td><td class="full"><p><b>（三）Jack 經考試及格或訓練合格，登錄並經許可，得充任經紀人員<span class="diff">（第 38 條）</span></b></p>
+        <p>1. 原則：依本條例第 13 條第 1 項，限中華民國國民經考試及格並領有證書者，得充任不動產經紀人。</p>
+        <p>2. 外國人例外：依本條例第 38 條（外國人充任經紀人員）之規定，外國人經考試及格或訓練合格，並<span class="diff">依第 13 條第 2 項</span>登錄領證、經中央主管機關許可，得充任經紀人員；業務文件應以中文為之。</p>
+        <p>3. 本題 Jack 為外國人，若經考試及格或營業員訓練合格，完成登錄領證，並經中央主管機關許可，即得受僱於幸福房屋充任經紀人員。綜上所述，Jack 得依第 38 條充任，惟業務文件應以中華民國文字製作。</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="footer">練筆團考場版｜由四科對照版自動產生（產生考場版.js），要改內容請改對照版後重跑｜批改與差異比較請看對照版</div>
+
+</div>
+</body>
+</html>

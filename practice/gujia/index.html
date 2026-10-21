@@ -68,6 +68,9 @@ td li{margin-bottom:2px;}
 .frac{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; line-height:1.2;}
 .frac .num{align-self:stretch; border-bottom:2px solid currentColor; padding-bottom:2px; text-align:center; white-space:nowrap;}
 .frac .den{padding-top:2px; text-align:center; white-space:nowrap;}
+.sigma{display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; line-height:1;}
+.sigma .bound-top, .sigma .bound-bottom{font-size:11px; white-space:nowrap;}
+.sigma .symbol{font-size:22px; line-height:0.85;}
 
 .full p{margin:0 0 6px; line-height:1.7;}
 .full p:last-child{margin-bottom:0;}
@@ -79,6 +82,10 @@ td li{margin-bottom:2px;}
 .skel p:last-child{margin-bottom:0;}
 .skel b{color:var(--ink);}
 .legend{font-size:13px; margin:0 0 6px; display:flex; gap:14px; flex-wrap:wrap;}
+
+.ai-note{background:var(--accent2-bg); border:1.5px solid var(--accent2); border-radius:8px; padding:9px 14px; font-size:14px; margin:6px 0 4px;}
+.ai-note b{color:var(--accent2);}
+.pending{border:2px dashed var(--line-strong); border-radius:8px; padding:10px 14px; font-size:14px; color:var(--sub); text-align:center;}
 
 .footer{text-align:center; color:var(--sub); font-size:13px; margin-top:10px; padding-top:8px; border-top:1px solid var(--line);}
 
@@ -106,7 +113,7 @@ td li{margin-bottom:2px;}
     <h1>練筆團申論整理｜估價</h1>
   </div>
   <div style="display:flex;gap:12px;">
-    <div class="badge"><strong>2 場</strong>0922・0929</div>
+    <div class="badge"><strong>4 場</strong>0922・0929・1006・1013</div>
     <div class="badge"><strong>手寫 vs 詳解</strong>逐小題比較</div>
   </div>
 </div>
@@ -114,6 +121,8 @@ td li{margin-bottom:2px;}
 <div class="toc">
   <a href="#gujia-0922">0922 成本法：重建成本、折舊、定額法計算</a>
   <a href="#gujia-0929">0929 估價作業程序、蒐集資料、比較法應調整情況</a>
+  <a href="#gujia-1006">1006 收益法定義與方法、估價計畫、建物收益價格計算</a>
+  <a href="#gujia-1013">1013 比較法定義與程序、比較標的排除（§25 調整率上限）</a>
 </div>
 
 <section class="subject" id="gujia">
@@ -277,6 +286,213 @@ td li{margin-bottom:2px;}
       <li>列舉項目照條文原字寫，不要自己縮寫（債權債務、讓售）</li>
       <li>詳解完全沒寫的細項（§9、§10、§12）是加分，不是必要；先保證主幹完整</li>
     </ul></div>
+  </div>
+
+  <!-- ---- 1006 ---- -->
+  <div class="session" id="gujia-1006">
+    <div class="session-head"><span class="date">1006</span>收益法定義與方法、估價計畫、建物收益價格計算<span class="meta">不動產估價</span></div>
+
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>小明想在台北市大安區購買一棟透天厝作為自住。這棟透天厝位於巷弄內，屋齡約 30 年，地坪約 30 坪，建物坪數約 60 坪。由於該區域近年來有都更的潛力，因此小明對於這棟透天厝的未來發展抱持樂觀的態度。請依據不動產估價技術規則，回答下述問題：</p>
+      <p>（一）估價師若想用收益法對這棟透天厝進行估價，其定義與得使用之方法為何？</p>
+      <p>（二）估價師在擬定估價計畫時，應包含哪些事項？</p>
+      <p>（三）若該透天厝目前供出租使用，可創造之建物淨收益為 60 萬元，建物收益資本化率為 8%，建物價格日期當時價值未來每年折舊提存率為 4%，且淨收益已扣除折舊提存費。請計算該透天厝之建物收益價格為何？</p>
+    </div>
+
+    <div class="block-title">詳解重點</div>
+    <div class="legend"><span><span class="miss">陶紅</span> 你完全沒寫到（含條號）</span><span><span class="diff">赭黃</span> 有寫但寫法、用字不同</span><span>一般字色＝你有寫到</span></div>
+    <table>
+      <colgroup><col style="width:15%"><col style="width:27%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架</th><th>老師詳解全文（標色＝差異）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel"><p>關於…，學生試以本規則分述之</p></td><td class="full">
+        <p>關於收益法之定義與得使用之方法、估價師在擬定估價計畫時應包含之事項，與透天厝之建物收益價格，學生試以不動產估價技術規則（下稱本規則）分述之</p>
+      </td></tr>
+      <tr><td class="term">（一）收益法定義與得使用之方法<div class="law" style="margin:6px 0 0;">§28 兩種方法＋§29–§32</div></td><td class="skel">
+      <p><b>定義</b>：淨收益<b>資本化或折現</b> → 得出不動產價值</p>
+      <p><b>§28</b>：得採直接資本化法、折現現金流量分析法 → 收益價格</p>
+      <p><b>直接資本化法</b>：§29 定義（未來平均一年客觀淨收益 ÷ 收益資本化率）／§30 P ＝ <span class="frac"><span class="num">A</span><span class="den">R</span></span></p>
+      <p><b>折現現金流量分析法</b>：§31 定義（各期淨收益＋期末價值，以折現率折現後加總）／§32 公式</p>
+    </td><td class="full">
+      <p>1. 收益法之定義：</p>
+      <p style="padding-left:1.2em"><span class="miss">將歸屬於勘估標的之淨收益資本化或折現，以得出不動產價值之方法。</span><span class="mine">（你在「收益法定義」底下寫的是 §28 的內容「得採直接資本化法與折現現金流量分析法等方法，所求得之價格為收益價格」，真正的定義句沒寫到）</span></p>
+      <p>2. 收益法得採直接資本化法與折現現金流量分析法：根據本規則第 28 條規定，收益法得採直接資本化法、折現現金流量分析法等方法，所求得之價格為收益價格。</p>
+      <p style="padding-left:1.2em">（1）直接資本化法</p>
+      <p style="padding-left:2.4em">①定義：根據本規則第 29 條規定，直接資本化法指勘估標的未來平均一年期間客觀淨收益，應用價格日期當時適當之收益資本化率推算勘估標的價格之方法。</p>
+      <p style="padding-left:2.4em">②計算方式：根據本規則第 30 條規定，收益價格＝勘估標的未來平均一年期間之客觀淨收益÷收益資本化率</p>
+      <p style="padding-left:1.2em">（2）折現現金流量分析法</p>
+      <p style="padding-left:2.4em">①定義：根據本規則第 31 條規定，折現現金流量分析法指勘估標的未來折現現金流量分析期間之各期淨收益及期末價值，以適當折現率折現後加總推算勘估標的價格之方法。</p>
+      <p style="padding-left:2.4em">②計算方式：根據本規則第 32 條規定，P ＝ <span class="sigma"><span class="bound-top">n′</span><span class="symbol">Σ</span><span class="bound-bottom">k＝1</span></span><span class="frac"><span class="num">CF<sub>k</sub></span><span class="den">(1＋Y)<sup>k</sup></span></span>＋<span class="frac"><span class="num">P<sub>n′</sub></span><span class="den">(1＋Y)<sup>n′</sup></span></span><span class="mine">（詳解原檔為公式圖片）</span></p>
+      <p class="mine">你額外寫了：各公式代號說明（你把 P<sub>n′</sub> 寫成「期末淨值」，條文用語是「<b>期末價值</b>」），以及 DCF「適用於以投資為目的之不動產投資評估」（§31 Ⅱ）。詳解沒寫，屬加碼。</p>
+    </td></tr>
+      <tr><td class="term">（二）擬定估價計畫應包含事項<div class="law" style="margin:6px 0 0;">§10 五款</div></td><td class="skel">
+      <p><b>§10 五款</b>：</p>
+      <p>確定作業步驟／預估所需時間／預估所需人力／預估作業經費／擬定作業進度表</p>
+    </td><td class="full">
+      <p>依照本規則第十條之規定，擬定估價計畫包括下列事項：</p>
+      <p style="padding-left:1.2em">1. 確定作業步驟　2. 預估所需時間　3. 預估所需人力　4. 預估作業經費　5. 擬定作業進度表</p>
+    </td></tr>
+      <tr><td class="term">（三）建物收益價格<div class="law" style="margin:6px 0 0;">750 萬元</div></td><td class="skel">
+      <p><b>§45 Ⅰ①</b> 淨收益<b>已扣除</b>折舊提存費 → 建物收益價格 ＝ <span class="frac"><span class="num">建物淨收益</span><span class="den">建物收益資本化率</span></span></p>
+      <p>60 萬 ÷ 8% ＝ <b>750 萬元</b></p>
+      <p class="mine">對照 §45 Ⅰ②：<b>未扣除</b>折舊提存費 → 分母改為（資本化率＋折舊提存率）</p>
+    </td><td class="full">
+      <p>（三）透天厝之建物收益價格為 750 萬元</p>
+      <p>1. 根據<span class="diff">本規則第 45 條第 1 項第 1 款</span><span class="mine">（你寫「§45」，可寫到第 1 項第 1 款）</span>之規定，當淨收益已扣除折舊提存費時，其計算建物收益價格的公式為：建物收益價格＝建物淨收益／建物收益資本化率</p>
+      <p>2. 依據上述之規定，套用本題之計算過程如下：建物收益價格＝60 萬元 / 8% ＝ 750 萬元</p>
+      <p class="mine">你另外補了「若淨收益未扣除折舊，則 ÷（8%＋4%）＝ 500 萬」，詳解沒寫，屬加碼（題目給了 4% 卻用不到，你有交代為什麼不用）。但手寫的建物淨收益寫成「<b>60000</b>」，少一個 0，應為 600,000 ÷ 12% ＝ 5,000,000 元。</p>
+    </td></tr>
+      </tbody>
+    </table>
+    <p class="mine" style="margin:6px 0 0;">詳解疑點（未查證）：第一題「收益法之定義」那句詳解沒附條號；技術規則 §28 只列方法，條文中沒有找到這句總定義，可能是學理說法。考場照寫即可，不用硬掛條號。</p>
+
+    <div class="block-title">考場版擬答<span class="mine" style="font-size:13px;">（詳解壓縮版，三題合計約 830 字；內容照詳解，補上你的加碼，計時練習用）</span></div>
+    <table>
+      <colgroup><col style="width:15%"><col></colgroup>
+      <thead><tr><th>題目</th><th>考場版（列舉題條列、計算題先列公式再代數字）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="full">
+        <p>關於收益法之定義與方法、估價計畫應包含之事項及建物收益價格之計算，學生試依不動產估價技術規則（下稱本規則）分述如下：</p>
+      </td></tr>
+      <tr><td class="term">（一）收益法<div class="law" style="margin:6px 0 0;">約 400 字</div></td><td class="full">
+        <p><b>一、收益法之定義與得使用之方法（第 28 條～第 32 條）</b></p>
+        <p>（一）定義：收益法係將歸屬於勘估標的之淨收益資本化或折現，以得出不動產價值之方法；依第 28 條，收益法得採直接資本化法、折現現金流量分析法等方法，所求得之價格為收益價格。</p>
+        <p>（二）直接資本化法（第 29 條、第 30 條）：指勘估標的未來平均一年期間之客觀淨收益，應用價格日期當時適當之收益資本化率，推算勘估標的價格之方法。公式：P ＝ <span class="frac"><span class="num">A</span><span class="den">R</span></span>（P：收益價格；A：未來平均一年期間之客觀淨收益；R：收益資本化率）。</p>
+        <p>（三）折現現金流量分析法（第 31 條、第 32 條）：指勘估標的未來折現現金流量分析期間之各期淨收益及期末價值，以適當折現率折現後加總，推算勘估標的價格之方法；得適用於以投資為目的之不動產投資評估。公式：P ＝ <span class="sigma"><span class="bound-top">n′</span><span class="symbol">Σ</span><span class="bound-bottom">k＝1</span></span><span class="frac"><span class="num">CF<sub>k</sub></span><span class="den">(1＋Y)<sup>k</sup></span></span>＋<span class="frac"><span class="num">P<sub>n′</sub></span><span class="den">(1＋Y)<sup>n′</sup></span></span>（CF<sub>k</sub>：各期淨收益；Y：折現率；n′：折現現金流量分析期間；k：各年期；P<sub>n′</sub>：期末價值）。</p>
+      </td></tr>
+      <tr><td class="term">（二）估價計畫<div class="law" style="margin:6px 0 0;">約 90 字</div></td><td class="full">
+        <p><b>二、擬定估價計畫應包含之事項（第 10 條）</b></p>
+        <p>依第 10 條，擬定估價計畫應包括下列事項：1. 確定作業步驟。2. 預估所需時間。3. 預估所需人力。4. 預估作業經費。5. 擬定作業進度表。</p>
+      </td></tr>
+      <tr><td class="term">（三）建物收益價格<div class="law" style="margin:6px 0 0;">約 290 字</div></td><td class="full">
+        <p><b>三、該透天厝之建物收益價格為 750 萬元（第 45 條第 1 項第 1 款）</b></p>
+        <p>（一）依第 45 條第 1 項第 1 款，建物淨收益已扣除折舊提存費者：建物收益價格 ＝ 建物淨收益 ÷ 建物收益資本化率。</p>
+        <p>（二）本題淨收益已扣除折舊提存費：建物收益價格 ＝ 600,000 元 ÷ 8% ＝ 7,500,000 元。</p>
+        <p>（三）因此，該透天厝之建物收益價格為 750 萬元。題目所給 4% 折舊提存率，僅於淨收益未扣除折舊提存費時（第 45 條第 1 項第 2 款）始加入分母計算，本題不適用。</p>
+      </td></tr>
+      </tbody>
+    </table>
+    <p class="mine" style="margin:6px 0 0;">與詳解原文差異：刪「根據本規則第○條規定」重複串場，條號改放小標；第一題補公式代號說明與 §31 Ⅱ 適用範圍；第三題補一句說明 4% 為何不用（取代你手寫的 500 萬試算，考場不用另算一遍）。</p>
+
+    <div class="block-title">差異比較</div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:33%"><col style="width:42%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫到的</th><th>詳解有、我沒寫（或寫法不同）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td>「關於收益法之定義、估價計畫事項及建物收益價格之計算，依不動產估價技術規則，學生試分述如下」</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（一）</td><td>§28 兩種方法；直接資本化法定義（§29）＋公式 P＝A/R（§30）；DCF 定義（§31）＋適用以投資為目的＋公式（§32），代號都有說明</td><td><ul>
+        <li><span class="trap">缺收益法定義句</span>：「將歸屬於勘估標的之淨收益<b>資本化或折現</b>，以得出不動產價值之方法」；你在定義標題下寫的是 §28 內容</li>
+        <li>P<sub>n′</sub> 用語：「期末<b>價值</b>」，你寫「期末淨值」</li>
+        <li>§31 Ⅱ 適用範圍詳解沒寫，屬加碼</li>
+      </ul></td><td><span class="pill ok">✓ 方法完整</span><br><span class="pill part">△ 缺定義句</span></td></tr>
+      <tr><td class="term">（二）</td><td>§10 五款全對</td><td>—</td><td><span class="pill ok">✓ 到位</span></td></tr>
+      <tr><td class="term">（三）</td><td>§45 已扣除折舊提存費公式、60 萬 ÷ 8% ＝ 750 萬；另算未扣除情形 ÷（8%＋4%）＝ 500 萬</td><td><ul>
+        <li>條號可寫到 <b>§45 Ⅰ①</b></li>
+        <li>加碼那行建物淨收益寫成 <span class="trap">60000</span>（少一個 0）</li>
+      </ul></td><td><span class="pill ok">✓ 答案對</span><br><span class="pill plus">＋ 有加碼</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-title">老師閱卷評論<span class="mine" style="font-size:13px;">（Ding 老師）</span></div>
+    <div class="tips"><ul>
+      <li><b>（一）</b>回答正確</li>
+      <li><b>（二）</b>回答正確</li>
+      <li><b>（三）</b>回答正確</li>
+      <li><b>老師評語</b>：同學本次的回答沒太大問題，請繼續加油</li>
+      <li class="mine">上面差異比較的「缺收益法定義句」、「60000 筆誤」老師沒有扣，是 Claude 對照詳解列的，當作精進參考</li>
+    </ul></div>
+
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li>這次<b>條號都有寫</b>（§28–§32、§10、§45），比 0922、0929 進步很多；下一步是寫到項款（§45 Ⅰ①）</li>
+      <li>題目問「定義」就先寫一句真正的定義，再寫「得採哪些方法」，兩件事不要混在一起</li>
+      <li>加碼試算時數字照抄題目再核對一次，這次 60 萬寫成 60000</li>
+    </ul></div>
+  </div>
+
+  <!-- ---- 1013 ---- -->
+  <div class="session" id="gujia-1013">
+    <div class="session-head"><span class="date">1013</span>比較法定義與程序、比較標的排除（§25 調整率上限）<span class="meta">不動產估價概要</span></div>
+
+    <div class="ai-note">⚠️ <b>老師詳解尚未公布</b>（依練筆團時程，最晚約 10/23）。本場的估分、批改、背誦骨架和考場版都是 <b>Claude 整理的，不是老師寫的</b>，條文已對照全國法規資料庫不動產估價技術規則；詳解出來後會補「老師詳解對照」並修正。</div>
+
+    <div class="block-title">題目</div>
+    <div class="question">
+      <p>估價師小明今年和女友奉子成婚，為了給家人更好的生活品質，小明決定利用自己的專業能力，找出附近更適合居住的房子，圖 A 為小明製作出來的各比較標的調整表，請依據不動產估價技術規則，回答下列問題：</p>
+      <p>（一）小明使用的估價方法為何？其定義和程序？</p>
+      <p>（二）小明應排除哪些比較標的不予採用？其原因為何？</p>
+      <p style="margin-top:8px;"><b>圖 A 總調整表（單位：%）</b>　個別因素 A7／B6／C16／D4；區域因素 A10／B9／C3／D8；情況調整 A6／B4／C5／D3；價格日期 A12／B2／C1／D2<span class="mine">（加總：A 35、B 21、C 25、D 17，Claude 加算）</span></p>
+    </div>
+
+    <div class="block-title">批改重點<span class="mine" style="font-size:13px;">（以手寫重寫版為準，Claude 估約 22／25；docx 初稿約 19 分；對照的是法條，不是老師詳解）</span></div>
+    <table>
+      <colgroup><col style="width:9%"><col style="width:30%"><col style="width:45%"><col style="width:16%"></colgroup>
+      <thead><tr><th>小題</th><th>我寫的（手寫）</th><th>問題（Claude 批改）</th><th>判定</th></tr></thead>
+      <tbody>
+      <tr><td class="term">（一）</td><td>比較法；§18 定義「以比較標的價格為基礎…推算」；§21 六步驟，第 3 步情況與價格日期調整</td><td><ul>
+        <li>§18 主詞改對成「比較標的價格」，§21 步驟順序也改對</li>
+        <li>大標沒帶條號：補「（§18、§21）」</li>
+        <li>引言法規名稱漏「估價」兩字：不動產<b>估價</b>技術規則</li>
+        <li>「按本規則」改「依本規則」，跟其他科統一</li>
+      </ul></td><td><span class="pill ok">✓ 約 11／12</span></td></tr>
+      <tr><td class="term">（二）</td><td>§25 單項 &gt;15%、總調整率 &gt;30% 排除＋但書；A 總 35%、C 個別超過、B 21%、D 17%；排除 A、C</td><td><ul>
+        <li>算式和 B、D 得採用都寫進去了，涵攝完整</li>
+        <li>C 寫「個別因素調整率 &gt; 15%」，把 <b>16%</b> 這個數字寫出來</li>
+      </ul></td><td><span class="pill ok">✓ 約 11／13</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-title">背誦骨架＋考場版<span class="mine" style="font-size:13px;">（以路思 10-16 手寫版為底，Claude 小修：引言補「估價」、「按」改「依」、C 補 16%、（一）大標補條號；<span class="diff">赭黃</span>＝Claude 改的字）</span></div>
+    <table>
+      <colgroup><col style="width:13%"><col style="width:25%"><col></colgroup>
+      <thead><tr><th>題目</th><th>背誦骨架</th><th>考場版（路思手寫版＋小修）</th></tr></thead>
+      <tbody>
+      <tr><td class="term">引言</td><td class="skel">
+        <p>兩個主題＋依不動產估價技術規則（下稱本規則）</p>
+      </td><td class="full">
+        <p>關於比較法之定義與程序，及應排除之標的與原因，依據不動產<span class="diff">估價</span>技術規則（以下簡稱本規則），學生試分述如下：</p>
+      </td></tr>
+      <tr><td class="term">（一）方法、定義、程序</td><td class="skel">
+        <p><b>定義</b> §18：比較標的價格為基礎 → 比較、分析、調整 → 推算 → 比較價格</p>
+        <p><b>程序</b> §21：蒐集查證 → 選擇 → 情況＋日期調整 → 區域＋個別調整 → 試算價格 → 比較價格</p>
+      </td><td class="full">
+        <p><b>（一）小明採用比較法，其定義與程序如下<span class="diff">（第 18 條、第 21 條）</span></b></p>
+        <p>1. 定義：<span class="diff">依</span>本規則第 18 條規定，比較法指以比較標的價格為基礎，經比較、分析及調整等，以推算勘估標的價格之方法；依此方法求得之價格為比較價格。</p>
+        <p>2. 程序：<span class="diff">依</span>本規則第 21 條規定，比較法估價程序如下：</p>
+        <p>（1）蒐集並查證比較標的之相關資料。</p>
+        <p>（2）選擇與勘估標的條件相同或相似之比較標的。</p>
+        <p>（3）對比較標的價格進行情況與價格日期調整。</p>
+        <p>（4）比較、分析勘估標的及比較標的間之區域因素及個別因素之差異，並求取其調整率或調整額。</p>
+        <p>（5）計算勘估標的之試算價格。</p>
+        <p>（6）決定勘估標的之比較價格。</p>
+      </td></tr>
+      <tr><td class="term">（二）排除哪些</td><td class="skel">
+        <p><b>依</b> §25：區域／個別因素（或子項目）&gt;15%；四項總調整率 &gt;30% → 排除；但書：性質或區位特殊＋報告書敘明</p>
+        <p><b>本題中</b> A 總 35%；C 個別 16%；B 21%、D 17%</p>
+        <p><b>因此</b> 排除 A、C；B、D 採用</p>
+      </td><td class="full">
+        <p><b>（二）A、C 比較標的應不予採用（第 25 條）</b></p>
+        <p>1. <span class="diff">依</span>本規則第 25 條規定，試算價格之調整運算過程中，區域因素、個別因素之調整或上述兩因素內之任一單獨項目之調整率大於 15%，或情況、價格日期、區域因素及個別因素調整總調整率大於 30% 時，判定該比較標的與勘估標的差異過大，應排除該比較標的之適用。但勘估標的性質特殊或區位特殊缺乏市場交易資料，並於估價報告書中敘明者，不在此限。</p>
+        <p>2. 本題中：</p>
+        <p>（1）比較標的 A：各單項調整率 &lt; 15%，但總調整率為 35% &gt; 30%，應排除。</p>
+        <p>（2）比較標的 C：總調整率 25% &lt; 30%，但個別因素調整率<span class="diff"> 16% </span>&gt; 15%，應排除。</p>
+        <p>（3）比較標的 B、D：總調整率分別為 21%、17% &lt; 30%，未達排除門檻，得採用。</p>
+        <p>3. 結論：小明應排除比較標的 A、C 不予採用。</p>
+      </td></tr>
+      </tbody>
+    </table>
+
+    <div class="block-title">下次寫法提醒</div>
+    <div class="tips"><ul>
+      <li><b>初稿（docx）錯誤</b>：§18 主詞寫成「比較價格」、§21 情況與日期順序顛倒、沒寫出 35%／16% 算式、錯字（調整綠、區為、估價報告）；手寫版都改掉了</li>
+      <li>有表格數字的題目，<b>把算式寫出來</b>（7＋10＋6＋12＝35%），閱卷老師一眼就看到你會算</li>
+      <li>定義題的主詞要對：比較法是「以<b>比較標的價格</b>為基礎」，「比較價格」是結果</li>
+      <li>15% 單項上限只看區域、個別因素；情況、日期只算進 30% 總調整率</li>
+    </ul></div>
+
+    <div class="block-title">老師詳解對照</div>
+    <div class="pending">待補：詳解公布後（最晚約 10/23）加入，並核對上面 Claude 的批改和考場版</div>
   </div>
 </section>
 
