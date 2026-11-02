@@ -184,7 +184,6 @@ function answer(k) {
     const bk = b.dataset.k;
     if (bk === q.answer) b.classList.add("correct");
     else if (bk === k) b.classList.add("picked-wrong");
-    if (q.notes && q.notes[bk] && bk !== q.answer) b.lastChild.append(el("span", { class: "why" }, q.notes[bk]));
   });
   const p = { ...st(q.id) };
   p.n += 1; p.s = ok ? p.s + 1 : 0; if (!ok) p.w += 1; p.last = ok ? "right" : "wrong"; p.t = Date.now();
@@ -199,6 +198,7 @@ function answer(k) {
     el("div", { class: "verdict " + (ok ? "ok" : "bad") },
       ok ? (p.s >= PASS_STREAK ? "答對，這題過關了" : "答對") : `答錯，正解是 (${q.answer})`),
     el("p", { class: "explain" }, q.explain),
+    ...Object.keys(q.notes || {}).filter(bk => bk !== q.answer).sort().map(bk => el("p", { class: "explain" }, `(${bk}) ${q.notes[bk]}`)),
     q.warn ? el("div", { class: "warn" }, "⚠️ " + q.warn) : null,
     laws.length ? el("details", { class: "laws", open: "" }, el("summary", {}, "法條原文（全國法規資料庫）"), laws) : null,
     el("div", { class: "src" }, "答案依考選部公告"),
