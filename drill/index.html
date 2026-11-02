@@ -151,6 +151,7 @@ function buildRound(reviewAll) {
 }
 function startRound(reviewAll = false) {
   round = buildRound(reviewAll); idx = 0; answered = null; roundLog = [];
+  saveRound();
   renderStats();
   if (!round.length) return renderAllPassed();
   renderQuestion();
@@ -175,7 +176,7 @@ function renderQuestion() {
   window.scrollTo({ top: 0 });
 }
 
-function answer(k) {
+function answer(k, restoring = false) {
   if (answered) return;
   const q = round[idx]; answered = k;
   const ok = k === q.answer;
@@ -187,9 +188,11 @@ function answer(k) {
     if (q.notes && q.notes[bk] && bk !== q.answer) b.lastChild.append(el("span", { class: "why" }, q.notes[bk]));
   });
   const p = { ...st(q.id) };
-  p.n += 1; p.s = ok ? p.s + 1 : 0; if (!ok) p.w += 1; p.last = ok ? "right" : "wrong"; p.t = Date.now();
-  progress[q.id] = p; roundLog.push({ q, ok });
-  saveProgress();
+  if (!restoring) {
+    p.n += 1; p.s = ok ? p.s + 1 : 0; if (!ok) p.w += 1; p.last = ok ? "right" : "wrong"; p.t = Date.now();
+    progress[q.id] = p; roundLog.push({ q, ok });
+    saveProgress(); saveRound();
+  }
   renderStats();
 
   const fb = $("#feedback");
@@ -206,7 +209,7 @@ function answer(k) {
       el("button", { type: "button", class: "btn", id: "nextBtn", onclick: next }, idx + 1 < round.length ? "下一題" : "看本輪結果"))));
   $("#nextBtn").focus({ preventScroll: true });
 }
-function next() { answered = null; idx += 1; if (idx < round.length) renderQuestion(); else renderSummary(); }
+function next() { answered = null; idx += 1; saveRound(); if (idx < round.length) renderQuestion(); else renderSummary(); }
 
 function renderSummary() {
   const right = roundLog.filter(r => r.ok).length;
@@ -227,7 +230,27 @@ function renderAllPassed() {
       el("button", { type: "button", class: "btn ghost", onclick: () => startRound(true) }, "全部複習一輪")) : null));
 }
 
-const LS_KEY = "drill-offline-progress-v1";
+const LS_KEY = "drill-offline-progress-v1", ROUND_KEY = "drill-offline-round-v1";
+// 記住這一輪做到哪，手機離開頁面重新載入後才能接著做
+function saveRound() {
+  try {
+    localStorage.setItem(ROUND_KEY, JSON.stringify({ subject, idx, answered, ids: round.map(q => q.id), log: roundLog.map(r => ({ id: r.q.id, ok: r.ok })) }));
+  } catch (e) { console.warn("round save failed"); }
+}
+function restoreRound() {
+  let s;
+  try { s = JSON.parse(localStorage.getItem(ROUND_KEY)); } catch (e) { return false; }
+  if (!s || !Array.isArray(s.ids) || !s.ids.length) return false;
+  const byId = new Map(questions.map(q => [q.id, q]));
+  if (!s.ids.every(id => byId.has(id)) || !s.log.every(r => byId.has(r.id))) return false;
+  subject = s.subject; round = s.ids.map(id => byId.get(id)); idx = s.idx; answered = null;
+  roundLog = s.log.map(r => ({ q: byId.get(r.id), ok: r.ok }));
+  renderFilters(); renderStats();
+  if (idx >= round.length) { renderSummary(); return true; }
+  renderQuestion();
+  if (s.answered) answer(s.answered, true);
+  return true;
+}
 function saveProgress() {
   try { localStorage.setItem(LS_KEY, JSON.stringify(progress)); } catch (e) { console.warn("progress save failed"); }
 }
@@ -239,7 +262,7 @@ function showMsg(title, body) {
 (() => {
   try { progress = JSON.parse(localStorage.getItem(LS_KEY) || "{}") || {}; } catch (e) { progress = {}; }
   questions = JSON.parse(document.getElementById("qdata").textContent);
-  renderFilters(); renderStats(); startRound();
+  if (!restoreRound()) { renderFilters(); renderStats(); startRound(); }
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").then(() => navigator.serviceWorker.ready)
       .then(() => { $("#offline").textContent = "✓ 已存好，可離線使用"; })
