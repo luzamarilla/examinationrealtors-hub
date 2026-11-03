@@ -53,12 +53,30 @@ body.hide td.ans{cursor:pointer;}
 body.hide td.ans > *, body.hide td.ans{color:transparent !important; text-shadow:0 0 9px rgba(30,41,59,.55);}
 body.hide td.ans.show, body.hide td.ans.show *{color:var(--ink) !important; text-shadow:none;}
 body.hide td.ans.show .trap{color:var(--accent2) !important;}
+/* 分段遮答案：小標露出，點一行開一行 */
+.seg-row{display:grid; grid-template-columns:7.5em 1fr; gap:2px 8px; padding:4px 0; border-top:1px dashed var(--line);}
+.seg-row:first-child{border-top:0;}
+.seg-row.sub{padding-left:1em; grid-template-columns:6.5em 1fr;}
+.seg-label{font-weight:800;}
+.seg-row.sub .seg-label{font-weight:700; color:var(--neutral);}
+.seg-note{padding:4px 0 0 1em; font-size:12.5px; font-weight:800; color:var(--sub);}
+.seg-cnt{padding-top:4px;}
+.seg-all{display:none; font:inherit; font-size:12.5px; font-weight:800; margin-top:6px; padding:3px 12px; border-radius:8px; border:1px solid var(--line-strong); background:var(--neutral-bg); color:var(--ink); cursor:pointer;}
+body.hide .seg-all{display:inline-block;}
+body.hide td.ans.seg{cursor:default;}
+body.hide td.ans.seg, body.hide td.ans.seg *{color:var(--ink) !important; text-shadow:none;}
+body.hide td.ans.seg .seg-note{color:var(--sub) !important;}
+body.hide td.ans.seg .seg-body{cursor:pointer; min-height:1.4em;}
+body.hide td.ans.seg .seg-body:not(.open), body.hide td.ans.seg .seg-body:not(.open) *{color:transparent !important; text-shadow:0 0 9px rgba(30,41,59,.55); user-select:none;}
+body.hide td.ans.seg .seg-body.open .trap{color:var(--accent2) !important;}
+@media print{.seg-all{display:none !important;}}
 .footer{text-align:center; color:var(--sub); font-size:12.5px; margin-top:24px; padding-top:8px; border-top:1px solid var(--line);}
 @media (max-width:700px){
   .page-header h1{font-size:21px;}
   .memo-table{font-size:13.5px;}
   .memo-table td{padding:6px 8px;}
   .memo-table td.term{width:40%;}
+  .seg-row, .seg-row.sub{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -168,14 +186,14 @@ body.hide td.ans.show .trap{color:var(--accent2) !important;}
 <table class="memo-table">
 <tr><td class="term">契稅：①買賣、典權、贈與誰申報？②稅率各多少？③契價看什麼？④幾日內申報？糾紛、法拍、分割、蓋好前換起造人從哪天起算？⑤多久內繳？晚報罰什麼？⑥哪種土地免契稅？欠稅誰執行？<br><span class="cnt">錯 9 次：112・113・114×2・107・106×2・阿摩×2</span></td><td class="ans"><b>①誰報</b>：取得的人報（買賣→<b>買受人</b>、典權→<b>典權人</b>、贈與→<b>受贈人</b>）<br><b>②稅率</b>：買賣、贈與、占有 <b>6%</b>｜典權 4%｜交換、分割 2%<br><b>③稅基</b>：<b>不動產評價委員會</b>評定的標準價格<br><b>④申報期限</b>：契約成立起 <b>30 日</b>內。例外起算日：糾紛→<b>判決確定日</b>｜標購公產→核發產權移轉證明書日｜法拍→發給權利移轉證明書日｜分割→<b>契約成立日</b>（<span class="trap">不是登記日</span>）｜蓋好前因<b>買賣、交換、贈與</b>換起造人→使照核發後<b>滿 30 日</b>才開始算<br><b>⑤繳納與怠報金</b>：稅單送達後 <b>30 日</b>內；晚報→怠報金每逾 <b>3 日</b>加 1%<br><b>⑥免稅與欠稅</b>：開徵<b>土地增值稅</b>的土地<b>免</b>契稅（土地已課增值稅，契稅只課房屋）；欠稅→<b>行政執行分署</b></td></tr>
 <tr><td class="term">房屋稅：①未登記且所有人不明時向誰徵收（順序）？②起造人待售屋、營業用稅率？③哪些免徵、哪些減半？④標準價格幾年評一次、誰公告？⑤自住的要件？<br><span class="cnt">錯 8 次：113・114×2・109・106・阿摩×3</span></td><td class="ans"><b>①所有人不明時向誰收</b>（未登記）：<b>使用執照</b>起造人 → <b>建造執照</b>起造人 → 都沒有才找<b>現住人或管理人</b><br><b>②稅率</b>：起造人待售屋起課 2 年內 <b>2%～3.6%</b>｜營業用 <b>3%～5%</b><br><b>③免徵 vs 減半</b>：免徵＝無償供公用、軍用、毀損 5 成以上必須修復｜減半＝平民住宅、<b>工廠</b>（<span class="trap">不是免徵</span>）、毀損 3～5 成<br><b>④標準價格</b>：每 <b>3 年</b>重新評定，由<b>直轄市、縣（市）政府</b>公告<br><b>⑤自住要件</b>：<b>房屋所有人</b>（<span class="trap">不是土地所有權人</span>）本人、配偶或直系親屬設籍＋實際居住＋沒出租營業｜本人、配偶、未成年子女全國 <b>3 戶</b>內</td></tr>
-<tr><td class="term">地價稅稅率：①基本稅率、累進級距？②累進起點地價怎麼算？③特別稅率 10‰ 是哪些？私立公園免徵嗎？④特別稅率 6‰ 是哪種？⑤公有地、農地怎麼課？誰是納稅義務人？<br><span class="cnt">錯 7 次：112・113・114・109・106・阿摩×2</span></td><td class="ans"><b>①基本與累進</b>：<b>10‰</b>｜超過累進起點<b>未達 5 倍</b> 15‰、5～10 倍 25‰……20 倍以上 55‰<br><b>②累進起點</b>：當地 <b>7 公畝</b>平均地價（<span class="trap">排除工業、礦業、農業及免稅土地</span>），以<b>千元</b>為單位<br><b>③特別稅率 10‰</b>：工業、寺廟、公眾停車場、<b>私立公園、體育場所</b>（<span class="trap">私立公園不是免徵</span>）<br><b>④特別稅率 6‰</b>：公設保留地仍作建築使用（<span class="trap">不是 10‰</span>）<br><b>⑤公有地與農地</b>：公有土地按基本稅率，供公共使用→免徵｜<span class="trap">農業用地課田賦</span>｜8 月 31 日登記簿上的人是納稅義務人</td></tr>
-<tr><td class="term">自用住宅：①增值稅一生一次的面積、條件？②一生一屋呢？③地價稅 2‰ 要不要住在那裡？④房地合一自住優惠是誰設籍？<br><span class="cnt">錯 7 次：112・114・107×2・106・阿摩・110</span></td><td class="ans"><b>①增值稅一生一次（10%）</b>：都市 <b>3 公畝</b>「<b>或</b>」非都市 <b>7 公畝</b>｜出售前 <b>1 年</b>內沒營業出租（<span class="trap">2‰ 是地價稅</span>）<br><b>②增值稅一生一屋</b>：面積<b>減半</b>（都市 <b>1.5</b>、非都市 <b>3.5</b> 公畝）｜持有、設籍都滿 <b>6 年</b>｜出售時本人、配偶、未成年子女沒有其他房屋｜出售前 <b>5 年</b>內沒營業出租<br><b>③地價稅 2‰</b>：本人、配偶或直系親屬<b>辦竣戶籍</b>（<span class="trap">直系親屬不限未成年</span>）＋沒出租營業，<span class="trap">不要求居住事實</span>，限<b>一處</b>｜國宅、勞工宿舍從動工或取得日起適用<br><b>④房地合一自住（免 400 萬）</b>：本人或配偶、<b>未成年子女</b>（<span class="trap">不是直系親屬</span>）設籍＋持有＋居住滿 6 年</td></tr>
+<tr><td class="term">地價稅稅率：①基本稅率、累進級距？②累進起點地價怎麼算？③特別稅率 2‰ 是哪些？④特別稅率 6‰ 是哪種？⑤特別稅率 10‰ 是哪些？私立公園免徵嗎？⑥哪種土地免徵？⑦公有地、農地怎麼課？誰是納稅義務人？<br><span class="cnt">錯 7 次：112・113・114・109・106・阿摩×2</span></td><td class="ans"><b>①基本與累進</b>：<b>10‰</b>｜超過累進起點<b>未達 5 倍</b> 15‰、5～10 倍 25‰……20 倍以上 55‰<br><b>②累進起點</b>：當地 <b>7 公畝</b>平均地價（<span class="trap">排除工業、礦業、農業及免稅土地</span>），以<b>千元</b>為單位<br><b>③特別稅率 2‰</b>：<b>自用住宅</b>、國民住宅、勞工宿舍（要件看下一則「自用住宅」）<br><b>④特別稅率 6‰</b>：公設保留地仍作建築使用（<span class="trap">不是 10‰</span>）｜<span class="trap">作自用住宅使用→適用 2‰</span><br><b>⑤特別稅率 10‰</b>：工業、寺廟、公眾停車場、<b>私立公園、體育場所</b>（<span class="trap">私立公園不是免徵</span>）<br><b>⑥免徵</b>：公設保留地<b>未作任何使用</b>，且與使用中的土地<b>隔離</b><br><b>⑦公有地與農地</b>：公有土地按基本稅率，供公共使用→免徵｜<span class="trap">農業用地課田賦</span>｜8 月 31 日登記簿上的人是納稅義務人</td></tr>
+<tr><td class="term">自用住宅：①土增稅一生一次的面積、條件？②一生一屋呢？③地價稅 2‰ 要不要住在那裡？④房地合一自住優惠是誰設籍？<br><span class="cnt">錯 7 次：112・114・107×2・106・阿摩・110</span></td><td class="ans"><b>①土增稅一生一次（10%）</b>：都市 <b>3 公畝</b>「<b>或</b>」非都市 <b>7 公畝</b>｜出售前 <b>1 年</b>內沒營業出租（<span class="trap">2‰ 是地價稅</span>）<br><b>②土增稅一生一屋</b>：面積<b>減半</b>（都市 <b>1.5</b>、非都市 <b>3.5</b> 公畝）｜持有、設籍都滿 <b>6 年</b>｜出售時本人、配偶、未成年子女沒有其他房屋｜出售前 <b>5 年</b>內沒營業出租<br><b>③地價稅 2‰</b>：本人、配偶或直系親屬<b>辦竣戶籍</b>（<span class="trap">直系親屬不限未成年</span>）＋沒出租營業，<span class="trap">不要求居住事實</span>，限<b>一處</b>｜國宅、勞工宿舍從動工或取得日起適用<br><b>④房地合一自住（免 400 萬）</b>：本人或配偶、<b>未成年子女</b>（<span class="trap">不是直系親屬</span>）設籍＋持有＋居住滿 6 年</td></tr>
 <tr><td class="term">逾期未辦繼承（§73-1）：①從繼承期限到移國產署的時程？②標售前公告多久？優先購買順序？③標售後占有、租約怎麼辦？④價款保管幾年？5 次標不出？<br><span class="cnt">錯 6 次：112・113×2・109・107・110</span></td><td class="ans"><b>①時程</b>：繼承登記期限 <b>6 個月</b>→逾 <b>1 年</b>沒辦→公告 <b>3 個月</b>（不是 6 個月）＋書面通知→列冊管理 <b>15 年</b>→書面通知＋移國產署標售<br><b>②標售前</b>：公告 <b>3 個月</b>｜優先購買權人決標後 30 日內表示，順序：<b>繼承人→合法使用人→其他共有人</b><br><b>③標售後</b>：占有無合法權源→喪失｜租期超過 5 年→以 <b>5 年</b>為限<br><b>④價款</b>：保管 <b>10 年</b>後歸國庫｜標售 5 次不成→登記國有，<b>10 年</b>內原權利人可請求發給價金</td></tr>
-<tr><td class="term">外國人：①哪些土地不得移轉給外國人？②可取得的用途？③向誰申請？面積地點誰限制？④重大投資怎麼申請？⑤沒依核定用途使用？<br><span class="cnt">錯 6 次：112・114・106・阿摩・111・110</span></td><td class="ans"><b>①不得移轉</b>：林地、漁地、狩獵地、鹽地、礦地、水源地、要塞軍備區、邊境（<span class="trap">農地、牧地不在內</span>，可以租給外國人）<br><b>②可取得用途</b>：住宅、營業處所、教堂、醫院、外僑學校、使領館、墳場等（<span class="trap">長照機構不在內</span>）<br><b>③向誰申請</b>：<b>直轄市或縣（市）政府</b>核准（<span class="trap">不是內政部</span>）；面積、地點也由<b>直轄市或縣（市）政府</b>限制<br><b>④重大投資</b>（第 8 款：重大建設、整體經濟、農牧經營）：申請前先經<b>中央目的事業主管機關同意</b>→縣市核准→報中央地政機關備查<br><b>⑤沒照用途使用</b>：通知送達後 <b>3 年</b>內出售，逾期逕為標售</td></tr>
+<tr><td class="term">外國人：①哪些土地不得移轉給外國人？繼承取得要怎麼處理？②可取得的用途？③向誰申請？面積地點誰限制？④重大投資怎麼申請？⑤沒依核定用途使用？<br><span class="cnt">錯 6 次：112・114・106・阿摩・111・110</span></td><td class="ans"><b>①不得移轉</b>：林地、漁地、狩獵地、鹽地、礦地、水源地、要塞軍備區、邊境（<span class="trap">農地、牧地不在內</span>，可以租給外國人）｜<b>繼承</b>可以取得，<b>繼承登記完畢</b>起 <b>3 年</b>內出售給<b>本國人</b>，逾期<b>公開標售</b><br><b>②可取得用途</b>：住宅、營業處所、教堂、醫院、外僑學校、使領館、墳場等（<span class="trap">長照機構不在內</span>）<br><b>③向誰申請</b>：<b>直轄市或縣（市）政府</b>核准（<span class="trap">不是內政部</span>）；面積、地點也由<b>直轄市或縣（市）政府</b>限制<br><b>④重大投資</b>（第 8 款：重大建設、整體經濟、農牧經營）：申請前先經<b>中央目的事業主管機關同意</b>→縣市核准→報中央地政機關備查<br><b>⑤沒照用途使用</b>：通知送達後 <b>3 年</b>內出售，逾期逕為標售</td></tr>
 <tr><td class="term">土地增值稅不課徵、免徵、退稅：①配偶贈與再移轉？②重購退稅？③捐贈社福違規罰什麼？④非都市公設地？⑤土地合併？<br><span class="cnt">錯 6 次：113・109・110・阿摩×3</span></td><td class="ans"><b>①配偶贈與</b>：不課徵；再移轉時用<b>第一次贈與前</b>的原地價算漲價總數額<br><b>②重購退稅</b>：自用住宅、自營工廠、<b>自耕農地</b>，2 年內重購可退，<b>先買後賣</b>也行｜退的是扣掉<b>土地增值稅</b>後的不足額（<span class="trap">不是房地交易所得稅</span>）｜出售前 1 年內不能營業出租<br><b>③捐贈社福免徵</b>：違規處 2 倍罰鍰只有三種：沒照捐贈目的使用、違反設立宗旨、收益沒全用在該事業（<span class="trap">「未辦用地變更」不是</span>）<br><b>④非都市公設地</b>：免增值稅，<span class="trap">不用完成徵收公告</span><br><b>⑤合併</b>：合併後價值相等免徵，以合併時<b>公告土地現值</b>計算</td></tr>
 <tr><td class="term">都市計畫：①預計幾年發展？②實施進度一期幾年、最長？③主要計畫圖、細部計畫圖比例尺？④核定後幾日發布？⑤第一期發展地區細部計畫、公共設施各幾年內完成？<br><span class="cnt">錯 5 次：112・114・阿摩×2・111</span></td><td class="ans"><b>①發展年期</b>：依預計 <b>25 年</b>內的發展訂定<br><b>②實施進度</b>：<b>5 年一期</b>、最長 <b>25 年</b><br><b>③比例尺</b>：主要計畫圖 ≥ <b>1/10000</b>｜細部計畫圖 ≥ <b>1/1200</b><br><b>④發布</b>：核定後 <b>30 日</b>內<br><b>⑤第一期發展地區</b>：主要計畫發布後 <b>2 年</b>內完成細部計畫→細部計畫發布後 <b>5 年</b>內完成公共設施（<b>2 細 5 公</b>）</td></tr>
 <tr><td class="term">抵價地：①比例原則、最低？曾經農地重劃的地區？②權利義務何時終止？③領回後第一次移轉原地價？④抵費地、抵價地哪個是區段徵收用語？<br><span class="cnt">錯 5 次：107・106・阿摩×2・區段徵收用語 113</span></td><td class="ans"><b>①比例</b>：原則 <b>50%</b>｜不得少於 <b>40%</b>｜曾經農地重劃的部分不得少於 <b>45%</b>（指全區抵價地總面積佔徵收總面積的比例，不是每個地主各自的比例）<br><b>②權利義務終止</b>：<b>接到核定發給抵價地通知時</b><br><b>③原地價</b>：以<b>實際領回抵價地的地價</b>為原地價<br><b>④用語</b>：「抵費地」是<b>重劃</b>用語，區段徵收是<b>抵價地</b></td></tr>
-<tr><td class="term">徵收補償與協議價購：①建物怎麼補？②公設保留地？③農作物？④地價誰評、當期市價哪天評定？⑤協議價購用什麼價格？⑥法定補償有哪些？<br><span class="cnt">錯 5 次：113・109×2・阿摩×2</span></td><td class="ans"><b>①建物</b>：按<b>重建價格</b>（<span class="trap">不是起造當時</span>）<br><b>②公設保留地</b>：按<b>毗鄰非保留地</b>平均市價（都計 §49 也是「毗鄰<b>非</b>保留地」平均公告現值，必要時加成）<br><b>③農作物</b>：1 年內成熟的按孳息算<br><b>④地價</b>：地價評議委員會評定；當期市價＝徵收公告期滿次日起第 <b>15 日</b>評定<br><b>⑤協議價購</b>：依<b>市價</b>（市場正常交易價格）<br><b>⑥法定補償</b>：包括<b>土地改良物遷移費</b>（營業損失、救濟金、獎勵金不是）</td></tr>
+<tr><td class="term">徵收補償與協議價購：①建物怎麼補？②公設保留地？③農作物？④地價誰評、當期市價哪天評定？⑤協議價購用什麼價格？⑥法定補償有哪些？<br><span class="cnt">錯 5 次：113・109×2・阿摩×2</span></td><td class="ans"><b>①建物</b>：按<b>重建價格</b>（<span class="trap">不是起造當時</span>）<br><b>②公設保留地</b>：按<b>毗鄰非保留地</b>平均市價（都計 §49 也是「毗鄰<b>非</b>保留地」平均公告現值，必要時加成）<br><b>③農作物</b>：1 年內成熟的按孳息算<br><b>④地價</b>：地價評議委員會評定；當期市價＝徵收公告期滿次日起第 <b>15 日</b>評定<br><b>⑤協議價購</b>：依<b>市價</b>（市場正常交易價格）<br><b>⑥法定補償</b>：地價、建物、農作物，加上<b>營業損失</b>（<span class="trap">限合法營業</span>，徵收條例 §33）＋<b>遷移費</b>（人口、機具、牲畜等，§34）</td></tr>
 <tr><td class="term">限制登記、預告登記：①限制登記包括哪些？附條件贈與用哪種保全？②預告登記要不要登記費？③對什麼新登記沒有排除效力？違反的處分？<br><span class="cnt">錯 5 次：114×2・109・107・阿摩</span></td><td class="ans"><b>①限制登記</b>：預告登記、<b>查封</b>、假扣押、假處分、破產登記；<span class="trap">更正登記不是</span>｜附條件贈與要保全→<b>預告登記</b><br><b>②登記費</b>：預告登記屬限制登記→<b>免</b>登記費<br><b>③排除效力</b>：對<b>徵收、法院判決、強制執行</b>的新登記<span class="trap">沒有排除效力</span>（不含繼承），<b>交換</b>等一般移轉會被排除｜違反的處分是妨礙請求權部分<b>無效</b></td></tr>
 <tr><td class="term">房地合一：①稅率？②所得怎麼算？③農舍適用新制嗎？<br><span class="cnt">錯 5 次：112・106・阿摩・110×2</span></td><td class="ans"><b>①稅率</b>：境內個人 2 年內 <b>45%</b>、2～5 年 <b>35%</b>、5～10 年 20%、10 年以上 15%｜非自願因素 5 年內、合建 5 年內 <b>20%</b><br><b>②所得</b>：售價－成本－費用－<b>土地漲價總數額</b>（<span class="trap">扣漲價總數額，不是增值稅</span>）｜沒提示費用→按成交價 <b>3%</b> 計、上限 <b>30 萬</b><br><b>③農舍</b>：<b>不適用新制</b>：依舊制，土地免稅、只就<b>房屋</b>部分課財產交易所得</td></tr>
 <tr><td class="term">公設保留地：①令其清除或遷移，要不要補償？②保留地的稅？③可以怎麼使用？④政府用什麼方式取得？⑤可以跟公有地交換嗎？<br><span class="cnt">錯 5 次：113・114・109・111・110</span></td><td class="ans"><b>①令其清除或遷移</b>：<b>應給補償</b><br><b>②稅</b>：沒使用並隔離→免地價稅｜仍作建築使用→<b>6‰</b>｜移轉→免增值稅｜繼承或配偶、直系血親贈與→免遺贈稅<br><b>③使用</b>：可繼續原來使用，或改成<b>妨礙目的較輕</b>的使用；臨時建築使用辦法由<b>內政部</b>定<br><b>④政府取得</b>：公用事業→事業機構徵收或購買｜其餘→<b>徵收、區段徵收、市地重劃</b>（<span class="trap">沒有協議價購、交換、都市更新</span>）<br><b>⑤跟公有地交換</b>：可申請跟公有非公用土地交換，不受<b>土地法、國有財產法、各級政府財產管理法令</b>限制（<span class="trap">沒有所得稅法</span>）｜劃設逾 <b>25 年</b>沒取得的優先</td></tr>
@@ -274,9 +292,9 @@ body.hide td.ans.show .trap{color:var(--accent2) !important;}
 <div class="tier-head tier2">錯 2 次</div>
 <table class="memo-table">
 <tr><td class="term">消保團體：①團體訴訟要件？②要委任律師嗎？③檢驗結果有錯？</td><td class="ans"><b>①訴訟要件</b>：許可設立 <b>2 年</b>以上＋專門人員＋行政院評定優良｜限社團或財團法人<br><b>②律師</b>：<b>應</b>委任律師<br><b>③檢驗有錯</b>：要給業者澄清機會<br><span class="cnt">112×2</span></td></tr>
-<tr><td class="term">廣告不實用哪部法：①服務品質、企業形象？②加盟標示、定型化契約？③簽約後刊登的廣告與事實不符，誰處理？</td><td class="ans"><b>①服務品質、企業形象</b>：<b>公平法</b><br><b>②加盟標示、定型化契約</b>：加盟標示、廣告與事實不符→經紀條例｜定型化契約→消保法<br><b>③簽約後廣告</b>：<b>內政部</b>依經紀條例處理（<span class="trap">不是公平會</span>）<br><span class="cnt">112・110</span></td></tr>
+<tr><td class="term">廣告不實用哪部法：①服務品質、企業形象？②加盟標示、定型化契約？③簽約後刊登的廣告與事實不符，誰處理？</td><td class="ans"><b>①服務品質、企業形象</b>：<b>公平法</b><br><b>②加盟標示、定型化契約</b>：加盟標示、廣告與事實不符→經紀條例｜定型化契約→消保法<br><b>③簽約後廣告</b>：<b>內政部</b>依經紀條例處理（<span class="trap">不是公平會</span>）｜實際裁罰是直轄市、縣（市）主管機關<br><span class="cnt">112・110・11-02 重練又錯</span></td></tr>
 <tr><td class="term">公平法 §20：①差別待遇屬限制競爭還是不公平競爭？②§20 限制競爭有哪幾款？</td><td class="ans"><b>①差別待遇</b>：<b>限制競爭</b>｜仿冒、營業誹謗、不當贈品→不公平競爭<br><b>②§20 五款</b>：杯葛、差別待遇、低價利誘阻礙競爭、脅迫利誘使他事業不為價格競爭、不正當限制交易相對人（<span class="trap">「使競爭者的交易相對人與自己交易」不在內</span>）<br><span class="cnt">112・106</span></td></tr>
-<tr><td class="term">經紀業廣告：①什麼時候才能刊？②要註明什麼？③不實誰負責？</td><td class="ans"><b>①刊登時機</b>：簽<b>委託契約書後</b>才能刊廣告及銷售<br><b>②註明</b>：<b>經紀業名稱</b>，只寫加盟品牌不行、<span class="trap">也不是註明經紀人員名稱</span><br><b>③不實責任</b>：經紀業負<b>損害賠償</b>責任（<span class="trap">不是損失補償</span>）<br><span class="cnt">113・109</span></td></tr>
+<tr><td class="term">經紀業廣告：①什麼時候才能刊？②要註明什麼？③不實誰負責？④違規罰多少？</td><td class="ans"><b>①刊登時機</b>：簽<b>委託契約書後</b>才能刊廣告及銷售<br><b>②註明</b>：<b>經紀業名稱</b>，只寫加盟品牌不行、<span class="trap">也不是註明經紀人員名稱</span><br><b>③不實責任</b>：經紀業負<b>損害賠償</b>責任（<span class="trap">不是損失補償</span>）<br><b>④罰鍰</b>：沒簽約就刊、廣告不實都罰 <b>6 萬～30 萬</b>（<span class="trap">不是 3 萬～15 萬</span>）<br><span class="cnt">113・109・111 重練錯</span></td></tr>
 <tr><td class="term">消費者申訴：①企業經營者處理期限？②申訴沒處理好怎麼辦？③可以直接調解嗎？</td><td class="ans"><b>①處理期限</b>：申訴之日起 <b>15 日</b>｜申訴對象：企業經營者、消保團體、消費者服務中心<br><b>②申訴後</b>：<b>申訴未獲妥適處理</b>才能向縣市消費爭議調解委員會申請調解<br><b>③直接調解</b>：<span class="trap">不能直接調解，消保團體也不辦調解</span><br><span class="cnt">111・109</span></td></tr>
 <tr><td class="term">分期付款買賣：①契約要載明什麼？②沒寫利率、頭期款？③屋主委託仲介賣房是分期付款嗎？</td><td class="ans"><b>①載明</b>：書面，載明<b>頭期款、總價款與現金價差額、利率</b><br><b>②漏寫</b>：沒寫利率→按現金交易價格週年 <b>5%</b>｜沒寫頭期款或差額→消費者只付現金交易價格<br><b>③委託仲介</b>：屋主委託仲介賣房是<b>委託銷售</b>，<span class="trap">不是分期付款買賣</span><br><span class="cnt">109×2</span></td></tr>
 <tr><td class="term">住戶違規（變更共用部分用途、樓梯間放鞋櫃）：①怎麼罰？②什麼時候才能強制遷離？</td><td class="ans"><b>①罰則</b>：管委會<b>制止</b>，不聽→報縣市處 <b>4～20 萬</b>罰鍰、限期改善、可連續處罰（<span class="trap">管委會不能自己移除、剪鎖</span>）<br><b>②強制遷離</b>：要先<b>被罰鍰後仍不改善或續犯</b>，再促請改善 <b>3 個月</b>仍未改善→依區權會決議訴請法院（<span class="trap">不能跳過罰鍰直接遷離</span>）<br><span class="cnt">110・106</span></td></tr>
@@ -359,13 +377,65 @@ body.hide td.ans.show .trap{color:var(--accent2) !important;}
 <script>
 (function(){
   var btn=document.getElementById('toggle');
+  /* 分段遮答案：已套用的科目。原始 HTML 不動（音檔轉檔程式照舊讀），只在畫面上拆行 */
+  var SEG_SUBJECTS=['tu'];
+  /* 小標：<b>標題</b>：內容；標題後面若有括號補充，放進遮罩內 */
+  var LABEL=/^<b>(.*?)<\/b>(（[^）]*）)?：([\s\S]*)$/;
+  function row(label,body,sub){
+    return '<div class="seg-row'+(sub?' sub':'')+'"><span class="seg-label">'+label+'</span><span class="seg-body">'+body+'</span></div>';
+  }
+  function segment(td){
+    var html=td.innerHTML.split('<br>').map(function(line){
+      if(line.indexOf('<span class="cnt')===0)return '<div class="seg-cnt">'+line+'</div>';
+      var m=line.match(LABEL);
+      if(!m)return '<div class="seg-row"><span class="seg-label"></span><span class="seg-body">'+line+'</span></div>';
+      var content=(m[2]||'')+m[3];
+      var ex=content.match(/^([\s\S]*?)。?(例外[^：]*)：([\s\S]*)$/);
+      if(!ex)return row(m[1],content);
+      var subs=ex[3].split('｜').map(function(p){
+        var i=p.indexOf('→');
+        var label=p.slice(0,i), body=p.slice(i+1);
+        if(label.indexOf('蓋好前因')===0){body=label.replace('蓋好前','')+'→'+body;label='蓋好前換起造人';}
+        return row(label,body,true);
+      }).join('');
+      return row(m[1],ex[1])+'<div class="seg-note">'+ex[2]+'</div>'+subs;
+    }).join('');
+    td.innerHTML=html+'<button type="button" class="seg-all">全部打開</button>';
+    td.classList.add('seg');
+  }
+  SEG_SUBJECTS.forEach(function(id){
+    var el=document.getElementById(id);
+    for(el=el&&el.nextElementSibling;el&&!el.classList.contains('subject');el=el.nextElementSibling){
+      if(!el.classList.contains('memo-table'))continue;
+      el.querySelectorAll('td.ans').forEach(function(a){
+        var labeled=a.innerHTML.split('<br>').filter(function(l){return LABEL.test(l);}).length;
+        if(labeled>=2)segment(a); /* 只有一個答案的短題維持整格遮 */
+      });
+    }
+  });
+  function setAll(td,open){
+    td.querySelectorAll('.seg-body').forEach(function(b){b.classList.toggle('open',open);});
+    td.querySelector('.seg-all').textContent=open?'全部遮回':'全部打開';
+  }
+  function sync(td){
+    var bodies=td.querySelectorAll('.seg-body');
+    var all=Array.prototype.every.call(bodies,function(b){return b.classList.contains('open');});
+    td.querySelector('.seg-all').textContent=all?'全部遮回':'全部打開';
+  }
   function set(h){document.body.classList.toggle('hide',h);btn.textContent=h?'顯示全部答案':'遮答案';
-    if(!h){document.querySelectorAll('td.ans.show').forEach(function(t){t.classList.remove('show');});}
+    if(!h){document.querySelectorAll('td.ans.show').forEach(function(t){t.classList.remove('show');});
+      document.querySelectorAll('td.ans.seg').forEach(function(t){setAll(t,false);});}
     try{localStorage.setItem('cuoti-hide',h?'1':'0');}catch(e){}}
   btn.addEventListener('click',function(){set(!document.body.classList.contains('hide'));});
   document.addEventListener('click',function(e){
-    var td=e.target.closest&&e.target.closest('td.ans');
-    if(td&&document.body.classList.contains('hide'))td.classList.toggle('show');});
+    if(!e.target.closest||!document.body.classList.contains('hide'))return;
+    var td=e.target.closest('td.ans');
+    if(!td)return;
+    if(!td.classList.contains('seg')){td.classList.toggle('show');return;}
+    if(e.target.closest('.seg-all')){setAll(td,e.target.closest('.seg-all').textContent==='全部打開');return;}
+    var body=e.target.closest('.seg-body');
+    if(body){body.classList.toggle('open');sync(td);}
+  });
   try{if(localStorage.getItem('cuoti-hide')==='1')set(true);}catch(e){}
 })();
 </script>
