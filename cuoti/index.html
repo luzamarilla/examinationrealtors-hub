@@ -379,7 +379,7 @@ body.hide td.ans.seg .seg-body.open .trap{color:var(--accent2) !important;}
 (function(){
   var btn=document.getElementById('toggle');
   /* 分段遮答案：已套用的科目。原始 HTML 不動（音檔轉檔程式照舊讀），只在畫面上拆行 */
-  var SEG_SUBJECTS=['tu'];
+  var SEG_SUBJECTS=['min','tu','jing','gu'];
   /* 小標：<b>標題</b>：內容；標題後面若有括號補充，放進遮罩內 */
   var LABEL=/^<b>(.*?)<\/b>(（[^）]*）)?：([\s\S]*)$/;
   function row(label,body,sub){
