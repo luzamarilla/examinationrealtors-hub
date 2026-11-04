@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>大範圍比較表</title>
+<style>
+:root{
+  --ink:#1e293b; --sub:#64748b; --line:#e2e8f0; --line-strong:#94a3b8;
+  --neutral:#334155; --neutral-bg:#f1f5f9;
+  --accent:#8B4438; --accent-bg:#f1e2dd;
+  --accent2:#9C7A34; --accent2-bg:#efe6d0;
+  --ok:#2f6b4f; --ok-bg:#e3efe8;
+}
+*{box-sizing:border-box;}
+html{color-scheme:light;}
+body{margin:0; background:#fff;}
+.page{max-width:1100px; margin:0 auto; padding:16px 16px 40px;
+  font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif; color:var(--ink); line-height:1.45;}
+.page-header{background:var(--ink); color:#fff; border-radius:14px; padding:16px 22px; margin-bottom:10px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+.page-header h1{font-size:23px; font-weight:900; letter-spacing:1px; margin:0;}
+.page-header .badge{background:rgba(255,255,255,.15); border-radius:10px; padding:6px 14px; text-align:center; font-size:12.5px;}
+.page-header .badge strong{font-size:16px; display:block;}
+.toolbar{position:sticky; top:0; z-index:5; background:#fff; padding:8px 0; margin-bottom:8px;
+  display:flex; gap:6px; flex-wrap:wrap; align-items:center; border-bottom:1px solid var(--line);}
+.toolbar button{font:inherit; font-size:14px; font-weight:800; padding:6px 13px; border-radius:8px;
+  border:1px solid var(--line-strong); background:var(--neutral-bg); color:var(--ink); cursor:pointer;}
+.toolbar button.tab.on{background:var(--ink); color:#fff; border-color:var(--ink);}
+.toolbar .sp{flex:1;}
+.toolbar button.act{background:var(--accent); color:#fff; border-color:var(--accent);}
+.toolbar button.act.on{background:var(--accent2); border-color:var(--accent2);}
+.how{font-size:13px; color:var(--sub); margin:0 0 12px; padding:6px 12px; background:#f8fafc; border-left:3px solid var(--sub); border-radius:8px;}
+.card{border:1px solid var(--line); border-radius:12px; padding:12px 14px 14px; margin-bottom:16px;}
+.card-title{font-size:18px; font-weight:900; margin:0 0 4px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+.subj{font-size:12.5px; font-weight:900; color:#fff; background:var(--neutral); border-radius:6px; padding:1px 8px;}
+.pill{font-size:12px; font-weight:800; color:var(--accent); background:var(--accent-bg); border:1px solid var(--accent); border-radius:10px; padding:0 8px;}
+.score{font-size:12.5px; color:var(--sub); margin:0 0 8px;}
+.part{font-size:14px; font-weight:900; color:var(--neutral); margin:12px 0 6px;}
+.cmp{width:100%; border-collapse:collapse; font-size:14.5px; table-layout:fixed;}
+.cmp th{background:var(--ink); color:#fff; padding:6px 10px; text-align:left; font-size:14px;}
+.cmp th:first-child{width:4.5em;}
+.cmp td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; overflow-wrap:break-word;}
+.cmp td.rh{font-weight:900; background:var(--neutral-bg); border-right:2px solid var(--line-strong);}
+.q{font-weight:800; display:block; margin-bottom:2px;}
+b.k{color:var(--accent);}
+.none{color:var(--sub);}
+/* 遮罩 */
+.ans{position:relative; cursor:pointer;}
+.ans .body{transition:filter .15s;}
+.ans:not(.show) .body{filter:blur(6px); user-select:none;}
+.ans:not(.show)::after{content:"點開"; position:absolute; right:8px; top:6px; font-size:11px; color:var(--sub);}
+.mark{display:none; gap:6px; margin-top:6px;}
+.ans.show .mark{display:flex;}
+.mark button{font:inherit; font-size:12.5px; font-weight:800; padding:2px 12px; border-radius:7px; border:1px solid var(--line-strong); background:#fff; cursor:pointer; color:var(--ink);}
+.ans.ok{background:var(--ok-bg);}
+.ans.ng{background:var(--accent-bg);}
+.ans.ok .mark .b-ok{background:var(--ok); color:#fff; border-color:var(--ok);}
+.ans.ng .mark .b-ng{background:var(--accent); color:#fff; border-color:var(--accent);}
+.scen{list-style:none; margin:0; padding:0;}
+.scen li{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:7px 0; border-bottom:1px solid var(--line); font-size:14.5px;}
+.scen li .ans{padding:2px 8px; border-radius:6px; min-height:1.6em;}
+.tip{margin-top:10px; padding:8px 12px; border-left:3px solid var(--accent2); background:var(--accent2-bg); border-radius:8px; font-size:14px;}
+body.only-ng .hide-ok{display:none;}
+.empty{padding:30px; text-align:center; color:var(--sub); border:1px dashed var(--line-strong); border-radius:12px;}
+@media (max-width:640px){
+  .cmp{font-size:13.5px;} .cmp td,.cmp th{padding:6px 7px;}
+  .scen li{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-header">
+  <h1>大範圍比較表</h1>
+  <div class="badge"><strong id="dday">—</strong>距離考試</div>
+</div>
+
+<div class="toolbar">
+  <button class="tab on" data-sub="d1104">11/4（4 張）</button>
+  <button class="tab" data-sub="d1105">11/5（4 張）</button>
+  <span class="sp"></span>
+  <button class="act" id="onlyNg">只看 ✘</button>
+  <button id="hideAll">全部遮回</button>
+  <button id="reset">清除紀錄</button>
+</div>
+
+<p class="how">先在心裡把答案講完整，再點開對答案，點 ✔ 或 ✘。第 2 遍按「只看 ✘」，只複習答錯的格子。</p>
+
+<!-- ===== 估價 ===== -->
+<section class="subject" id="d1104">
+
+<div class="card" data-card="gu1">
+  <div class="card-title"><span class="subj">估價</span>價格四種 vs 租金兩種 <span class="pill">10 年：105～114 測</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表（技術規則 §2）</div>
+  <table class="cmp">
+    <thead><tr><th>種類</th><th>價格</th><th>租金</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">正常</td>
+        <td class="ans" data-id="gu1-1a"><span class="q">定義的關鍵字？</span><div class="body">具<b class="k">市場性</b>、雙方有意願、謹慎行動、<b class="k">不受脅迫</b>、適當市場行銷及正常交易條件</div></td>
+        <td class="ans" data-id="gu1-1b"><span class="q">有沒有？</span><div class="body">有。同樣邏輯，買賣換成租賃（又稱經濟租金、市場租金）</div></td>
+      </tr>
+      <tr>
+        <td class="rh">限定</td>
+        <td class="ans" data-id="gu1-2a"><span class="q">共幾個？分別是？</span><div class="body">共 <b class="k">3</b> 個：<br>1. 所有權以外其他權利與所有權<b class="k">合併</b><br>2. 不動產<b class="k">合併</b><br>3. 違反經濟合理性之不動產<b class="k">分割</b></div></td>
+        <td class="ans" data-id="gu1-2b"><span class="q">共幾個？分別是？</span><div class="body">共 <b class="k">2</b> 個：<br>1. <b class="k">續訂</b>租約<br>2. 不動產<b class="k">合併</b><br><span class="none">租金沒有「分割」這一款</span></div></td>
+      </tr>
+      <tr>
+        <td class="rh">特定</td>
+        <td class="ans" data-id="gu1-3a"><span class="q">定義？要同時估什麼？</span><div class="body">具市場性，基於<b class="k">特定條件</b>（未來可能、假設為前提）；§6 要敘明估價條件，並<b class="k">同時估計正常價格</b></div></td>
+        <td class="ans" data-id="gu1-3b"><span class="q">有沒有？</span><div class="body"><b class="k">沒有</b>，規則沒有特定租金</div></td>
+      </tr>
+      <tr>
+        <td class="rh">特殊</td>
+        <td class="ans" data-id="gu1-4a"><span class="q">定義？舉例？</span><div class="body"><b class="k">不具市場性</b>之不動產所估計的價值（總統府、太平島、東沙島、龜山島、鎮瀾宮、臺南孔廟）</div></td>
+        <td class="ans" data-id="gu1-4b"><span class="q">有沒有？</span><div class="body"><b class="k">沒有</b>，規則沒有特殊租金</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷（是哪一種？）</div>
+  <ul class="scen">
+    <li><span>1. 承租人把自己承租的那塊地買下來</span><span class="ans" data-id="gu1-s1"><span class="body">限定價格（其他權利與所有權合併）<span class="none">｜110 測</span></span></span></li>
+    <li><span>2. 都市邊緣農地，以「未來可能變更為建地」為前提估價</span><span class="ans" data-id="gu1-s2"><span class="body">特定價格，並要同時估正常價格<span class="none">｜107 測</span></span></span></li>
+    <li><span>3. 超商承租隔壁店面，打通合併使用</span><span class="ans" data-id="gu1-s3"><span class="body">限定租金（不動產合併）<span class="none">｜107 測</span></span></span></li>
+    <li><span>4. 私立學校校舍租約到期續租</span><span class="ans" data-id="gu1-s4"><span class="body">限定租金（續訂租約）<span class="none">｜106 測</span></span></span></li>
+    <li><span>5. 選項寫「臺南孔廟應估特殊租金」</span><span class="ans" data-id="gu1-s5"><span class="body">錯。孔廟是特殊價格，規則沒有特殊租金<span class="none">｜114 測</span></span></span></li>
+  </ul>
+
+  <div class="tip"><b>一眼判斷：</b>合併、分割、續租 → 限定；未來可能、假設為前提 → 特定；沒人買賣的古蹟、離島、宗教建築 → 特殊。價格 4 種、租金只有 2 種。</div>
+</div>
+
+<div class="card" data-card="tu1">
+  <div class="card-title"><span class="subj">土地法</span>四種地價 <span class="pill">9 年：105～112・114 測</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表</div>
+  <table class="cmp">
+    <thead><tr><th>項目</th><th>公告地價</th><th>申報地價</th><th>公告土地現值</th><th>市價</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">誰定</td>
+        <td class="ans" data-id="tu1-1a"><div class="body">政府（提交<b class="k">地價評議委員會</b>評定）</div></td>
+        <td class="ans" data-id="tu1-1b"><div class="body"><b class="k">地主</b>自行申報</div></td>
+        <td class="ans" data-id="tu1-1c"><div class="body">政府（提交地價評議委員會評定）</div></td>
+        <td class="ans" data-id="tu1-1d"><div class="body">市場交易；徵收補償用的市價由地價評議委員會評定</div></td>
+      </tr>
+      <tr>
+        <td class="rh">多久一次</td>
+        <td class="ans" data-id="tu1-2a"><div class="body">每 <b class="k">2 年</b>一次</div></td>
+        <td class="ans" data-id="tu1-2b"><div class="body">隨公告地價，在公告期間申報</div></td>
+        <td class="ans" data-id="tu1-2c"><div class="body">每年 <b class="k">1 月 1 日</b>公告</div></td>
+        <td class="ans" data-id="tu1-2d"><div class="body">隨時</div></td>
+      </tr>
+      <tr>
+        <td class="rh">用來課什麼</td>
+        <td class="ans" data-id="tu1-3a"><div class="body">供地主申報的參考（間接連到地價稅）</div></td>
+        <td class="ans" data-id="tu1-3b"><div class="body"><b class="k">地價稅</b>稅基</div></td>
+        <td class="ans" data-id="tu1-3c"><div class="body"><b class="k">土地增值稅</b>稅基；遺產稅、贈與稅土地計價</div></td>
+        <td class="ans" data-id="tu1-3d"><div class="body"><b class="k">徵收補償</b>（徵§30）、實價登錄、房地合一所得稅</div></td>
+      </tr>
+      <tr>
+        <td class="rh">高低</td>
+        <td class="ans" data-id="tu1-4" colspan="4"><span class="q">四者由低到高排？</span><div class="body">申報地價（通常＝公告地價 × <b class="k">80%</b>）＜ 公告地價 ＜ 公告土地現值 ＜ 市價</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 題目給「公告地價」，問一般土地的地價稅稅基</span><span class="ans" data-id="tu1-s1"><span class="body">先 × 80%（申報地價）；<b class="k">公有土地</b>不打折，直接用公告地價<span class="none">｜106・108・109 測</span></span></span></li>
+    <li><span>2. 申報地價超過公告地價 120%；申報移轉現值報得比公告現值高</span><span class="ans" data-id="tu1-s2"><span class="body">申報地價以 <b class="k">120%</b> 計；移轉現值<b class="k">照申報金額</b>課，沒有上限</span></span></li>
+    <li><span>3. 法院判決移轉，以哪一天的公告現值審核</span><span class="ans" data-id="tu1-s3"><span class="body"><b class="k">向法院起訴日</b>（誘答：判決確定日）<span class="none">｜107・108・111・112・114 測考審核標準</span></span></span></li>
+    <li><span>4. 遺贈、法院拍賣各以哪一天為準</span><span class="ans" data-id="tu1-s4"><span class="body">遺贈 → 遺贈人<b class="k">死亡日</b>；拍賣 → <b class="k">拍定日</b>；逾期申報 → 收件日</span></span></li>
+    <li><span>5. 照價收買用市價嗎</span><span class="ans" data-id="tu1-s5"><span class="body"><b class="k">不是</b>。低報就用你報的價，其他用收買當期公告土地現值（徵收才用市價）</span></span></li>
+  </ul>
+
+  <div class="tip"><b>一條主線：</b>政府先公告 → 地主再申報 → 用申報的那個算稅。公告地價 → 申報地價 → 地價稅；公告現值 → 申報移轉現值 → 土增稅。</div>
+</div>
+
+<div class="card" data-card="min1">
+  <div class="card-title"><span class="subj">民法</span>行為能力三分法＋監護、輔助宣告 <span class="pill">9 年：105～111・113・114＋106 申</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表（§13～§15-2、§75～§85）</div>
+  <table class="cmp">
+    <thead><tr><th>類型</th><th>誰（年齡／要件）</th><th>法律行為效力</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">完全</td>
+        <td class="ans" data-id="min1-1a"><div class="body"><b class="k">18 歲</b>以上</div></td>
+        <td class="ans" data-id="min1-1b"><div class="body">原則<b class="k">有效</b>；例外 §75 <b class="k">無意識或精神錯亂</b>當下所為無效</div></td>
+      </tr>
+      <tr>
+        <td class="rh">限制</td>
+        <td class="ans" data-id="min1-2a"><div class="body"><b class="k">7 歲</b>以上未滿 18 歲</div></td>
+        <td class="ans" data-id="min1-2b"><span class="q">契約和單獨行為有什麼不同？</span><div class="body">須法定代理人<b class="k">事前允許</b>（§77）或<b class="k">事後承認</b>（§79）；未經允許的<b class="k">單獨行為一律無效</b>，不能事後承認</div></td>
+      </tr>
+      <tr>
+        <td class="rh">無</td>
+        <td class="ans" data-id="min1-3a"><div class="body">未滿 7 歲</div></td>
+        <td class="ans" data-id="min1-3b"><div class="body"><b class="k">一律無效</b>，由法定代理人代為、代受意思表示</div></td>
+      </tr>
+      <tr>
+        <td class="rh">監護宣告</td>
+        <td class="ans" data-id="min1-4a"><span class="q">要件關鍵字？</span><div class="body">精神障礙或心智缺陷，致<b class="k">不能</b>為意思表示</div></td>
+        <td class="ans" data-id="min1-4b"><div class="body">§15 <b class="k">無行為能力</b>，精神狀況良好時所為仍無效</div></td>
+      </tr>
+      <tr>
+        <td class="rh">輔助宣告</td>
+        <td class="ans" data-id="min1-5a"><span class="q">要件關鍵字？</span><div class="body">辨識能力<b class="k">顯有不足</b></div></td>
+        <td class="ans" data-id="min1-5b"><div class="body"><b class="k">仍有行為能力</b>；§15-2 重大行為（贈與、借貸、保證、不動產或汽車等重要財產買賣）須輔助人同意</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 15 歲未經允許丟掉自己的平板</span><span class="ans" data-id="min1-s1"><span class="body">拋棄所有權＝單獨行為 → <b class="k">無效</b><span class="none">｜113 測</span></span></span></li>
+    <li><span>2. 限制行為能力人不用經允許就直接有效的情形有哪些</span><span class="ans" data-id="min1-s2"><span class="body">純獲法律上利益或日常生活必需；用詐術使人信其有行為能力；允許處分的財產；允許獨立營業</span></span></li>
+    <li><span>3. 受輔助宣告人不經輔助人同意，贈與二手筆電</span><span class="ans" data-id="min1-s3"><span class="body">不行，贈與要經同意<span class="none">｜113 測</span></span></span></li>
+    <li><span>4. 有精神疾病但沒有受監護宣告，清醒時簽約</span><span class="ans" data-id="min1-s4"><span class="body">仍有行為能力，契約有效；只有無意識或精神錯亂當下無效<span class="none">｜113 測</span></span></span></li>
+    <li><span>5. 受監護宣告人精神狀況良好時簽約</span><span class="ans" data-id="min1-s5"><span class="body"><b class="k">無效</b><span class="none">｜105 測</span></span></span></li>
+  </ul>
+
+  <div class="tip"><b>一眼判斷：</b>監護「不能」→ 無行為能力；輔助「顯有不足」→ 仍有行為能力（114 測拿這兩個字互換）。限制行為能力人：契約可以事後承認，單獨行為不行。</div>
+</div>
+
+<div class="card" data-card="jing1">
+  <div class="card-title"><span class="subj">經紀法</span>不實廣告：經紀條例 §21 vs 公平法 §21 <span class="pill">公平法 9 年＋經紀條例 5 年</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表</div>
+  <table class="cmp">
+    <thead><tr><th>項目</th><th>經紀條例 §21</th><th>公平交易法 §21</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">規範什麼</td>
+        <td class="ans" data-id="jing1-1a"><div class="body"><b class="k">簽委託契約書後</b>才能刊登廣告及銷售；內容與事實相符，並<b class="k">註明經紀業名稱</b></div></td>
+        <td class="ans" data-id="jing1-1b"><div class="body">對足以影響交易決定的事項，不得<b class="k">虛偽不實或引人錯誤</b>（價格、數量、品質、用途等，服務準用）</div></td>
+      </tr>
+      <tr>
+        <td class="rh">什麼情境用</td>
+        <td class="ans" data-id="jing1-2a"><div class="body"><b class="k">委託物件</b>的廣告與事實不符</div></td>
+        <td class="ans" data-id="jing1-2b"><div class="body"><b class="k">服務品質、企業形象、行銷策略</b>不實</div></td>
+      </tr>
+      <tr>
+        <td class="rh">罰則</td>
+        <td class="ans" data-id="jing1-3a"><div class="body">業 §29Ⅰ①：直接罰 <b class="k">6～30 萬</b></div></td>
+        <td class="ans" data-id="jing1-3b"><div class="body">§42：限期改正並罰 <b class="k">5 萬～2500 萬</b>；屆期不改按次 10 萬～5000 萬；<b class="k">沒有刑罰</b></div></td>
+      </tr>
+      <tr>
+        <td class="rh">連帶責任</td>
+        <td class="ans" data-id="jing1-4a"><div class="body"><span class="none">條例本條沒有規定</span></div></td>
+        <td class="ans" data-id="jing1-4b"><div class="body">廣告代理業、媒體業<b class="k">明知或可得而知</b>仍製作傳播 → 連帶；見證者（代言人）亦同，非知名公眾人物只在報酬 <b class="k">10 倍</b>內</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷（用哪一部法？）</div>
+  <ul class="scen">
+    <li><span>1. 委託銷售物件的廣告，坪數寫得比實際大</span><span class="ans" data-id="jing1-s1"><span class="body">經紀條例<span class="none">｜由 112、113 測正解歸納</span></span></span></li>
+    <li><span>2. 仲介廣告宣稱「連續 20 年第一品牌」卻沒有客觀數據</span><span class="ans" data-id="jing1-s2"><span class="body">公平法 §21<span class="none">｜105 測</span></span></span></li>
+    <li><span>3. 建案廣告畫 35 米泳池，竣工圖其實是景觀水池</span><span class="ans" data-id="jing1-s3"><span class="body">公平法 §21<span class="none">｜113 測</span></span></span></li>
+    <li><span>4. 要求購屋人先付訂金，才提供契約書攜回審閱</span><span class="ans" data-id="jing1-s4"><span class="body">公平法 <b class="k">§25 顯失公平</b>，不是 §21 不實廣告<span class="none">｜106・113 測</span></span></span></li>
+    <li><span>5. 還沒簽委託契約就先刊登廣告</span><span class="ans" data-id="jing1-s5"><span class="body">經紀條例 §21Ⅰ，直接罰 6～30 萬</span></span></li>
+  </ul>
+
+  <div class="tip"><b>記憶法：</b>廣告、簽章出問題 → 經紀條例直接罰 6～30 萬。看到「訂金才給契約審閱」「斡旋金沒告知要約書」→ §25，不是 §21。</div>
+</div>
+</section>
+
+<section class="subject" id="d1105" hidden>
+<div class="card" data-card="gu2">
+  <div class="card-title"><span class="subj">估價</span>成本法累積折舊 vs 收益法折舊提存 <span class="pill">10 年：105～111・113・114 測＋4 次申</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表（成本法 §65～68／收益法 §40～41）</div>
+  <table class="cmp">
+    <thead><tr><th>項目</th><th>成本法：累積折舊額</th><th>收益法：折舊提存費</th><th>收益法：折舊提存率</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">在算什麼</td>
+        <td class="ans" data-id="gu2-1a"><div class="body">建物從新到現在<b class="k">已經折掉多少</b>（過去累積）</div></td>
+        <td class="ans" data-id="gu2-1b"><div class="body"><b class="k">每年要存</b>多少錢，未來才能換新</div></td>
+        <td class="ans" data-id="gu2-1c"><div class="body">同一件事改用<b class="k">比率</b>表示</div></td>
+      </tr>
+      <tr>
+        <td class="rh">放在哪裡</td>
+        <td class="ans" data-id="gu2-2a"><div class="body">建物成本價格＝總成本 <b class="k">－</b> 累積折舊額</div></td>
+        <td class="ans" data-id="gu2-2b"><div class="body">加進<b class="k">總費用</b>（淨收益變小）</div></td>
+        <td class="ans" data-id="gu2-2c"><div class="body">加在<b class="k">建物收益資本化率</b>上（分母變大）</div></td>
+      </tr>
+      <tr>
+        <td class="rh">以誰為基礎</td>
+        <td class="ans" data-id="gu2-3a"><div class="body">總成本 C</div></td>
+        <td class="ans" data-id="gu2-3b"><div class="body">總成本 C</div></td>
+        <td class="ans" data-id="gu2-3c"><div class="body"><b class="k">價格日期當時建物價值</b>（分母要先扣掉已折舊部分）</div></td>
+      </tr>
+      <tr>
+        <td class="rh">等速型公式</td>
+        <td class="ans" data-id="gu2-4a"><span class="q">定額法？</span><div class="body">C ×（1－s）× n ÷ N</div></td>
+        <td class="ans" data-id="gu2-4b"><div class="body">C ×（1－s）÷ N</div></td>
+        <td class="ans" data-id="gu2-4c"><div class="body">〔（1－s）÷ N〕÷〔1－（1－s）× n ÷ N〕</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 總費用已經扣了折舊提存費，建物資本化率還要加提存率嗎</span><span class="ans" data-id="gu2-s1"><span class="body"><b class="k">不加</b>，二擇一不能重複扣；沒扣才加<span class="none">｜107 測</span></span></span></li>
+    <li><span>2. §68 折舊的三種路徑，各對應哪個方法</span><span class="ans" data-id="gu2-s2"><span class="body">等速 → 定額法；初期加速 → 定率法；初期減速 → 償債基金法</span></span></li>
+    <li><span>3. 隔壁施工造成外牆龜裂，是哪一種折舊原因</span><span class="ans" data-id="gu2-s3"><span class="body"><b class="k">物理性</b><span class="none">｜113 測</span></span></span></li>
+    <li><span>4. 格局設備過時沒人要；附近蓋了殯儀館</span><span class="ans" data-id="gu2-s4"><span class="body">過時 → <b class="k">功能性</b>（105 測）；殯儀館 → <b class="k">經濟性</b>（外部環境）</span></span></li>
+    <li><span>5. 看公式怎麼認：有小 n、有 i 各代表什麼</span><span class="ans" data-id="gu2-s5"><span class="body">有小 n → 提存<b class="k">率</b>；有 i → <b class="k">償債基金型</b></span></span></li>
+  </ul>
+
+  <div class="tip"><b>兩法其實是同一筆錢：</b>每年提存 C（1－s）÷ N，存 n 年，就等於成本法的累積折舊 C（1－s）× n ÷ N。土地不折舊，只有建物要處理。折舊原因口訣「物功經」。</div>
+</div>
+
+<div class="card" data-card="tu2">
+  <div class="card-title"><span class="subj">土地法</span>優先購買權五種來源 <span class="pill">8 年：105～109・111・113・114 測</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表</div>
+  <table class="cmp">
+    <thead><tr><th>來源</th><th>什麼情境</th><th>效力</th><th>表示期限</th><th>沒通知的後果</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">§104／§107</td>
+        <td class="ans" data-id="tu2-1a"><div class="body"><b class="k">基地</b>／<b class="k">耕地</b>出賣或出典</div></td>
+        <td class="ans" data-id="tu2-1b"><div class="body"><b class="k">物權</b>效力</div></td>
+        <td class="ans" data-id="tu2-1c"><div class="body"><b class="k">10 日</b>內</div></td>
+        <td class="ans" data-id="tu2-1d"><div class="body">買賣契約<b class="k">不得對抗</b>優先購買權人</div></td>
+      </tr>
+      <tr>
+        <td class="rh">§34-1Ⅳ</td>
+        <td class="ans" data-id="tu2-2a"><div class="body"><b class="k">共有人</b>出賣應有部分（持分）</div></td>
+        <td class="ans" data-id="tu2-2b"><div class="body"><b class="k">債權</b>效力</div></td>
+        <td class="ans" data-id="tu2-2c"><div class="body"><b class="k">15 日</b>內（執行要點）</div></td>
+        <td class="ans" data-id="tu2-2d"><div class="body">契約<b class="k">仍有效</b>，只能請求損害賠償</div></td>
+      </tr>
+      <tr>
+        <td class="rh">§8-5Ⅲ／Ⅴ</td>
+        <td class="ans" data-id="tu2-3a"><div class="body"><b class="k">區分所有建物</b>房地分離出賣（賣地用Ⅲ、賣屋用Ⅴ）</div></td>
+        <td class="ans" data-id="tu2-3b"><div class="body">債權效力</div></td>
+        <td class="ans" data-id="tu2-3c"><div class="body">先公告 <b class="k">5 日</b>，再 15 日內</div></td>
+        <td class="ans" data-id="tu2-3d"><div class="body">視為放棄</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 四個私人買賣的優先購買權同時出現，排序？</span><span class="ans" data-id="tu2-s1"><span class="body">§104／107 ＞ §8-5Ⅲ（賣地）＞ §34-1 ＞ §8-5Ⅴ（賣屋）<span class="none">｜物權＞債權</span></span></span></li>
+    <li><span>2. 共有人賣持分沒通知其他共有人，買賣契約效力？</span><span class="ans" data-id="tu2-s2"><span class="body">仍有效，其他共有人只能請求損害賠償</span></span></li>
+    <li><span>3. 地主把出租的基地賣掉，沒通知承租人</span><span class="ans" data-id="tu2-s3"><span class="body">§104 物權效力，買賣不得對抗承租人</span></span></li>
+    <li><span>4. 徵收後變更使用目的，政府標售土地</span><span class="ans" data-id="tu2-s4"><span class="body">徵 §59，是政府標售，<b class="k">不參與</b>私人買賣的競合排序</span></span></li>
+    <li><span>5. 優先購買權最常考的是天數嗎</span><span class="ans" data-id="tu2-s5"><span class="body">很少單獨考天數，多考<b class="k">情境配對＋物權或債權＋排序</b></span></span></li>
+  </ul>
+
+  <div class="tip"><b>判斷口訣：</b>賣的是「持分」→ §34-1；區分所有建物房地分屬不同人 → §8-5；地上權、典權、租賃關係 → §104（耕地用 §107）。認出法條，期限和效力就跟著固定。</div>
+</div>
+
+<div class="card" data-card="min2">
+  <div class="card-title"><span class="subj">民法</span>瑕疵擔保：買賣 vs 贈與 vs 承攬 <span class="pill">買賣物之瑕疵 6 年＋106・113 申</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表（§354～365、§411、§492～495・§514）</div>
+  <table class="cmp">
+    <thead><tr><th>項目</th><th>買賣（物之瑕疵）</th><th>贈與</th><th>承攬</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">負不負責</td>
+        <td class="ans" data-id="min2-1a"><div class="body"><b class="k">危險移轉（交付）時</b>，擔保無減少價值的瑕疵、具通常效用</div></td>
+        <td class="ans" data-id="min2-1b"><div class="body"><b class="k">原則不負責</b>；故意不告知或保證品質才負責</div></td>
+        <td class="ans" data-id="min2-1c"><div class="body">工作應具備<b class="k">約定品質</b></div></td>
+      </tr>
+      <tr>
+        <td class="rh">可以怎麼救濟</td>
+        <td class="ans" data-id="min2-2a"><div class="body"><b class="k">解約或減價</b>；故意隱瞞或保證品質才加損賠；<b class="k">種類之債</b>可請求另行交付</div></td>
+        <td class="ans" data-id="min2-2b"><div class="body">只有<b class="k">損害賠償</b>，沒有解約、減價</div></td>
+        <td class="ans" data-id="min2-2c"><span class="q">處理順序？</span><div class="body">1. <b class="k">修補</b> → 2. 解約或減少報酬（<b class="k">建築物原則不得解約</b>）→ 3. 損害賠償</div></td>
+      </tr>
+      <tr>
+        <td class="rh">期間</td>
+        <td class="ans" data-id="min2-3a"><div class="body">通知後 <b class="k">6 個月</b>、交付後 <b class="k">5 年</b>；故意不告知只不受 6 個月限制</div></td>
+        <td class="ans" data-id="min2-3b"><div class="body"><span class="none">沒有獨立規定</span></div></td>
+        <td class="ans" data-id="min2-3c"><div class="body">發見後 <b class="k">1 年</b>；建築物或重大修繕 <b class="k">5 年</b></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 買特定一間房子有瑕疵，可以請求換一間嗎</span><span class="ans" data-id="min2-s1"><span class="body"><b class="k">不行</b>，另行交付只有種類之債才有<span class="none">｜105・111 測</span></span></span></li>
+    <li><span>2. 買受人收到後沒有從速檢查通知</span><span class="ans" data-id="min2-s2"><span class="body"><b class="k">視為承認</b>；但出賣人故意不告知瑕疵時不適用</span></span></li>
+    <li><span>3. 承攬人蓋的房子有瑕疵，定作人可以直接解約嗎</span><span class="ans" data-id="min2-s3"><span class="body">原則<b class="k">不可以</b>，除非瑕疵重大到不能達使用目的；先請求修補</span></span></li>
+    <li><span>4. 租屋有瑕疵，用哪一套規定</span><span class="ans" data-id="min2-s4"><span class="body"><b class="k">準用買賣</b>（§347、§436）</span></span></li>
+    <li><span>5. 使用借貸的借用物有瑕疵，貸與人什麼時候要賠</span><span class="ans" data-id="min2-s5"><span class="body"><b class="k">故意不告知</b>且<b class="k">致借用人受損害</b>，兩個缺一不可</span></span></li>
+  </ul>
+
+  <div class="tip"><b>一眼分辨：</b>有償契約（買賣、租賃、承攬）責任重、救濟多；無償契約（贈與、使用借貸）責任輕，原則只有「故意不告知」才賠，沒有解約或減價。</div>
+</div>
+
+<div class="card" data-card="jing2">
+  <div class="card-title"><span class="subj">經紀法</span>聯合行為 vs 結合 vs 獨占（公平法） <span class="pill">聯合 9 年＋結合獨占 5 年</span></div>
+  <div class="score" data-score></div>
+
+  <div class="part">第 1 部分：比較表</div>
+  <table class="cmp">
+    <thead><tr><th>項目</th><th>聯合行為 §14～18</th><th>結合 §10～13</th><th>獨占 §7～9</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="rh">定義關鍵字</td>
+        <td class="ans" data-id="jing2-1a"><div class="body">具<b class="k">競爭關係</b>的<b class="k">同一產銷階段</b>事業<b class="k">合意</b>，足以影響市場功能</div></td>
+        <td class="ans" data-id="jing2-1b"><span class="q">五款？</span><div class="body">合併；持股達 <b class="k">1/3</b> 以上；受讓承租主要營業財產；共同經營或受託經營；控制業務或人事</div></td>
+        <td class="ans" data-id="jing2-1c"><div class="body"><b class="k">無競爭</b>或具<b class="k">壓倒性地位</b>，能排除競爭</div></td>
+      </tr>
+      <tr>
+        <td class="rh">數字門檻</td>
+        <td class="ans" data-id="jing2-2a"><span class="q">許可期限？</span><div class="body">一次不得逾 <b class="k">5 年</b>；屆滿前 3～6 個月申請延展，每次也不得逾 5 年</div></td>
+        <td class="ans" data-id="jing2-2b"><span class="q">申報門檻？</span><div class="body">結合後市占 <b class="k">1/3</b>；一方市占 <b class="k">1/4</b>（誘答改 1/3）；銷售額超過公告金額</div></td>
+        <td class="ans" data-id="jing2-2c"><span class="q">認定範圍？</span><div class="body">一事業 <b class="k">1/2</b>、二事業 <b class="k">2/3</b>、三事業 <b class="k">3/4</b>；個別未達 10% 不列入</div></td>
+      </tr>
+      <tr>
+        <td class="rh">管制方式</td>
+        <td class="ans" data-id="jing2-3a"><div class="body"><b class="k">原則禁止、例外許可</b>（§15 八款，須有益整體經濟與公共利益）</div></td>
+        <td class="ans" data-id="jing2-3b"><div class="body"><b class="k">事前申報</b>；受理後 30 工作日內不得結合，延長不得逾 60 工作日</div></td>
+        <td class="ans" data-id="jing2-3c"><div class="body">禁止<b class="k">濫用</b>獨占地位（§9）</div></td>
+      </tr>
+      <tr>
+        <td class="rh">有沒有刑罰</td>
+        <td class="ans" data-id="jing2-4a"><div class="body"><b class="k">有</b>：經限期停止仍未停止或再犯，3 年以下徒刑，得併科 1 億以下罰金</div></td>
+        <td class="ans" data-id="jing2-4b"><div class="body"><b class="k">沒有</b>：罰 20 萬～5000 萬；申報不實 10 萬～100 萬</div></td>
+        <td class="ans" data-id="jing2-4c"><div class="body"><b class="k">有</b>：再犯同聯合行為，3 年以下、1 億以下</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="part">第 2 部分：情境判斷</div>
+  <ul class="scen">
+    <li><span>1. 幾家仲介業者約好，都只跟屋主簽專任委託</span><span class="ans" data-id="jing2-s1"><span class="body">聯合行為<span class="none">｜105・106・107 測</span></span></span></li>
+    <li><span>2. 仲介業者互相協議固定服務報酬、劃分經營區域</span><span class="ans" data-id="jing2-s2"><span class="body">聯合行為<span class="none">｜108・113 測</span></span></span></li>
+    <li><span>3. 聯合行為許可期限，選項寫「不得逾 3 年」</span><span class="ans" data-id="jing2-s3"><span class="body">錯，是 <b class="k">5 年</b><span class="none">｜105・106 測</span></span></span></li>
+    <li><span>4. 公平會許可聯合行為後，「不得主動公開」許可內容</span><span class="ans" data-id="jing2-s4"><span class="body">錯，應<b class="k">主動公開</b>（§18）<span class="none">｜114 測</span></span></span></li>
+    <li><span>5. 調查前主動書面檢舉並協助調查的參與事業</span><span class="ans" data-id="jing2-s5"><span class="body">窩裡反條款 §35，經事前同意可<b class="k">免除或減輕</b>罰鍰，身分保密</span></span></li>
+  </ul>
+
+  <div class="tip"><b>記憶法：</b>聯合是「同業約好」，結合是「合成一家」，獨占是「一家獨大」。有刑罰的只有聯合和獨占（3 年／1 億），結合沒有刑罰。</div>
+</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var KEY='bigcmp-marks-v1';
+  var marks={};
+  try{marks=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){marks={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(marks));}catch(e){}}
+
+  /* 倒數天數（台北時間，考試 2026-11-14） */
+  try{
+    var now=new Date(Date.now()+8*3600e3), exam=Date.UTC(2026,10,14);
+    var today=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate());
+    var d=Math.round((exam-today)/864e5);
+    document.getElementById('dday').textContent=d>0?d+' 天':'考試中';
+  }catch(e){}
+
+  var cells=document.querySelectorAll('.ans');
+  cells.forEach(function(c){
+    var m=document.createElement('div');
+    m.className='mark';
+    m.innerHTML='<button type="button" class="b-ok">✔ 對</button><button type="button" class="b-ng">✘ 錯</button>';
+    c.appendChild(m);
+    apply(c);
+    c.addEventListener('click',function(e){
+      var b=e.target.closest('button');
+      if(b){
+        var id=c.dataset.id, v=b.classList.contains('b-ok')?'ok':'ng';
+        if(marks[id]===v) delete marks[id]; else marks[id]=v;
+        save(); apply(c); refresh(); e.stopPropagation(); return;
+      }
+      c.classList.toggle('show');
+    });
+  });
+
+  function apply(c){
+    var v=marks[c.dataset.id];
+    c.classList.toggle('ok',v==='ok');
+    c.classList.toggle('ng',v==='ng');
+  }
+
+  function refresh(){
+    /* 只看 ✘：沒有 ✘ 的列／情境題收起來 */
+    document.querySelectorAll('.cmp tbody tr, .scen li').forEach(function(r){
+      r.classList.toggle('hide-ok',!r.querySelector('.ans.ng'));
+    });
+    document.querySelectorAll('[data-card]').forEach(function(card){
+      var all=card.querySelectorAll('.ans'), ok=0, ng=0;
+      all.forEach(function(a){if(a.classList.contains('ok'))ok++; if(a.classList.contains('ng'))ng++;});
+      var s=card.querySelector('[data-score]');
+      if(s) s.textContent='共 '+all.length+' 格｜✔ '+ok+'｜✘ '+ng+'｜未答 '+(all.length-ok-ng);
+    });
+  }
+  refresh();
+
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t);});
+      document.querySelectorAll('.subject').forEach(function(s){s.hidden=s.id!==t.dataset.sub;});
+    });
+  });
+
+  var onlyNg=document.getElementById('onlyNg');
+  onlyNg.addEventListener('click',function(){
+    var on=document.body.classList.toggle('only-ng');
+    onlyNg.classList.toggle('on',on);
+    onlyNg.textContent=on?'顯示全部':'只看 ✘';
+  });
+  document.getElementById('hideAll').addEventListener('click',function(){
+    cells.forEach(function(c){c.classList.remove('show');});
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    var b=this;
+    if(b.dataset.confirm){marks={}; save(); cells.forEach(apply); refresh(); b.textContent='清除紀錄'; delete b.dataset.confirm; return;}
+    b.dataset.confirm='1'; b.textContent='再按一次確認清除';
+    setTimeout(function(){if(b.dataset.confirm){delete b.dataset.confirm; b.textContent='清除紀錄';}},3000);
+  });
+})();
+</script>
+</body>
+</html>
