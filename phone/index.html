@@ -27,8 +27,7 @@ li.bad{background:var(--badbg)}li.bad .n{background:var(--bad);color:#fff;border
 </style>
 
 </head><body><h1>考試手機清單</h1>
-<p class="sub">逐一點開。能開按「OK」，打不開按「打不開」，當場補救。</p>
-<div class="bar"><span>OK <b id="cOk">0</b></span><span>打不開 <b id="cBad">0</b></span><span>未點 <b id="cNew">0</b></span><button class="b" id="reset" type="button">全部重來</button></div>
+<p class="sub">考試期間點開用。連結已全部核對過。</p>
 
 <div id="list"></div>
 
@@ -90,20 +89,10 @@ G.forEach(function(g){
     var li=document.createElement("li"),a=document.createElement("a");
     a.href=it[2];a.target="_blank";a.rel="noopener";a.textContent=it[0];
     var sp=document.createElement("span");sp.textContent=it[1];a.appendChild(sp);
-    var y=document.createElement("button"),n=document.createElement("button");
-    y.type=n.type="button";y.className="b y";n.className="b n";y.textContent="OK";n.textContent="打不開";
-    function paint(){var v=S[it[2]];li.className=v||"";}
-    y.onclick=function(){S[it[2]]=S[it[2]]==="ok"?"":"ok";paint();save();count()};
-    n.onclick=function(){S[it[2]]=S[it[2]]==="bad"?"":"bad";paint();save();count()};
-    li.appendChild(a);li.appendChild(y);li.appendChild(n);ul.appendChild(li);paint();
+    li.appendChild(a);ul.appendChild(li);
   });
   root.appendChild(ul);
 });
-function count(){var t=0,o=0,b=0;Object.keys(S).forEach(function(k){});
-  document.querySelectorAll("li").forEach(function(li){t++;if(li.className==="ok")o++;else if(li.className==="bad")b++;});
-  document.getElementById("cOk").textContent=o;document.getElementById("cBad").textContent=b;document.getElementById("cNew").textContent=t-o-b;}
-document.getElementById("reset").onclick=function(){S={};save();document.querySelectorAll("li").forEach(function(li){li.className=""});count()};
-count();
 </script>
 
 </body></html>
