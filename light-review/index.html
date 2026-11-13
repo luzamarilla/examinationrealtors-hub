@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>輕量複習 精簡考場版</title>
+<style>
+:root{--bg:#fff;--ink:#2b2420;--sub:#7a6a60;--line:#e8ddd3;--accent:#b5452f;--gold:#c9962b;--soft:#fbf5ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 -apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:22px;margin:4px 0 6px;color:var(--accent)}
+.tip{color:var(--sub);font-size:15px;margin:0 0 18px}
+h2{font-size:18px;margin:28px 0 10px;padding-left:10px;border-left:5px solid var(--gold)}
+details{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:#fff}
+summary{cursor:pointer;padding:12px 14px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"看答案";font-size:13px;color:var(--accent);font-weight:400;white-space:nowrap}
+details[open] summary::after{content:"收起"}
+details[open] summary{border-bottom:1px dashed var(--line)}
+.body{padding:10px 14px 14px;background:var(--soft);border-radius:0 0 10px 10px}
+.body p{margin:6px 0}
+.body b{color:var(--accent)}
+.mark{margin-top:8px;font-size:14px;color:var(--sub);display:flex;gap:6px;align-items:center}
+.mark input{width:18px;height:18px}
+details.flag{border-color:var(--accent)}
+.bar{position:sticky;top:0;background:#fff;padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:8px;font-size:14px;z-index:2}
+.bar button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font:inherit;color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+<h1>輕量複習 精簡考場版</h1>
+<p class="tip">只看不寫，一題約 1 分。先看題目名稱，在腦中說出大標，再按「看答案」。心中沒印象的題勾「沒印象」，不用補寫。22:00 前睡。</p>
+<div class="bar"><button onclick="toggleAll(true)">全部展開</button><button onclick="toggleAll(false)">全部收起</button><button onclick="onlyFlag()">只看沒印象</button><button onclick="showAll()">看全部</button></div>
+
+<h2>土地</h2>
+
+<details><summary>市地重劃禁建（107 一）</summary><div class="body">
+<p><b>（一）</b>禁止限制：土地移轉分割設定負擔、建物新增改重建、採土石變更地形，最長 1 年 6 個月；例外 8 款（繼承、建物及基地登記、抵繳遺產稅、強制執行徵收判決、耕者有其田、剩餘財產差額分配、抵押權讓與、重劃必要作業）。</p>
+<p><b>（二）</b>施工中：不妨礙續建，妨礙停工並限期改善，逾期強制執行拆除不補償。買賣移轉不在 8 款內，禁止期間辦不了。</p></div></details>
+
+<details><summary>公辦市地重劃公告與異議（113 一）</summary><div class="body">
+<p><b>（一）</b>計畫書核定後公告滿 30 日；分配結果公告 30 日並通知所有權人。</p>
+<p><b>（二）</b>計畫書公告期間表示反對；分配結果公告期間書面異議，未提出期滿確定。</p>
+<p><b>（三）</b>計畫書反對達人數面積雙過半就調處並修訂重報；分配異議調處，不成報上級裁決。</p></div></details>
+
+<details><summary>抵價地（109 一）</summary><div class="body">
+<p><b>（一）</b>區段徵收，所有權人公告期間書面申請，以可建築土地抵付地價補償。</p>
+<p><b>（二）</b>總面積以徵收總面積 50% 為原則，例外不得少於 40%，曾辦農地重劃者不得少於 45%。</p>
+<p><b>（三）</b>按應領補償地價占總額比例算權利價值，再以抵價地單位地價折算面積。</p></div></details>
+
+<details><summary>先行區段徵收＋禁止處分登記（112 一）</summary><div class="body">
+<p><b>（一）</b>經中央核定，先徵收，公告期滿 1 年內發布都市計畫；目的不拖、不漲。</p>
+<p><b>（二）</b>解說：地用面仍可領回抵價地；地權面有欠稅禁止處分登記，塗銷前不能過戶。</p>
+<p><b>（三）</b>處理：甲繳清欠稅，稅捐機關囑託地政機關塗銷。</p></div></details>
+
+<details><summary>房屋稅（112 二）</summary><div class="body">
+<p><b>（一）</b>標準價格 3 因素（材、年、地），每 3 年重評；問題是多年沒重評、與市價落差大。</p>
+<p><b>（二）</b>非自住住家用 2%～4.8%，全國歸戶。</p>
+<p><b>（三）</b>地方訂徵收率，議會通過、報財政部備案；問題是易受政治干擾。</p></div></details>
+
+<details><summary>空屋空地（113 二）</summary><div class="body">
+<p><b>（一）</b>A 屋無人設籍，非自住住家用，2%～4.8%。</p>
+<p><b>（二）</b>空地：公共設施完成未建築，或建物價值不及申報地價 10%；空地稅加徵 2 至 5 倍。</p>
+<p><b>（三）</b>B 地限期建築：甲與乙協議建築，不成得終止租約。</p></div></details>
+
+<h2>經紀</h2>
+
+<details><summary>公平法 110 二（預售屋抽籤）</summary><div class="body">
+<p>事業 4 種：公司、獨資或合夥之工商行號、其他提供商品或服務之人或團體、同業公會（視為事業）。建設公司與代銷公司都違反第 25 條，資訊沒齊、製造急迫屬顯失公平，廣告沒不實，不是第 21 條；罰鍰 5 萬到 2500 萬。</p></div></details>
+
+<details><summary>消保法 109 一（不實廣告）</summary><div class="body">
+<p>企業經營者確保廣告真實、義務不低於廣告、契約成立後確實履行，信用交易明示總費用年百分率；媒體經營者明知或可得知不實，與企業經營者連帶負責，不得預先約定限制或拋棄。</p></div></details>
+
+<details><summary>消保法 114 一（申訴與調解）</summary><div class="body">
+<p>先向企業經營者、消保團體或消費者服務中心申訴，未獲妥適處理再向消費者保護官申訴；申訴未獲妥適處理才能申請調解，不能跳過；調解書經法院核定與民事確定判決有同一效力。</p></div></details>
+
+<details><summary>公寓 111 二（臨時會議與召集人）</summary><div class="body">
+<p>臨時會議 2 種：重大事故有及時處理必要，經管理負責人或管委會請求；區分所有權人 1/5 以上且比例 1/5 以上書面請求。召集人由具區分所有權人身分的管理負責人、主委或管委擔任；沒有就互推一人，互推不出來可申請主管機關指定臨時召集人。</p></div></details>
+
+<h2>民法</h2>
+
+<details><summary>106 申論二（17 歲版）</summary><div class="body">
+<p><b>（一）</b>甲 17 歲是限制行為能力人：買賣契約要付錢，效力未定，法定代理人不承認就確定無效；移轉登記純獲法律上利益，有效。</p>
+<p><b>（二）</b>法定代理人承認：契約有效，走物之瑕疵擔保，可解除或減價，故意不告知得請求損害賠償，通知後 6 個月、交屋後 5 年內行使。</p>
+<p><b>（三）</b>不承認：契約確定無效，走不當得利，請求返還價金與房屋；居住 1 年後甲可能已滿 18 歲，可自己承認。</p></div></details>
+
+<h2>估價</h2>
+
+<details><summary>新訂與續訂租金估計（110 二）</summary><div class="body">
+<p>租金估計以實質租金為原則（第 130 條），並依第 131 條分新訂與續訂租約。</p>
+<p><b>（一）</b>新訂租約（第 132 條）：租賃實例比較法、積算法、收益分析法，各寫一句做法。</p>
+<p><b>（二）</b>續訂租約（第 133 條）：租賃實例比較法、利率法、推算法、差額分配法，各寫一句做法。</p>
+<p>記法：新訂 3（比、積、收），續訂 4（比、利、推、差）。</p></div></details>
+
+<details><summary>實質租金與租金估計考慮因素（114 一）</summary><div class="body">
+<p><b>（一）</b>實質租金（第 130 條）：每期租金加計押金或保證金、權利金及其他運用收益之總數，估租金以此為原則。</p>
+<p><b>（二）</b>考慮因素（第 129 條）：契約內容、租期長短、使用目的、稅費負擔、租金水準、變遷狀態、租約更新、變更條件及其他。</p>
+<p>記法：契約、租期、用途、稅費、水準、變遷、更新、變更，最後加「其他」。</p></div></details>
+
+<details><summary>估價蒐集的資料與比較實例原則（短答）</summary><div class="body">
+<p><b>（一）</b>資料 3 類（第 11 條）：基本資料、價格因素（一般、區域、個別）、交易收益成本資料。</p>
+<p><b>（二）</b>實例 4 原則（第 12 條）：正常價格或可調整、同一供需圈、使用性質相同、日期接近。</p>
+<p>記法：資料「基本、價格因素、交易收益成本」，實例「正常價、同供需圈、同使用、日期近」。</p></div></details>
+
+<details><summary>土地開發分析法公式與成本項目（短答）</summary><div class="body">
+<p>公式：V＝S÷(1+R)÷(1+i)−(C+M)，R 為利潤率，i 為資本利息綜合利率。</p>
+<p>直接成本：營造或施工費。</p>
+<p>間接成本：規劃設計費、廣告銷售費、管理費、稅捐及其他負擔。</p>
+<p>記法：利潤 R 和利息 i 是「除」，成本 C+M 才是「減」；直接成本只有營造或施工費，不是人工費、材料費。</p>
+<p>別混：成本法的營造施工費裡才有直接材料、間接材料、直接人工、間接人工，再加管理費、稅捐、資本利息、利潤。</p></div></details>
+
+<details><summary>以開發為前提的宗地怎麼估（短答）</summary><div class="body">
+<p>依不動產估價技術規則第 87 條，對以進行開發為前提之宗地，得採土地開發分析法進行估價，並參酌比較法或收益法之評估結果決定其估價額。</p>
+<p>記法：土開法算出來只是「分析價格」，最後要拿比較法或收益法對照後才定案。</p></div></details>
+<script>
+var KEY="light_review_flags_1113";
+var ds=[].slice.call(document.querySelectorAll("details"));
+var flags={};
+try{flags=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(flags))}catch(e){}}
+ds.forEach(function(d,i){
+  var m=document.createElement("label");m.className="mark";
+  m.innerHTML='<input type="checkbox"> 沒印象';
+  var c=m.firstChild;c.checked=!!flags[i];
+  if(c.checked)d.classList.add("flag");
+  c.addEventListener("change",function(){flags[i]=c.checked;d.classList.toggle("flag",c.checked);save()});
+  d.querySelector(".body").appendChild(m);
+});
+function toggleAll(o){ds.forEach(function(d){d.open=o})}
+function onlyFlag(){ds.forEach(function(d){d.style.display=d.classList.contains("flag")?"":"none"})}
+function showAll(){ds.forEach(function(d){d.style.display=""})}
+</script>
+</main>
+</body>
+</html>
