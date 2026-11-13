@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考試手機清單</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* 版面：單欄清單，每列＝連結＋OK／打不開兩顆按鈕；固定白底 */
+:root{--bg:#ffffff;--fg:#26231f;--muted:#6f6a62;--line:#e6e1d8;--accent:#9c4a32;--ok:#2f6b3f;--okbg:#e7f2ea;--bad:#b3261e;--badbg:#fbe9e7;--chip:#f5f2ec;color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.5;margin:0;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:640px;margin-inline:auto}
+h1{font-size:22px;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap;z-index:5;font-size:14px}
+.bar b{font-variant-numeric:tabular-nums}
+.bar button{margin-left:auto}
+h2{font-size:15px;margin:22px 0 6px;color:var(--accent);letter-spacing:.04em}
+h2 small{color:var(--muted);font-weight:400;letter-spacing:0;margin-left:6px}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding:6px 0}
+li a{flex:1;min-width:0;display:block;padding:10px 4px;color:var(--fg);text-decoration:none;font-weight:600}
+li a span{display:block;font-weight:400;font-size:12.5px;color:var(--muted)}
+.b{border:1px solid var(--line);background:var(--chip);color:var(--fg);border-radius:8px;min-height:44px;min-width:48px;padding:0 10px;font:inherit;font-size:14px}
+.b:focus-visible,li a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li.ok{background:var(--okbg)}li.ok .y{background:var(--ok);color:#fff;border-color:var(--ok)}
+li.bad{background:var(--badbg)}li.bad .n{background:var(--bad);color:#fff;border-color:var(--bad)}
+.fix{margin-top:22px;padding:12px;background:var(--chip);border-radius:8px;font-size:14px}
+.fix p{margin:0 0 6px}
+</style>
+
+</head><body><h1>考試手機清單</h1>
+<p class="sub">逐一點開。能開按「OK」，打不開按「打不開」，當場補救。</p>
+<div class="bar"><span>OK <b id="cOk">0</b></span><span>打不開 <b id="cBad">0</b></span><span>未點 <b id="cNew">0</b></span><button class="b" id="reset" type="button">全部重來</button></div>
+
+<div id="list"></div>
+
+<div class="fix">
+<p><b>打不開怎麼補救</b></p>
+<p>1. 先換 Wi-Fi 或行動網路再點一次。</p>
+<p>2. 還是不行，改開首頁 luzamarilla.github.io/examinationrealtors-hub/ 再從卡片進去。</p>
+<p>3. 「精簡考場版」要登入同一個 Claude 帳號才看得到。</p>
+</div>
+
+<script>
+var B="https://luzamarilla.github.io/";
+var G=[
+["四科都用","11/13 晚起",[
+["常錯清單（最優先）","hub／cuoti",B+"examinationrealtors-hub/cuoti/"],
+["申論必背條號","hub／essay-articles",B+"examinationrealtors-hub/essay-articles/"],
+["大概念比較題","hub／bijiao",B+"examinationrealtors-hub/bijiao/"],
+["精簡考場版（手機 16 題）","要登入 Claude 帳號","https://claude.ai/artifact/1uxcPzf1szRPzdBZDfsch1"],
+["音檔（車上聽）","hub／audio",B+"examinationrealtors-hub/audio/"],
+["筆記總入口","hub 首頁",B+"examinationrealtors-hub/"]
+]],
+["民法概要","11/14 13:00",[
+["民法 總則複習版","minfa／review／l1-4",B+"examinationrealtors-minfa/review/l1-4/"],
+["民法 債編複習版（契約）","minfa／review／l5-8",B+"examinationrealtors-minfa/review/l5-8/"],
+["民法 物權複習版","minfa／review／l9-11",B+"examinationrealtors-minfa/review/l9-11/"],
+["民法 繼承・親屬複習版","minfa／review／l12",B+"examinationrealtors-minfa/review/l12/"],
+["民法 數字篇","minfa／review／number",B+"examinationrealtors-minfa/review/number/"],
+["民法 跨堂比較總表","minfa／compare",B+"examinationrealtors-minfa/compare/"]
+]],
+["不動產估價概要","11/14 15:10",[
+["估價 跨堂表","gujia／compare-table",B+"examinationrealtors-gujia/compare-table/"],
+["估價 複習版總覽","gujia／review／zonglan",B+"examinationrealtors-gujia/review/zonglan/"],
+["估價 數字篇","gujia／review／number",B+"examinationrealtors-gujia/review/number/"]
+]],
+["土地法與稅法","11/15 09:00",[
+["土地法 本體篇複習版（總論＋地用）","tudifa／review／benti",B+"examinationrealtors-tudifa/review/benti/"],
+["土地稅法 稅法篇複習版","tudifa／review／shuifa",B+"examinationrealtors-tudifa/review/shuifa/"],
+["土地法 數字篇","tudifa／review／number",B+"examinationrealtors-tudifa/review/number/"],
+["土地法 跨堂比較總表","tudifa／compare",B+"examinationrealtors-tudifa/compare/"],
+["土地法 地用筆記（房屋租用・耕地租用・空地荒地）","tudifa／l5",B+"examinationrealtors-tudifa/l5/"]
+]],
+["不動產經紀法規","11/15 11:10",[
+["經紀法 經紀業管理條例複習版","jingjifa／review／l1l2",B+"examinationrealtors-jingjifa/review/l1l2/"],
+["經紀法 公平交易法複習版","jingjifa／review／l3l4",B+"examinationrealtors-jingjifa/review/l3l4/"],
+["經紀法 消費者保護法複習版","jingjifa／review／l5l6",B+"examinationrealtors-jingjifa/review/l5l6/"],
+["經紀法 公寓大廈管理條例複習版","jingjifa／review／l7l8",B+"examinationrealtors-jingjifa/review/l7l8/"],
+["經紀法 數字篇","jingjifa／review／number",B+"examinationrealtors-jingjifa/review/number/"],
+["經紀法 跨堂表（含四科罰則總表）","jingjifa／compare",B+"examinationrealtors-jingjifa/compare/"]
+]]
+];
+var K="phone-checklist-v1",S={};
+try{S=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+var root=document.getElementById("list");
+G.forEach(function(g){
+  var h=document.createElement("h2");h.textContent=g[0];var s=document.createElement("small");s.textContent=g[1];h.appendChild(s);root.appendChild(h);
+  var ul=document.createElement("ul");
+  g[2].forEach(function(it){
+    var li=document.createElement("li"),a=document.createElement("a");
+    a.href=it[2];a.target="_blank";a.rel="noopener";a.textContent=it[0];
+    var sp=document.createElement("span");sp.textContent=it[1];a.appendChild(sp);
+    var y=document.createElement("button"),n=document.createElement("button");
+    y.type=n.type="button";y.className="b y";n.className="b n";y.textContent="OK";n.textContent="打不開";
+    function paint(){var v=S[it[2]];li.className=v||"";}
+    y.onclick=function(){S[it[2]]=S[it[2]]==="ok"?"":"ok";paint();save();count()};
+    n.onclick=function(){S[it[2]]=S[it[2]]==="bad"?"":"bad";paint();save();count()};
+    li.appendChild(a);li.appendChild(y);li.appendChild(n);ul.appendChild(li);paint();
+  });
+  root.appendChild(ul);
+});
+function count(){var t=0,o=0,b=0;Object.keys(S).forEach(function(k){});
+  document.querySelectorAll("li").forEach(function(li){t++;if(li.className==="ok")o++;else if(li.className==="bad")b++;});
+  document.getElementById("cOk").textContent=o;document.getElementById("cBad").textContent=b;document.getElementById("cNew").textContent=t-o-b;}
+document.getElementById("reset").onclick=function(){S={};save();document.querySelectorAll("li").forEach(function(li){li.className=""});count()};
+count();
+</script>
+
+</body></html>
